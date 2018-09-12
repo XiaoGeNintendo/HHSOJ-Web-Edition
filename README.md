@@ -2,6 +2,10 @@
 Another stupid Online Judge with Java EE version.
 # What's it
 It's an easy online judge. It's still beta!
+# About "hhsoj" folder
+We have one sample folder for you. Check it out. **Note that the files in runtime folder must be copied into your hhsoj folder**
+You can use `new File("hhsoj").getAbsolutePath()` to check your hhsoj folder path on your computer.
+If "oj.exe" was not in "hhsoj/runtime" folder, a *Library Missing* verdict will be given to every submission
 # Building
     0. Build on Windows
     1. Install Tomcat, java 8, g++ compiler, python compiler
@@ -39,3 +43,4 @@ My blog is here: [Rubbish Blog](https://xgns-blog.000webhostapp.com)
 Version 0.1: The beta version released! Seems without judging system? :P
 Version 0.2: Updated LICENSE. First time to write a license all by myself? :D
 Version 0.3: README update! You guys have something to read about, hum?
+Version 0.4: Upload sample "hhsoj" folder

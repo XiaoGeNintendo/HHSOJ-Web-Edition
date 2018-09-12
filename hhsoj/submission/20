@@ -1,0 +1,1 @@
+{"user":"a","prob":"1000","code":"public class ZJS{\r\n   public static void main(String[] args){\r\n}\r\n}","lang":"java","verdict":"Compile Error","results":[],"compilerComment":"Program.java:1: 错误: 类ZJS是公共的, 应在名为 ZJS.java 的文件中声明\npublic class ZJS{\n       ^\n1 个错误\n","id":20}
