@@ -1,0 +1,82 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.TestResult"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Submission"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.SubmissionHelper"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>HHSOJ-Submission <%=request.getParameter("id") %></title>
+</head>
+<body>
+	<script src="js/jquery-1.11.0.js" type="text/javascript"></script>
+	<script src="js/wangHighLighter-1.0.0-min.js" type="text/javascript"></script>
+	
+	
+	<%
+		int id=-1;
+		Submission s=new Submission(); 
+		try{
+			id=Integer.parseInt(request.getParameter("id"));
+			s=new SubmissionHelper().getSubmission(id);
+		}catch(Exception e){
+			out.println("Submission doesn't exist");
+			out.println("<a href=\"javascript:history.go(-1)\">←Back</a>");
+			return;
+		}
+		
+	%>
+	
+	<script>
+		function code(){
+			var highLightCode = wangHighLighter.highLight("<%=s.getLang().equals("cpp")?"C++":s.getLang()%>", "simple", "<%=s.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"")%>"); 
+			this.document.write(highLightCode);
+		}
+	</script>
+	
+	<a href="javascript:history.go(-1)">←Back</a>
+	<center>
+		<h1>Submission <%=id %> on HHSOJ</h1>
+		<i>Ctrl+A Ctrl+C help me get AC!  --IC</i>
+		<hr/>
+	</center>
+	
+		<h2>Basic Information</h2>
+	
+		Submission ID:<%=id %> <br/>
+		Problem ID:<a href="problem.jsp?id=<%=s.getProb() %>"><%=s.getProb() %></a><br/>
+		Submission Owner:<a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser()%></a><br/>
+		Submission Language:<%=s.getLang() %><br/>
+		Submission Verdict:<%=(s.getVerdict().equals("Accepted")?"<font color=#00ff00><b>"+s.getVerdict()+"</b>":"<font color=#0000ff>"+s.getVerdict())+"</font>" %> <br/>
+		
+		
+		<h2>Code:</h2>
+		
+		<script>
+			code();
+		</script>
+		
+		<h2>Compiler Comment</h2>
+		<pre><%=s.getCompilerComment().replace("<","&lt;").replace(">","&gt;") %></pre>
+		
+		<h2>Testcases Information</h2>
+		<%
+			int cnt=1;
+			for(TestResult tr:s.getResults()){
+						
+		%>
+				<b>Test#<%=cnt %>:</b>
+				<b><%=tr.getFile() %> </b>
+				<b>Verdict:<%=tr.getVerdict() %></b>
+				<b>Time cost:<%=tr.getTimeCost() %>ms </b>
+				<b>Memory cost:<%=tr.getMemoryCost() %>KB </b>
+				<b>Checker comment:</b><br/>
+				<pre><%=tr.getCheckerComment() %></pre>
+				<br/><br/>
+				
+		<%
+			}
+		%>
+</body>
+</html>
