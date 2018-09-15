@@ -69,3 +69,5 @@ Version 0.4: Upload sample "hhsoj" folder
 Version 0.5: Fixed line-breaking problem
 
 Version 0.6: Supports CPP Testing
+
+Version 0.7: Supports Filter

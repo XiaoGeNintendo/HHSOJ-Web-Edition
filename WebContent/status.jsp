@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.PatternMatcher"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.VerdictHelper"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.SubmissionHelper"%>
@@ -15,9 +16,27 @@
 	<a href="javascript:history.go(-1)">←Back</a>
 	<center>	
 		
+		<%
+		
+			String userPattern=request.getParameter("userId");
+			String probPattern=request.getParameter("probId");
+			String verdictPattern=request.getParameter("verdictId");
+			
+			
+		%>
 		<h1>Status</h1>
 		<i>There'll be only one testing thread working at a time --XGN</i>
 		<hr/>
+		
+		Submission Filter Setting
+		<form action="#" name="query" method="get">
+			User:<input name="userId" type="text"/>
+			Problem:<input name="probId" type="text"/>
+			Verdict:<input name="verdictId" type="text"/>
+			<input name="submit" type="submit" value="Filter"/>
+		</form>
+		<hr/>
+		
 		<table border="1" width="80%" align="center">
 			<tr>
 				<th width="15%">#</th>
@@ -52,7 +71,7 @@
 				}
 				
 				for(Submission s:sb){
-					
+					if(new PatternMatcher().match(s,userPattern,probPattern,verdictPattern)){
 					
 			%>
 			
@@ -66,6 +85,7 @@
 			</tr>
 			
 			<%
+					}
 				}
 			%>
 		</table>

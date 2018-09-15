@@ -50,7 +50,8 @@
 					<b>Memory Limit Per Test:<%=p.getArg("ML")%>KB</b> <br/>
 					
 					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
-					
+					<a href="status.jsp?probId=<%=p.getId() %>">→Status←</a>
+					<a href="status.jsp?userId=<%=session.getAttribute("username") %>">→My Submission←</a>
 					<hr/>
 				</center>
 				
