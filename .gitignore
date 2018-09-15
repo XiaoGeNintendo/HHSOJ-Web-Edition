@@ -1,3 +1,7 @@
 # Clear setting
 .settings
 build
+hhsoj/problems/*
+hhsoj/submission/*
+hhsoj/judge/*
+hhsoj/users/*

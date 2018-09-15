@@ -67,3 +67,5 @@ Version 0.3: README update! You guys have something to read about, hum?
 Version 0.4: Upload sample "hhsoj" folder
 
 Version 0.5: Fixed line-breaking problem
+
+Version 0.6: Supports CPP Testing

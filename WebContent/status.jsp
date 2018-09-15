@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.VerdictHelper"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.SubmissionHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Submission"%>
@@ -58,7 +59,7 @@
 			<tr bgcolor="<%=(id==s.getId()?"cyan":"white")%>">
 				<td align="center"><a href="submission.jsp?id=<%=s.getId()%>"> <%=s.getId() %> </a></td>
 				<td align="center"><a href="problem.jsp?id=<%=s.getProb()%>"> <%=s.getProb() %> </a></td>
-				<td align="center"><%=(s.getVerdict().equals("Accepted")?"<font color=#00ff00><b>"+s.getVerdict()+"</b>":"<font color=#0000ff>"+s.getVerdict())+"</font>" %></td>
+				<td align="center"><%=new VerdictHelper().render(s.getVerdict())%></td>
 				<td align="center"><%=s.getTimeCost() %></td>
 				<td align="center"><%=s.getMemoryCost() %></td>
 				<td align="center"><a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser() %></a></td>
