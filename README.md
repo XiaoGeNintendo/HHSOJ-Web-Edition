@@ -71,3 +71,5 @@ Version 0.5: Fixed line-breaking problem
 Version 0.6: Supports CPP Testing
 
 Version 0.7: Supports Filter
+
+Version 0.8: Finish verdict list
