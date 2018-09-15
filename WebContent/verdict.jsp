@@ -29,6 +29,37 @@
 		<i>T,int M=N>Z;struct Y{static int f(){return 0;}}...(and more) --Mike</i> <br/>
 		This verdict means your program tries to use some tricks to stuck our judger and it is killed.
 		 
+		<h2>Judging</h2>
+		<i>Can you see me? --XGN</i> <br/>
+		This verdict means your code will be judged in a few seconds
+		
+		<h2>Judgement Failed</h2>
+		<i>java.io.FileNotFoundException --JRE</i><br/>
+		This verdict means the judging server cannot judge your code because of some errors
+		
+		<h2>Runtime Error</h2>
+		<i>Exit code is 114514 --XGN</i> <br/>
+		Your code throws some exception during running. (eg Segment Fault)
+		
+		<h2>Running on test xxx</h2>
+		<i>Running on test 1024 --XGN</i> <br/>
+		Your code is running
+		
+		<h2>Time Limit Exceeded</h2>
+		<i>TLE on T14?? --Monkey.King</i> <br/>
+		Your code takes too much time to run
+		
+		<h2>Memory Limit Exceeded</h2>
+		<i>262144 --XGN</i> <br/>
+		Your code takes too much memory to run
+		
+		<h2>Wrong Answer</h2>
+		<i>Greedy? DP? --XGN</i> <br/>
+		Your code produces wrong answer
+		
+		<h2>Checker Error</h2>
+		<i>FAIL must run with the following arguments:xxx --Testlib</i> <br/>
+		The checker is not configured properly
 	</center>
 </body>
 </html>
