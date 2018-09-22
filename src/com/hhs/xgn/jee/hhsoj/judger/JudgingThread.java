@@ -44,16 +44,26 @@ public class JudgingThread extends Thread {
 				
 				File testfiles=new File(p.getPath()+"/tests");
 				
+				int cnt=1;
+				
+				boolean ac=true;
+				
 				for(File f:testfiles.listFiles()){
+					s.setVerdict("Running on test "+cnt);
+					new SubmissionHelper().storeStatus(s);
 					boolean goon=judgeOneTestCase(s,f,p);
 					if(!goon){
-						continue;
+						ac=false;
+						break;
 					}
+					
+					cnt++;
 				}
 				
-				s.setVerdict("Accepted");
-				new SubmissionHelper().storeStatus(s);
-				
+				if(ac){
+					s.setVerdict("Accepted");
+					new SubmissionHelper().storeStatus(s);
+				}
 			}catch(Exception e){
 				e.printStackTrace();
 				
@@ -71,34 +81,151 @@ public class JudgingThread extends Thread {
 		copyFile(f,new File("hhsoj/judge/in.txt"));
 		
 		//Use Std to generate output
-		ProcessBuilder pb=new ProcessBuilder("sol.exe");
-		pb.directory(new File("hhsoj/judge"));
-		pb.redirectOutput(new File("hhsoj/judge/std_out.txt"));
+		ProcessBuilder pb=new ProcessBuilder(new File("hhsoj/judge/sol.exe").getAbsolutePath());
+		pb.directory(new File("hhsoj/judge/"));
+		pb.redirectInput(new File("hhsoj/judge/in.txt"));
+		pb.redirectOutput(new File("hhsoj/judge/ans.txt"));
 		Process pr=pb.start();
 		
 		//We made sure that std is right and no harmful, but may TLE
+		long now=System.currentTimeMillis();
 		boolean ac=pr.waitFor(Integer.parseInt(p.getArg("TL")), TimeUnit.MILLISECONDS);
 		pr.destroyForcibly();
+		
+		System.out.println("STD TC="+(System.currentTimeMillis()-now));
 		
 		if(ac){
 			//Std ok
 			
 			//Then we run the user's program. We should run it in a sandbox
-			runUserProgram(s,f,p);
+			return runUserProgram(s,f,p);
+			
+			
+			
 			
 		}else{
 			//Std error
 			s.setVerdict("Standard Program Time Limit Exceeded");
-			s.getResults().add(new TestResult("Standard Program Time Limit", 0, 0, f.getName(), "std error"));
+			s.getResults().add(new TestResult("Standard Program Time Limit Exceeded", 0, 0, f.getName(), "std error"));
 			new SubmissionHelper().storeStatus(s);
 			return false;
 		}
 		
-		return false;
 	}
 
-	private void runUserProgram(Submission s, File f, Problem p) {
+	private boolean runUserProgram(Submission s, File f, Problem p) {
 		//We call the cpp program to run the program
+		
+		try{
+			ProcessBuilder pb=new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(),p.getArg("TL"),p.getArg("ML"));
+			pb.directory(new File("hhsoj/judge"));
+			pb.redirectInput(new File("hhsoj/judge/in.txt"));
+			pb.redirectOutput(new File("hhsoj/judge/out.txt"));
+			
+			Process pro=pb.start();
+			
+			pro.waitFor();
+			
+			pro.destroyForcibly();
+			
+			
+			if(pro.exitValue()!=0){
+				throw new Exception("Sandbox Error");
+			}
+			
+			//Anyway kill the sandbox
+			Runtime.getRuntime().exec("taskkill /f /im sandbox.exe /t");
+			
+			//Get memory limit and exit code
+			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/sandbox.txt")));
+			int mem=Integer.parseInt(br.readLine());
+			int exit=Integer.parseInt(br.readLine());
+			br.close();
+			
+			//Get time limit
+			int time=-1;
+			if(exit!=259){
+				BufferedReader br2=new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/time.txt")));
+				time=Integer.parseInt(br2.readLine());
+				br2.close();
+			}
+			
+			if(exit!=259 ){
+				//Not tle
+				
+				if(mem>Integer.parseInt(p.getArg("ML"))){
+					//Mle
+					s.setVerdict("Memory Limit Exceeded");
+					s.getResults().add(new TestResult("Memory Limit Exceeded", time, mem, f.getName(), "Memory limit exceeded. :("));
+					new SubmissionHelper().storeStatus(s);
+					return false;
+				}
+				
+				if(exit!=0){
+					//Re
+					s.setVerdict("Runtime Error");
+					s.getResults().add(new TestResult("Runtime Error", time, mem, f.getName(), "Runtime Error, exit code is "+exit));
+					new SubmissionHelper().storeStatus(s);
+					return false;
+				}
+				
+				//Compare
+				
+				return processCompare(s,p,time,mem,f.getName());
+				
+			}else{
+				//Tle
+				s.setVerdict("Time Limit Exceeded");
+				s.getResults().add(new TestResult("Time Limit Exceeded", Integer.parseInt(p.getArg("TL")), mem, f.getName(), "Time limit exceeded. :("));
+				new SubmissionHelper().storeStatus(s);
+				return false;
+			}
+		
+		}catch(Exception e){
+			//Judgement Failed
+			s.setVerdict("Judgement Failed");
+			s.getResults().add(new TestResult("Judgement Failed", 0, 0, f.getName(), e.toString()));
+			new SubmissionHelper().storeStatus(s);
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	private boolean processCompare(Submission s, Problem p,int time,int mem,String file) {
+		
+		try{
+			ProcessBuilder pb=new ProcessBuilder(new File("hhsoj/judge/checker").getAbsolutePath(),"in.txt","out.txt","ans.txt","checker.txt");
+			pb.directory(new File("hhsoj/judge"));
+			Process pro=pb.start();
+			
+			boolean notle=pro.waitFor(10000, TimeUnit.MILLISECONDS);
+			
+			pro.destroyForcibly();
+			
+			if(notle){
+				
+				if(pro.exitValue()!=0){
+					//Wa
+					s.setVerdict("Wrong Answer");
+					s.getResults().add(new TestResult("Wrong Answer", time, mem, file, readFile("hhsoj/judge/checker.txt")));
+					new SubmissionHelper().storeStatus(s);
+					return false;
+				}
+				
+				//Ac
+				s.getResults().add(new TestResult("Accepted", time, mem, file, readFile("hhsoj/judge/checker.txt")));
+				new SubmissionHelper().storeStatus(s);
+				return true;
+			}else{
+				//Checker tle
+				throw new Exception("Checker Time Limit Exceeded");
+			}
+		}catch(Exception e){
+			s.setVerdict("Checker Error");
+			s.getResults().add(new TestResult("Checker Error", time, mem, file, e.toString()));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
 		
 	}
 
@@ -229,8 +356,6 @@ public class JudgingThread extends Thread {
     
 	private void copyFiles(Submission s,Problem p) throws IOException {
 		System.out.println("Copying files");
-		int id=Integer.parseInt(s.getProb());
-		
 		
 		//Copy Solution
 		File oldSol=new File(p.getPath()+"/"+p.getArg("Solution"));
@@ -247,7 +372,15 @@ public class JudgingThread extends Thread {
 		pw.println(s.getCode());
 		pw.close();
 		
+		//Copy Sandbox
+		File snd=new File("hhsoj/runtime/oj.exe");
+		File nws=new File("hhsoj/judge/sandbox.exe");
+		copyFile(snd,nws);
 		
+		//Copy Runner
+		File run=new File("hhsoj/runtime/Runner.exe");
+		File nwr=new File("hhsoj/judge/Runner.exe");
+		copyFile(run,nwr);
 	}
 
 	private String getExtension(String lang) {

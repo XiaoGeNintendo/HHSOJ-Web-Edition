@@ -17,10 +17,12 @@ public class TaskQueue {
 	private static Vector<Submission> queue=new Vector<Submission>();
 	
 	private static boolean open=false; 
-	public static void openThread(){
+	public synchronized static void openThread(){
 		if(open) return;
 		System.out.println("Static block runs");
 		Thread t=new JudgingThread();
+		t.setName("Judging Thread");
+		
 		t.start();
 		open=true;
 	}

@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.VerdictHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.TestResult"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Submission"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.SubmissionHelper"%>
@@ -48,8 +49,9 @@
 		Problem ID:<a href="problem.jsp?id=<%=s.getProb() %>"><%=s.getProb() %></a><br/>
 		Submission Owner:<a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser()%></a><br/>
 		Submission Language:<%=s.getLang() %><br/>
-		Submission Verdict:<%=(s.getVerdict().equals("Accepted")?"<font color=#00ff00><b>"+s.getVerdict()+"</b>":"<font color=#0000ff>"+s.getVerdict())+"</font>" %> <br/>
-		
+		Submission Verdict:<%=new VerdictHelper().render(s.getVerdict())%><br/>
+		Submission Time Cost:<%=s.getTimeCost() %><br/>
+		Submission Memory Cost:<%=s.getMemoryCost() %><br/>
 		
 		<h2>Code:</h2>
 		
@@ -68,7 +70,7 @@
 		%>
 				<b>Test#<%=cnt %>:</b>
 				<b><%=tr.getFile() %> </b>
-				<b>Verdict:<%=tr.getVerdict() %></b>
+				<b>Verdict:<%=new VerdictHelper().render(tr.getVerdict())%></b>
 				<b>Time cost:<%=tr.getTimeCost() %>ms </b>
 				<b>Memory cost:<%=tr.getMemoryCost() %>KB </b>
 				<b>Checker comment:</b><br/>
@@ -76,6 +78,7 @@
 				<br/><br/>
 				
 		<%
+			cnt++;
 			}
 		%>
 </body>

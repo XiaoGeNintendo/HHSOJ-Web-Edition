@@ -48,6 +48,10 @@
 					<h1><%=p.getName() %> on HHSOJ</h1>
 					<b>Time Limit Per Test:<%=p.getArg("TL") %>MS</b> <br/>
 					<b>Memory Limit Per Test:<%=p.getArg("ML")%>KB</b> <br/>
+					
+					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
+					<a href="status.jsp?probId=<%=p.getId() %>">→Status←</a>
+					<a href="status.jsp?userId=<%=session.getAttribute("username") %>">→My Submission←</a>
 					<hr/>
 				</center>
 				
@@ -56,9 +60,7 @@
 				<jsp:include page="<%=\"/statement/\"+p.getArg(\"Statement\")%>" ></jsp:include>
 				
 				<hr/>
-				<center>
-					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
-				</center>
+				
 	<%
 			}
 		}

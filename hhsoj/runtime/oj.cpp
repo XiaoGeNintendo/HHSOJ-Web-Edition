@@ -38,6 +38,19 @@ template<typename T>ostream& operator<<(ostream& os,vector<T> vt) {
 }
 
 
+long long getMillisecondsNow() {
+    static LARGE_INTEGER frequency;
+    static BOOL useQpf = QueryPerformanceFrequency(&frequency);
+    if ( useQpf ) {
+        LARGE_INTEGER now;
+        QueryPerformanceCounter(&now);
+        return (1000LL * now.QuadPart) / frequency.QuadPart;
+    } else {
+        return GetTickCount();
+    }
+}
+
+
 /**
 	This file does not make sure that the judging server will be protected from dangerous code!!
 	Part of the code belongs to CSDN friendly users :) 
@@ -45,6 +58,9 @@ template<typename T>ostream& operator<<(ostream& os,vector<T> vt) {
 */
 int main(int argc,char* argv[]) {
 	
+	if(argc!=3){
+		return 2;
+	} 
 	int tl=atoi(argv[1]);
 	int ml=atoi(argv[2]);
 	
@@ -76,7 +92,7 @@ int main(int argc,char* argv[]) {
 
 	STARTUPINFO si = { sizeof(si) };
 	PROCESS_INFORMATION pi;
-	TCHAR szCmdLine[] = TEXT("Program.exe");
+	TCHAR szCmdLine[] = TEXT("Runner.exe Program.exe");
 	CreateProcess(NULL, szCmdLine, NULL, NULL, FALSE, CREATE_BREAKAWAY_FROM_JOB | CREATE_SUSPENDED, NULL, NULL, &si, &pi);
 
 	AssignProcessToJobObject(hJob, pi.hProcess);
@@ -84,13 +100,18 @@ int main(int argc,char* argv[]) {
 	ResumeThread(pi.hThread);
 	CloseHandle(pi.hThread);
 
+	
+	 
 	//通过WaitForSingleObject等待正在运行的工作对象,设置好允许使用时间.
-	DWORD WaitRe = WaitForSingleObject(hJob,tl*1000);
+	ll a=getMillisecondsNow();
+	DWORD WaitRe = WaitForSingleObject(hJob,tl);
+	ll b=getMillisecondsNow();
+	
 	
 	//Ths file output
 	ofstream os;
 	os.open("sandbox.txt");
-	
+	//os<<b-a<<endl;
 	
 	if(WaitRe!=WAIT_FAILED) {
 		JOBOBJECT_EXTENDED_LIMIT_INFORMATION lpJobObjectInfo;
