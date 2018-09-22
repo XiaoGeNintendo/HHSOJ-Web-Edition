@@ -1,0 +1,48 @@
+/* HHSOJ CSS file */
+/* by Zzzyt */
+
+body{
+	background:#abcdef;
+}
+
+body *{
+    font-family:"Courier New","Consolas"; 
+    align:center;
+}
+
+body hr{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+#title{
+    margin-top:80px;
+    margin-bottom:20px; 
+}
+
+#subtitle{
+    margin-bottom:30px;
+}
+
+#nav{
+    margin:0 auto;
+}
+
+.nav-link{
+    margin-left:50px;
+    margin-right:50px;
+    font:10px;
+    float:left;
+}
+
+#marguee{
+    margin-top:100px;
+}
+
+#verdict{
+    margin-top:30px;
+}
+
+#back{
+	display:block;
+}
