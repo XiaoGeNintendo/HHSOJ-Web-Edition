@@ -1,48 +1,107 @@
 /* HHSOJ CSS file */
 /* by Zzzyt */
-
-body{
-	background:#abcdef;
+body {
+	background: #f0f0f8;
+	margin-left: 50px;
+	margin-right: 50px;
+	margin-top: 100px;
+	min-width: 800px;
+	max-width: 1100px;
 }
 
-body *{
-    font-family:"Courier New","Consolas"; 
-    align:center;
+body span, pre, code {
+	font-family: "Courier New", "Consolas";
 }
 
-body hr{
-    margin-top:10px;
-    margin-bottom:10px;
+body h1, h2, h3, h4, h5, h6 {
+	font-family: serif;
 }
 
-#title{
-    margin-top:80px;
-    margin-bottom:20px; 
+body hr {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	clear: both;
 }
 
-#subtitle{
-    margin-bottom:30px;
+#title {
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 40px;
+	width: 800px;
+	float: left;
+	height: 40px;
+	font-family: serif;
 }
 
-#nav{
-    margin:0 auto;
+#subtitle {
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 30px;
+	width: 800px;
+	float: left;
+	clear: both;
+	margin-bottom: 10px;
+	font-family: serif;
 }
 
-.nav-link{
-    margin-left:50px;
-    margin-right:50px;
-    font:10px;
-    float:left;
+#nav {
+	clear: both;
 }
 
-#marguee{
-    margin-top:100px;
+.nav-link-left {
+	margin-left: 20px;
+	margin-right: 20px;
+	font: 20px;
+	color: #000000;
+	text-decoration: none;
+	float: left;
+	display: block;
+	text-decoration: none;
 }
 
-#verdict{
-    margin-top:30px;
+.nav-link-right {
+	margin-left: 20px;
+	margin-right: 20px;
+	font: 20px;
+	color: #000000;
+	float: right;
+	text-decoration: none;
+	display: block;
 }
 
-#back{
-	display:block;
+.selected {
+	border-bottom: 3px solid #66ccff;
+}
+
+#problem-table {
+	border-collapse: collapse;
+	width: 80%;
+	align-self: center;
+	margin: 0px auto;
+	min-width: 500px;
+}
+
+#problem-table th, td {
+	padding: 3px;
+	border: 1px solid #000000;
+}
+
+#seperator {
+	height: 50px;
+}
+
+#marquee {
+	margin-top: 100px;
+}
+
+#verdict {
+	margin-top: 30px;
+}
+
+#back {
+	display: block;
 }

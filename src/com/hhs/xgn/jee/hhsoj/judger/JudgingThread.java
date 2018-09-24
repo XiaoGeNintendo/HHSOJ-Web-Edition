@@ -1,7 +1,6 @@
 package com.hhs.xgn.jee.hhsoj.judger;
 
 import java.io.*;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.hhs.xgn.jee.hhsoj.db.ProblemHelper;
