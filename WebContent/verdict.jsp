@@ -61,6 +61,10 @@
 		<h2>Checker Error</h2>
 		<i>FAIL must run with the following arguments:xxx --Testlib</i> <br/>
 		The checker is not configured properly
+		
+		<h2>Library Missing</h2>
+		<i>Please copy all the files in hhsoj/runtime --Github XGN</i> <br/>
+		The server is not configured properly. Please contact the server admin.
 	</center>
 </body>
 </html>

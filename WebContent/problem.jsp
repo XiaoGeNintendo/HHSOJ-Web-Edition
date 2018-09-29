@@ -52,7 +52,7 @@
 					
 					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
 					<a href="status.jsp?probId=<%=p.getId() %>">→Status←</a>
-					<a href="status.jsp?userId=<%=session.getAttribute("username") %>">→My Submission←</a>
+					<a href="status.jsp?probId=<%=p.getId() %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
 					<hr/>
 				</center>
 				

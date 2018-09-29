@@ -28,7 +28,7 @@
 		<i><%=u.getLine()%> -- <%=user %></i>
 		<hr/>
 		
-		<a href="status.jsp?userId="<%=user%>>Submissions</a>
+		<a href="status.jsp?userId=<%=user%>">Submissions</a>
 	</center>
 	
 	<%

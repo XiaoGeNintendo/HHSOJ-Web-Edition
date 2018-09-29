@@ -75,3 +75,5 @@ Version 0.7: Supports Filter
 Version 0.8: Finish verdict list
 
 Version 0.9: Support CSS. Thanks, Zzzyt!
+
+Version 0.10: Fixed a little bugs in displaying and logic. Tested some attacking function.
