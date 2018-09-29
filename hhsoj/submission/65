@@ -1,0 +1,1 @@
+{"user":"a","prob":"1001","code":"public class Program{\r\npublic static void main(String[] args){\r\n}}","lang":"java","verdict":"Runtime Error","results":[{"verdict":"Runtime Error","timeCost":189,"memoryCost":3092,"file":".txt","checkerComment":"Runtime Error, exit code is 1"}],"compilerComment":"","id":65}

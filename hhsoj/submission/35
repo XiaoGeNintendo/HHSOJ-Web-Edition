@@ -1,0 +1,1 @@
+{"user":"a","prob":"1000","code":"#include \u003ciostream\u003e\r\nusing namespace std;\r\nint main(){\r\n}","lang":"cpp","verdict":"Judgement Failed","results":[],"compilerComment":"java.io.FileNotFoundException: hhsoj\\judge\\sandbox.exe (另一个程序正在使用此文件，进程无法访问。)","id":35}

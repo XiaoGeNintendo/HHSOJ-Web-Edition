@@ -103,5 +103,13 @@ public class UserHelper {
 		
 	}
 	
-	
+	public void deleteUser(String username){
+		ArrayList<Users> a=getAllUsers();
+		for(Users u:a){
+			if(u.getUsername().equals(username)){
+				new File("hhsoj/users/"+u.getId()).delete();
+				return;
+			}
+		}
+	}
 }

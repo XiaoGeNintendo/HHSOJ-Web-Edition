@@ -1,6 +1,7 @@
 package com.hhs.xgn.jee.hhsoj.judger;
 
 import java.io.*;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.hhs.xgn.jee.hhsoj.db.ProblemHelper;
@@ -10,178 +11,120 @@ import com.hhs.xgn.jee.hhsoj.type.Submission;
 import com.hhs.xgn.jee.hhsoj.type.TestResult;
 
 public class JudgingThread extends Thread {
-	public void run(){
+	public void run() {
 		System.out.println("Judging Thread Initaize Ok!");
-		while(true){
-			
+		while (true) {
+
 			ClearFolder();
-			while(TaskQueue.hasElement()==false){
-				
+			while (TaskQueue.hasElement() == false) {
+
 			}
-			
-			
-			Submission s=TaskQueue.getFirstSubmission();
-			Problem p=new ProblemHelper().getProblemData(Integer.parseInt(s.getProb()));
-			try{
-				
+
+			Submission s = TaskQueue.getFirstSubmission();
+			Problem p = new ProblemHelper().getProblemData(Integer.parseInt(s.getProb()));
+			try {
+
 				TaskQueue.popFront();
-				
-				
-				System.out.println("Now testing:"+s.getId());
-				
+
+				System.out.println("Now testing:" + s.getId());
+
 				Thread.sleep(1000);
-				
-				if(!checkEnvironment(s)){
+
+				if (!checkEnvironment(s)) {
 					continue;
 				}
-				
-				copyFiles(s,p);
-				
-				if(!compileFiles(s)){
+
+				copyFiles(s, p);
+
+				if (!compileFiles(s)) {
 					continue;
 				}
-				
-				File testfiles=new File(p.getPath()+"/tests");
-				
-				int cnt=1;
-				
-				boolean ac=true;
-				
-				for(File f:testfiles.listFiles()){
-					s.setVerdict("Running on test "+cnt);
+
+				File testfiles = new File(p.getPath() + "/tests");
+
+				int cnt = 1;
+
+				boolean ac = true;
+
+				for (File f : testfiles.listFiles()) {
+					s.setVerdict("Running on test " + cnt);
 					new SubmissionHelper().storeStatus(s);
-					boolean goon=judgeOneTestCase(s,f,p);
-					if(!goon){
-						ac=false;
+					boolean goon = judgeOneTestCase(s, f, p);
+					if (!goon) {
+						ac = false;
 						break;
 					}
-					
+
 					cnt++;
 				}
-				
-				if(ac){
+
+				if (ac) {
 					s.setVerdict("Accepted");
 					new SubmissionHelper().storeStatus(s);
 				}
-			}catch(Exception e){
+			} catch (Exception e) {
 				e.printStackTrace();
-				
+
 				s.setVerdict("Judgement Failed");
 				s.setCompilerComment(e.toString());
 				new SubmissionHelper().storeStatus(s);
 			}
 		}
 	}
-	
-	private boolean judgeOneTestCase(Submission s, File f,Problem p) throws IOException, NumberFormatException, InterruptedException {
+
+	private boolean judgeOneTestCase(Submission s, File f, Problem p)
+			throws IOException, NumberFormatException, InterruptedException {
 		System.out.println("Testing...");
-		
-		//Copy input file
-		copyFile(f,new File("hhsoj/judge/in.txt"));
-		
-		//Use Std to generate output
-		ProcessBuilder pb=new ProcessBuilder(new File("hhsoj/judge/sol.exe").getAbsolutePath());
+
+		// Copy input file
+		copyFile(f, new File("hhsoj/judge/in.txt"));
+
+		// Use Std to generate output
+		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sol.exe").getAbsolutePath());
 		pb.directory(new File("hhsoj/judge/"));
 		pb.redirectInput(new File("hhsoj/judge/in.txt"));
 		pb.redirectOutput(new File("hhsoj/judge/ans.txt"));
-		Process pr=pb.start();
-		
-		//We made sure that std is right and no harmful, but may TLE
-		long now=System.currentTimeMillis();
-		boolean ac=pr.waitFor(Integer.parseInt(p.getArg("TL")), TimeUnit.MILLISECONDS);
+		Process pr = pb.start();
+
+		// We made sure that std is right and no harmful, but may TLE
+		long now = System.currentTimeMillis();
+		boolean ac = pr.waitFor(Integer.parseInt(p.getArg("TL")), TimeUnit.MILLISECONDS);
 		pr.destroyForcibly();
-		
-		System.out.println("STD TC="+(System.currentTimeMillis()-now));
-		
-		if(ac){
-			//Std ok
-			
-			//Then we run the user's program. We should run it in a sandbox
-			return runUserProgram(s,f,p);
-			
-			
-			
-			
-		}else{
-			//Std error
+
+		System.out.println("STD TC=" + (System.currentTimeMillis() - now));
+
+		if (ac) {
+			// Std ok
+
+			// Then we run the user's program. We should run it in a sandbox
+			return runUserProgram(s, f, p);
+
+		} else {
+			// Std error
 			s.setVerdict("Standard Program Time Limit Exceeded");
 			s.getResults().add(new TestResult("Standard Program Time Limit Exceeded", 0, 0, f.getName(), "std error"));
 			new SubmissionHelper().storeStatus(s);
 			return false;
 		}
-		
+
 	}
 
 	private boolean runUserProgram(Submission s, File f, Problem p) {
-		//We call the cpp program to run the program
-		
-		try{
-			ProcessBuilder pb=new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(),p.getArg("TL"),p.getArg("ML"));
-			pb.directory(new File("hhsoj/judge"));
-			pb.redirectInput(new File("hhsoj/judge/in.txt"));
-			pb.redirectOutput(new File("hhsoj/judge/out.txt"));
-			
-			Process pro=pb.start();
-			
-			pro.waitFor();
-			
-			pro.destroyForcibly();
-			
-			
-			if(pro.exitValue()!=0){
-				throw new Exception("Sandbox Error");
+		// We call the cpp program to run the program
+
+		try {
+
+			if (s.getLang().equals("cpp")) {
+				return runUserCpp(s, f, p);
+			}
+
+			if(s.getLang().equals("java")){
+				return runUserJava(s,f,p);
 			}
 			
-			//Anyway kill the sandbox
-			Runtime.getRuntime().exec("taskkill /f /im sandbox.exe /t");
-			
-			//Get memory limit and exit code
-			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/sandbox.txt")));
-			int mem=Integer.parseInt(br.readLine());
-			int exit=Integer.parseInt(br.readLine());
-			br.close();
-			
-			//Get time limit
-			int time=-1;
-			if(exit!=259){
-				BufferedReader br2=new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/time.txt")));
-				time=Integer.parseInt(br2.readLine());
-				br2.close();
-			}
-			
-			if(exit!=259 ){
-				//Not tle
-				
-				if(mem>Integer.parseInt(p.getArg("ML"))){
-					//Mle
-					s.setVerdict("Memory Limit Exceeded");
-					s.getResults().add(new TestResult("Memory Limit Exceeded", time, mem, f.getName(), "Memory limit exceeded. :("));
-					new SubmissionHelper().storeStatus(s);
-					return false;
-				}
-				
-				if(exit!=0){
-					//Re
-					s.setVerdict("Runtime Error");
-					s.getResults().add(new TestResult("Runtime Error", time, mem, f.getName(), "Runtime Error, exit code is "+exit));
-					new SubmissionHelper().storeStatus(s);
-					return false;
-				}
-				
-				//Compare
-				
-				return processCompare(s,p,time,mem,f.getName());
-				
-			}else{
-				//Tle
-				s.setVerdict("Time Limit Exceeded");
-				s.getResults().add(new TestResult("Time Limit Exceeded", Integer.parseInt(p.getArg("TL")), mem, f.getName(), "Time limit exceeded. :("));
-				new SubmissionHelper().storeStatus(s);
-				return false;
-			}
-		
-		}catch(Exception e){
-			//Judgement Failed
+			throw new Exception("Unknown language");
+		} catch (Exception e) {
+			// Judgement Failed
 			s.setVerdict("Judgement Failed");
 			s.getResults().add(new TestResult("Judgement Failed", 0, 0, f.getName(), e.toString()));
 			new SubmissionHelper().storeStatus(s);
@@ -190,224 +133,302 @@ public class JudgingThread extends Thread {
 		}
 	}
 
-	private boolean processCompare(Submission s, Problem p,int time,int mem,String file) {
 		
-		try{
-			ProcessBuilder pb=new ProcessBuilder(new File("hhsoj/judge/checker").getAbsolutePath(),"in.txt","out.txt","ans.txt","checker.txt");
+	private boolean runUserCpp(Submission s, File f, Problem p) throws Exception {
+
+		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(), p.getArg("TL"),
+				p.getArg("ML"));
+		pb.directory(new File("hhsoj/judge"));
+		pb.redirectInput(new File("hhsoj/judge/in.txt"));
+		pb.redirectOutput(new File("hhsoj/judge/out.txt"));
+
+		Process pro = pb.start();
+
+		pro.waitFor();
+
+		pro.destroyForcibly();
+
+		if (pro.exitValue() != 0) {
+			throw new Exception("Sandbox Error");
+		}
+
+		// Anyway kill the sandbox
+		Runtime.getRuntime().exec("taskkill /f /im sandbox.exe /t");
+
+		// Get memory limit and exit code
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/sandbox.txt")));
+		int mem = Integer.parseInt(br.readLine());
+		int exit = Integer.parseInt(br.readLine());
+		br.close();
+
+		// Get time limit
+		int time = -1;
+		if (exit != 259) {
+			BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/time.txt")));
+			time = Integer.parseInt(br2.readLine());
+			br2.close();
+		}
+
+		if (exit != 259) {
+			// Not tle
+
+			if (mem > Integer.parseInt(p.getArg("ML"))) {
+				// Mle
+				s.setVerdict("Memory Limit Exceeded");
+				s.getResults().add(
+						new TestResult("Memory Limit Exceeded", time, mem, f.getName(), "Memory limit exceeded. :("));
+				new SubmissionHelper().storeStatus(s);
+				return false;
+			}
+
+			if (exit != 0) {
+				// Re
+				s.setVerdict("Runtime Error");
+				s.getResults().add(
+						new TestResult("Runtime Error", time, mem, f.getName(), "Runtime Error, exit code is " + exit));
+				new SubmissionHelper().storeStatus(s);
+				return false;
+			}
+
+			// Compare
+
+			return processCompare(s, p, time, mem, f.getName());
+
+		} else {
+			// Tle
+			s.setVerdict("Time Limit Exceeded");
+			s.getResults().add(new TestResult("Time Limit Exceeded", Integer.parseInt(p.getArg("TL")), mem, f.getName(),
+					"Time limit exceeded. :("));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+
+	}
+
+	private boolean runUserJava(Submission s, File f, Problem p) throws Exception {
+		//TODO Run Java Program
+		return false;
+	}
+	
+	private boolean processCompare(Submission s, Problem p, int time, int mem, String file) {
+
+		try {
+			ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/checker").getAbsolutePath(), "in.txt",
+					"out.txt", "ans.txt", "checker.txt");
 			pb.directory(new File("hhsoj/judge"));
-			Process pro=pb.start();
-			
-			boolean notle=pro.waitFor(10000, TimeUnit.MILLISECONDS);
-			
+			Process pro = pb.start();
+
+			boolean notle = pro.waitFor(10000, TimeUnit.MILLISECONDS);
+
 			pro.destroyForcibly();
-			
-			if(notle){
-				
-				if(pro.exitValue()!=0){
-					//Wa
+
+			if (notle) {
+
+				if (pro.exitValue() != 0) {
+					// Wa
 					s.setVerdict("Wrong Answer");
-					s.getResults().add(new TestResult("Wrong Answer", time, mem, file, readFile("hhsoj/judge/checker.txt")));
+					s.getResults()
+							.add(new TestResult("Wrong Answer", time, mem, file, readFile("hhsoj/judge/checker.txt")));
 					new SubmissionHelper().storeStatus(s);
 					return false;
 				}
-				
-				//Ac
+
+				// Ac
 				s.getResults().add(new TestResult("Accepted", time, mem, file, readFile("hhsoj/judge/checker.txt")));
 				new SubmissionHelper().storeStatus(s);
 				return true;
-			}else{
-				//Checker tle
+			} else {
+				// Checker tle
 				throw new Exception("Checker Time Limit Exceeded");
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			s.setVerdict("Checker Error");
 			s.getResults().add(new TestResult("Checker Error", time, mem, file, e.toString()));
 			new SubmissionHelper().storeStatus(s);
 			return false;
 		}
-		
+
 	}
 
 	private void ClearFolder() {
 		System.out.println("Clearing folder");
-		File ff=new File("hhsoj/judge");
-		for(File f:ff.listFiles()){
+		File ff = new File("hhsoj/judge");
+		for (File f : ff.listFiles()) {
 			f.delete();
 		}
 	}
 
 	private boolean compileFiles(Submission s) throws IOException, InterruptedException {
 		System.out.println("Compiling the given solution");
-		
+
 		s.setVerdict("Compiling");
 		new SubmissionHelper().storeStatus(s);
-		
-		ProcessBuilder pb=new ProcessBuilder(getCompiler(s.getLang()));
+
+		ProcessBuilder pb = new ProcessBuilder(getCompiler(s.getLang()));
 		pb.directory(new File("hhsoj/judge"));
-		
+
 		pb.redirectError(new File("hhsoj/judge/compile.txt"));
-		
-		
-		Process p=pb.start();
-		
-		
-		long tme=System.currentTimeMillis();
-		
-		boolean killed=true;
-		while(p.isAlive()){
-			if(System.currentTimeMillis()-tme>=15*1000){
-				
-				killed=false;
+
+		Process p = pb.start();
+
+		long tme = System.currentTimeMillis();
+
+		boolean killed = true;
+		while (p.isAlive()) {
+			if (System.currentTimeMillis() - tme >= 15 * 1000) {
+
+				killed = false;
 				break;
 			}
 		}
-		
-		
-		
-		if(killed){
-			//Fit in time
-			int id=p.exitValue();
-			
-			if(id!=0){
-				//Compile Error
+
+		if (killed) {
+			// Fit in time
+			int id = p.exitValue();
+
+			if (id != 0) {
+				// Compile Error
 				s.setVerdict("Compile Error");
 				s.setCompilerComment(readFile("hhsoj/judge/compile.txt"));
 				new SubmissionHelper().storeStatus(s);
-				
+
 				return false;
 			}
-			
+
 			s.setVerdict("Judging");
 			s.setCompilerComment(readFile("hhsoj/judge/compile.txt"));
 			new SubmissionHelper().storeStatus(s);
-			
+
 			return true;
-		}else{
-			//Compile timeout
-			
+		} else {
+			// Compile timeout
+
 			killCompiler(s);
 			s.setVerdict("Compile Timeout");
 			s.setCompilerComment("Compile Takes 15.00s");
 			new SubmissionHelper().storeStatus(s);
-			
+
 			return false;
 		}
 	}
 
 	private void killCompiler(Submission s) throws IOException {
-		if(s.getLang().equals("cpp")){
-			ProcessBuilder pb=new ProcessBuilder("taskkill", "/f", "/im" ,"g++.exe" ,"/t");
+		if (s.getLang().equals("cpp")) {
+			ProcessBuilder pb = new ProcessBuilder("taskkill", "/f", "/im", "g++.exe", "/t");
 			pb.directory(new File("hhsoj/runtime"));
 			pb.start();
 		}
 	}
 
 	private String readFile(String file) throws IOException {
-		BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-		String s,ans="";
-		while((s=br.readLine())!=null){
-			ans+=s+"\n";
-			if(ans.length()>=1000){
-				ans+="...(and more)";
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+		String s, ans = "";
+		while ((s = br.readLine()) != null) {
+			ans += s + "\n";
+			if (ans.length() >= 1000) {
+				ans += "...(and more)";
 				break;
 			}
 		}
-		
+
 		br.close();
 		return ans;
 	}
 
 	private String[] getCompiler(String lang) {
-		if(lang.equals("python")){
-			return new String[]{};
+		if (lang.equals("python")) {
+			return new String[] {};
 		}
-		if(lang.equals("cpp")){
-			
-			return new String[]{"g++","-static","-DONLINE_JUDGE","-std=c++11","-O2","-Wl,--stack=268435456","-s","-x","c++","-o","Program.exe","Program.cpp"};
+		if (lang.equals("cpp")) {
+
+			return new String[] { "g++", "-static", "-DONLINE_JUDGE", "-std=c++11", "-O2", "-Wl,--stack=268435456",
+					"-s", "-x", "c++", "-o", "Program.exe", "Program.cpp" };
 		}
-			
-		if(lang.equals("java")){
-			return new String[]{"javac","-cp","\".;*\"","Program.java"};
+
+		if (lang.equals("java")) {
+			return new String[] { "javac", "-cp", "\".;*\"", "Program.java" };
 		}
 		return null;
 	}
 
 	/**
-     * 复制文件
-     * @param fromFile
-     * @param toFile
-     * <br/>
-     * 2016年12月19日  下午3:31:50
-     * @throws IOException 
-     */
-    private void copyFile(File fromFile,File toFile) throws IOException{
-        FileInputStream ins = new FileInputStream(fromFile);
-        FileOutputStream out = new FileOutputStream(toFile);
-        byte[] b = new byte[1024];
-        int n=0;
-        while((n=ins.read(b))!=-1){
-            out.write(b, 0, n);
-        }
-        
-        ins.close();
-        out.close();
-    }
-    
-	private void copyFiles(Submission s,Problem p) throws IOException {
+	 * 复制文件
+	 * 
+	 * @param fromFile
+	 * @param toFile
+	 *            <br/>
+	 *            2016年12月19日 下午3:31:50
+	 * @throws IOException
+	 */
+	private void copyFile(File fromFile, File toFile) throws IOException {
+		FileInputStream ins = new FileInputStream(fromFile);
+		FileOutputStream out = new FileOutputStream(toFile);
+		byte[] b = new byte[1024];
+		int n = 0;
+		while ((n = ins.read(b)) != -1) {
+			out.write(b, 0, n);
+		}
+
+		ins.close();
+		out.close();
+	}
+
+	private void copyFiles(Submission s, Problem p) throws IOException {
 		System.out.println("Copying files");
-		
-		//Copy Solution
-		File oldSol=new File(p.getPath()+"/"+p.getArg("Solution"));
-		File newSol=new File("hhsoj/judge/sol.exe");
-		copyFile(oldSol,newSol);
-		
-		//Copy Checker
-		File oldChk=new File(p.getPath()+"/"+p.getArg("Checker"));
-		File newChk=new File("hhsoj/judge/checker.exe");
-		copyFile(oldChk,newChk);
-		
-		//Copy User's Program
-		PrintWriter pw=new PrintWriter("hhsoj/judge/Program."+getExtension(s.getLang()));
+
+		// Copy Solution
+		File oldSol = new File(p.getPath() + "/" + p.getArg("Solution"));
+		File newSol = new File("hhsoj/judge/sol.exe");
+		copyFile(oldSol, newSol);
+
+		// Copy Checker
+		File oldChk = new File(p.getPath() + "/" + p.getArg("Checker"));
+		File newChk = new File("hhsoj/judge/checker.exe");
+		copyFile(oldChk, newChk);
+
+		// Copy User's Program
+		PrintWriter pw = new PrintWriter("hhsoj/judge/Program." + getExtension(s.getLang()));
 		pw.println(s.getCode());
 		pw.close();
-		
-		//Copy Sandbox
-		File snd=new File("hhsoj/runtime/oj.exe");
-		File nws=new File("hhsoj/judge/sandbox.exe");
-		copyFile(snd,nws);
-		
-		//Copy Runner
-		File run=new File("hhsoj/runtime/Runner.exe");
-		File nwr=new File("hhsoj/judge/Runner.exe");
-		copyFile(run,nwr);
+
+		// Copy Sandbox
+		File snd = new File("hhsoj/runtime/oj.exe");
+		File nws = new File("hhsoj/judge/sandbox.exe");
+		copyFile(snd, nws);
+
+		// Copy Runner
+		File run = new File("hhsoj/runtime/Runner.exe");
+		File nwr = new File("hhsoj/judge/Runner.exe");
+		copyFile(run, nwr);
 	}
 
 	private String getExtension(String lang) {
-		if(lang.equals("python")){
+		if (lang.equals("python")) {
 			return "py";
-		}else{
+		} else {
 			return lang;
 		}
-		
+
 	}
 
-	private boolean checkEnvironment(Submission s){
-		
+	private boolean checkEnvironment(Submission s) {
+
 		System.out.println("Checking environment");
-		
-		File f=new File("hhsoj/judge");
-		if(!f.exists()){
+
+		File f = new File("hhsoj/judge");
+		if (!f.exists()) {
 			f.mkdirs();
 		}
-		
-		File f2=new File("hhsoj/runtime/oj.exe");
-		if(!f2.exists()){
+
+		File f2 = new File("hhsoj/runtime/oj.exe");
+		if (!f2.exists()) {
 			s.setVerdict("Library Missing");
-			s.setCompilerComment("Please contact the admin of the server and tell him/her that the oj.exe was not in the position it should be.The judging cannot continue untils the problem fixed.");
+			s.setCompilerComment(
+					"Please contact the admin of the server and tell him/her that the oj.exe was not in the position it should be.The judging cannot continue untils the problem fixed.");
 			new SubmissionHelper().storeStatus(s);
 			return false;
 		}
-		
+
 		return true;
 	}
 }

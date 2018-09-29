@@ -1,0 +1,1 @@
+{"user":"a","prob":"1000","code":"#include \u003ciostream\u003e\r\nusing namespace std;\r\nint main(){\r\nwhile(true){}\r\n}","lang":"cpp","verdict":"Time Limit Exceeded","results":[{"verdict":"Time Limit Exceeded","timeCost":1000,"memoryCost":3084,"file":"TEST1.txt","checkerComment":"Time limit exceeded. :("}],"compilerComment":"","id":60}

@@ -1,0 +1,1 @@
+{"user":"a","prob":"1000","code":"#include \u003ciostream\u003e\r\nusing namespace std;\r\nint main(){\r\n}","lang":"cpp","verdict":"Standard Program Time Limit Exceeded","results":[{"verdict":"Standard Program Time Limit Exceeded","timeCost":0,"memoryCost":0,"file":"TEST1.txt","checkerComment":"std error"}],"compilerComment":"","id":31}
