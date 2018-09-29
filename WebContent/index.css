@@ -1,12 +1,11 @@
 /* HHSOJ CSS file */
 /* by Zzzyt */
 body {
-	background: #f0f0f8;
+	background: #e8e8e8;
 	margin-left: 50px;
 	margin-right: 50px;
 	margin-top: 100px;
 	min-width: 800px;
-	max-width: 1100px;
 }
 
 body span, pre, code {
@@ -83,11 +82,21 @@ body hr {
 	align-self: center;
 	margin: 0px auto;
 	min-width: 500px;
+	border:1px solid #cccccc;
 }
 
-#problem-table th, td {
+#problem-table th,td{
 	padding: 3px;
-	border: 1px solid #000000;
+	border: 1px solid #cccccc;
+}
+
+#login_table {
+	border: 0px;
+}
+
+#login_table th,td{
+	padding: 2px;
+	border: 0px;
 }
 
 #seperator {

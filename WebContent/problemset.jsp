@@ -11,7 +11,6 @@
 <title>HHSOJ-Problems</title>
 </head>
 <body>
-	<!--<a href="index.jsp">←Back</a>-->
 	<h1 id="title">Problems in HHSOJ</h1>
 	<i id="subtitle">Solve them? Impossible! --Zzzyt</i>
 	<hr />

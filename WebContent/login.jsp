@@ -8,7 +8,7 @@
 <title>HHSOJ-Login</title>
 </head>
 <body>
-	<a href="index.jsp">←Back</a>
+	
 	<script>
 		function call(){
 			var un=this.document.forms['login']['username'].value;
@@ -32,12 +32,21 @@
 		}
 		
 	</script>
-	<center>
-		<h1>Login</h1>
-		<i>We simply used files to store user's names and passwords --XGN</i>
+		<h1 id="title">Login</h1>
+		<i id="subtitle">We simply used files to store user's names and passwords --XGN</i>
 		<hr/>
+		<div id="nav">
+		<a href="index.jsp" class="nav-link-left">Home</a> 
+		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
+		<a href="status.jsp" class="nav-link-left">Status</a>
+		<a href="submit.jsp" class="nav-link-left">Submit</a>
+		<a href="login.jsp" class="nav-link-right selected">Login</a>
+		<a href="register.jsp" class="nav-link-right">Register</a>
+		</div>
+		<div id="seperator"></div>
+		<br />
 		<form action="dologin.jsp" onsubmit="return call()" method="post" name="login">
-			<table align="center">
+			<table align="center" id="login_table">
 				<tr>
 					<td>Username:</td>
 					<td><input type="text" maxlength="50" name="username"/></td>
@@ -46,14 +55,13 @@
 					<td>Password:</td>
 					<td><input type="password" maxlength="50" name="password"/></td>
 				</tr>
-				
+
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="Login">
+						<input type="submit" value="Login"/>
 					</td>
 				</tr>
 			</table>
 		</form>
-	</center>
 </body>
 </html>
