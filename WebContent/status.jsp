@@ -14,7 +14,37 @@
 <title>HHSOJ-Status</title>
 </head>
 <body>
-	<a href="javascript:history.go(-1)">←Back</a>
+	
+	<!-- Default Template -->
+	<h1 id="title">Status</h1>
+	<i id="subtitle">There'll be only one testing thread working at a time --XGN</i>
+	<hr />
+	<div id="nav">
+		<a href="index.jsp" class="nav-link-left">Home</a> 
+		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
+		<a href="status.jsp" class="nav-link-left selected">Status</a> 
+		<a href="submit.jsp" class="nav-link-left">Submit</a> 
+		<%
+			String userLooking=(String)session.getAttribute("username");
+			if(userLooking!=null && !userLooking.equals("")){
+				
+			
+		%>
+		<a href="users.jsp?username=<%=userLooking %>" class="nav-link-right"><%=userLooking %></a>
+		<a href="logout.jsp" class="nav-link-right">Logout</a> 
+		<%
+			}else{
+		%>
+				<a href="login.jsp" class="nav-link-right">Login</a>
+				<a href="register.jsp" class="nav-link-right">Register</a>
+		<%
+			}
+		%>
+	</div>
+	<div id="seperator"></div>
+	<br />
+	<!-- Default End -->
+	
 	<center>	
 		
 		<%
@@ -25,9 +55,6 @@
 			
 			
 		%>
-		<h1>Status</h1>
-		<i>There'll be only one testing thread working at a time --XGN</i>
-		<hr/>
 		
 		Submission Filter Setting
 		<form action="#" name="query" method="get">

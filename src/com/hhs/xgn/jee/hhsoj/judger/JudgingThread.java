@@ -207,7 +207,8 @@ public class JudgingThread extends Thread {
 
 	private boolean runUserJava(Submission s, File f, Problem p) throws Exception {
 		//TODO Run Java Program
-		return false;
+		
+		return new JavaTester().test(s,f,p);
 	}
 	
 	private boolean processCompare(Submission s, Problem p, int time, int mem, String file) {
