@@ -12,8 +12,7 @@
 	<%
 		String s = (String) session.getAttribute("username");
 		if (s == null || s.equals("")) {
-			out.println("Please login to submit.<br/>");
-			out.println("<a href=\"index.jsp\">Back to main page</a>");
+			response.sendRedirect("login.jsp?type=submit");
 		} else {
 	%>
 

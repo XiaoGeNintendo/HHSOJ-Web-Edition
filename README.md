@@ -84,3 +84,5 @@ Version 0.11: UI design.
 Version 0.12: Supports java testing! Finally!
 
 Version 0.13: Auto-refresh when pressing "back" and fixed some bugs in java testing.
+
+Version 0.14: Now Will auto jump to login if you didn't login at submit page

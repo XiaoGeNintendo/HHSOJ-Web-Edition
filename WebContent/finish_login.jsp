@@ -7,13 +7,15 @@
 </head>
 <body>
 	<center>
-		<h1>You are successfully logged in!</h1>
-		
-		<i>Welcome back, <%=request.getParameter("username") %>!</i>
-		
-		<a href="index.jsp"> Back to the main page!</a>
 		<%
 			session.setAttribute("username",request.getParameter("username"));
+			String type=request.getParameter("type");
+			if(type!=null && type.equals("submit")){
+				response.sendRedirect("submit.jsp");
+				return;
+			}
+			
+			response.sendRedirect("index.jsp");
 		%>
 	</center>
 </body>
