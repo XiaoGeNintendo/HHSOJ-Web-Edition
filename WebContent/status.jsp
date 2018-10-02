@@ -63,7 +63,7 @@
 			Verdict:<input name="verdictId" type="text"/>
 			<input name="submit" type="submit" value="Filter"/>
 		</form>
-		<hr/>
+		<br/>
 		
 		<table border="1" width="80%" align="center">
 			<tr>

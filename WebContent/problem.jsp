@@ -44,7 +44,36 @@
 			if(ok2){
 			
 	%>	
-				<a href="problemset.jsp">←Back</a>
+				<!-- Default Template -->
+				<h1 id="title">Problems on HHSOJ</h1>
+				<i id="subtitle"><%=p.getId() %> - <%=p.getName() %></i>
+				<hr />
+				<div id="nav">
+					<a href="index.jsp" class="nav-link-left">Home</a> 
+					<a href="problemset.jsp" class="nav-link-left selected">Problems</a> 
+					<a href="status.jsp" class="nav-link-left">Status</a> 
+					<a href="submit.jsp" class="nav-link-left">Submit</a> 
+					<%
+						String userLooking=(String)session.getAttribute("username");
+						if(userLooking!=null && !userLooking.equals("")){
+							
+						
+					%>
+					<a href="users.jsp?username=<%=userLooking %>" class="nav-link-right"><%=userLooking %></a>
+					<a href="logout.jsp" class="nav-link-right">Logout</a> 
+					<%
+						}else{
+					%>
+							<a href="login.jsp" class="nav-link-right">Login</a>
+							<a href="register.jsp" class="nav-link-right">Register</a>
+					<%
+						}
+					%>
+				</div>
+				<div id="seperator"></div>
+				<br />
+				<!-- Default End -->
+				
 				<center>
 					<h1><%=p.getName() %> on HHSOJ</h1>
 					<b>Time Limit Per Test:<%=p.getArg("TL") %>MS</b> <br/>
@@ -53,15 +82,17 @@
 					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
 					<a href="status.jsp?probId=<%=p.getId() %>">→Status←</a>
 					<a href="status.jsp?probId=<%=p.getId() %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
-					<hr/>
 				</center>
 				
 				
 				
 				<jsp:include page="<%=\"/statement/\"+p.getArg(\"Statement\")%>" ></jsp:include>
 				
-				<hr/>
-				
+				<center>
+					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
+					<a href="status.jsp?probId=<%=p.getId() %>">→Status←</a>
+					<a href="status.jsp?probId=<%=p.getId() %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
+				</center>
 	<%
 			}
 		}

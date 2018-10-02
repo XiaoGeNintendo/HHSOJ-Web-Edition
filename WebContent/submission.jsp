@@ -37,11 +37,38 @@
 		}
 	</script>
 	
-	<a href="javascript:location.replace(document.referrer);">←Back</a>
+	<!-- Default Template -->
+	<h1 id="title">Submissions on HHSOJ</h1>
+	<i id="subtitle">Ctrl+A Ctrl+C help me get AC!  --IC</i>
+	<hr />
+	<div id="nav">
+		<a href="index.jsp" class="nav-link-left">Home</a> 
+		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
+		<a href="status.jsp" class="nav-link-left selected">Status</a> 
+		<a href="submit.jsp" class="nav-link-left">Submit</a> 
+		<%
+			String userLooking=(String)session.getAttribute("username");
+			if(userLooking!=null && !userLooking.equals("")){
+				
+			
+		%>
+		<a href="users.jsp?username=<%=userLooking %>" class="nav-link-right"><%=userLooking %></a>
+		<a href="logout.jsp" class="nav-link-right">Logout</a> 
+		<%
+			}else{
+		%>
+				<a href="login.jsp" class="nav-link-right">Login</a>
+				<a href="register.jsp" class="nav-link-right">Register</a>
+		<%
+			}
+		%>
+	</div>
+	<div id="seperator"></div>
+	<br />
+	<!-- Default End -->
+	
 	<center>
 		<h1>Submission <%=id %> on HHSOJ</h1>
-		<i>Ctrl+A Ctrl+C help me get AC!  --IC</i>
-		<hr/>
 	</center>
 	
 		<h2>Basic Information</h2>
@@ -54,7 +81,7 @@
 		Submission Time Cost:<%=s.getTimeCost() %><br/>
 		Submission Memory Cost:<%=s.getMemoryCost() %><br/>
 		
-		<h2>Code:</h2>
+		<h2>Code</h2>
 		
 		<script>
 			code();

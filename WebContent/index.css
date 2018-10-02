@@ -47,6 +47,18 @@ body hr {
 	font-family: serif;
 }
 
+.proinfo {
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	height: 30px;
+	width: 800px;
+	float: left;
+	clear: both;
+	font-family: "Courier New","Consolas";
+}
+
 #nav {
 	clear: both;
 }
