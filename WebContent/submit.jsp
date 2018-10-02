@@ -38,7 +38,7 @@
 				alert('Code should not be empty');
 				return false;
 			}
-			if(code.length() >65536){
+			if(code.length >65536){
 				alert('Code length should be at most 65536 bytes')
 				return false;
 			}
