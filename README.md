@@ -97,3 +97,5 @@ Version 0.17: Readme update
 Version 0.18: Script attack update
 
 Version 0.19: Add code length limit
+
+Version 0.20: UI design and merge
