@@ -98,12 +98,13 @@
 					
 				}
 				
+				int cnt=0;
 				for(Submission s:sb){
 					if(new PatternMatcher().match(s,userPattern,probPattern,verdictPattern)){
 					
 			%>
 			
-			<tr bgcolor="<%=(id==s.getId()?"cyan":"white")%>">
+			<tr bgcolor="<%=(id==s.getId()?"cyan":(cnt%2==0?"white":"#efefef"))%>">
 				<td align="center"><a href="submission.jsp?id=<%=s.getId()%>"> <%=s.getId() %> </a></td>
 				<td align="center"><a href="problem.jsp?id=<%=s.getProb()%>"> <%=s.getProb() %> </a></td>
 				<td align="center"><%=new VerdictHelper().render(s.getVerdict())%></td>
@@ -113,6 +114,7 @@
 			</tr>
 			
 			<%
+						cnt++;
 					}
 				}
 			%>

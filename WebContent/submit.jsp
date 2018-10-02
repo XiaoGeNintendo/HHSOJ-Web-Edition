@@ -85,10 +85,13 @@
 		<hr />
 
 		<pre>
-Please don't put your Java class in a package.
-Your Java class will be named as "Program.java".
-Don't upload anything that will be harmful to the server!
-Python submitting is still testing! Use it carefully!
+For Java users:
+Out java version is 1.8.0.
+You should name your class "Program" and set it public.
+Don't put your code in a package
+If you get "Judgement Failed" , please check if you put the code into a package.
+And more, don't use stuff like "System.exit(0)" to terminal your program.
+Otherwise a "Runtime Error" may be raised. 
 		</pre>
 	</center>
 

@@ -88,3 +88,5 @@ Version 0.13: Auto-refresh when pressing "back" and fixed some bugs in java test
 Version 0.14: Now Will auto jump to login if you didn't login at submit page
 
 Version 0.15: Add every page a UI template. Improve looking.
+
+Version 0.16: UI design.

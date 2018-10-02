@@ -65,6 +65,11 @@
 		<h2>Library Missing</h2>
 		<i>Please copy all the files in hhsoj/runtime --Github XGN</i> <br/>
 		The server is not configured properly. Please contact the server admin.
+		
+		<h2>Restrict Function</h2>
+		<i>Dirty Hacker --Undertale</i> <br/>
+		Only appears in java. You are trying to hack the judger I know. <br/>
+		btw, using System.exit(0) is prohibited too. 
 	</center>
 </body>
 </html>
