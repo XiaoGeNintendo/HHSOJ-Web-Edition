@@ -38,13 +38,14 @@ If "oj.exe" was not in "hhsoj/runtime" folder, a *Library Missing* verdict will 
     Statement=statement.jsp //Statement file position
 ```
 
-4.In the "WebContent/problems" folder add a filename called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
+4.In the "WebContent/statement" folder add a filename called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
 
 5. You should be seeing it in the problem list
-# Language
-    - Python 
-    - Java 
-    - C++
+# Languages
+
+- Python (Python 3.6)
+- Java (Now 1.8)
+- C++ (C++11)
     
 # Links & Thanks
 The previous buggy version [HHSOJ Desktop Version](https://github.com/XiaoGeNintendo/hhsoj)
@@ -90,3 +91,5 @@ Version 0.14: Now Will auto jump to login if you didn't login at submit page
 Version 0.15: Add every page a UI template. Improve looking.
 
 Version 0.16: UI design.
+
+Version 0.17: Readme update
