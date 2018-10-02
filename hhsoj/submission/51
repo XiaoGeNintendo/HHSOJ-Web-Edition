@@ -1,1 +1,0 @@
-{"user":"a","prob":"1000","code":"#include \u003ciostream\u003e\r\nusing namespace std;\r\nint main(){\r\nreturn 1;\r\n}","lang":"cpp","verdict":"Runtime Error","results":[{"verdict":"Runtime Error","timeCost":584,"memoryCost":3096,"file":"TEST1.txt","checkerComment":"Runtime Error, exit code is 1"}],"compilerComment":"","id":51}

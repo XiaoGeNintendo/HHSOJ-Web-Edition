@@ -1,1 +1,0 @@
-{"user":"a","prob":"1000","code":"#include \u003ciostream\u003e\r\nusing namespace std;\r\nint main(){\r\nwhile(true){}\r\n}","lang":"cpp","verdict":"Judgement Failed","results":[{"verdict":"Judgement Failed","timeCost":0,"memoryCost":0,"file":"TEST1.txt","checkerComment":"java.io.FileNotFoundException: hhsoj\\judge\\time.txt (系统找不到指定的文件。)"}],"compilerComment":"","id":59}

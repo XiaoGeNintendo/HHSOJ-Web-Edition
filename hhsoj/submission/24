@@ -1,1 +1,0 @@
-{"user":"a","prob":"1000","code":"#include \u003ciostream\u003e\r\nusing namespace std;\r\nint  main(){\r\n}","lang":"cpp","verdict":"Judgement Failed","results":[],"compilerComment":"java.lang.NullPointerException","id":24}

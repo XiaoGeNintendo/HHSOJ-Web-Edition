@@ -1,4 +1,4 @@
-package com.hhs.xgn.jee.hhsoj.judger;
+
 
 /**
  * Load java class

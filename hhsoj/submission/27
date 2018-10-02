@@ -1,1 +1,0 @@
-{"user":"a","prob":"1000","code":"#include \u003ciostream\u003e\r\nusing namespace std;\r\nint  main(){\r\n}","lang":"cpp","verdict":"Judgement Failed","results":[],"compilerComment":"java.io.IOException: Cannot run program \"sol.exe\" (in directory \"hhsoj\\judge\"): CreateProcess error\u003d2, 系统找不到指定的文件。","id":27}

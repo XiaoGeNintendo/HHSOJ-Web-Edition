@@ -45,6 +45,7 @@ If "oj.exe" was not in "hhsoj/runtime" folder, a *Library Missing* verdict will 
     - Python 
     - Java 
     - C++
+    
 # Links & Thanks
 The previous buggy version [HHSOJ Desktop Version](https://github.com/XiaoGeNintendo/hhsoj)
 
@@ -79,3 +80,5 @@ Version 0.9: Support CSS. Thanks, Zzzyt!
 Version 0.10: Fixed a little bugs in displaying and logic. Tested some attacking function.
 
 Version 0.11: UI design.
+
+Version 0.12: Supports java testing! Finally!

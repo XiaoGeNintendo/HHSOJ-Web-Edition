@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.google.gson.Gson;
 import com.hhs.xgn.jee.hhsoj.db.ProblemHelper;
 import com.hhs.xgn.jee.hhsoj.db.SubmissionHelper;
 import com.hhs.xgn.jee.hhsoj.type.Problem;
@@ -42,6 +43,10 @@ public class JudgingThread extends Thread {
 
 				File testfiles = new File(p.getPath() + "/tests");
 
+				if(!testfiles.isDirectory()){
+					throw new Exception("Testcase is not ready");
+				}
+				
 				int cnt = 1;
 
 				boolean ac = true;
@@ -208,7 +213,51 @@ public class JudgingThread extends Thread {
 	private boolean runUserJava(Submission s, File f, Problem p) throws Exception {
 		//TODO Run Java Program
 		
-		return new JavaTester().test(s,f,p);
+		ProcessBuilder pb=new ProcessBuilder("java.exe","-jar","test.jar",p.getArg("TL"),p.getArg("ML"),f.getName());
+		pb.directory(new File("hhsoj/judge"));
+		pb.redirectErrorStream(true);
+		Process pro=pb.start();
+		boolean notle=pro.waitFor(10, TimeUnit.SECONDS);
+		
+		
+		if(notle){
+			//No TLE
+			
+			if(pro.exitValue()!=0){
+				//JVM EXCEPTION
+				TestResult tr=new TestResult("Judgement Failed", 0, 0, f.getName(), "JVM Exit value is"+pro.exitValue());
+				s.setVerdict("Judgement Failed");
+				s.getResults().add(tr);
+				new SubmissionHelper().storeStatus(s);
+				return false;
+			}
+			
+			//Read data.txt
+			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream("data.txt")));
+			String json=br.readLine();
+			br.close();
+			
+			Gson gs=new Gson();
+			
+			TestResult tr=gs.fromJson(json, TestResult.class);
+			
+			if(tr.getVerdict().equals("Accepted")){
+				//Keep comparing
+				return processCompare(s, p, tr.getTimeCost(), tr.getMemoryCost(), f.getName());
+			}else{
+				s.setVerdict(tr.getVerdict());
+				s.getResults().add(tr);
+				new SubmissionHelper().storeStatus(s);
+				return false;
+			}
+		}else{
+			//TLE
+			pro.destroyForcibly();
+			s.setVerdict("Time Limit Exceeded");
+			s.getResults().add(new TestResult("Time Limit Exceeded", Integer.parseInt(p.getArg("TL")), 0, f.getName(), "JVM RUNS 10 SEC"));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
 	}
 	
 	private boolean processCompare(Submission s, Problem p, int time, int mem, String file) {
@@ -217,10 +266,12 @@ public class JudgingThread extends Thread {
 			ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/checker").getAbsolutePath(), "in.txt",
 					"out.txt", "ans.txt", "checker.txt");
 			pb.directory(new File("hhsoj/judge"));
+			
+			
 			Process pro = pb.start();
 
 			boolean notle = pro.waitFor(10000, TimeUnit.MILLISECONDS);
-
+			
 			pro.destroyForcibly();
 
 			if (notle) {
@@ -401,6 +452,11 @@ public class JudgingThread extends Thread {
 		File run = new File("hhsoj/runtime/Runner.exe");
 		File nwr = new File("hhsoj/judge/Runner.exe");
 		copyFile(run, nwr);
+		
+		// Copy Java tester
+		File jvt=new File("hhsoj/runtime/JavaTester.jar");
+		File njt=new File("hhsoj/judge/test.jar");
+		copyFile(jvt,njt);
 	}
 
 	private String getExtension(String lang) {
