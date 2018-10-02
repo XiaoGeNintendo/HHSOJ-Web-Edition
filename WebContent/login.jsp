@@ -24,6 +24,19 @@
 </head>
 <body>
 	
+	<%
+		String type=request.getParameter("type");
+		if(type!=null && type.equals("submit")){
+			
+	%>
+		<script>
+			alert('Please login to submit.');
+		</script>
+	<%
+		}
+	
+	%>
+	
 	<script>
 		function call(){
 			var un=this.document.forms['login']['username'].value;
@@ -73,6 +86,7 @@
 
 				<tr>
 					<td colspan="2" style="text-align:center;" >
+						<input type="hidden" name="type" value="<%=type %>">
 						<input type="submit" value="Login" style="width:90px;" />
 					</td>
 				</tr>
