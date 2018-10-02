@@ -32,7 +32,7 @@
 	
 	<script>
 		function code(){
-			var highLightCode = wangHighLighter.highLight("<%=s.getLang().equals("cpp")?"C++":s.getLang()%>", "simple", "<%=s.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"")%>"); 
+			var highLightCode = wangHighLighter.highLight("<%=s.getLang().equals("cpp")?"C++":s.getLang()%>", "simple", "<%=s.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"").replace("</script>","</son>") %>"); 
 			this.document.write(highLightCode);
 		}
 	</script>

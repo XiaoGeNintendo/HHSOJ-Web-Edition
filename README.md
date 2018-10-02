@@ -93,3 +93,5 @@ Version 0.15: Add every page a UI template. Improve looking.
 Version 0.16: UI design.
 
 Version 0.17: Readme update
+
+Version 0.18: Script attack update
