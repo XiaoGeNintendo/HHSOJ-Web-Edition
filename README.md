@@ -82,3 +82,5 @@ Version 0.10: Fixed a little bugs in displaying and logic. Tested some attacking
 Version 0.11: UI design.
 
 Version 0.12: Supports java testing! Finally!
+
+Version 0.13: Auto-refresh when pressing "back" and fixed some bugs in java testing.

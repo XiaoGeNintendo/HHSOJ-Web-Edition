@@ -16,7 +16,7 @@ public class JudgingThread extends Thread {
 		System.out.println("Judging Thread Initaize Ok!");
 		while (true) {
 
-			ClearFolder();
+			//ClearFolder();
 			while (TaskQueue.hasElement() == false) {
 
 			}
@@ -211,11 +211,9 @@ public class JudgingThread extends Thread {
 	}
 
 	private boolean runUserJava(Submission s, File f, Problem p) throws Exception {
-		//TODO Run Java Program
-		
 		ProcessBuilder pb=new ProcessBuilder("java.exe","-jar","test.jar",p.getArg("TL"),p.getArg("ML"),f.getName());
 		pb.directory(new File("hhsoj/judge"));
-		pb.redirectErrorStream(true);
+		pb.inheritIO();
 		Process pro=pb.start();
 		boolean notle=pro.waitFor(10, TimeUnit.SECONDS);
 		
@@ -225,15 +223,15 @@ public class JudgingThread extends Thread {
 			
 			if(pro.exitValue()!=0){
 				//JVM EXCEPTION
-				TestResult tr=new TestResult("Judgement Failed", 0, 0, f.getName(), "JVM Exit value is"+pro.exitValue());
-				s.setVerdict("Judgement Failed");
+				TestResult tr=new TestResult("Runtime Error", 0, 0, f.getName(), "JVM Exit value is "+pro.exitValue());
+				s.setVerdict("Runtime Error");
 				s.getResults().add(tr);
 				new SubmissionHelper().storeStatus(s);
 				return false;
 			}
 			
 			//Read data.txt
-			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream("data.txt")));
+			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/data.txt")));
 			String json=br.readLine();
 			br.close();
 			

@@ -71,10 +71,15 @@
 				value="<%=(request.getParameter("id") == null ? "" : request.getParameter("id"))%>">
 			<br /> Code: <br />
 			<textarea name="code" cols="30" rows="15"></textarea>
-			<br /> Language:<input type="radio" name="lang" value="java">Java
-			<input type="radio" name="lang" value="cpp">C++ <input
-				type="radio" name="lang" value="python">Python3 <br /> <input
-				type="submit" name="submit" value="Submit">
+			<br /> Language:
+			<input type="radio" name="lang" value="java">
+			<acronym title="Java1.8.0 : Name your class 'Program' and don't place it in a package!">Java</acronym>
+			<input type="radio" name="lang" value="cpp">
+			<acronym title="C++11 : Runs slowly and plz don't write harmful code">C++</acronym>
+			<input type="radio" name="lang" value="python">
+			<acronym title="Python 3.6 : Doesn't support now :(">Python</acronym>
+			<br/> 
+			<input type="submit" name="submit" value="Submit">
 
 		</form>
 

@@ -24,7 +24,7 @@
 			s=new SubmissionHelper().getSubmission(id);
 		}catch(Exception e){
 			out.println("Submission doesn't exist");
-			out.println("<a href=\"javascript:history.go(-1)\">←Back</a>");
+			out.println("<a href=\"javascript:location.replace(document.referrer);\">←Back</a>");
 			return;
 		}
 		
@@ -37,7 +37,7 @@
 		}
 	</script>
 	
-	<a href="javascript:history.go(-1)">←Back</a>
+	<a href="javascript:location.replace(document.referrer);">←Back</a>
 	<center>
 		<h1>Submission <%=id %> on HHSOJ</h1>
 		<i>Ctrl+A Ctrl+C help me get AC!  --IC</i>

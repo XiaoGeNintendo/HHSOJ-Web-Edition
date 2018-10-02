@@ -21,7 +21,7 @@
 		}else{
 	%>
 
-	<a href="javascript:history.go(-1)">←Back</a>
+	<a href="javascript:location.replace(document.referrer);">←Back</a>
 	
 	<center>
 		<h1><%=user%> on HHSOJ</h1>
