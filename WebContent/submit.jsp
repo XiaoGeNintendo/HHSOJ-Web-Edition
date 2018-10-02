@@ -12,7 +12,8 @@
 	<%
 		String s = (String) session.getAttribute("username");
 		if (s == null || s.equals("")) {
-			response.sendRedirect("login.jsp?type=submit");
+			out.println("Please login to submit.<br/>");
+			out.println("<a href=\"index.jsp\">Back to main page</a>");
 		} else {
 	%>
 
@@ -36,10 +37,6 @@
 			}
 			if (code == null || code == ("")) {
 				alert('Code should not be empty');
-				return false;
-			}
-			if(code.length >65536){
-				alert('Code length should be at most 65536 bytes')
 				return false;
 			}
 			if (lang == null || lang == ("")) {
@@ -73,15 +70,12 @@
 			Problem:<input type="text" name="probid"
 				value="<%=(request.getParameter("id") == null ? "" : request.getParameter("id"))%>">
 			<br /> Code: <br />
-			<textarea name="code" cols="30" rows="15"></textarea>
+			<textarea name="code" cols="70" rows="40" id="code"></textarea>
 			<br /> Language:
-			<input type="radio" name="lang" value="java">
-			<acronym title="Java1.8.0 : Name your class 'Program' and don't place it in a package!">Java</acronym>
-			<input type="radio" name="lang" value="cpp">
-			<acronym title="C++11 : Runs slowly and plz don't write harmful code">C++</acronym>
-			<input type="radio" name="lang" value="python">
-			<acronym title="Python 3.6 : Doesn't support now :(">Python</acronym>
-			<br/> 
+			<input type="radio" name="lang" value="java">Java
+			<input type="radio" name="lang" value="cpp">C++
+			<input type="radio" name="lang" value="python">Python3 
+			<br /> 
 			<input type="submit" name="submit" value="Submit">
 
 		</form>
@@ -89,13 +83,10 @@
 		<hr />
 
 		<pre>
-For Java users:
-Out java version is 1.8.0.
-You should name your class "Program" and set it public.
-Don't put your code in a package
-If you get "Judgement Failed" , please check if you put the code into a package.
-And more, don't use stuff like "System.exit(0)" to terminal your program.
-Otherwise a "Runtime Error" may be raised. 
+Please don't put your Java class in a package.
+Your Java class will be named as "Program.java".
+Don't upload anything that will be harmful to the server!
+Python submitting is still testing! Use it carefully!
 		</pre>
 	</center>
 

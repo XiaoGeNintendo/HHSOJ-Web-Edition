@@ -9,6 +9,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-Problems</title>
+<style type="text/css">
+	#problem-table {
+		border-collapse: collapse;
+		width: 80%;
+		align-self: center;
+		margin: 0px auto;
+		min-width: 500px;
+		border:1px solid #cccccc;
+		background:#f0f0f0;
+	}
+	
+	#problem-table th{
+		padding: 3px;
+		border: 1px solid #cccccc;
+	}
+	
+	#problem-table td{
+		padding: 3px;
+		border: 1px solid #cccccc;
+	}
+</style>
 </head>
 <body>
 	<h1 id="title">Problems in HHSOJ</h1>

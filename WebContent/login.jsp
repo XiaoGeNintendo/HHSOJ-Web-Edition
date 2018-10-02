@@ -6,21 +6,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-Login</title>
+<style type="text/css">
+	#login_table {
+		border: 0px;
+	}
+	
+	#login_table th{
+		padding: 2px;
+		border: 0px;
+	}
+	
+	#login_table th{
+		padding: 2px;
+		border: 0px;
+	}
+</style>
 </head>
 <body>
 	
-	<%
-		String type=request.getParameter("type");
-		if(type!=null && type.equals("submit")){
-			
-	%>
-		<script>
-			alert('Please login to submit.');
-		</script>
-	<%
-		}
-	
-	%>
 	<script>
 		function call(){
 			var un=this.document.forms['login']['username'].value;
@@ -67,12 +70,10 @@
 					<td>Password:</td>
 					<td><input type="password" maxlength="50" name="password"/></td>
 				</tr>
-				
+
 				<tr>
-					
-					<td colspan="2" align="center">
-						<input type="hidden" name="type" value="<%=type %>">
-						<input type="submit" value="Login"/>
+					<td colspan="2" style="text-align:center;" >
+						<input type="submit" value="Login" style="width:90px;" />
 					</td>
 				</tr>
 			</table>

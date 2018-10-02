@@ -47,18 +47,6 @@ body hr {
 	font-family: serif;
 }
 
-.proinfo {
-	margin-left: 20px;
-	margin-right: 20px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	height: 30px;
-	width: 800px;
-	float: left;
-	clear: both;
-	font-family: "Courier New","Consolas";
-}
-
 #nav {
 	clear: both;
 }
@@ -86,29 +74,6 @@ body hr {
 
 .selected {
 	border-bottom: 3px solid #66ccff;
-}
-
-#problem-table {
-	border-collapse: collapse;
-	width: 80%;
-	align-self: center;
-	margin: 0px auto;
-	min-width: 500px;
-	border:1px solid #cccccc;
-}
-
-#problem-table th,td{
-	padding: 3px;
-	border: 1px solid #cccccc;
-}
-
-#login_table {
-	border: 0px;
-}
-
-#login_table th,td{
-	padding: 2px;
-	border: 0px;
 }
 
 #seperator {
