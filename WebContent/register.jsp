@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -6,6 +6,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-Login</title>
+<style type="text/css">
+	#login_table {
+		border: 0px;
+	}
+	
+	#login_table th{
+		padding: 2px;
+		border: 0px;
+	}
+	
+	#login_table th{
+		padding: 2px;
+		border: 0px;
+	}
+</style>
 </head>
 <body>
 	<a href="index.jsp">←Back</a>
@@ -41,41 +56,50 @@
 		return true;
 	}
 	</script>
-	<center>
-		<h1>Register</h1>
-		<i>F**K YOU LEATHERMAN!WHY DO THESE F**KING PROBLEMS? --IC</i>
-		<hr/>
-		<form onsubmit="return call()" action="doregister.jsp" method="post" name="register">
-			<table align="center">
-				<tr>
-					<td>Username:</td>
-					<td><input type="text" maxlength="50" name="username"/></td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input type="password" maxlength="50" name="password"/></td>
-				</tr>
-				
-				<tr>
-					<td>Email:</td>
-					<td><input type="text" maxlength="50" name="email"/></td>
-				</tr>
-				
-				<tr>
-					<td>sentence:</td>
-					<td><input type="text" name="line"/></td>
-				</tr>
-				
-				<tr>
-				
-					<td colspan="2">
-						<input type="submit" value="Register">
-					</td>
-				</tr>
-			</table>
-		</form>
-		
-		
-	</center>
+	
+	<h1 id="title">Register</h1>
+	<i id="subtitle">F**K YOU LEATHERMAN!WHY DO THESE F**KING PROBLEMS? --IC</i>
+	<hr />
+	<div id="nav">
+		<a href="index.jsp" class="nav-link-left selected">Home</a> 
+		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
+		<a href="status.jsp" class="nav-link-left">Status</a>
+		<a href="submit.jsp" class="nav-link-left">Submit</a>
+		<a href="login.jsp" class="nav-link-right">Login</a>
+		<a href="register.jsp" class="nav-link-right">Register</a>
+	</div>
+	<div id="seperator"></div>
+	<br />
+	
+	<form onsubmit="return call()" action="doregister.jsp" method="post" name="register">
+		<table align="center" id="login_table">
+			<tr>
+				<td>Username:</td>
+				<td><input type="text" maxlength="50" name="username"/></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" maxlength="50" name="password"/></td>
+			</tr>
+			
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" maxlength="50" name="email"/></td>
+			</tr>
+			
+			<tr>
+				<td>Sentence:</td>
+				<td><input type="text" name="line"/></td>
+			</tr>
+			
+			<tr>
+			
+				<td colspan="2"  style="text-align:center;" >
+					<input type="submit" value="Register" style="width:90px;">
+				</td>
+			</tr>
+		</table>
+	</form>
+	
 </body>
 </html>
