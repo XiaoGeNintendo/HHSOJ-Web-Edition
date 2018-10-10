@@ -7,7 +7,10 @@ We have one sample folder for you. Check it out. **Note that the files in runtim
 
 You can use `new File("hhsoj").getAbsolutePath()` to check your hhsoj folder path on your computer.
 
-If "oj.exe" was not in "hhsoj/runtime" folder, a *Library Missing* verdict will be given to every submission
+If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will be given to every submission. But if "Judger.jar" is not in it, a *Judgement Failed* verdict will be given instead.
+
+You can go to the "credits.jsp" and click "View Source" and find your HHSOJ path in source code
+
 # Building
 0. Build on Windows
 
@@ -41,12 +44,13 @@ If "oj.exe" was not in "hhsoj/runtime" folder, a *Library Missing* verdict will 
 4.In the "WebContent/statement" folder add a filename called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
 
 5. You should be seeing it in the problem list
+
 # Languages
 
 - Python (Python 3.6)
 - Java (Now 1.8)
 - C++ (C++11)
-    
+
 # Links & Thanks
 The previous buggy version [HHSOJ Desktop Version](https://github.com/XiaoGeNintendo/hhsoj)
 
@@ -99,3 +103,5 @@ Version 0.18: Script attack update
 Version 0.19: Add code length limit
 
 Version 0.20: UI design and merge
+
+Version 0.21: Credits Page finished

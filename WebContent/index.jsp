@@ -37,10 +37,8 @@
 
 	<a href="verdict.jsp" id="verdict">Verdicts List</a>
 	
-	<hr/>
-	<h1>Credits</h1>
+	<br/>
+	<a href="credits.jsp" id="credit">Credits</a>
 	
-	<a href="mailto:gwq0419@163.com">XiaoGeNintendo</a> <br/>
-	<a href="http://codeforces.com/profile/zzzyt">Zzzyt</a>
 </body>
 </html>
