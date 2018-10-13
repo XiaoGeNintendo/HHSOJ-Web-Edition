@@ -16,7 +16,7 @@ public class JudgingThread extends Thread {
 		System.out.println("Judging Thread Initaize Ok!");
 		while (true) {
 
-			//ClearFolder();
+			ClearFolder();
 			while (TaskQueue.hasElement() == false) {
 
 			}

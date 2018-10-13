@@ -9,7 +9,7 @@ int main(int argc,char** argv){
 	
 	int exitcode=system(argv[1]);
 	ofstream os;
-	os.open("time.txt");
+	os.open("sandbox.txt");
 	os<<clock()<<endl;
 	os.close();
 	return exitcode;
