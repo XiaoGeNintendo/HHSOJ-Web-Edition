@@ -127,6 +127,10 @@ public class JudgingThread extends Thread {
 				return runUserJava(s,f,p);
 			}
 			
+			if(s.getLang().equals("python")){
+				return runUserPython(s,f,p);
+			}
+			
 			throw new Exception("Unknown language");
 		} catch (Exception e) {
 			// Judgement Failed
@@ -139,6 +143,76 @@ public class JudgingThread extends Thread {
 	}
 
 		
+	private boolean runUserPython(Submission s, File f, Problem p) throws Exception{
+		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(), "python \""+new File("hhsoj/judge/Program.py").getAbsolutePath()+"\"",
+				new WindowsHelper().getUser(), new WindowsHelper().getPsd(), "in.txt", "out.txt", p.getArg("TL"),
+				p.getArg("ML"));
+		
+		pb.directory(new File("hhsoj/judge"));
+		//pb.redirectInput(new File("hhsoj/judge/in.txt"));
+		//pb.redirectOutput(new File("hhsoj/judge/out.txt"));
+
+		Process pro = pb.start();
+
+		pro.waitFor();
+
+		pro.destroyForcibly();
+
+		if (pro.exitValue() != 0) {
+			throw new Exception("Sandbox Error");
+		}
+
+		// Anyway kill the sandbox
+		Runtime.getRuntime().exec("taskkill /f /im sandbox.exe /t");
+
+		// Get everything
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/V2.txt")));
+		int time = Integer.parseInt(br.readLine());
+		int mem = Integer.parseInt(br.readLine());
+		int exit = Integer.parseInt(br.readLine());
+		int err = Integer.parseInt(br.readLine());
+		br.close();
+
+		if (err != 0) {
+			// Sandbox error
+			s.setVerdict("Judgement Failed");
+			s.getResults().add(new TestResult("Judgement Failed", time, mem, f.getName(), "Sandbox error code=" + err));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+
+		if (time > Integer.parseInt(p.getArg("TL"))) {
+			// Tle
+			s.setVerdict("Time Limit Exceeded");
+			s.getResults().add(new TestResult("Time Limit Exceeded", Integer.parseInt(p.getArg("TL")), mem, f.getName(),
+					"Time limit exceeded. :("));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+
+		if (mem > Integer.parseInt(p.getArg("ML"))) {
+			// Mle
+			s.setVerdict("Memory Limit Exceeded");
+			s.getResults()
+					.add(new TestResult("Memory Limit Exceeded", time, mem, f.getName(), "Memory limit exceeded. :("));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+
+		if (exit != 0) {
+			// Re
+			s.setVerdict("Runtime Error");
+			s.getResults().add(
+					new TestResult("Runtime Error", time, mem, f.getName(), "Runtime Error, exit code is " + exit));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+
+		// Compare
+
+		return processCompare(s, p, time, mem, f.getName());
+	}
+
 	private boolean runUserCpp(Submission s, File f, Problem p) throws Exception {
 
 		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(), "Program.exe",
@@ -388,7 +462,7 @@ public class JudgingThread extends Thread {
 
 	private String[] getCompiler(String lang) {
 		if (lang.equals("python")) {
-			return new String[] {};
+			return new String[] {"cmd.exe","/c","exit"};
 		}
 		if (lang.equals("cpp")) {
 

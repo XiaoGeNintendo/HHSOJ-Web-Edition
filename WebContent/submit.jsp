@@ -78,9 +78,9 @@
 			<input type="radio" name="lang" value="java">
  			<acronym title="Java1.8.0 : Name your class 'Program' and don't place it in a package!">Java</acronym>
  			<input type="radio" name="lang" value="cpp">
- 			<acronym title="C++11 : Runs slowly and plz don't write harmful code">C++</acronym>
+ 			<acronym title="C++11 : Don't upload harmful code thx :(">C++</acronym>
  			<input type="radio" name="lang" value="python">
- 			<acronym title="Python 3.6 : Doesn't support now :(">Python</acronym>
+ 			<acronym title="Python 3.6 : A short and powerful language">Python</acronym>
  			<br/> 
 			<input type="submit" name="submit" value="Submit">
 

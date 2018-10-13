@@ -116,3 +116,5 @@ Version 0.21: Credits Page finished
 Version 0.22: Supports Customizing Announcement
 
 Version 0.23: Speed up CPP testing
+
+Version 1.0: Supports Python testing
