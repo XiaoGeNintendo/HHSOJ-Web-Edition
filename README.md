@@ -63,6 +63,11 @@ Thanks [Zzzyt](https://github.com/zzzzzzyt) for fixing some bugs and stuff!
 You can read more about Testlib here: [Mike Mirzayanov](http://codeforces.com/testlib)
 
 My blog is here: [Rubbish Blog](https://xgns-blog.000webhostapp.com)
+
+# Customizing Announcement
+Announcement is the marquee text in index.jsp
+
+You can customize it from version 0.22.Find the file "hhsoj/announcement.txt" and change the words in it. You will see the announcement change.
 # Changelog
 Version 0.1: The beta version released! Seems without judging system? :P
 
@@ -105,3 +110,5 @@ Version 0.19: Add code length limit
 Version 0.20: UI design and merge
 
 Version 0.21: Credits Page finished
+
+Version 0.22: Supports Customizing Announcement

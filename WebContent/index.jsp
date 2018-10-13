@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.AnnouncementReader"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -30,7 +31,14 @@
 	</div>
 	<div id="seperator"></div>
 	<br />
-	<marquee id="marquee">Welcome to HHSOJ!:P</marquee>
+	
+	<%
+		String marquee=new AnnouncementReader().readAnnouncement();
+		if(marquee==null){
+			marquee="Welcome to HHSOJ!";
+		}
+	%>
+	<marquee id="marquee"><%=marquee %></marquee>
 	This system is still under developing. Please don't upload any harmful
 	code. Thanks :(
 	<br />
