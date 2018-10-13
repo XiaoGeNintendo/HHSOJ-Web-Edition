@@ -16,7 +16,7 @@ public class JudgingThread extends Thread {
 		System.out.println("Judging Thread Initaize Ok!");
 		while (true) {
 
-			ClearFolder();
+			//ClearFolder();
 			while (TaskQueue.hasElement() == false) {
 
 			}
@@ -141,11 +141,13 @@ public class JudgingThread extends Thread {
 		
 	private boolean runUserCpp(Submission s, File f, Problem p) throws Exception {
 
-		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(), p.getArg("TL"),
+		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(), "Program.exe",
+				new WindowsHelper().getUser(), new WindowsHelper().getPsd(), "in.txt", "out.txt", p.getArg("TL"),
 				p.getArg("ML"));
+		
 		pb.directory(new File("hhsoj/judge"));
-		pb.redirectInput(new File("hhsoj/judge/in.txt"));
-		pb.redirectOutput(new File("hhsoj/judge/out.txt"));
+		//pb.redirectInput(new File("hhsoj/judge/in.txt"));
+		//pb.redirectOutput(new File("hhsoj/judge/out.txt"));
 
 		Process pro = pb.start();
 
@@ -160,46 +162,23 @@ public class JudgingThread extends Thread {
 		// Anyway kill the sandbox
 		Runtime.getRuntime().exec("taskkill /f /im sandbox.exe /t");
 
-		// Get memory limit and exit code
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/sandbox.txt")));
+		// Get everything
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/V2.txt")));
+		int time = Integer.parseInt(br.readLine());
 		int mem = Integer.parseInt(br.readLine());
 		int exit = Integer.parseInt(br.readLine());
+		int err = Integer.parseInt(br.readLine());
 		br.close();
 
-		// Get time limit
-		int time = -1;
-		if (exit != 259) {
-			BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/time.txt")));
-			time = Integer.parseInt(br2.readLine());
-			br2.close();
+		if (err != 0) {
+			// Sandbox error
+			s.setVerdict("Judgement Failed");
+			s.getResults().add(new TestResult("Judgement Failed", time, mem, f.getName(), "Sandbox error code=" + err));
+			new SubmissionHelper().storeStatus(s);
+			return false;
 		}
 
-		if (exit != 259) {
-			// Not tle
-
-			if (mem > Integer.parseInt(p.getArg("ML"))) {
-				// Mle
-				s.setVerdict("Memory Limit Exceeded");
-				s.getResults().add(
-						new TestResult("Memory Limit Exceeded", time, mem, f.getName(), "Memory limit exceeded. :("));
-				new SubmissionHelper().storeStatus(s);
-				return false;
-			}
-
-			if (exit != 0) {
-				// Re
-				s.setVerdict("Runtime Error");
-				s.getResults().add(
-						new TestResult("Runtime Error", time, mem, f.getName(), "Runtime Error, exit code is " + exit));
-				new SubmissionHelper().storeStatus(s);
-				return false;
-			}
-
-			// Compare
-
-			return processCompare(s, p, time, mem, f.getName());
-
-		} else {
+		if (time > Integer.parseInt(p.getArg("TL"))) {
 			// Tle
 			s.setVerdict("Time Limit Exceeded");
 			s.getResults().add(new TestResult("Time Limit Exceeded", Integer.parseInt(p.getArg("TL")), mem, f.getName(),
@@ -207,6 +186,28 @@ public class JudgingThread extends Thread {
 			new SubmissionHelper().storeStatus(s);
 			return false;
 		}
+
+		if (mem > Integer.parseInt(p.getArg("ML"))) {
+			// Mle
+			s.setVerdict("Memory Limit Exceeded");
+			s.getResults()
+					.add(new TestResult("Memory Limit Exceeded", time, mem, f.getName(), "Memory limit exceeded. :("));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+
+		if (exit != 0) {
+			// Re
+			s.setVerdict("Runtime Error");
+			s.getResults().add(
+					new TestResult("Runtime Error", time, mem, f.getName(), "Runtime Error, exit code is " + exit));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+
+		// Compare
+
+		return processCompare(s, p, time, mem, f.getName());
 
 	}
 
@@ -442,19 +443,15 @@ public class JudgingThread extends Thread {
 		pw.close();
 
 		// Copy Sandbox
-		File snd = new File("hhsoj/runtime/oj.exe");
+		File snd = new File("hhsoj/runtime/JudgerV2.exe");
 		File nws = new File("hhsoj/judge/sandbox.exe");
 		copyFile(snd, nws);
-
-		// Copy Runner
-		File run = new File("hhsoj/runtime/Runner.exe");
-		File nwr = new File("hhsoj/judge/Runner.exe");
-		copyFile(run, nwr);
 		
 		// Copy Java tester
 		File jvt=new File("hhsoj/runtime/JavaTester.jar");
 		File njt=new File("hhsoj/judge/test.jar");
 		copyFile(jvt,njt);
+		
 	}
 
 	private String getExtension(String lang) {
@@ -475,15 +472,41 @@ public class JudgingThread extends Thread {
 			f.mkdirs();
 		}
 
-		File f2 = new File("hhsoj/runtime/oj.exe");
+		File f2 = new File("hhsoj/runtime/JudgerV2.exe");
 		if (!f2.exists()) {
 			s.setVerdict("Library Missing");
 			s.setCompilerComment(
-					"Please contact the admin of the server and tell him/her that the oj.exe was not in the position it should be.The judging cannot continue untils the problem fixed.");
+					"JudgerV2.exe is missing.");
 			new SubmissionHelper().storeStatus(s);
 			return false;
 		}
 
+		File f3=new File("hhsoj/runtime/JavaTester.jar");
+		if (!f3.exists()) {
+			s.setVerdict("Library Missing");
+			s.setCompilerComment(
+					"JavaTester.jar is missing.");
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+		
+		File f4=new File("hhsoj/user.txt");
+		if(!f4.exists()){
+			s.setVerdict("Library Missing");
+			s.setCompilerComment(
+					"user.txt is missing.");
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+		
+		File f5=new File("hhsoj/psd.txt");
+		if(!f5.exists()){
+			s.setVerdict("Library Missing");
+			s.setCompilerComment(
+					"psd.txt is missing.");
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
 		return true;
 	}
 }

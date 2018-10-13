@@ -20,9 +20,11 @@ You can go to the "credits.jsp" and click "View Source" and find your HHSOJ path
 
 3. Deploy the project and start the server and go to your tomcat page and have a look.
 
-4. After the first run, a "hhsoj" folder will be generated at a predicted directory. ("desktop" maybe)
+4. After the first run, a "hhsoj" folder will be generated at a predicted directory. 
 
-5. Copy the files in "runtime" on Github to "hhsoj" folder. If there's no "runtime" folder in "hhsoj" create one
+5. Copy the files in "runtime" on Github to "hhsoj" folder. If there's no "runtime" folder in "hhsoj" then create one
+
+6. Create two files:"user.txt" and "psd.txt" in your hhsoj root directory and write your Windows username in "user.txt" , password in "psd.txt". They will be used to create C++ programs. If you want to run the programs securely , please fill in a low-priority user. **Notice that you must enter a user that exists! Or the sandbox may doesn't work properly!**
 
 # Adding problems
 1. Create a folder in the "hhsoj/problems" and name it as the problem Id, it should contains only digits.
@@ -112,3 +114,5 @@ Version 0.20: UI design and merge
 Version 0.21: Credits Page finished
 
 Version 0.22: Supports Customizing Announcement
+
+Version 0.23: Speed up CPP testing
