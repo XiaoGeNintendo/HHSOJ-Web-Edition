@@ -4,4 +4,4 @@ Name=A+b Problem
 TL=1000
 ML=262144
 Tag=math,implementation
-Statement=statement1000.html
+Statement=statement.html

@@ -43,9 +43,17 @@ You can go to the "credits.jsp" and click "View Source" and find your HHSOJ path
     Statement=statement.jsp //Statement file position
 ```
 
-4.In the "WebContent/statement" folder add a filename called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
+4. Check your HHSOJ version and write problem statement in HTML format:
+
+- **For HHSOJ version < 1.2** In the "WebContent/statement" folder add a filename called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
+
+- **For HHSOJ version >=1.2** In the problem folder create a file called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
 
 5. You should be seeing it in the problem list
+
+6. To add test cases, just put **input files only** in the "tests" subfolder
+
+7. For details, please take a glance at the sample hhsoj folder
 
 # Languages
 
@@ -120,3 +128,5 @@ Version 0.23: Speed up CPP testing
 Version 1.0: Supports Python testing
 
 Version 1.1: Use json to store user information now! Made UI beautiful
+
+Version 1.2: Read external statement supported

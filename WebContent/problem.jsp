@@ -86,7 +86,7 @@
 				
 				
 				
-				<jsp:include page="<%=\"/statement/\"+p.getArg(\"Statement\")%>" ></jsp:include>
+				<jsp:include page="statement.jsp?id=<%=p.getId() %>" ></jsp:include>
 				
 				<center>
 					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
