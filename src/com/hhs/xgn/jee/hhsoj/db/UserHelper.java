@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
 import com.hhs.xgn.jee.hhsoj.type.Users;
 
 /**
@@ -31,17 +32,14 @@ public class UserHelper {
 		
 		for(File ff:f.listFiles()){
 			try{
+				
+				
 				BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(ff)));
-				String username=br.readLine();
-				String password=br.readLine();
-				String line=br.readLine();
+				String json=br.readLine();
+				
 				br.close();
 				
-				Users u=new Users();
-				u.setId(Integer.parseInt(ff.getName()));
-				u.setLine(line);
-				u.setUsername(username);
-				u.setPassword(password);
+				Users u=new Gson().fromJson(json, Users.class);
 				
 				arr.add(u);
 			}catch(Exception e){
@@ -92,10 +90,10 @@ public class UserHelper {
 		}
 		
 		try{
+			
+			
 			PrintWriter pw=new PrintWriter(path+"/"+sz);
-			pw.println(u.getUsername());
-			pw.println(u.getPassword());
-			pw.println(u.getLine());
+			pw.println(u.toJson());
 			pw.close();
 		}catch(Exception e){
 			e.printStackTrace();

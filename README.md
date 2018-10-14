@@ -118,3 +118,5 @@ Version 0.22: Supports Customizing Announcement
 Version 0.23: Speed up CPP testing
 
 Version 1.0: Supports Python testing
+
+Version 1.1: Use json to store user information now! Made UI beautiful

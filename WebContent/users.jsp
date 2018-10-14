@@ -51,11 +51,12 @@
 	<br />
 	<!-- Default End -->
 	
-	<center>
-		<h1><%=user%> on HHSOJ</h1>
-		<i><%=u.getLine()%> -- <%=user %></i> <br/>
-		<a href="status.jsp?userId=<%=user%>">Submissions</a>
-	</center>
+	<h2><%=user %></h2>
+	
+	<i><%=u.getLine() %> -- <%=user %></i> <br/>
+	<img alt="submission" src="asset/submissions.png"/><a href="status.jsp?userId=a">Submissions</a> <br/>
+	<img alt="rating" src="asset/rating.png"/>Contest Rating: <%=u.getNowRating() %>(Max. <%=u.getMaxRating() %>) <br/>
+	<!-- <img alt="blogs" src="asset/blogs.png"/><a href="#">Blogs</a><br/> -->
 	
 	<%
 		}

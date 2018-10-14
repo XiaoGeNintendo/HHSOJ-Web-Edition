@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
-<title>HHSOJ-Login</title>
+<title>HHSOJ-Register</title>
 <style type="text/css">
 	#login_table {
 		border: 0px;
@@ -23,7 +23,6 @@
 </style>
 </head>
 <body>
-	<a href="index.jsp">←Back</a>
 	<script>
 	function call(){
 		var un=this.document.forms['register']['username'].value;

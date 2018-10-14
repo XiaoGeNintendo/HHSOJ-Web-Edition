@@ -13,8 +13,6 @@
 	password=request.getParameter("password");
 	type=request.getParameter("type");
 	
-	//System.out.println(username+" "+password);
-	
 	UserHelper db=new UserHelper();
 	ArrayList<Users> users=db.getAllUsers();
 	
@@ -22,8 +20,6 @@
 	
 	for(Users s:users){
 		if(s.getUsername().equals(username) && s.getPassword().equals(password)){
-			
-			
 			request.getRequestDispatcher("finish_login.jsp").forward(request, response);
 			return;
 		}

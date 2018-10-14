@@ -1,4 +1,4 @@
-package com.hhs.xgn.jee.hhsoj.judger;
+package com.hhs.xgn.jee.hhsoj.db;
 
 import java.io.BufferedReader;
 import java.io.File;
