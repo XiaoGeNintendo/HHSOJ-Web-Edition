@@ -59,6 +59,7 @@
 		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
 		<a href="status.jsp" class="nav-link-left">Status</a> 
 		<a href="submit.jsp" class="nav-link-left  selected">Submit</a> 
+		<a href="blogs.jsp" class="nav-link-left">Community</a>
 		<a href="users.jsp?username=<%=s %>" class="nav-link-right"><%=s %></a>
 		<a href="logout.jsp" class="nav-link-right">Logout</a> 
 	</div>

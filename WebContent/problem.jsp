@@ -53,6 +53,7 @@
 					<a href="problemset.jsp" class="nav-link-left selected">Problems</a> 
 					<a href="status.jsp" class="nav-link-left">Status</a> 
 					<a href="submit.jsp" class="nav-link-left">Submit</a> 
+					<a href="blogs.jsp" class="nav-link-left">Community</a>
 					<%
 						String userLooking=(String)session.getAttribute("username");
 						if(userLooking!=null && !userLooking.equals("")){

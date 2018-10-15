@@ -130,3 +130,5 @@ Version 1.0: Supports Python testing
 Version 1.1: Use json to store user information now! Made UI beautiful
 
 Version 1.2: Read external statement supported
+
+Version 1.3.0: Finished blog writing. You can write a blog at /writeBlog.jsp which has no entrance

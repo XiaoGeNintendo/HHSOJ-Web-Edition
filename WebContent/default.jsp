@@ -18,6 +18,7 @@
 		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
 		<a href="status.jsp" class="nav-link-left">Status</a>
 		<a href="submit.jsp" class="nav-link-left">Submit</a>
+		<a href="blogs.jsp" class="nav-link-left">Community</a>
 		<a href="login.jsp" class="nav-link-right">Login</a>
 		<a href="register.jsp" class="nav-link-right">Register</a>
 	</div>

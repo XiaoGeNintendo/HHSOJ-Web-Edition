@@ -19,6 +19,8 @@
 		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
 		<a href="status.jsp" class="nav-link-left">Status</a>
 		<a href="submit.jsp" class="nav-link-left">Submit</a>
+		<a href="blogs.jsp" class="nav-link-left">Community</a>
+		
 		<%String user = (String) session.getAttribute("username");
 
 			if (user != null) {
