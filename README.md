@@ -74,6 +74,7 @@ You can read more about Testlib here: [Mike Mirzayanov](http://codeforces.com/te
 
 My blog is here: [Rubbish Blog](https://xgns-blog.000webhostapp.com)
 
+Oh, the highlighter and editor are provided by [Mr.Wang](http://www.wangeditor.com/)
 # Customizing Announcement
 Announcement is the marquee text in index.jsp
 
