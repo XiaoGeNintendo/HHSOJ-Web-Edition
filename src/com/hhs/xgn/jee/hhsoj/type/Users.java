@@ -1,7 +1,9 @@
 package com.hhs.xgn.jee.hhsoj.type;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 
@@ -19,9 +21,18 @@ public class Users {
 	 */
 	private String line;
 	private List<ContestRecord> ratings;
-	
+	private Map<Integer, Integer> blogStatus;
 	public Users(){
 		ratings=new ArrayList<ContestRecord>();
+		blogStatus=new HashMap<>();
+	}
+	
+	public void setBlogStatus(int a,int b){
+		blogStatus.put(a, b);
+	}
+	
+	public int getBlogStatus(int a){
+		return blogStatus.getOrDefault(a, 0);
 	}
 	
 	public int getNowRating(){

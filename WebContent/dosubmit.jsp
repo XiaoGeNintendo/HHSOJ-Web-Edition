@@ -7,7 +7,7 @@
 	String prob=request.getParameter("probid");
 	String code=request.getParameter("code");
 	String lang=request.getParameter("lang");
-	
+	String testset=request.getParameter("testset");
 	String user=(String)session.getAttribute("username");
 	
 	if(prob==null || code==null || lang==null || user==null){
@@ -32,7 +32,14 @@
 	s.setCode(code);
 	s.setLang(lang);
 	s.setUser(user);
+	s.setSubmitTime(System.currentTimeMillis());
 	
+	if(testset==null){
+		s.setTestset("tests");	
+	}else{
+		s.setTestset(testset);
+	}
+
 	int id=TaskQueue.addTask(s);
 	
 	

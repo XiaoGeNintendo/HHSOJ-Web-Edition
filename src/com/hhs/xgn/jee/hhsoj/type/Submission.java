@@ -1,6 +1,8 @@
 package com.hhs.xgn.jee.hhsoj.type;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Submission class
@@ -16,6 +18,12 @@ public class Submission {
 	private ArrayList<TestResult> results;
 	private String compilerComment;
 	private int id;
+	private String testset;
+	private long submitTime;
+	
+	public String getReadableTime(){
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(submitTime));
+	}
 	
 	public Submission(){
 		results=new ArrayList<TestResult>();
@@ -99,5 +107,17 @@ public class Submission {
 	
 	public void setId(int nid){
 		id=nid;
+	}
+	public String getTestset() {
+		return testset;
+	}
+	public void setTestset(String testset) {
+		this.testset = testset;
+	}
+	public long getSubmitTime() {
+		return submitTime;
+	}
+	public void setSubmitTime(long submitTime) {
+		this.submitTime = submitTime;
 	}
 }

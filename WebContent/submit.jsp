@@ -61,12 +61,13 @@
 	%>
 	<!-- Default End-->
 	
+	
 	<center>
 
 		<form name="submit" action="dosubmit.jsp"
 			onsubmit="return callsubmit()" method="post">
 			Problem:<input type="text" name="probid"
-				value="<%=(request.getParameter("id") == null ? "" : request.getParameter("id"))%>">
+				value="<%=(request.getParameter("id") == null ? "" : request.getParameter("id"))%>" >
 			<br /> Code: <br />
 			<textarea name="code" cols="70" rows="40" id="code"></textarea>
 			<br /> Language:
@@ -76,7 +77,10 @@
  			<acronym title="C++11 : Don't upload harmful code thx :(">C++</acronym>
  			<input type="radio" name="lang" value="python">
  			<acronym title="Python 3.6 : A short and powerful language">Python</acronym>
- 			<br/> 
+ 			<br/>
+ 			
+ 			 <br/>
+ 			 
 			<input type="submit" name="submit" value="Submit">
 
 		</form>

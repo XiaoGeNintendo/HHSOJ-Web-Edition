@@ -76,6 +76,16 @@ body hr {
 	border-bottom: 3px solid #66ccff;
 }
 
+.blogup {
+	color: #00ff00;
+	font-weight: bold;
+}
+
+.blogdown {
+	color: #787878;
+	font-weight: bold;
+}
+
 #seperator {
 	height: 50px;
 }

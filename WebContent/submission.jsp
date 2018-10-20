@@ -57,6 +57,7 @@
 		Submission Verdict:<%=new VerdictHelper().render(s.getVerdict())%><br/>
 		Submission Time Cost:<%=s.getTimeCost() %><br/>
 		Submission Memory Cost:<%=s.getMemoryCost() %><br/>
+		Submission Submit Time:<%=s.getReadableTime() %><br/>
 		
 		<h2>Code</h2>
 		
