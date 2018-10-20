@@ -13,26 +13,15 @@
 	<h1 id="title">Writing a new blog on HHSOJ</h1>
 	<i id="subtitle">I have to poop for 15 minutes -- CF User</i>
 	<hr />
-	<div id="nav">
-		<a href="index.jsp" class="nav-link-left">Home</a> <a
-			href="problemset.jsp" class="nav-link-left">Problems</a> <a
-			href="status.jsp" class="nav-link-left">Status</a> <a
-			href="submit.jsp" class="nav-link-left">Submit</a> <a
-			href="blogs.jsp" class="nav-link-left selected">Community</a>
-		<%
-			String userLooking = (String) session.getAttribute("username");
-			if (userLooking != null && !userLooking.equals("")) {
-		%>
-		<a href="users.jsp?username=<%=userLooking%>" class="nav-link-right"><%=userLooking%></a>
-		<a href="logout.jsp" class="nav-link-right">Logout</a>
-		<%
-			} else {
-				response.sendRedirect("index.jsp");
-			}
-		%>
-	</div>
-	<div id="seperator"></div>
-	<br />
+	
+	<jsp:include page="nav.jsp?at=blogs"></jsp:include>
+	<%  
+		String userLooking=(String)session.getAttribute("username");
+		if(userLooking==null){
+			out.println("Please login to continue");
+			return;
+		}
+	%>
 	<!-- Default End -->
 
 	<script type="text/javascript" src="js/wangEditor.js"></script>

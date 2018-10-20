@@ -48,32 +48,7 @@
 				<h1 id="title">Problems on HHSOJ</h1>
 				<i id="subtitle"><%=p.getId() %> - <%=p.getName() %></i>
 				<hr />
-				<div id="nav">
-					<a href="index.jsp" class="nav-link-left">Home</a> 
-					<a href="problemset.jsp" class="nav-link-left selected">Problems</a> 
-					<a href="status.jsp" class="nav-link-left">Status</a> 
-					<a href="submit.jsp" class="nav-link-left">Submit</a> 
-					<a href="blogs.jsp" class="nav-link-left">Community</a>
-					<%
-						String userLooking=(String)session.getAttribute("username");
-						if(userLooking!=null && !userLooking.equals("")){
-							
-						
-					%>
-					<a href="users.jsp?username=<%=userLooking %>" class="nav-link-right"><%=userLooking %></a>
-					<a href="logout.jsp" class="nav-link-right">Logout</a> 
-					<%
-						}else{
-					%>
-							<a href="login.jsp" class="nav-link-right">Login</a>
-							<a href="register.jsp" class="nav-link-right">Register</a>
-					<%
-						}
-					%>
-				</div>
-				<div id="seperator"></div>
-				<br />
-				<!-- Default End -->
+				<jsp:include page="nav.jsp?at=problemset"></jsp:include>
 				
 				<center>
 					<h1><%=p.getName() %> on HHSOJ</h1>

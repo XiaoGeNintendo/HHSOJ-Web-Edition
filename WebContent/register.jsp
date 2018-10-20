@@ -69,17 +69,7 @@
 	<h1 id="title">Register</h1>
 	<i id="subtitle">F**K YOU LEATHERMAN!WHY DO THESE F**KING PROBLEMS? --IC</i>
 	<hr />
-	<div id="nav">
-		<a href="index.jsp" class="nav-link-left selected">Home</a> 
-		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
-		<a href="status.jsp" class="nav-link-left">Status</a>
-		<a href="submit.jsp" class="nav-link-left">Submit</a>
-		<a href="blogs.jsp" class="nav-link-left">Community</a>
-		<a href="login.jsp" class="nav-link-right">Login</a>
-		<a href="register.jsp" class="nav-link-right">Register</a>
-	</div>
-	<div id="seperator"></div>
-	<br />
+	<jsp:include page="nav.jsp?at=register"></jsp:include>
 	
 	<form onsubmit="return call()" action="doregister.jsp" method="post" name="register">
 		<table align="center" id="login_table">

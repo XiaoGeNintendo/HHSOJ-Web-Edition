@@ -63,17 +63,9 @@
 		<h1 id="title">Login</h1>
 		<i id="subtitle">We simply used files to store user's names and passwords --XGN</i>
 		<hr/>
-		<div id="nav">
-		<a href="index.jsp" class="nav-link-left">Home</a> 
-		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
-		<a href="status.jsp" class="nav-link-left">Status</a>
-		<a href="submit.jsp" class="nav-link-left">Submit</a>
-		<a href="blogs.jsp" class="nav-link-left">Community</a>
-		<a href="login.jsp" class="nav-link-right selected">Login</a>
-		<a href="register.jsp" class="nav-link-right">Register</a>
-		</div>
-		<div id="seperator"></div>
-		<br />
+		<jsp:include page="nav.jsp?at=login"></jsp:include>
+		
+		
 		<form action="dologin.jsp" onsubmit="return call()" method="post" name="login">
 			<table align="center" id="login_table">
 				<tr>

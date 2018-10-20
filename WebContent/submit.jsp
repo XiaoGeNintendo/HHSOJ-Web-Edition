@@ -54,18 +54,12 @@
 	<h1 id="title">Submit!</h1>
 	<i id="subtitle">Give out my answer! -- Phoenix Wright</i>
 	<hr />
-	<div id="nav">
-		<a href="index.jsp" class="nav-link-left">Home</a> 
-		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
-		<a href="status.jsp" class="nav-link-left">Status</a> 
-		<a href="submit.jsp" class="nav-link-left  selected">Submit</a> 
-		<a href="blogs.jsp" class="nav-link-left">Community</a>
-		<a href="users.jsp?username=<%=s %>" class="nav-link-right"><%=s %></a>
-		<a href="logout.jsp" class="nav-link-right">Logout</a> 
-	</div>
-	<div id="seperator"></div>
-	<br />
-	<!-- Default End -->
+	<jsp:include page="nav.jsp?at=submit"></jsp:include>
+		
+	<%
+		String userLooking=(String)session.getAttribute("username");
+	%>
+	<!-- Default End-->
 	
 	<center>
 

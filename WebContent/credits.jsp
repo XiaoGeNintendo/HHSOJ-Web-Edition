@@ -15,23 +15,7 @@
 	<h1 id="title">Credits</h1>
 	<i id="subtitle">I prefer cash :) --XGN</i>
 	<hr />
-	<div id="nav">
-		<a href="index.jsp" class="nav-link-left selected">Home</a> 
-		<a href="problemset.jsp" class="nav-link-left">Problems</a> 
-		<a href="status.jsp" class="nav-link-left">Status</a>
-		<a href="submit.jsp" class="nav-link-left">Submit</a>
-		<a href="blogs.jsp" class="nav-link-left">Community</a>
-		<%String user = (String) session.getAttribute("username");
-
-			if (user != null) {
-				out.println("<a href=\"users.jsp?username=" + user + "\" class=\"nav-link-right\">" + user + "</a>");
-				out.println("<a href=\"logout.jsp\" class=\"nav-link-right\">Logout</a>");
-			} else {
-				out.println("<a href=\"login.jsp\" class=\"nav-link-right\">Login</a>");
-				out.println("<a href=\"register.jsp\" class=\"nav-link-right\">Register</a>");
-			}%>
-	</div>
-	<div id="seperator"></div>
+	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	
 	<center>
 		<table id="creditTable" border="2">

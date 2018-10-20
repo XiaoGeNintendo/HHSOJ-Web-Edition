@@ -135,3 +135,5 @@ Version 1.2: Read external statement supported
 Version 1.3.0: Finished blog writing. You can write a blog at /writeBlog.jsp which has no entrance
 
 Version 1.3.1: Fixed that username can have html
+
+Version 1.3.2: Independent nav.jsp file.
