@@ -3,18 +3,18 @@ Another stupid Online Judge with Java EE version.
 # What's it
 It's an easy online judge. It's still beta!
 # About "hhsoj" folder
-We have one sample folder for you. Check it out. **Note that the files in runtime folder must be copied into your hhsoj folder**
+We have one sample folder for you. Check it out. **It is recommended to copy the sample folder to your computer when using**
 
 You can use `new File("hhsoj").getAbsolutePath()` to check your hhsoj folder path on your computer.
 
-If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will be given to every submission. But if "Judger.jar" is not in it, a *Judgement Failed* verdict will be given instead.
+If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will be given to every submission. But if "JavaTester.jar" is not in it, a *Judgement Failed* verdict will be given instead.
 
 You can go to the "credits.jsp" and click "View Source" and find your HHSOJ path in source code
 
 # Building
-0. Build on Windows
+0. System requirement: Windows x64 system with Tomcat server and JRE.
 
-1. Install Tomcat, java 8, g++ compiler, python compiler
+1. Install g++ compiler, python compiler
 
 2. Download the code and open it in Eclipse EE. It should be a valid Eclipse Project.
 
@@ -133,3 +133,5 @@ Version 1.1: Use json to store user information now! Made UI beautiful
 Version 1.2: Read external statement supported
 
 Version 1.3.0: Finished blog writing. You can write a blog at /writeBlog.jsp which has no entrance
+
+Version 1.3.1: Fixed that username can have html

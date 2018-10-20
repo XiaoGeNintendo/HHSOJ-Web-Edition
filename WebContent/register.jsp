@@ -39,6 +39,16 @@
 			return false;
 		}
 		
+		
+		for(var i=0;i<un.length;i++){
+			if(un.charAt(i)>='A' && un.charAt(i)<='Z' || un.charAt(i)>='a' && un.charAt(i)<='z' || un.charAt(i)>='0' && un.charAt(i)<='9'){
+				
+			}else{
+				alert('Username should contain alaphbet and numbers only');
+				return false;
+			}
+		}
+		
 		if(psd==null || psd==""){
 			alert('password is required');
 			return false;
