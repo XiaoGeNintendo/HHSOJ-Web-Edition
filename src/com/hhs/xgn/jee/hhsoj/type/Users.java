@@ -22,9 +22,19 @@ public class Users {
 	private String line;
 	private List<ContestRecord> ratings;
 	private Map<Integer, Integer> blogStatus;
+	private String userPic;
+	
 	public Users(){
 		ratings=new ArrayList<ContestRecord>();
 		blogStatus=new HashMap<>();
+		userPic="asset/defaultUserpic.jpg";
+	}
+	
+	public String getUserPic(){
+		return userPic;
+	}
+	public void setUserPic(String UserPic){
+		userPic=UserPic;
 	}
 	
 	public void setBlogStatus(int a,int b){
