@@ -18,7 +18,7 @@ import com.hhs.xgn.jee.hhsoj.type.Users;
 public class UserHelper {
 	
     
-	public ArrayList<Users> init(){
+	public synchronized ArrayList<Users> init(){
 		//Init
 		ArrayList<Users> arr=new ArrayList<Users>();
 		
@@ -56,18 +56,18 @@ public class UserHelper {
 	 * Get all users' information from the file system
 	 * @return the users
 	 */
-	public ArrayList<Users> getAllUsers(){
+	public synchronized ArrayList<Users> getAllUsers(){
 		
 		return init();
 		
 	}
 	
-	public int getSize(){
+	public synchronized int getSize(){
 		File f=new File("hhsoj/users");
 		return f.list().length;
 	}
 	
-	public Users getUserInfo(String username){
+	public synchronized Users getUserInfo(String username){
 		ArrayList<Users> arr=init();
 		for(Users s:arr){
 			if(s.getUsername().equals(username)){
@@ -78,7 +78,7 @@ public class UserHelper {
 		return null;
 	}
 	
-	public void addUser(Users u){
+	public synchronized void addUser(Users u){
 		
 		
 		int sz=getSize();
@@ -101,13 +101,27 @@ public class UserHelper {
 		
 	}
 	
-	public void deleteUser(String username){
+	public synchronized void deleteUser(String username){
 		ArrayList<Users> a=getAllUsers();
 		for(Users u:a){
 			if(u.getUsername().equals(username)){
 				new File("hhsoj/users/"+u.getId()).delete();
 				return;
 			}
+		}
+	}
+	
+	/**
+	 * Change the status of the Users according to the id
+	 * @param u
+	 */
+	public synchronized void refreshUser(Users u){
+		try{
+			PrintWriter pw=new PrintWriter("hhsoj/users/"+u.getId());
+			pw.println(u.toJson());
+			pw.close();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 }

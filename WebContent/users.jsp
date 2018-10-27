@@ -25,13 +25,15 @@
 	<h1 id="title">Users on HHSOJ</h1>
 	<i id="subtitle"><%=user %>'s space</i>
 	<hr />
-	<jsp:include page="nav.jsp?at=home"></jsp:include>
+	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	<!-- Default End -->
 	
 	<h2><%=user %></h2>
 	
 	<i><%=u.getLine() %> -- <%=user %></i> <br/>
 	<img alt="submission" src="asset/submissions.png"/><a href="status.jsp?userId=a">Submissions</a> <br/>
+	<img alt="posts" src="asset/posts.png"/><a href="blogs.jsp?userF=<%=u.getUsername() %>">Posts by him</a><br/>
+	
 	<img alt="rating" src="asset/rating.png"/>Contest Rating: <%=u.getNowRating() %>(Max. <%=u.getMaxRating() %>) <br/>
 	<!-- <img alt="blogs" src="asset/blogs.png"/><a href="#">Blogs</a><br/> -->
 	

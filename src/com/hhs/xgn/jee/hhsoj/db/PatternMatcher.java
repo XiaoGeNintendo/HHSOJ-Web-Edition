@@ -8,7 +8,7 @@ import com.hhs.xgn.jee.hhsoj.type.Submission;
  *
  */
 public class PatternMatcher {
-	public boolean match(Submission s,String userP,String probP,String verdictP){
+	public synchronized boolean match(Submission s,String userP,String probP,String verdictP){
 		if(userP!=null && !userP.equals("") && !s.getUser().equals(userP)){
 			return false;
 		}

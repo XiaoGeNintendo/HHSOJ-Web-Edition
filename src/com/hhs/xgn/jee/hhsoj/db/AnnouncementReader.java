@@ -10,7 +10,8 @@ import java.io.InputStreamReader;
  * @author XGN
  */
 public class AnnouncementReader {
-	public String readAnnouncement(){
+
+	public synchronized String readAnnouncement(){
 		try{
 			File f=new File("hhsoj/announcement.txt");
 			if(!f.exists()){

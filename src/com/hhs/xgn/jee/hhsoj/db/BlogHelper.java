@@ -16,7 +16,7 @@ import com.hhs.xgn.jee.hhsoj.type.Blog;
  *
  */
 public class BlogHelper {
-	public void writeBlog(String title,String blog,String user){
+	public synchronized void writeBlog(String title,String blog,String user){
 		Blog b=new Blog(title,blog,user);
 		Gson gs=new Gson();
 		int id=getBlogCount()+1;
@@ -32,7 +32,21 @@ public class BlogHelper {
 		}
 	}
 	
-	public Blog getBlogDataByID(String id){
+	public synchronized void refreshBlog(Blog b){
+		try{
+			PrintWriter pw=new PrintWriter("hhsoj/blog/"+b.getId());
+			pw.println(new Gson().toJson(b));
+			pw.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public synchronized Blog getBlogDataByID(int id){
+		return getBlogDataByID(id+"");
+	}
+	
+	public synchronized Blog getBlogDataByID(String id){
 		int id2=Integer.parseInt(id);
 		
 		ArrayList<Blog> arr=getAllBlogs();
@@ -45,7 +59,7 @@ public class BlogHelper {
 		return null;
 	}
 	
-	public ArrayList<Blog> getAllBlogs(){
+	public synchronized ArrayList<Blog> getAllBlogs(){
 		File f=new File("hhsoj/blog");
 		ArrayList<Blog> arr=new ArrayList<Blog>();
 		
@@ -63,7 +77,7 @@ public class BlogHelper {
 		return arr;
 	}
 	
-	public int getBlogCount(){
+	public synchronized int getBlogCount(){
 		File f=new File("hhsoj/blog");
 		if(!f.exists()){
 			f.mkdirs();

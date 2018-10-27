@@ -17,7 +17,7 @@ import com.hhs.xgn.jee.hhsoj.type.Problem;
  */
 public class ProblemHelper {
 	
-	public ArrayList<Problem> getAllProblems(){
+	public synchronized ArrayList<Problem> getAllProblems(){
 		File f=new File("hhsoj/problems");
 		if(!f.exists()){
 			f.mkdirs();
@@ -32,7 +32,7 @@ public class ProblemHelper {
 		return arr;
 	}
 	
-	public Problem getProblemData(int id){
+	public synchronized Problem getProblemData(int id){
 		return readSingleProblem(id+"");
 	}
 	
@@ -55,7 +55,7 @@ public class ProblemHelper {
 	 * 		- Tag=math,implementation
 	 * 		- Statement=statement.jsp
 	 */
-	private Problem readSingleProblem(String folder){
+	private synchronized Problem readSingleProblem(String folder){
 		String base="hhsoj/problems/"+folder+"/";
 		
 		Problem p=new Problem();
@@ -68,7 +68,7 @@ public class ProblemHelper {
 		return p;
 	}
 	
-	private Map<String,String> getArg(String file){
+	private synchronized Map<String,String> getArg(String file){
 		File f=new File(file);
 		
 		try{

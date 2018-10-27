@@ -21,7 +21,7 @@ public class SubmissionHelper {
 	 * Gives a new id
 	 * @return
 	 */
-	public int getNewId(){
+	public synchronized int getNewId(){
 		File f=new File("hhsoj/submission");
 		if(!f.exists()){
 			f.mkdirs();
@@ -34,7 +34,7 @@ public class SubmissionHelper {
 	 * Store the given submission
 	 * @param s
 	 */
-	public void storeStatus(Submission s){
+	public synchronized void storeStatus(Submission s){
 		try{
 			Gson gson=new Gson();
 			String json=gson.toJson(s);
@@ -48,7 +48,7 @@ public class SubmissionHelper {
 		}
 	}
 	
-	public ArrayList<Submission> getAllSubmissions(){
+	public synchronized ArrayList<Submission> getAllSubmissions(){
 		ArrayList<Submission> sb=new ArrayList<Submission>();
 		
 		File f=new File("hhsoj/submission");
@@ -71,7 +71,7 @@ public class SubmissionHelper {
 		return sb;
 	}
 	
-	public Submission getSubmission(int id){
+	public synchronized Submission getSubmission(int id){
 		
 		try{
 			File f=new File("hhsoj/submission/"+id);

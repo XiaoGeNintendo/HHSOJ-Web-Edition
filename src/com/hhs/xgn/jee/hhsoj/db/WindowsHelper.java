@@ -16,7 +16,7 @@ public class WindowsHelper {
 	 * Returns the user
 	 * @return
 	 */
-	public String getUser(){
+	public synchronized String getUser(){
 		
 		try{
 			File con=new File("hhsoj/user.txt");
@@ -36,7 +36,7 @@ public class WindowsHelper {
 	 * Returns the password
 	 * @return
 	 */
-	public String getPsd(){
+	public synchronized String getPsd(){
 		
 		try{
 			File con=new File("hhsoj/psd.txt");

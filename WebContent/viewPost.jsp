@@ -31,7 +31,7 @@
 	
 	<!-- Default Template -->
 	<h1 id="title"><%=bl.getTitle()%></h1>
-	<i id="subtitle">By <%=bl.getUser() %> at <%=bl.getReadableTime() %></i>
+	<i id="subtitle">By <a href="users.jsp?username=<%=bl.getUser() %>"><%=bl.getUser()%></a> at <%=bl.getReadableTime() %></i>
 	<hr />
 	<jsp:include page="nav.jsp?at=blogs"></jsp:include>
 
@@ -40,6 +40,7 @@
 	%>
 	<!-- Default End-->
 
+	
 	<div id="reader">
 		<!-- Blog post HTML -->
 
@@ -50,6 +51,8 @@
 		<!-- End blog -->
 	</div>
 
+	<hr/>
+	
 	<%
 		int stat = 0; //0=no status, 1=upvote, -1=downvote
 		if (userLooking != null) {
@@ -59,52 +62,57 @@
 		}
 
 		if (stat == 0) {
-			out.println("<img src=\"asset/upt.png\" alt=\"Upvote\"/>");
+	%>
+			<a href="dovote.jsp?id=<%=bl.getId() %>&upv=1"><img src="asset/upt.png" alt="Upvote"/></a>
+	<%
 			if (bl.getVote() > 0) {
 	%>
-	<i class="blogup">+<%=bl.getVote()%></i>
-
+				<i class="blogup">+<%=bl.getVote()%></i>
 	<%
-		} else {
+			} else {
 	%>
-	<i class="blogdown"><%=bl.getVote()%></i>
+				<i class="blogdown"><%=bl.getVote()%></i>
+	<%
+			}
+	%>
+			<a href="dovote.jsp?id=<%=bl.getId() %>&upv=-1"><img src="asset/downt.png" alt="Upvote"/></a>
 	<%
 		}
-
-			out.println("<img src=\"asset/downt.png\" alt=\"Downvote\"/>");
-		}
-		
 		
 		if (stat == 1) {
-			out.println("<img src=\"asset/upedt.png\" alt=\"Upvote\"/>");
+	%>
+			<img src="asset/upedt.png" alt="Upvoted"/>
+	<%
 			if (bl.getVote() > 0) {
 	%>
-	<i class="blogup">+<%=bl.getVote()%></i>
-
+				<i class="blogup">+<%=bl.getVote()%></i>
 	<%
-		} else {
+			} else {
 	%>
-	<i class="blogdown"><%=bl.getVote()%></i>
+				<i class="blogdown"><%=bl.getVote()%></i>
 	<%
-		}
-
-			out.println("<img src=\"asset/downt.png\" alt=\"Downvote\"/>");
+			}
+	%>
+			<img src="asset/downt.png" alt="Downvote"/>
+	<%
 		}
 		
 		if (stat == 2) {
-			out.println("<img src=\"asset/upt.png\" alt=\"Upvote\"/>");
+	%>
+			<img src="asset/upt.png" alt="Upvote"/>
+	<%
 			if (bl.getVote() > 0) {
 	%>
-	<i class="blogup">+<%=bl.getVote()%></i>
-
+				<i class="blogup">+<%=bl.getVote()%></i>
 	<%
-		} else {
+			} else {
 	%>
-	<i class="blogdown"><%=bl.getVote()%></i>
+				<i class="blogdown"><%=bl.getVote()%></i>
 	<%
-		}
-
-			out.println("<img src=\"asset/downedt.png\" alt=\"Downvote\"/>");
+			}
+	%>
+			<img src="asset/downedt.png" alt="Downvoted"/>
+	<%
 		}
 		
 	%>

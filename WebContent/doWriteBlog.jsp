@@ -14,6 +14,8 @@
 	}
 	
 	new BlogHelper().writeBlog(title,html,user);
+	
+	
 	out.println("Your blog has been successfully saved");
 	out.println("<a href=\"index.jsp\">back</a>");
 		

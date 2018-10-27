@@ -1,3 +1,4 @@
+<%@page import="java.util.Comparator"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Blog"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.BlogHelper"%>
@@ -19,6 +20,8 @@
 		
 	<%
 		String userLooking=(String)session.getAttribute("username");
+	
+		
 	%>
 	<!-- Default End-->
 	
@@ -39,7 +42,24 @@
 		<%
 			BlogHelper bh=new BlogHelper();
 			ArrayList<Blog> blogs=bh.getAllBlogs();
+			
+			blogs.sort(new Comparator<Blog>(){
+				public int compare(Blog o1, Blog o2){
+					return -Integer.compare(o1.getId(), o2.getId());
+				}
+			});
+			
+			String userF=request.getParameter("userF");
+			
+			if(userF!=null){
+				out.println("<center><b>Now using UserFilter - "+userF+"</b></center>");
+			}
+			
+			
 			for(Blog b:blogs){	
+				if(userF!=null && !b.getUser().equals(userF)){
+					continue;
+				}
 		%>
 			<tr class="blogrow">
 				<td align="center" class="blogtitle"><a href="viewPost.jsp?id=<%=b.getId()%>"><%=b.getTitle()%></a></td>
