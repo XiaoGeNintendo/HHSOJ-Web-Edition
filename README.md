@@ -79,6 +79,17 @@ Oh, the highlighter and editor are provided by [Mr.Wang](http://www.wangeditor.c
 Announcement is the marquee text in index.jsp
 
 You can customize it from version 0.22.Find the file "hhsoj/announcement.txt" and change the words in it. You will see the announcement change.
+
+# Customizing Judging Config
+Find the find "hhsoj/config.json" then change the settings there
+```
+{
+    "enableCPP11":true, //Whether to open cpp11 or not
+    "windowsUsername":"", //the windows system username
+    "windowsPassword":"" //the windows system password
+}
+```
+
 # Changelog
 Version 0.1: The beta version released! Seems without judging system? :P
 
@@ -139,3 +150,9 @@ Version 1.2.1: Fixed that username can have html
 Version 1.2.2: Independent nav.jsp file.
 
 Version 1.2.3: You can now try viewing the post. While voting and other features will come soon!
+
+Version 1.2.4: You can now vote for the posts.
+
+Version 1.2.5: You can now change the user settings and user picture
+
+Version 1.2.6: You can now change the judging settings at "config.json"

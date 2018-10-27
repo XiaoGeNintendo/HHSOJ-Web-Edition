@@ -1,18 +1,21 @@
 package com.hhs.xgn.jee.hhsoj.judger;
 
 import java.io.*;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
+import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
 import com.hhs.xgn.jee.hhsoj.db.ProblemHelper;
 import com.hhs.xgn.jee.hhsoj.db.SubmissionHelper;
-import com.hhs.xgn.jee.hhsoj.db.WindowsHelper;
+import com.hhs.xgn.jee.hhsoj.type.Config;
 import com.hhs.xgn.jee.hhsoj.type.Problem;
 import com.hhs.xgn.jee.hhsoj.type.Submission;
 import com.hhs.xgn.jee.hhsoj.type.TestResult;
 
 public class JudgingThread extends Thread {
+	
+	private Config con;
+	
 	public void run() {
 		System.out.println("Judging Thread Initaize Ok!");
 		while (true) {
@@ -22,6 +25,9 @@ public class JudgingThread extends Thread {
 
 			}
 
+			//Do new submission
+			con=readGlobalConfig();
+			
 			Submission s = TaskQueue.getFirstSubmission();
 			Problem p = new ProblemHelper().getProblemData(Integer.parseInt(s.getProb()));
 			try {
@@ -76,6 +82,10 @@ public class JudgingThread extends Thread {
 				new SubmissionHelper().storeStatus(s);
 			}
 		}
+	}
+
+	private Config readGlobalConfig() {
+		return new ConfigLoader().load();
 	}
 
 	private boolean judgeOneTestCase(Submission s, File f, Problem p)
@@ -146,7 +156,7 @@ public class JudgingThread extends Thread {
 		
 	private boolean runUserPython(Submission s, File f, Problem p) throws Exception{
 		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(), "python \""+new File("hhsoj/judge/Program.py").getAbsolutePath()+"\"",
-				new WindowsHelper().getUser(), new WindowsHelper().getPsd(), "in.txt", "out.txt", p.getArg("TL"),
+				con.getWindowsUsername(), con.getWindowsPassword(), "in.txt", "out.txt", p.getArg("TL"),
 				p.getArg("ML"));
 		
 		pb.directory(new File("hhsoj/judge"));
@@ -217,7 +227,7 @@ public class JudgingThread extends Thread {
 	private boolean runUserCpp(Submission s, File f, Problem p) throws Exception {
 
 		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(), "Program.exe",
-				new WindowsHelper().getUser(), new WindowsHelper().getPsd(), "in.txt", "out.txt", p.getArg("TL"),
+				con.getWindowsUsername(), con.getWindowsPassword(), "in.txt", "out.txt", p.getArg("TL"),
 				p.getArg("ML"));
 		
 		pb.directory(new File("hhsoj/judge"));
@@ -467,7 +477,7 @@ public class JudgingThread extends Thread {
 		}
 		if (lang.equals("cpp")) {
 
-			return new String[] { "g++", "-static", "-DONLINE_JUDGE", "-std=c++11", "-O2", "-Wl,--stack=268435456",
+			return new String[] { "g++", "-static", "-DONLINE_JUDGE", (con.isEnableCPP11()?"-std=c++11":"-DNOCPP"), "-O2", "-Wl,--stack=268435456",
 					"-s", "-x", "c++", "-o", "Program.exe", "Program.cpp" };
 		}
 
