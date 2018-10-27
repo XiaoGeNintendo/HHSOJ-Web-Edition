@@ -12,7 +12,7 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 You can go to the "credits.jsp" and click "View Source" and find your HHSOJ path in source code
 
 # Building
-0. System requirement: Windows x64 system with Tomcat server and JRE.
+0. System requirement: Windows x64 system with Tomcat9.0 server and JRE.
 
 1. Install g++ compiler, python compiler
 
@@ -78,10 +78,11 @@ Oh, the highlighter and editor are provided by [Mr.Wang](http://www.wangeditor.c
 # Customizing Announcement
 Announcement is the marquee text in index.jsp
 
-You can customize it from version 0.22.Find the file "hhsoj/announcement.txt" and change the words in it. You will see the announcement change.
+You can customize it from 18w23a.Find the file "hhsoj/announcement.txt" and change the words in it. You will see the announcement change.
 
 # Customizing Judging Config
-Find the find "hhsoj/config.json" then change the settings there
+
+From version 18w35a you can find the file "hhsoj/config.json" then change the settings there
 ```
 {
     "enableCPP11":true, //Whether to open cpp11 or not
@@ -171,5 +172,9 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w35a: You can now change the judging settings at "config.json"
 
 - 18w36e: Update changelog format
-
+  
 ## Version 1.1: Blog system finished
+
+- 18w37b: Zzzyt's Abobe DW updated.
+
+- 18w38e: Fixed readme typo and license problems
