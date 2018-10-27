@@ -91,68 +91,85 @@ Find the find "hhsoj/config.json" then change the settings there
 ```
 
 # Changelog
-Version 0.1: The beta version released! Seems without judging system? :P
 
-Version 0.2: Updated LICENSE. First time to write a license all by myself? :D
+We use a code to present each commit. The format is [year] + 'w' + [id] + [type].Where [type] could be :
 
-Version 0.3: README update! You guys have something to read about, hum?
+'a' - System update
 
-Version 0.4: Upload sample "hhsoj" folder
+'b' - Frontend update
 
-Version 0.5: Fixed line-breaking problem
+'c' - Judging update
 
-Version 0.6: Supports CPP Testing
+'d' - Bug fix
 
-Version 0.7: Supports Filter
+'e' - Little change
 
-Version 0.8: Finish verdict list
+## Version 0.0: The beta version released! Seems without judging system? :P
 
-Version 0.9: Support CSS. Thanks, Zzzyt!
+- 18w02e: Updated LICENSE. First time to write a license all by myself? :D
 
-Version 0.10: Fixed a little bugs in displaying and logic. Tested some attacking function.
+- 18w03e: README update! You guys have something to read about, hum?
 
-Version 0.11: UI design.
+- 18w04e: Upload sample "hhsoj" folder
 
-Version 0.12: Supports java testing! Finally!
+- 18w05d: Fixed line-breaking problem
 
-Version 0.13: Auto-refresh when pressing "back" and fixed some bugs in java testing.
+- 18w06c: Supports CPP Testing
 
-Version 0.14: Now Will auto jump to login if you didn't login at submit page
+- 18w07a: Supports Filter
 
-Version 0.15: Add every page a UI template. Improve looking.
+- 18w08b: Finish verdict list
 
-Version 0.16: UI design.
+- 18w09b: Support CSS. Thanks, Zzzyt!
 
-Version 0.17: Readme update
+- 18w10d: Fixed a little bugs in displaying and logic. Tested some attacking function.
 
-Version 0.18: Script attack update
+- 18w11b: UI design.
 
-Version 0.19: Add code length limit
+- 18w12c: Supports java testing! Finally!
 
-Version 0.20: UI design and merge
+- 18w13b 18w14d: Auto-refresh when pressing "back" and fixed some bugs in java testing.
 
-Version 0.21: Credits Page finished
+- 18w15b: Now Will auto jump to login if you didn't login at submit page
 
-Version 0.22: Supports Customizing Announcement
+- 18w16b: Add every page a UI template. Improve looking.
 
-Version 0.23: Speed up CPP testing
+- 18w17b: UI design.
 
-Version 1.0: Supports Python testing
+- 18w18e: Readme update
 
-Version 1.1: Use json to store user information now! Made UI beautiful
+- 18w19b: Script attack update
 
-Version 1.2: Read external statement supported
+- 18w20b: Add code length limit
 
-Version 1.2.0: Finished blog writing. You can write a blog at /writeBlog.jsp which has no entrance
+- 18w21b: UI design and merge
 
-Version 1.2.1: Fixed that username can have html
+- 18w22b: Credits Page finished
 
-Version 1.2.2: Independent nav.jsp file.
+- 18w23a: Supports Customizing Announcement
 
-Version 1.2.3: You can now try viewing the post. While voting and other features will come soon!
+- 18w24c: Speed up CPP testing
 
-Version 1.2.4: You can now vote for the posts.
+## Version 1.0: Supports Python testing 
 
-Version 1.2.5: You can now change the user settings and user picture
+- 18w26a 18w27b: Use json to store user information now! Made UI beautiful
 
-Version 1.2.6: You can now change the judging settings at "config.json"
+- 18w28a: Read external statement supported
+
+- 18w29a: Finished blog writing. You can write a blog at /writeBlog.jsp which has no entrance
+
+- 18w30d: Fixed that username can have html
+
+- 18w31b: Independent nav.jsp file.
+
+- 18w32a: You can now try viewing the post. While voting and other features will come soon!
+
+- 18w33a: You can now vote for the posts.
+
+- 18w34a: You can now change the user settings and user picture
+
+- 18w35a: You can now change the judging settings at "config.json"
+
+- 18w36e: Update changelog format
+
+## Version 1.1: Blog system finished
