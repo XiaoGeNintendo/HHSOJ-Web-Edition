@@ -179,4 +179,4 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 
 - 18w38e: Fixed readme typo and license problems
 
-- 18w39d: Fixed a huge bug. Sorry for that
+- 18w39d: Fixed a huge bug. Sorry for that. (A web demo has been set up somewhere in the Internet! Hooray!)
