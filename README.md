@@ -178,3 +178,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w37b: Zzzyt's Abobe DW updated.
 
 - 18w38e: Fixed readme typo and license problems
+
+- 18w39d: Fixed a huge bug. Sorry for that

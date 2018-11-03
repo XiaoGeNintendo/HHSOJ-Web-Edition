@@ -575,23 +575,7 @@ public class JudgingThread extends Thread {
 			return false;
 		}
 		
-		File f4=new File("hhsoj/user.txt");
-		if(!f4.exists()){
-			s.setVerdict("Library Missing");
-			s.setCompilerComment(
-					"user.txt is missing.");
-			new SubmissionHelper().storeStatus(s);
-			return false;
-		}
 		
-		File f5=new File("hhsoj/psd.txt");
-		if(!f5.exists()){
-			s.setVerdict("Library Missing");
-			s.setCompilerComment(
-					"psd.txt is missing.");
-			new SubmissionHelper().storeStatus(s);
-			return false;
-		}
 		return true;
 	}
 }
