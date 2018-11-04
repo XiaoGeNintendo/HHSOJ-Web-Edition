@@ -35,6 +35,6 @@
 	}
 	new UserHelper().refreshUser(nowU);
 	
-	response.sendRedirect("users.jsp?username="+username);
+	response.sendRedirect("users.jsp?username="+nowU.getUsername());
 	
 %>

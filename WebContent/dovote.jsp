@@ -9,7 +9,7 @@
 <%
 	String user=(String)session.getAttribute("username");
 	if(user==null || user.equals("")){
-		out.println("Permission denied");
+		out.println("Permission denied: Please login");
 		return;
 	}
 	
@@ -37,7 +37,7 @@
 		response.sendRedirect("viewPost.jsp?id="+id);
 		
 	}catch(Exception e){
-		out.println("Permission denied");
+		out.println("Permission denied: You may have voted once or some internal error occurred");
 		out.println("<!-- "+e+" -->");
 		return;
 	}
