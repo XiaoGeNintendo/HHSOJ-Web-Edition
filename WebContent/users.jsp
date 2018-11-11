@@ -42,7 +42,7 @@
 				<h2><%=user %></h2>
 				<i><%=u.getLine()%> -- <%=user%></i> <br /> 
 				<img alt="submission" src="asset/submissions.png" />
-				<a href="status.jsp?userId=a">Submissions</a> <br /> 
+				<a href="status.jsp?userId=<%=u.getUsername()%>" >Submissions</a> <br /> 
 				<img alt="posts" src="asset/posts.png" />
 				<a href="blogs.jsp?userF=<%=u.getUsername()%>">Posts by him</a><br />
 				<img alt="rating" src="asset/rating.png" />Contest Rating: <%=u.getNowRating()%>(Max.<%=u.getMaxRating()%>) <br /> 

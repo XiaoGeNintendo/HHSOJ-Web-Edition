@@ -182,3 +182,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w39d: Fixed a huge bug. Sorry for that. (A web demo has been set up somewhere in the Internet! Hooray!)
 
 - 18w40d: Fixed that after setting the explorer will take you to a 404 page.
+
+- 18w41d: Fixed that the "Submission By Him" doesn't work and some other bugs.

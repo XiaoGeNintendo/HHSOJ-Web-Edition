@@ -1,3 +1,8 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Blog"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.BlogHelper"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Submission"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.SubmissionHelper"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.UserHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Users"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,6 +26,36 @@
 	}
 	
 	if(username.equals("")==false){
+		
+		ArrayList<Users> allUsers=new UserHelper().getAllUsers();
+		for(Users u:allUsers){
+			if(u.getUsername().equals(username)){
+				out.println("The username has been in use.");
+				return;
+			}
+		}
+		
+		//Refresh all user data
+		
+		ArrayList<Submission> sub=new SubmissionHelper().getAllSubmissions();
+		
+		//Refresh Submission
+		for(Submission s:sub){
+			if(s.getUser().equals(nowU.getUsername())){
+				s.setUser(username);
+				new SubmissionHelper().storeStatus(s);
+			}
+		}
+		
+		//Refresh Blog
+		ArrayList<Blog> blogs=new BlogHelper().getAllBlogs();
+		for(Blog b:blogs){
+			if(b.getUser().equals(nowU.getUsername())){
+				b.setUser(username);
+				new BlogHelper().refreshBlog(b);
+			}
+		}
+		
 		nowU.setUsername(username);
 		session.setAttribute("username", username);
 	}
