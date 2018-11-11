@@ -44,7 +44,7 @@ public class TaskQueue {
 		s.setResults(new ArrayList<TestResult>());
 		s.setCompilerComment("");
 		s.setId(new SubmissionHelper().getNewId());
-		
+		s.setNowTest(-1);
 		new SubmissionHelper().storeStatus(s);
 		queue.add(s);
 		

@@ -20,6 +20,8 @@ public class Submission {
 	private int id;
 	private String testset;
 	private long submitTime;
+	private int nowTest;
+	private int maxTest;
 	
 	public String getReadableTime(){
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(submitTime));
@@ -28,6 +30,17 @@ public class Submission {
 	public Submission(){
 		results=new ArrayList<TestResult>();
 	}
+	
+	public String getHTMLVerdict(){
+		if(verdict.startsWith("Running on test")){
+			return verdict+"<progress value=\""+nowTest+"\" max=\""+maxTest+"\"></progress>";
+		}
+		if(verdict.equals("Judging") || verdict.equals("Compiling") || verdict.equals("In queue")){
+			return verdict+"<progress></progress>";
+		}
+		return verdict;
+	}
+	
 	public int getTimeCost(){
 		int tl=0;
 		for(TestResult tr:results){
@@ -119,5 +132,25 @@ public class Submission {
 	}
 	public void setSubmitTime(long submitTime) {
 		this.submitTime = submitTime;
+	}
+
+	public int getNowTest() {
+		return nowTest;
+	}
+
+	/**
+	 * -1 means waiting somehow. <br/>
+	 * -2 means ended somehow
+	 */
+	public void setNowTest(int nowTest) {
+		this.nowTest = nowTest;
+	}
+
+	public int getMaxTest() {
+		return maxTest;
+	}
+
+	public void setMaxTest(int maxTest) {
+		this.maxTest = maxTest;
 	}
 }

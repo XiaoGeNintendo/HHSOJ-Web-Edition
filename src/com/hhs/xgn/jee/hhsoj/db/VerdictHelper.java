@@ -13,7 +13,7 @@ public class VerdictHelper {
 		if(s.equalsIgnoreCase("Accepted")){
 			return "<font color=#00ff00><b>"+s+"</b></font>";
 		}
-		if(s.startsWith("Running") || s.startsWith("Judging") || s.startsWith("Compiling")){
+		if(s.startsWith("Running") || s.startsWith("Judging") || s.startsWith("Compiling") || s.startsWith("In queue")){
 			return "<font color=#787878>"+s+"</font>";
 		}
 		if(s.equalsIgnoreCase("Wrong Answer")){

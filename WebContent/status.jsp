@@ -105,7 +105,7 @@
 			<tr bgcolor="<%=(id==s.getId()?"cyan":(cnt%2==0?"white":"#efefef"))%>">
 				<td align="center"><a href="submission.jsp?id=<%=s.getId()%>"> <%=s.getId() %> </a></td>
 				<td align="center"><a href="problem.jsp?id=<%=s.getProb()%>"> <%=s.getProb() %> </a></td>
-				<td align="center"><%=new VerdictHelper().render(s.getVerdict())%></td>
+				<td align="center"><%=new VerdictHelper().render(s.getHTMLVerdict())%></td>
 				<td align="center"><%=s.getTimeCost() %></td>
 				<td align="center"><%=s.getMemoryCost() %></td>
 				<td align="center"><a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser() %></a></td>

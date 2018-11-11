@@ -30,8 +30,11 @@ public class JudgingThread extends Thread {
 			
 			Submission s = TaskQueue.getFirstSubmission();
 			Problem p = new ProblemHelper().getProblemData(Integer.parseInt(s.getProb()));
+			
 			try {
 
+				File testfiles = new File(p.getPath() + "/tests");
+				
 				TaskQueue.popFront();
 
 				System.out.println("Now testing:" + s.getId());
@@ -48,7 +51,8 @@ public class JudgingThread extends Thread {
 					continue;
 				}
 
-				File testfiles = new File(p.getPath() + "/tests");
+				s.setNowTest(0);
+				s.setMaxTest(testfiles.list().length);
 
 				if(!testfiles.isDirectory()){
 					throw new Exception("Testcase is not ready");
@@ -60,6 +64,7 @@ public class JudgingThread extends Thread {
 
 				for (File f : testfiles.listFiles()) {
 					s.setVerdict("Running on test " + cnt);
+					s.setNowTest(cnt);
 					new SubmissionHelper().storeStatus(s);
 					boolean goon = judgeOneTestCase(s, f, p);
 					if (!goon) {

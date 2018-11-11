@@ -15,7 +15,7 @@ public class PatternMatcher {
 		if(probP!=null && !probP.equals("") && !s.getProb().equals(probP)){
 			return false;
 		}
-		if(verdictP!=null && !verdictP.equals("") &&!s.getVerdict().equals(verdictP)){
+		if(verdictP!=null && !verdictP.equals("") &&!s.getVerdict().contains(verdictP)){
 			return false;
 		}
 		return true;

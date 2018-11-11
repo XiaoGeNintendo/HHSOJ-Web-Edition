@@ -32,9 +32,16 @@
 	
 	<script>
 		function code(){
-			var highLightCode = wangHighLighter.highLight("<%=s.getLang().equals("cpp")?"C++":s.getLang()%>", "simple", "<%=s.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"").replace("</script>","</son>") %>"); 
+			var highLightCode = wangHighLighter.highLight("<%=s.getLang().equals("cpp")?"C++":s.getLang()%>", "simple", "<%=s.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"").replace("</script>","</son>") %>");
+			this.document.write("<div id=\"code\">");
 			this.document.write(highLightCode);
+			this.document.write("</div>");
 		}
+		
+		function open(){
+			this.document.getElementById("code").innerHTML="<pre>"+"<%=s.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"").replace("</script>","</son>").replace("<","&lt;").replace(">","&gt;") %>"+"</pre>";
+		}
+		
 	</script>
 	
 	<!-- Default Template -->
@@ -61,6 +68,15 @@
 		
 		<h2>Code</h2>
 		
+		<%
+			String userLooking=(String)session.getAttribute("username");
+			if(userLooking !=null && userLooking.equals(s.getUser())){
+				
+		%>
+			<a href="javascript:open()">Copy code</a>
+		<%
+			}
+		%>
 		<script>
 			code();
 		</script>
