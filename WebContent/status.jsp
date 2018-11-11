@@ -24,11 +24,13 @@
 	}
 	
 	#status-table th{
+		text-align:center;
 		padding: 3px;
 		border: 1px solid #cccccc;
 	}
 	
 	#status-table td{
+		text-align:center;
 		padding: 3px;
 		border: 1px solid #cccccc;
 	}
@@ -63,7 +65,7 @@
 		</form>
 		<br/>
 		
-		<table border="1" width="80%" align="center" id="status-table">
+		<table	id="status-table">
 			<tr>
 				<th width="15%">#</th>
 				<th width="15%">ProbID</th>
@@ -103,12 +105,12 @@
 			%>
 			
 			<tr bgcolor="<%=(id==s.getId()?"cyan":(cnt%2==0?"white":"#efefef"))%>">
-				<td align="center"><a href="submission.jsp?id=<%=s.getId()%>"> <%=s.getId() %> </a></td>
-				<td align="center"><a href="problem.jsp?id=<%=s.getProb()%>"> <%=s.getProb() %> </a></td>
-				<td align="center"><%=new VerdictHelper().render(s.getHTMLVerdict())%></td>
-				<td align="center"><%=s.getTimeCost() %></td>
-				<td align="center"><%=s.getMemoryCost() %></td>
-				<td align="center"><a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser() %></a></td>
+				<td><a href="submission.jsp?id=<%=s.getId()%>"> <%=s.getId() %> </a></td>
+				<td><a href="problem.jsp?id=<%=s.getProb()%>"> <%=s.getProb() %> </a></td>
+				<td><%=new VerdictHelper().render(s.getHTMLVerdict())%></td>
+				<td><%=s.getTimeCost() %></td>
+				<td><%=s.getMemoryCost() %></td>
+				<td><a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser() %></a></td>
 			</tr>
 			
 			<%

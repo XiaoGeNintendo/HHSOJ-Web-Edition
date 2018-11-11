@@ -12,6 +12,16 @@ body span, pre, code {
 	font-family: "Courier New", "Consolas";
 }
 
+td *{
+	/* Gonna explode..*/
+	font-family: "Courier New", "Consolas";
+}
+
+tr *{
+	/* Gonna explode..*/
+	font-family: "Courier New", "Consolas";
+}
+
 body h1, h2, h3, h4, h5, h6 {
 	font-family: serif;
 }
@@ -52,6 +62,8 @@ body hr {
 }
 
 .nav-link-left {
+	font-weight:bold;
+	font-family:'Trebuchet MS', Helvetica, sans-serif;
 	margin-left: 20px;
 	margin-right: 20px;
 	font: 20px;
@@ -63,6 +75,7 @@ body hr {
 }
 
 .nav-link-right {
+	font-weight:bold;
 	margin-left: 20px;
 	margin-right: 20px;
 	font: 20px;
