@@ -10,6 +10,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-Blogs</title>
+
+<style type="text/css">
+	#blog-table {
+		border-collapse: collapse;
+		width: 60%;
+		min-width: 400px;
+		align-self: center;
+		margin: 0px auto;
+		min-width: 500px;
+		border:1px solid #cccccc;
+		background:#f0f0f0;
+	}
+	
+	#blog-table th{
+		padding: 3px;
+		border: 1px solid #cccccc;
+	}
+	
+	#blog-table td{
+		padding: 3px;
+		border: 1px solid #cccccc;
+	}
+	
+	#write-blog{
+		width: 60%;
+		min-width: 400px;
+		align-self: center;
+		margin: 0px auto;
+		min-width: 500px;
+		padding:20px;
+		text-align:right;
+	}
+</style>
 </head>
 <body>
 	<!-- Default Template -->
@@ -24,15 +57,11 @@
 		
 	%>
 	<!-- Default End-->
+	<div id="write-blog">
+		<img src="asset/post.png" alt="Post"/><a href="writeBlog.jsp">Write a post</a>
+    </div>
 	
-	<table align="center" class="write">
-		<tr>
-			<td width="85%"></td>
-			<td width="15%"><img src="asset/post.png" alt="Post"/><a href="writeBlog.jsp">Write a post</a></td>
-		</tr>
-	</table>
-	
-	<table width="80%" align="center" border="1">
+	<table id="blog-table">
 		<tr>
 			<th width="70%">Post title</th>
 			<th width="20%">Author</th>
