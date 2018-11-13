@@ -15,7 +15,7 @@ public class Blog {
 	private int vote;
 	private int id;
 	private long time;
-	
+	private boolean deleted=false;
 	public Blog(){
 		
 	}
@@ -86,6 +86,14 @@ public class Blog {
 
 	public void setTime(long time) {
 		this.time = time;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 	
 	

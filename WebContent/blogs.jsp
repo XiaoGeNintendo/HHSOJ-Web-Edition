@@ -86,7 +86,7 @@
 			
 			
 			for(Blog b:blogs){	
-				if(userF!=null && !b.getUser().equals(userF)){
+				if(userF!=null && !b.getUser().equals(userF) || b.isDeleted()){
 					continue;
 				}
 		%>

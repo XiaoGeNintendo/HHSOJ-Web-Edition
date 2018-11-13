@@ -27,9 +27,14 @@
 			out.println("Post not found");
 			return;
 		}
+		if(bl.isDeleted()){
+			out.println("This blog has been deleted");
+			return;
+		}
 	%>
 	
 	<!-- Default Template -->
+	
 	<h1 id="title"><%=bl.getTitle()%></h1>
 	<i id="subtitle">By <a href="users.jsp?username=<%=bl.getUser() %>"><%=bl.getUser()%></a> at <%=bl.getReadableTime() %></i>
 	<hr />
@@ -115,6 +120,16 @@
 	<%
 		}
 		
+		if(bl.getUser().equals(userLooking)){
 	%>
+		<a href="editPost.jsp?id=<%=bl.getId() %>">Edit</a> 
+		<a href="deletePost.jsp?id=<%=bl.getId() %>">Delete</a>
+		<br/>
+	<%		
+			
+		}
+	%>
+	
+	
 </body>
 </html>

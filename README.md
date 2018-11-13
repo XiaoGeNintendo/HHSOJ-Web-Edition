@@ -75,6 +75,9 @@ You can read more about Testlib here: [Mike Mirzayanov](http://codeforces.com/te
 My blog is here: [Rubbish Blog](https://xgns-blog.000webhostapp.com)
 
 Oh, the highlighter and editor are provided by [Mr.Wang](http://www.wangeditor.com/)
+
+You can donate us by Wechat :) But that's useless, isn't it? So the donate address will not be public.
+
 # Customizing Announcement
 Announcement is the marquee text in index.jsp
 
@@ -188,3 +191,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w42b: Zzzyt's Style Update
 
 - 18w43a: Progress bar of testing
+
+- 18w44a: Edit&Delete Post
