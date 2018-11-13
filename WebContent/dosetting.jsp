@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Comment"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Blog"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.BlogHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Submission"%>
@@ -54,6 +55,13 @@
 				b.setUser(username);
 				new BlogHelper().refreshBlog(b);
 			}
+			
+			for(Comment c:b.getComments()){
+				if(c.getUser().equals(nowU.getUsername())){
+					c.setUser(username);
+				}
+			}
+			new BlogHelper().refreshBlog(b);
 		}
 		
 		nowU.setUsername(username);

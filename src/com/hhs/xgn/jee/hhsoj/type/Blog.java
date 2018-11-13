@@ -1,6 +1,7 @@
 package com.hhs.xgn.jee.hhsoj.type;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,8 +17,13 @@ public class Blog {
 	private int id;
 	private long time;
 	private boolean deleted=false;
+	private ArrayList<Comment> comments=new ArrayList<Comment>();
 	public Blog(){
-		
+
+	}
+	
+	public void addComment(String user,String comment){
+		comments.add(new Comment(user,comment));
 	}
 	
 	public String getReadableTime(){
@@ -94,6 +100,16 @@ public class Blog {
 
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
+	}
+
+
+	public ArrayList<Comment> getComments() {
+		return comments;
+	}
+
+
+	public void setComments(ArrayList<Comment> comments) {
+		this.comments = comments;
 	}
 	
 	
