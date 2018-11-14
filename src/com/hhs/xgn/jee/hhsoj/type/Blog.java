@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.google.gson.Gson;
+
 /**
  * The blog class
  * @author XGN
@@ -18,6 +20,11 @@ public class Blog {
 	private long time;
 	private boolean deleted=false;
 	private ArrayList<Comment> comments=new ArrayList<Comment>();
+	
+	public String toJson(){
+		return new Gson().toJson(this);
+	}
+	
 	public Blog(){
 
 	}

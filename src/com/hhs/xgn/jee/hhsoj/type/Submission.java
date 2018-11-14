@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.google.gson.Gson;
+
 /**
  * Submission class
  * @author XGN
@@ -23,6 +25,9 @@ public class Submission {
 	private int nowTest;
 	private int maxTest;
 	
+	public String toJson(){
+		return new Gson().toJson(this);
+	}
 	public String getReadableTime(){
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(submitTime));
 	}
@@ -152,5 +157,13 @@ public class Submission {
 
 	public void setMaxTest(int maxTest) {
 		this.maxTest = maxTest;
+	}
+
+	@Override
+	public String toString() {
+		return "Submission [user=" + user + ", prob=" + prob + ", code=" + code + ", lang=" + lang + ", verdict="
+				+ verdict + ", results=" + results + ", compilerComment=" + compilerComment + ", id=" + id
+				+ ", testset=" + testset + ", submitTime=" + submitTime + ", nowTest=" + nowTest + ", maxTest="
+				+ maxTest + "]";
 	}
 }

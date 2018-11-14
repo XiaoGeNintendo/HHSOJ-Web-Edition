@@ -9,10 +9,12 @@ You can use `new File("hhsoj").getAbsolutePath()` to check your hhsoj folder pat
 
 If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will be given to every submission. But if "JavaTester.jar" is not in it, a *Judgement Failed* verdict will be given instead.
 
-You can go to the "credits.jsp" and click "View Source" and find your HHSOJ path in source code
+**(Before 18w46a)** You can go to the "credits.jsp" and click "View Source" and find your HHSOJ path in source code
+
+**(After 18w46a)** Go to the admin platform to see the HHSOJ path
 
 # Building
-0. System requirement: Windows x64 system with Tomcat9.0 server and JRE.
+0. System requirement: Windows x64 system with Tomcat9.0 server and JRE. You may need to install VC2017 libraries for sandbox to run.
 
 1. Install g++ compiler, python compiler
 
@@ -24,7 +26,10 @@ You can go to the "credits.jsp" and click "View Source" and find your HHSOJ path
 
 5. Copy the files in "runtime" on Github to "hhsoj" folder. If there's no "runtime" folder in "hhsoj" then create one
 
-6. Create two files:"user.txt" and "psd.txt" in your hhsoj root directory and write your Windows username in "user.txt" , password in "psd.txt". They will be used to create C++ programs. If you want to run the programs securely , please fill in a low-priority user. **Notice that you must enter a user that exists! Or the sandbox may doesn't work properly!**
+6. **(Before 18w35a)** Create two files:"user.txt" and "psd.txt" in your hhsoj root directory and write your Windows username in "user.txt" , password in "psd.txt". They will be used to create C++ programs. If you want to run the programs securely , please fill in a low-priority user. **(After 18w35a)** You need to write the username and password in the config.json 
+**Notice that you must enter a user that exists! Or the sandbox may doesn't work properly!**
+
+7. **(After 18w46a)** You will also need to input the admin password and admin username. One only.
 
 # Adding problems
 1. Create a folder in the "hhsoj/problems" and name it as the problem Id, it should contains only digits.
@@ -54,6 +59,14 @@ You can go to the "credits.jsp" and click "View Source" and find your HHSOJ path
 6. To add test cases, just put **input files only** in the "tests" subfolder
 
 7. For details, please take a glance at the sample hhsoj folder
+
+# Admin Platform
+You can login to the admin platform at "/admin/login.jsp", input the adminPassword and adminUsername in the box(you should have filled them in the config.json) then you can enjoy your admin journey at "/admin/platform.jsp" :)
+
+You can
+- See the id of all users/submissions/blogs
+- See the system directory
+- Clears the judging queue with a specified verdict 
 
 # Languages
 
@@ -195,3 +208,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w44a: Edit&Delete Post
 
 - 18w45a: Comment System finished
+
+- 18w46a: Admin platform finished!

@@ -39,6 +39,14 @@ public class TaskQueue {
 		queue.remove(0);
 	}
 	
+	public synchronized static void clear(String verdict){
+		while(!queue.isEmpty()){
+			Submission a=queue.firstElement();
+			a.setVerdict(verdict);
+			new SubmissionHelper().storeStatus(a);
+			queue.remove(0);
+		}
+	}
 	public synchronized static int addTask(Submission s){
 		s.setVerdict("In queue");
 		s.setResults(new ArrayList<TestResult>());
