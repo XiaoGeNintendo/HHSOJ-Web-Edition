@@ -1,5 +1,7 @@
 {
     "enableCPP11":true,
     "windowsUsername":"",
-    "windowsPassword":""
+    "windowsPassword":"",
+    "adminUsername":"admin",
+    "adminPassword":"admin"
 }

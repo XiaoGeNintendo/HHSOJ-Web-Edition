@@ -101,9 +101,11 @@ You can customize it from 18w23a.Find the file "hhsoj/announcement.txt" and chan
 From version 18w35a you can find the file "hhsoj/config.json" then change the settings there
 ```
 {
-    "enableCPP11":true, //Whether to open cpp11 or not
+    "enableCPP11":true, //Whether to open cpp11 or cpp normal
     "windowsUsername":"", //the windows system username
-    "windowsPassword":"" //the windows system password
+    "windowsPassword":"", //the windows system password
+    "adminUsername":"admin", //the admin username
+    "adminPassword":"admin" //the admin password
 }
 ```
 
@@ -210,3 +212,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w45a: Comment System finished
 
 - 18w46a: Admin platform finished!
+
+## Version 1.2: Colorful Community
