@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link href="../index.css" rel="stylesheet" type="text/css">
+<link href="index.css" rel="stylesheet" type="text/css">
 
 <title>HHSOJ - Time Changer</title>
 </head>
@@ -14,7 +14,7 @@
 	<i id="subtitle">It might help you to write contest timetables -- XGN</i>
 	<hr />
 	
-	<jsp:include page="../nav.jsp?at=none"></jsp:include>
+	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	
 	<!-- Default End -->
 

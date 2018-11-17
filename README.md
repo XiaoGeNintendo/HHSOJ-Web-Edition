@@ -216,3 +216,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 ## Version 1.2: Colorful Community
 
 - 18w47a: Two new tools: TimeChanger & RichtextEditor. They can be accessed at Admin Platform
+
+- 18w48b: Moved the two tools.

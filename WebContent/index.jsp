@@ -28,9 +28,11 @@
 	<br />
 
 	<a href="verdict.jsp" id="verdict">Verdicts List</a>
-	
 	<br/>
 	<a href="credits.jsp" id="credit">Credits</a>
-	
+	<br/>
+	<a href="richtextEditor.jsp" id="richtext">Online Rich Text Editor</a>
+	<br/>
+	<a href="TimeChanger.jsp" id="timeChanger">Online Timestamp Changer</a>
 </body>
 </html>

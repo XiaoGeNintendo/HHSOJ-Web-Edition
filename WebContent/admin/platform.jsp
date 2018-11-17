@@ -31,8 +31,8 @@
 	<a href="clear.jsp">Clear judging queue</a> <br/>
 	
 	<hr/>
-	<a href="richtextEditor.jsp">Rich text editor</a> <br/>
-	<a href="TimeChanger.jsp">Time Changer</a> <br/>
+	<a href="../richtextEditor.jsp">Rich text editor</a> <br/>
+	<a href="../TimeChanger.jsp">Time Changer</a> <br/>
 	
 	<hr/>
 	<i> HHSOJ Admin Platform </i>
