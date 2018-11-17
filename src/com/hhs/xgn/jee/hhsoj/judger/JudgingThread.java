@@ -47,12 +47,13 @@ public class JudgingThread extends Thread {
 
 				copyFiles(s, p);
 
+				s.setNowTest(0);
+				s.setMaxTest(testfiles.list().length);
+
 				if (!compileFiles(s)) {
 					continue;
 				}
 
-				s.setNowTest(0);
-				s.setMaxTest(testfiles.list().length);
 
 				if(!testfiles.isDirectory()){
 					throw new Exception("Testcase is not ready");
@@ -63,7 +64,7 @@ public class JudgingThread extends Thread {
 				boolean ac = true;
 
 				for (File f : testfiles.listFiles()) {
-					s.setVerdict("Running on test " + cnt);
+					s.setVerdict("Running");
 					s.setNowTest(cnt);
 					new SubmissionHelper().storeStatus(s);
 					boolean goon = judgeOneTestCase(s, f, p);

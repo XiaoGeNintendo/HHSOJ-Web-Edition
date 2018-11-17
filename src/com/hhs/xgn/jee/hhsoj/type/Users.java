@@ -24,6 +24,8 @@ public class Users {
 	private Map<Integer, Integer> blogStatus;
 	private String userPic;
 	
+	
+	
 	public Users(){
 		ratings=new ArrayList<ContestRecord>();
 		blogStatus=new HashMap<>();
@@ -105,6 +107,16 @@ public class Users {
 	public void setRatings(List<ContestRecord> ratings) {
 		this.ratings = ratings;
 	}
+
+	public Map<Integer, Integer> getBlogStatus() {
+		return blogStatus;
+	}
+
+	public void setBlogStatus(Map<Integer, Integer> blogStatus) {
+		this.blogStatus = blogStatus;
+	}
+
+	
 	
 	
 }

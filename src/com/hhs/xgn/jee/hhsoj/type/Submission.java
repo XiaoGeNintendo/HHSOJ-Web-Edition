@@ -37,13 +37,23 @@ public class Submission {
 	}
 	
 	public String getHTMLVerdict(){
-		if(verdict.startsWith("Running on test")){
-			return verdict+"<progress value=\""+nowTest+"\" max=\""+maxTest+"\"></progress>";
+		if(verdict.equals("Accepted")){
+			return verdict;
+		}else{
+			if(nowTest<=0){
+				if((verdict.contains("ing") || verdict.equals("In queue")) && !verdict.contains("Lib")){
+					return verdict+"<progress></progress>";
+				}else{
+					return verdict;
+				}
+			}else{
+				if(verdict.contains("Running")){
+					return verdict+" on test "+nowTest+"<progress value=\""+nowTest+"\" max=\""+maxTest+"\"></progress>";
+				}else{
+					return verdict+" on test "+nowTest;
+				}
+			}
 		}
-		if(verdict.equals("Judging") || verdict.equals("Compiling") || verdict.equals("In queue")){
-			return verdict+"<progress></progress>";
-		}
-		return verdict;
 	}
 	
 	public int getTimeCost(){

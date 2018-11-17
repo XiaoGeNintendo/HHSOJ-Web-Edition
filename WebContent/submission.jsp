@@ -61,7 +61,7 @@
 		Problem ID:<a href="problem.jsp?id=<%=s.getProb() %>"><%=s.getProb() %></a><br/>
 		Submission Owner:<a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser()%></a><br/>
 		Submission Language:<%=s.getLang() %><br/>
-		Submission Verdict:<%=new VerdictHelper().render(s.getVerdict())%><br/>
+		Submission Verdict:<%=new VerdictHelper().render(s.getHTMLVerdict())%><br/>
 		Submission Time Cost:<%=s.getTimeCost() %><br/>
 		Submission Memory Cost:<%=s.getMemoryCost() %><br/>
 		Submission Submit Time:<%=s.getReadableTime() %><br/>

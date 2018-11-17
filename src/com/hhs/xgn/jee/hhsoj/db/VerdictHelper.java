@@ -7,7 +7,7 @@ package com.hhs.xgn.jee.hhsoj.db;
  */
 public class VerdictHelper {
 	public String render(String s){
-		if(s.equalsIgnoreCase("Time Limit Exceeded") || s.equalsIgnoreCase("Memory Limit Exceeded")){
+		if(s.startsWith("Time Limit Exceeded") || s.startsWith("Memory Limit Exceeded")){
 			return "<font color=#0000ff>"+s+"</font>";
 		}
 		if(s.equalsIgnoreCase("Accepted")){
@@ -16,10 +16,10 @@ public class VerdictHelper {
 		if(s.startsWith("Running") || s.startsWith("Judging") || s.startsWith("Compiling") || s.startsWith("In queue")){
 			return "<font color=#787878>"+s+"</font>";
 		}
-		if(s.equalsIgnoreCase("Wrong Answer")){
+		if(s.startsWith("Wrong Answer")){
 			return "<font color=#ff0000>"+s+"</font>";
 		}
-		if(s.equalsIgnoreCase("Runtime Error")){
+		if(s.startsWith("Runtime Error")){
 			return "<font color=#abcdef>"+s+"</font>";
 		}
 		

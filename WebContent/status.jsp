@@ -77,6 +77,7 @@
 			
 			<!-- Start for here -->
 			<%
+				
 				ArrayList<Submission> sb=new SubmissionHelper().getAllSubmissions();
 				
 				sb.sort(new Comparator<Submission>(){
