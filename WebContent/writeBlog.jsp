@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
-<title>HHSOJ-Wring a new blog</title>
+<title>HHSOJ-Writing a new blog</title>
 </head>
 <body>
 
