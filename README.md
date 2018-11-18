@@ -107,7 +107,9 @@ Here are some guides:
 
 3. Then create some subfolders named as the indices you input in the json file. ("A" "B" ...) and in that folders, create a problem. (You can refer to "Adding a Problem")
 
-4. Then the system will start reading your contests! 
+4. Add a file called "index.html" in the contest Id folder and write announcement in it.
+
+5. Then the system will start reading your contests! 
 
 By the way, a **full.json** file will be generated after the system found your contest. Don't touch it if you didn't change anything about the contest information. But if you change the information, delete it so that the system will regenerate it.
 
@@ -279,3 +281,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w52a: Welcome Page finished
 
 - 18w53e: Rule update
+
+- 18w54e: Fixed wrong guide
