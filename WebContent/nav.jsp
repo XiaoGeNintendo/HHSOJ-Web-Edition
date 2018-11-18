@@ -12,8 +12,8 @@
 		return;
 	}
 
-	String[] text = new String[] { "Home", "Problems", "Status", "Submit", "Community" };
-	String[] link = new String[] { "index.jsp", "problemset.jsp", "status.jsp", "submit.jsp", "blogs.jsp" };
+	String[] text = new String[] { "Home", "Problems", "Status", "Submit", "Community","Contests" };
+	String[] link = new String[] { "index.jsp", "problemset.jsp", "status.jsp", "submit.jsp", "blogs.jsp", "contests.jsp"};
 %>
 <div id="nav">
 	<%

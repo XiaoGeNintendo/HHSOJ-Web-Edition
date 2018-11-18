@@ -20,8 +20,23 @@ public class ContestInfo {
 	/**
 	 * The scores of problem index
 	 */
-	private Map<String,Integer> scores;
+	private Map<String,ProblemScore> scores;
 	private ArrayList<String> authors;
+	
+	public String getReadableLength(){
+		int sec=length/1000;
+		int min=sec/60;
+		int hour=min/60;
+		return hour+"h"+min%60+"m"+sec%60+"s";
+	}
+	public String getAuthorsHTML(){
+		String s="";
+		for(String a:authors){
+			s+="<a href=\"users.jsp?username="+a+"\">"+a+"</a><br/>";
+		}
+		return s;
+	}
+	
 	public String toJson(){
 		return new Gson().toJson(this);
 	}
@@ -47,10 +62,10 @@ public class ContestInfo {
 	public void setLength(int length) {
 		this.length = length;
 	}
-	public Map<String, Integer> getScores() {
+	public Map<String, ProblemScore> getScores() {
 		return scores;
 	}
-	public void setScores(Map<String, Integer> scores) {
+	public void setScores(Map<String, ProblemScore> scores) {
 		this.scores = scores;
 	}
 	public ArrayList<String> getAuthors() {

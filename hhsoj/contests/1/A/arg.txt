@@ -1,0 +1,7 @@
+Solution=sol.exe
+Checker=checker.exe
+Name=A+b Problem
+TL=1000
+ML=262144
+Tag=math,implementation
+Statement=statement.html

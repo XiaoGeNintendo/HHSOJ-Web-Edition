@@ -46,6 +46,10 @@ public class ProblemHelper {
 		return readSingleProblem(id+"");
 	}
 	
+	public synchronized Problem readSingleProblem(String folder){
+		return readSingleProblem(folder,"hhsoj/problems",true);
+	}
+	
 	/* Folder Structure
 	 * 
 	 * 	hhsoj
@@ -65,13 +69,13 @@ public class ProblemHelper {
 	 * 		- Tag=math,implementation
 	 * 		- Statement=statement.jsp
 	 */
-	private synchronized Problem readSingleProblem(String folder){
-		String base="hhsoj/problems/"+folder+"/";
+	public synchronized Problem readSingleProblem(String folder,String root,boolean setId){
+		String base=root+"/"+folder+"/";
 		
 		Problem p=new Problem();
 		
 		p.setArg(getArg(base+"arg.txt"));
-		p.setId(Integer.parseInt(folder));
+		if(setId)p.setId(Integer.parseInt(folder));
 		p.setName(p.getArg("Name"));
 		p.setTag(p.getArg("Tag"));
 		

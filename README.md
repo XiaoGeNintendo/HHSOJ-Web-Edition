@@ -62,6 +62,37 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 
 For further details, please take a glance at the sample hhsoj folder
 
+# Adding contests
+After 18w52a you can now edit contests. In HHSOJ the contest rules is similar to GCJ rules.
+Here are some guides:
+
+1. Create a new folder under "hhsoj/contests". the folder name is the contest Id. Note that the id must be **a number** only
+2. In that folder, create a file called **info.json** with the following content:
+```
+{
+    "name":"HHSOJ Alpha Round #1", //The contest name
+    "startTime":1542524400000, //The start time. Use the Time Changer tool in HHSOJ to convert readable time and numbers
+    "length":3600000, //Length in milliseconds. (3600000ms=1h)
+    "scores":{ //Scores of problems
+        "A":{ //Problem Index
+            "small":100, //Scores of small teset
+            "large":300 //Scores of large testset
+        },
+        "B":{ //Another problem
+            "small":300,
+            "large":500
+        } //... etc
+    },
+    "authors":["a","XGN"] //the author list
+}
+``` 
+
+3. Then create some subfolders named as the indices you input in the json file. ("A" "B" ...) and in that folders, create a problem. (You can refer to "Adding a Problem")
+
+4. Then the system will start reading your contests! 
+
+By the way, a **full.json** file will be generated after the system found your contest. Don't touch it if you didn't change anything about the contest information. But if you change the information, delete it so that the system will regenerate it.
+
 # Admin Platform
 You can login to the admin platform at "/admin/login.jsp", input the adminPassword and adminUsername in the box(you should have filled them in the config.json) then you can enjoy your admin journey at "/admin/platform.jsp" :)
 
@@ -226,3 +257,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w50a: Improve system so that it can adopt the contest system
 
 - 18w51c: Custom Testsets are open in submit page! And more fixing!
+
+- 18w52a: Welcome Page finished
