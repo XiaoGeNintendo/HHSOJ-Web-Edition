@@ -38,15 +38,36 @@
 				alert('Code should not be empty');
 				return false;
 			}
-			if(code.length >65536){
- 				alert('Code length should be at most 65536 bytes')
- 				return false;
- 			}
+			if (code.length > 65536) {
+				alert('Code length should be at most 65536 bytes')
+				return false;
+			}
 			if (lang == null || lang == ("")) {
 				alert('Please choose a language');
 				return false;
 			}
 
+		}
+
+		function call() {
+			//Send a request to find out the testsets
+			var xmlhttp;
+			if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("testset").innerHTML = xmlhttp.responseText;
+				}
+			}
+			
+			var href=window.location.href;
+			href=href.slice(0,href.lastIndexOf("/"));
+			xmlhttp.open("GET", href+"/api/testset.jsp?id="+document.getElementById("pid").value,
+					true);
+			xmlhttp.send();
 		}
 	</script>
 
@@ -55,34 +76,35 @@
 	<i id="subtitle">Give out my answer! -- Phoenix Wright</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=submit"></jsp:include>
-		
+
 	<%
-		String userLooking=(String)session.getAttribute("username");
+		String userLooking = (String) session.getAttribute("username");
 	%>
 	<!-- Default End-->
-	
-	
+
+
 	<center>
 
 		<form name="submit" action="dosubmit.jsp"
 			onsubmit="return callsubmit()" method="post">
-			Problem:<input type="text" name="probid"
-				value="<%=(request.getParameter("id") == null ? "" : request.getParameter("id"))%>" >
+			Problem:
+			<input type="text" id="pid" name="probid" onkeyup="call()" value="<%=(request.getParameter("id") == null ? "" : request.getParameter("id"))%>">
 			<br /> Code: <br />
-			<textarea name="code" cols="70" rows="40" id="code"></textarea>
-			<br /> Language:
-			<input type="radio" name="lang" value="java">
- 			<acronym title="Java1.8.0 : Name your class 'Program' and don't place it in a package!">Java</acronym>
- 			<input type="radio" name="lang" value="cpp">
- 			<acronym title="C++11 : Don't upload harmful code thx :(">C++</acronym>
- 			<input type="radio" name="lang" value="python">
- 			<acronym title="Python 3.6 : A short and powerful language">Python</acronym>
- 			<br/>
- 			
- 			 <br/>
- 			 
+			<textarea name="code" cols="70" rows="20" id="code"></textarea>
+			<br /> 
+			Language: <input type="radio" name="lang" value="java">
+			<acronym title="Java1.8.0 : Name your class 'Program' and don't place it in a package!">Java</acronym>
+			<input type="radio" name="lang" value="cpp">
+			<acronym title="C++11 : Don't upload harmful code thx :(">C++</acronym> 
+			<input type="radio" name="lang" value="python"> 
+			<acronym title="Python 3.6 : A short and powerful language">Python</acronym>
+			<br /> 
+			Testsets: 
+			<select id="testset" name="testset">
+				<option value="tests">No testsets...</option>
+			</select> 
+			<br/>
 			<input type="submit" name="submit" value="Submit">
-
 		</form>
 
 		<hr />
@@ -98,6 +120,9 @@ For Java users:
 		</pre>
 	</center>
 
+	<script>
+		call()	
+	</script>
 	<%
 		}
 	%>

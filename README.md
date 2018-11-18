@@ -14,11 +14,11 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 **(After 18w46a)** Go to the admin platform to see the HHSOJ path
 
 # Building
-0. System requirement: Windows x64 system with Tomcat9.0 server and JRE. You may need to install VC2017 libraries for sandbox to run.
+0. System requirement: Windows x64 system with Tomcat9.0 server and JRE. You may need to install VC libraries for sandbox to run.
 
 1. Install g++ compiler, python compiler
 
-2. Download the code and open it in Eclipse EE. It should be a valid Eclipse Project.
+2. Download the code and open it in Eclipse EE. It should be a valid Eclipse Project. (You can download the WAR package as well)
 
 3. Deploy the project and start the server and go to your tomcat page and have a look.
 
@@ -34,7 +34,7 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 # Adding problems
 1. Create a folder in the "hhsoj/problems" and name it as the problem Id, it should contains only digits.
 
-2. Create a subfolder called "tests" and "arg.txt"
+2. Create some subfolders with different names(at least 1) and a text file "arg.txt". **For users below 18w51c, a subfolder called "tests" must be created**
 
 3. In the "arg.txt" input the following things:
 
@@ -50,15 +50,17 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 
 4. Check your HHSOJ version and write problem statement in HTML format:
 
-- **For HHSOJ version < 1.2** In the "WebContent/statement" folder add a filename called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
+- **For HHSOJ version < 1.1** In the "WebContent/statement" folder add a filename called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
 
-- **For HHSOJ version >=1.2** In the problem folder create a file called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
+- **For HHSOJ version >=1.1** In the problem folder create a file called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
 
 5. You should be seeing it in the problem list
 
-6. To add test cases, just put **input files only** in the "tests" subfolder
+6. To add test cases, just put **input files only** in the subfolders you created. **before 18w51c, please put the input files only in "tests"**
 
-7. For details, please take a glance at the sample hhsoj folder
+7. You will be finding that each subfolder will be treated as one testset on the submit page. (**Don't happen before 18w51c**)
+
+For further details, please take a glance at the sample hhsoj folder
 
 # Admin Platform
 You can login to the admin platform at "/admin/login.jsp", input the adminPassword and adminUsername in the box(you should have filled them in the config.json) then you can enjoy your admin journey at "/admin/platform.jsp" :)
@@ -89,7 +91,7 @@ My blog is here: [Rubbish Blog](https://xgns-blog.000webhostapp.com)
 
 Oh, the highlighter and editor are provided by [Mr.Wang](http://www.wangeditor.com/)
 
-You can donate us by Wechat :) But that's useless, isn't it? So the donate address will not be public.
+You can donate us by Wechat or Paypal :) But that's useless, isn't it? So the donate address will not be public.
 
 # Customizing Announcement
 Announcement is the marquee text in index.jsp
@@ -104,8 +106,8 @@ From version 18w35a you can find the file "hhsoj/config.json" then change the se
     "enableCPP11":true, //Whether to open cpp11 or cpp normal
     "windowsUsername":"", //the windows system username
     "windowsPassword":"", //the windows system password
-    "adminUsername":"admin", //the admin username
-    "adminPassword":"admin" //the admin password
+    "adminUsername":"admin", //the admin username (after 18w46a)
+    "adminPassword":"admin" //the admin password (after 18w46a)
 }
 ```
 
@@ -222,3 +224,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w49c: "Wrong answer on test 101" everyone likes this! New verdict displaying rules and system
 
 - 18w50a: Improve system so that it can adopt the contest system
+
+- 18w51c: Custom Testsets are open in submit page! And more fixing!

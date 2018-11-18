@@ -32,6 +32,16 @@ public class ProblemHelper {
 		return arr;
 	}
 	
+	/**
+	 * Get the problem data by a unique problem name
+	 * @param s
+	 * @return
+	 */
+	public synchronized Problem getProblemData(String s){
+		return readSingleProblem(s);
+	}
+	
+	
 	public synchronized Problem getProblemData(int id){
 		return readSingleProblem(id+"");
 	}
@@ -89,7 +99,7 @@ public class ProblemHelper {
 			//System.out.println(mp);
 			return mp;
 		}catch(Exception e){
-			e.printStackTrace();
+//			e.printStackTrace();
 			return null;
 		}
 	}
