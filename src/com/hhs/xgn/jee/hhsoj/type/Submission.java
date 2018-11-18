@@ -24,6 +24,8 @@ public class Submission {
 	private long submitTime;
 	private int nowTest;
 	private int maxTest;
+	private boolean rated;
+	
 	
 	public String toJson(){
 		return new Gson().toJson(this);
@@ -175,5 +177,11 @@ public class Submission {
 				+ verdict + ", results=" + results + ", compilerComment=" + compilerComment + ", id=" + id
 				+ ", testset=" + testset + ", submitTime=" + submitTime + ", nowTest=" + nowTest + ", maxTest="
 				+ maxTest + "]";
+	}
+	public boolean isRated() {
+		return rated;
+	}
+	public void setRated(boolean rated) {
+		this.rated = rated;
 	}
 }

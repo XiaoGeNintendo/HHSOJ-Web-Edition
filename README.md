@@ -220,3 +220,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w48b: Moved the two tools.
 
 - 18w49c: "Wrong answer on test 101" everyone likes this! New verdict displaying rules and system
+
+- 18w50a: Improve system so that it can adopt the contest system

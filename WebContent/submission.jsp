@@ -65,6 +65,7 @@
 		Submission Time Cost:<%=s.getTimeCost() %><br/>
 		Submission Memory Cost:<%=s.getMemoryCost() %><br/>
 		Submission Submit Time:<%=s.getReadableTime() %><br/>
+		Submission Testset:<%=s.getTestset() %> <br/>
 		
 		<h2>Code</h2>
 		

@@ -33,7 +33,7 @@ public class JudgingThread extends Thread {
 			
 			try {
 
-				File testfiles = new File(p.getPath() + "/tests");
+				File testfiles = new File(p.getPath() + "/"+s.getTestset());
 				
 				TaskQueue.popFront();
 
