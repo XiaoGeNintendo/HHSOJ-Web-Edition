@@ -62,6 +62,24 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 
 For further details, please take a glance at the sample hhsoj folder
 
+# Contest Rules
+This rule will display at every welcome page:
+```
+All HHSOJ Contests uses the rule that is similar to GCJ rule. That is: 
+In each problem, a "small" and a "large" testset will be given. 
+If you solved the "small" testset, some points will be given 
+If you solved the "large" testset, some points will be given too 
+The small testset will be judged during contest 
+But the "large" testset will only be tested after the contest 
+Be careful that every wrong submission that fails on small testset will cause a loss of 50 points after you have passed the small testset 
+Each problem has a minimum score of 0 
+All solutions that passes "small" testset will be judged on "large" testset after contest 
+If you failed on "large" testset, nth will happen 
+The user with the highest score gets higher rank
+If two users has the same score, a "tiebreaker" will be used 
+the "tiebreaker" is the time of last correct submission that passes the "small" testset you submitted in the contest
+If the "tiebreaker" is smaller, the rank is higher 
+```
 # Adding contests
 After 18w52a you can now edit contests. In HHSOJ the contest rules is similar to GCJ rules.
 Here are some guides:
@@ -259,3 +277,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w51c: Custom Testsets are open in submit page! And more fixing!
 
 - 18w52a: Welcome Page finished
+
+- 18w53e: Rule update
