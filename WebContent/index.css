@@ -32,6 +32,10 @@ body hr {
 	clear: both;
 }
 
+body p,span,a{
+	font-family: "Courier New", "Consolas";
+}
+
 #title {
 	margin-left: 20px;
 	margin-right: 20px;
@@ -41,7 +45,7 @@ body hr {
 	width: 800px;
 	float: left;
 	height: 40px;
-	font-family: serif;
+	font-family: Georgia, serif;
 }
 
 #subtitle {
@@ -54,7 +58,7 @@ body hr {
 	float: left;
 	clear: both;
 	margin-bottom: 10px;
-	font-family: serif;
+	font-family: Georgia, serif;
 }
 
 #nav {
@@ -76,6 +80,7 @@ body hr {
 
 .nav-link-right {
 	font-weight:bold;
+	font-family:'Trebuchet MS', Helvetica, sans-serif;
 	margin-left: 20px;
 	margin-right: 20px;
 	font: 20px;
@@ -104,7 +109,8 @@ body hr {
 }
 
 #marquee {
-	margin-top: 100px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 #verdict {

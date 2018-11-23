@@ -56,12 +56,14 @@
 			
 		%>
 		
-		Submission Filter Setting
+		<p><stronSubmission Filter Setting</p>
 		<form action="#" name="query" method="get">
+			<p>
 			User:<input name="userId" type="text"/>
 			Problem:<input name="probId" type="text"/>
 			Verdict:<input name="verdictId" type="text"/>
 			<input name="submit" type="submit" value="Filter"/>
+			</p>
 		</form>
 		<br/>
 		

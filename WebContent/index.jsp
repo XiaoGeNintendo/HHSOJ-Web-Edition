@@ -23,8 +23,8 @@
 		}
 	%>
 	<marquee id="marquee"><%=marquee %></marquee>
-	This system is still under developing. Please don't upload any harmful
-	code. Thanks :(
+	<p>This system is still under developing. Please don't upload any harmful
+	code. Thanks :(</p>
 	<br />
 
 	<a href="verdict.jsp" id="verdict">Verdicts List</a>
