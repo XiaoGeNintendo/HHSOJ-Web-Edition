@@ -26,8 +26,6 @@
 	<p>This system is still under developing. Please don't upload any harmful
 	code. Thanks :(</p>
 	<br />
-<%=System.getProperty("catalina.base")%>
-<%=System.getProperty("catalina.home")%>
 	<a href="verdict.jsp" id="verdict">Verdicts List</a>
 	<br/>
 	<a href="credits.jsp" id="credit">Credits</a>
@@ -35,5 +33,7 @@
 	<a href="richtextEditor.jsp" id="richtext">Online Rich Text Editor</a>
 	<br/>
 	<a href="TimeChanger.jsp" id="timeChanger">Online Timestamp Changer</a>
+	<br/>
+	<a href="HMSChanger.jsp" id="hms">Online HMS to ms Changer</a>
 </body>
 </html>

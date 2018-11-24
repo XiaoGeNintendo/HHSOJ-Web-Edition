@@ -19,6 +19,11 @@
 	<hr />
 	<jsp:include page="nav.jsp?at=contests"></jsp:include>
 	
+	<center>
+		<b>Now time:<%=new Date()%> </b>
+	</center>
+	<br/>
+	
 	<table border="1" width="80%" align="center">
 		<tr>
 			<th width="40%" align="center">Name</th>

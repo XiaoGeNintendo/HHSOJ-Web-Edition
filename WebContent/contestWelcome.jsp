@@ -32,8 +32,11 @@
 	<jsp:include page="nav.jsp?at=contests"></jsp:include>
 	
 	
+	<h1>Time</h1>
+	<p id="time"></p>
+	
 	<h1>Problems</h1>
-	This contests contains <%=c.getInfo().getScores().size() %> problem(s) <br/>
+	This contest contains <%=c.getInfo().getScores().size() %> problem(s) <br/>
 	
 	<table align="center" width="80%" border="1">
 		<tr>
@@ -74,8 +77,7 @@
 	you submitted in the contest<br/>
 	If the "tiebreaker" is smaller, the rank is higher <br/>
 	
-	<h1>Time</h1>
-	<p id="time"></p>
+	
 	
 	<h1>Announcement</h1>
 	<jsp:include page="announcement.jsp?id=<%=c.getId() %>"></jsp:include>
@@ -99,10 +101,10 @@
 					var delta=end-now;
 					document.getElementById("time").innerHTML="Before end <b>"+parseInt(delta/3600)+"h"+parseInt(delta/60%3600)+"m"+parseInt(delta%60)+"s</b>";
 				}else{
-					if(status.indexOf("Running")!=-1){
-						var delta=end-now;
-						document.getElementById("time").innerHTML="Contest ended";
-					}
+					
+					var delta=end-now;
+					document.getElementById("time").innerHTML="Contest ended";
+					
 				}
 			}
 			

@@ -19,7 +19,9 @@
 	<h1>Admin Platform</h1>
 	<hr/>
 	HHSOJ system path: <%=new File("hhsoj").getAbsolutePath() %> <br/>
-	
+		
+	Catalina base:<%=System.getProperty("catalina.base")%> <br/>
+	Cataline home: <%=System.getProperty("catalina.home")%>
 	<hr/>
 	
 	<a href="users.jsp">Show all users</a> <br/>
