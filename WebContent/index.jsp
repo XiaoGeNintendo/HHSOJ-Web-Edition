@@ -22,7 +22,7 @@
 			marquee="Welcome to HHSOJ!";
 		}
 	%>
-	<marquee id="marquee"><%=marquee %></marquee>
+	<marquee id="marquee"><p><%=marquee %></p></marquee>
 	<p>This system is still under developing. Please don't upload any harmful
 	code. Thanks :(</p>
 	<br />

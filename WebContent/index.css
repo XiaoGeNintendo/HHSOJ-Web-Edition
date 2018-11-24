@@ -33,6 +33,10 @@ body hr {
 }
 
 body p,span,a{
+	margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 	font-family: "Courier New", "Consolas";
 }
 
@@ -102,6 +106,17 @@ body p,span,a{
 .blogdown {
 	color: #787878;
 	font-weight: bold;
+}
+
+#filter-top{
+	border-collapse: collapse;
+	width: 80%;
+	align-self: center;
+	margin: 0px auto;
+	min-width: 500px;
+	border:1px solid #cccccc;
+	background:#f0f0f0;
+	padding:10px;
 }
 
 #seperator {

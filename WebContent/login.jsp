@@ -8,15 +8,18 @@
 <title>HHSOJ-Login</title>
 <style type="text/css">
 	#login_table {
+		margin: 50px auto;
 		border: 0px;
 	}
 	
-	#login_table th{
+	#login_table tr{
+		margin: 2px;
 		padding: 2px;
 		border: 0px;
 	}
 	
-	#login_table th{
+	#login_table th,td{
+		margin: 2px;
 		padding: 2px;
 		border: 0px;
 	}
@@ -69,18 +72,18 @@
 		<form action="dologin.jsp" onsubmit="return call()" method="post" name="login">
 			<table align="center" id="login_table">
 				<tr>
-					<td>Username:</td>
+					<td><p>Username:</p></td>
 					<td><input type="text" maxlength="50" name="username"/></td>
 				</tr>
 				<tr>
-					<td>Password:</td>
+					<td><p>Password:</p></td>
 					<td><input type="password" maxlength="50" name="password"/></td>
 				</tr>
 
 				<tr>
 					<td colspan="2" style="text-align:center;" >
 						<input type="hidden" name="type" value="<%=type %>">
-						<input type="submit" value="Login" style="width:90px;" />
+						<input type="submit" value="Login" style="width:90px;height:30px;" />
 					</td>
 				</tr>
 			</table>

@@ -55,16 +55,18 @@
 			
 			
 		%>
+		<div id="filter-top">
+			<p><strong>Submission Filter Setting</strong></p>
+			<form action="#" name="query" method="get">
+				<p>
+				User:<input name="userId" type="text" style="width:130px;"/>
+				Problem:<input name="probId" type="text" style="width:70px;"/>
+				Verdict:<input name="verdictId" type="text" style="width:150px;"/>
+				<input name="submit" type="submit" value="Filter"/>
+				</p>
+			</form>
+		</div>
 		
-		<p><stronSubmission Filter Setting</p>
-		<form action="#" name="query" method="get">
-			<p>
-			User:<input name="userId" type="text"/>
-			Problem:<input name="probId" type="text"/>
-			Verdict:<input name="verdictId" type="text"/>
-			<input name="submit" type="submit" value="Filter"/>
-			</p>
-		</form>
 		<br/>
 		
 		<table	id="status-table">
