@@ -26,7 +26,8 @@
 	<p>This system is still under developing. Please don't upload any harmful
 	code. Thanks :(</p>
 	<br />
-
+<%=System.getProperty("catalina.base")%>
+<%=System.getProperty("catalina.home")%>
 	<a href="verdict.jsp" id="verdict">Verdicts List</a>
 	<br/>
 	<a href="credits.jsp" id="credit">Credits</a>

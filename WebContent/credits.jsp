@@ -8,6 +8,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ - Credits</title>
+<style type="text/css">
+	#credits-table {
+		border-collapse: collapse;
+		align-self: center;
+		margin: 0px auto;
+		border:1px solid #cccccc;
+		background:#f0f0f0;
+	}
+	
+	#credits-table th{
+		text-align:center;
+		padding: 10px;
+		border: 1px solid #cccccc;
+	}
+	
+	#credits-table td{
+		text-align:center;
+		padding: 10px;
+		border: 1px solid #cccccc;
+	}
+</style>
 </head>
 <body>
 
@@ -18,7 +39,7 @@
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	
 	<center>
-		<table id="creditTable" border="2">
+		<table id="credits-table">
 			
 			<tr id="creditHead">
 				<th>Photo</th>
@@ -36,10 +57,10 @@
 			
 			<tr id="creditUser">
 				<td>
-					<img alt="Zzzyt" src="asset/ZJS.jpg" height="100" width="100">
+					<img alt="Zzzyt" src="asset/Zzzyt.jpg" height="100" width="100">
 				</td>
 				<td>Zzzyt</td>
-				<td>The CSS developer.<br/><a href="mailto:zzzyt@yopmail.com">Get him!</a></td>	
+				<td>The CSS developer.<br/><a href="mailto:fcy2017068@126.com">Get him!</a></td>	
 			</tr>
 			
 			<!-- Add your developers here -->
