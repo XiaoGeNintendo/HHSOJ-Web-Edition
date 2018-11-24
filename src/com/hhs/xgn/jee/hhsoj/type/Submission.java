@@ -139,6 +139,9 @@ public class Submission {
 		id=nid;
 	}
 	public String getTestset() {
+		if(testset==null){
+			return "tests";
+		}
 		return testset;
 	}
 	public void setTestset(String testset) {

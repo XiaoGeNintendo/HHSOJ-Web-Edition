@@ -292,4 +292,6 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 
 - 18w58d: (Yeah! Finally a 'd') Added security for null files and fixed that user id is always 0 (But in fact it is useless :P)
 
-- 18w59a: Problem viewer update and you can now view problems in contests now!  
+- 18w59a: Problem viewer update and you can now view problems in contests now!
+
+- 18w60a: You can now see the submission testset in the status page!  
