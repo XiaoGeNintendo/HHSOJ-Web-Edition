@@ -295,3 +295,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w59a: Problem viewer update and you can now view problems in contests now!
 
 - 18w60a: You can now see the submission testset in the status page!  
+
+- 18w61c: You can now submit your program in contest and it will judge! But sadly no standings now.

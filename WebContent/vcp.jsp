@@ -53,9 +53,9 @@
 					<b>Memory Limit Per Test:<%=p.getArg("ML")%>KB</b> <br/>
 					Contest status: <%=c.getStatusWithTime() %> <br/>
 					<a href="contestWelcome.jsp?id=<%=cid %>">→Contest←</a>
-					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
-					<a href="status.jsp?probId=<%=p.getId() %>">→Status←</a>
-					<a href="status.jsp?probId=<%=p.getId() %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
+					<a href="submit.jsp?id=<%=fullInfo %>">→Submit←</a>
+					<a href="status.jsp?probId=<%=fullInfo %>">→Status←</a>
+					<a href="status.jsp?probId=<%=fullInfo %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
 				</center>
 				
 				<%

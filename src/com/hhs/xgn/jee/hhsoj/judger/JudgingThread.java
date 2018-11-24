@@ -29,7 +29,7 @@ public class JudgingThread extends Thread {
 			con=readGlobalConfig();
 			
 			Submission s = TaskQueue.getFirstSubmission();
-			Problem p = new ProblemHelper().getProblemData(Integer.parseInt(s.getProb()));
+			Problem p = new ProblemHelper().getProblemData(s.getProb());
 			
 			try {
 

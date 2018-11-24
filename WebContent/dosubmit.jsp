@@ -16,7 +16,7 @@
 	}
 	
 	try{
-		new ProblemHelper().getProblemData(Integer.parseInt(prob));
+		new ProblemHelper().getProblemData(prob);
 	}catch(Exception e){
 		out.println("No such problem.");
 		out.println("<a href=\"submit.jsp\">Resubmit</a>");
