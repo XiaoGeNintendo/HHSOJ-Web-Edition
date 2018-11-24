@@ -16,6 +16,33 @@ public class Contest {
 	private int id;
 	private ContestStandings standing;
 	
+	public boolean isContestStarted(){
+		return System.currentTimeMillis()>=info.getStartTime();
+	}
+	
+	public boolean isContestEnded(){
+		return System.currentTimeMillis()>info.getEndTime();
+	}
+	
+	public boolean isContestRunning(){
+		return isContestStarted() && !isContestEnded();
+	}
+	
+	/**
+	 * Use the given index to get the problem
+	 * @param id
+	 * @return null if not found
+	 */
+	public Problem getProblem(String id){
+		ArrayList<Problem> arr=getProblems();
+		for(Problem a:arr){
+			if(a.getConIndex().equals(id)){
+				return a;
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * Get all problems
 	 * @return
@@ -70,6 +97,28 @@ public class Contest {
 		}
 		if(st<=now && now<=ed){
 			return "<font color=#ff0000>Running</font>";
+		}
+		if(ed<now){
+			return "<font color=#787878>Finished</font>";
+		}
+		return "Unknown";
+	}
+	
+	/**
+	 * Returns the contest status with time information
+	 * @return
+	 */
+	public String getStatusWithTime(){
+		long now=System.currentTimeMillis();
+		long st=info.getStartTime();
+		long ed=info.getEndTime();
+		if(now<st){
+			return "<font color=#0000ff>Before</font>";
+		}
+		if(st<=now && now<=ed){
+			long delta=ed-now;
+			delta/=1000;
+			return "<font color=#ff0000>Running "+delta/3600+"h"+delta/60%3600+"m"+delta%60+"s"+"</font>";
 		}
 		if(ed<now){
 			return "<font color=#787878>Finished</font>";

@@ -48,13 +48,22 @@
 	<%
 		ArrayList<Problem> arr=c.getProblems();
 		for(Problem p:arr){
+			if(c.isContestStarted()){
 	%>
+		<tr>
+			<td align="center"><%=p.getConIndex() %></td>
+			<td align="center"><a href="vcp.jsp?cid=<%=c.getId()%>&pid=<%=p.getConIndex()%>"><%=p.getName() %></a></td>
+			<td align="center"><%=c.getInfo().getScores().get(p.getConIndex()).getSmall()%></td>
+			<td align="center"><%=c.getInfo().getScores().get(p.getConIndex()).getLarge()%></td>
+		</tr>
+	<%}else{ %>
 		<tr>
 			<td align="center"><%=p.getConIndex() %></td>
 			<td align="center"><%=p.getName() %></td>
 			<td align="center"><%=c.getInfo().getScores().get(p.getConIndex()).getSmall()%></td>
 			<td align="center"><%=c.getInfo().getScores().get(p.getConIndex()).getLarge()%></td>
 		</tr>
+	<%} %>
 	<%} %>
 	
 	</table>
@@ -93,18 +102,25 @@
 		function minusTime(){
 			now++;
 			
+			
 			if(status.indexOf("Before")!=-1){
 				var delta=start-now;
+				if(delta<0){
+					location.reload(true);
+					return;
+				}
 				document.getElementById("time").innerHTML="Before start <b>"+parseInt(delta/3600)+"h"+parseInt(delta/60%3600)+"m"+parseInt(delta%60)+"s</b>";
 			}else{
 				if(status.indexOf("Running")!=-1){
 					var delta=end-now;
+					if(delta<0){
+						location.reload(true);
+						return;
+					}
+					
 					document.getElementById("time").innerHTML="Before end <b>"+parseInt(delta/3600)+"h"+parseInt(delta/60%3600)+"m"+parseInt(delta%60)+"s</b>";
 				}else{
-					
-					var delta=end-now;
 					document.getElementById("time").innerHTML="Contest ended";
-					
 				}
 			}
 			

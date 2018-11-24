@@ -8,60 +8,51 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
-<title>HHSOJ-<%=request.getParameter("id") %></title>
+<%
+	String cid="",pid="";
+	Contest c=null;
+	Problem p=null;
+	try{
+		 cid=request.getParameter("cid");
+		 pid=request.getParameter("pid");
+		 c=new ContestHelper().getContestDataById(cid);
+		
+		 p=c.getProblem(pid);
+		
+		if(p==null){
+			throw new Exception("P is null");
+		}
+		if(!c.isContestStarted()){
+			response.sendRedirect("contestWelcome.jsp?id="+cid);
+			return;
+		}
+	}catch(Exception e){
+		out.println("Error!");
+		out.println("<!-- "+e+" -->");
+		return;
+	}
+	
+	
+	String fullInfo="C"+cid+pid;
+//	System.out.println(fullInfo);
+%>
+
+<title>HHSOJ-<%="C"+cid+pid %></title>
 </head>
 <body>
-	<%
-		boolean ok=true;
-		int id=0;
-		try{
-			
-			String sid=request.getParameter("id");
-			if(sid.startsWith("C")){
-				Problem p=new ProblemHelper().getProblemData(sid);
-				response.sendRedirect("vcp.jsp?cid="+p.getConId()+"&pid="+p.getConIndex());
-				return;
-			}
-			id=Integer.parseInt(request.getParameter("id"));
-		}catch(Exception e){
-			out.println("<b>Unknown Problem ID</b><br/>");
-			out.println("<a href=\"index.jsp\">Back</a>");
-			ok=false;
-		}
 		
-		if(ok){
-			
-			boolean ok2=true;
-			ProblemHelper ph=new ProblemHelper();
-			Problem p=new Problem();
-			try{
-				p=ph.getProblemData(id);
-			}catch(Exception e){
-				out.println("<b>Unknown Problem ID</b><br/>");
-				out.println("<a href=\"index.jsp\">Back</a>");
-				out.println("<!-- ");
-				out.flush();
-				e.printStackTrace(response.getWriter());
-				out.println("-->");
-				ok2=false;
-				
-			}
-			
-			
-			if(ok2){
-			
-	%>	
 				<!-- Default Template -->
-				<h1 id="title">Problems on HHSOJ</h1>
-				<i id="subtitle"><%=p.getId() %> - <%=p.getName() %></i>
+				<h1 id="title">Contest Problems on HHSOJ</h1>
+				<i id="subtitle"><%=cid+pid %> - <%=p.getName() %></i>
 				<hr />
-				<jsp:include page="nav.jsp?at=problemset"></jsp:include>
+				<jsp:include page="nav.jsp?at=contests"></jsp:include>
 				
 				<center>
 					<h1><%=p.getName() %> on HHSOJ</h1>
 					<b>Time Limit Per Test:<%=p.getArg("TL") %>MS</b> <br/>
 					<b>Memory Limit Per Test:<%=p.getArg("ML")%>KB</b> <br/>
-					
+					Contest status: <%=c.getStatusWithTime() %> <br/>
+					<a href="contestWelcome.jsp?id=<%=cid %>">→Contest←</a>
 					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
 					<a href="status.jsp?probId=<%=p.getId() %>">→Status←</a>
 					<a href="status.jsp?probId=<%=p.getId() %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
@@ -69,18 +60,15 @@
 				
 				<%
 				out.println("<!-- Statement -->");
-				out.println(new ProblemHelper().getProblemStatement(""+p.getId())); 
+				out.println(new ProblemHelper().getProblemStatement(fullInfo)); 
 				%>
 				
 				<center>
+					<a href="contestWelcome.jsp?id=<%=cid %>">→Contest←</a>
 					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
 					<a href="status.jsp?probId=<%=p.getId() %>">→Status←</a>
 					<a href="status.jsp?probId=<%=p.getId() %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
 				</center>
-	<%
-			}
-		}
-		
-	%>
+
 </body>
 </html>

@@ -38,9 +38,57 @@ public class ProblemHelper {
 	 * @return
 	 */
 	public synchronized Problem getProblemData(String s){
+		if(s.startsWith("C")){
+			return readContestProblem(s);
+		}
 		return readSingleProblem(s);
 	}
 	
+	
+	/**
+	 * Get the statement of the problem with problem id
+	 * @param id
+	 * @return
+	 */
+	public synchronized String getProblemStatement(String id){
+		
+		try{
+			if(id==null || id.equals("")){
+				return null;
+			}
+			Problem p=getProblemData(id);
+			File statementPath=new File(p.getPath()+"/"+p.getArg("Statement"));
+			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(statementPath)));
+			String s,ans="";
+			while((s=br.readLine())!=null){
+				ans+=s+"\n";
+			}
+			br.close();
+			
+			return ans;
+		}catch(Exception e){
+			return null;
+		}
+	}
+	/**
+	 * Read a problem from the contest with the given format String
+	 * @param s the format string in format "C123A"
+	 * @return the Problem
+	 */
+	public synchronized Problem readContestProblem(String s){
+		String conid="";
+		String conindex="";
+		for(int i=1;i<s.length();i++){
+			if(s.charAt(i)>='0' && s.charAt(i)<='9'){
+				conid+=s.charAt(i);
+			}else{
+				conindex=s.substring(i);
+				break;
+			}
+		}
+		
+		return new ContestHelper().getContestDataById(conid).getProblem(conindex);
+	}
 	
 	public synchronized Problem getProblemData(int id){
 		return readSingleProblem(id+"");
