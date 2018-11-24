@@ -283,3 +283,7 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w53e: Rule update
 
 - 18w54e: Fixed wrong guide
+
+- 18w55b: Zzzyt's CSS Update
+
+- 18w56a: Comment system reverse and placeholder change and anchor points set.

@@ -31,6 +31,7 @@ public class Blog {
 	
 	public void addComment(String user,String comment){
 		comments.add(new Comment(user,comment));
+		
 	}
 	
 	public String getReadableTime(){

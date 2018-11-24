@@ -137,8 +137,9 @@
 			
 	%>
 		<br/>
+		<a name="CommentArea"></a>
 		<form action="doComment.jsp?id=<%=bl.getId() %>" method="post" id="comment">
-			<textarea name="comment" rows="8" cols="100">Leave your comment...</textarea>
+			<textarea name="comment" rows="8" cols="100" placeholder="Leave your comment..."></textarea>
 			<input type="submit" name="submit" value="Comment">
 		</form>
 		
@@ -151,16 +152,16 @@
 	
 	<table border="1">
 	<%
-		int cnt=-1;
-		for(Comment c:bl.getComments()){
-			cnt++;
+		for(int i=bl.getComments().size()-1;i>=0;i--){
+			Comment c=bl.getComments().get(i);
 	%>
 		<tr>
 			<td>
+				<a name="Comment<%=i %>"></a>
 				<a href="users.jsp?username=<%=c.getUser() %>"><%=c.getUser() %></a>:
 				<%=c.getComment() %>
 				<%if(c.getUser().equals(userLooking)){%>
-					<sup><a href="deleteComment.jsp?blogId=<%=bl.getId()%>&commentId=<%=cnt%>"><abbr title="Delete Comment">x</abbr></a></sup>
+					<sup><a href="deleteComment.jsp?blogId=<%=bl.getId()%>&commentId=<%=i%>"><abbr title="Delete Comment">x</abbr></a></sup>
 				<%} %>
 			</td>
 		</tr>
