@@ -67,7 +67,14 @@ public class BlogHelper {
 			
 			try{
 				BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(bl)));
-				arr.add(new Gson().fromJson(br.readLine(), Blog.class));
+				
+				Blog b=new Gson().fromJson(br.readLine(), Blog.class);
+				if(b==null){
+					br.close();
+					throw new Exception("File returned an null");
+				}
+				arr.add(b);
+				
 				br.close();
 			}catch(Exception e){
 				e.printStackTrace();

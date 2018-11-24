@@ -41,6 +41,9 @@ public class UserHelper {
 				
 				Users u=new Gson().fromJson(json, Users.class);
 				
+				if(u==null){
+					throw new Exception("File returned an null");
+				}
 				arr.add(u);
 			}catch(Exception e){
 				e.printStackTrace();
@@ -91,7 +94,7 @@ public class UserHelper {
 		
 		try{
 			
-			
+			u.setId(sz);
 			PrintWriter pw=new PrintWriter(path+"/"+sz);
 			pw.println(u.toJson());
 			pw.close();

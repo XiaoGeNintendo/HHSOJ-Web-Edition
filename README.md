@@ -289,3 +289,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w56a: Comment system reverse and placeholder change and anchor points set.
 
 - 18w57a: HMS Changer and some little changes. Like displaying system time and showing contest time correctly. 
+
+- 18w58d: (Yeah! Finally a 'd') Added security for null files and fixed that user id is always 0 (But in fact it is useless :P)  
