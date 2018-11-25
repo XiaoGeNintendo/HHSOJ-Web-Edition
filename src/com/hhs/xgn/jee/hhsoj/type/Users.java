@@ -49,7 +49,7 @@ public class Users {
 	
 	public int getNowRating(){
 		if(ratings.isEmpty()){
-			return 0;
+			return 1500;
 		}
 		int rating=1500;
 		for(ContestRecord cr:ratings){
@@ -60,10 +60,10 @@ public class Users {
 	
 	public int getMaxRating(){
 		if(ratings.isEmpty()){
-			return 0;
+			return 1500;
 		}
 		int rating=1500;
-		int mx=0;
+		int mx=1500;
 		for(ContestRecord cr:ratings){
 			rating+=cr.getRatingChange();
 			mx=Math.max(mx,rating);

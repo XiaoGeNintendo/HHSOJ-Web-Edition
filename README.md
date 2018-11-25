@@ -142,7 +142,10 @@ My blog is here: [Rubbish Blog](https://xgns-blog.000webhostapp.com)
 
 Oh, the highlighter and editor are provided by [Mr.Wang](http://www.wangeditor.com/)
 
+The Elo editorial is here [Elo](https://bbs.gameres.com/thread_228018_1_1.html) . (Sorry it's Chinese too).
+
 You can donate us by Wechat or Paypal :) But that's useless, isn't it? So the donate address will not be public.
+
 
 # Customizing Announcement
 Announcement is the marquee text in index.jsp
@@ -161,6 +164,18 @@ From version 18w35a you can find the file "hhsoj/config.json" then change the se
     "adminPassword":"admin" //the admin password (after 18w46a)
 }
 ```
+
+# Rating System of HHSOJ
+We used simple Elo rating system for HHSOJ. It is that:
+- Each user has an initial rating of 1500
+- After each contest, the user's rating is recalculated as following:
+
+we calc ![P](https://di.gameres.com/attachment/forum/201310/28/22251233rnfy3titv31e13.png) where D is your rating minus the oppoent's rating.
+
+Then we get ![We](https://di.gameres.com/attachment/forum/201310/28/2223022qgswjkznbzjjuis.png) for any other user in the contest. 
+
+Let W to be the rank of the user. Then the new rating of the user is ![R](https://di.gameres.com/attachment/forum/201310/28/2223026yywcfwyubbzwb66.png) where Ro is the old rating of the user. Constant K=16
+
 
 # Changelog
 
@@ -307,3 +322,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w65a: Submit out of competition option has been added
 
 - 18w66b: Be prepared for rating color
+
+- 18w67a: Rating system finished

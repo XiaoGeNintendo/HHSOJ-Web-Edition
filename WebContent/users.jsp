@@ -33,8 +33,8 @@
 
 	<table width="80%">
 		<tr>
-			<th width="30%"></th>
-			<th width="70%"></th>
+			<th width="50%"></th>
+			<th width="50%"></th>
 		</tr>
 
 		<tr>
@@ -58,6 +58,29 @@
 					<%
 					 	}
 				    %> 
+				    
+				<p>Contest History</p> <br/>
+				<table border="1">
+					<tr>
+						<th>Contest Name</th>
+						<th>Rank</th>
+						<th>Rating change</th>
+					</tr>
+					<%
+						int prev=1500;
+						for(ContestRecord cr:u.getRatings()){
+					%>
+							<tr>
+								<td><a href="contestWelcome.jsp?id=<%=cr.getId() %>"><%=new ContestHelper().getContestDataById(""+cr.getId()).getInfo().getName() %></a></td>
+								<td><%=cr.getPlace() %></td>
+								<td><%=prev+"->"+(prev+cr.getRatingChange())+"("+cr.getRatingChange()+")" %></td>
+							</tr>
+					<%
+							prev+=cr.getRatingChange();
+						} 
+					%>
+				</table>
+				
 			 </td>
 			<td align="right"><img src="<%=u.getUserPic()%>" /></td>
 		</tr>

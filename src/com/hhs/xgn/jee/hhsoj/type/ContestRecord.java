@@ -19,6 +19,17 @@ public class ContestRecord {
 	 * The change of the rating
 	 */
 	private int ratingChange;
+	
+	public ContestRecord(){
+		
+	}
+	
+	public ContestRecord(int id,int place,int ratingc){
+		this.id=id;
+		this.place=place;
+		this.ratingChange=ratingc;
+	}
+	
 	public int getId() {
 		return id;
 	}

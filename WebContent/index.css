@@ -142,3 +142,73 @@ body p,span,a{
 	color:black;
 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+.userNewbie{
+	text-decoration:none;
+	color:grey;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+}
+
+.userPupil{
+	text-decoration:none;
+	color:green;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+}
+
+.userSpecialist{
+	text-decoration:none;
+	color:cyan;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+}
+
+.userExpert{
+	text-decoration:none;
+	color:blue;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+}
+
+.userCandidateMaster{
+	text-decoration:none;
+	color:purple;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+}
+
+.userMaster{
+	text-decoration:none;
+	color:yellow;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+}
+
+.userInternationalMaster{
+	text-decoration:none;
+	color:yellow;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+}
+
+.userGrandmaster{
+	text-decoration:none;
+	color:red;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+}
+
+.userInternationalGrandmaster{
+	text-decoration:none;
+	color:red;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+}
+
+.userLegendaryGrandmaster{
+	text-decoration:none;
+	color:black;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+}
