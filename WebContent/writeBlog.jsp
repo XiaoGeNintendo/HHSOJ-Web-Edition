@@ -6,6 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-Writing a new blog</title>
+<style type="text/css">
+.w-e-text-container {
+	background:#ffffff;
+	height: 400px;
+}
+</style>
 </head>
 <body>
 
@@ -13,11 +19,11 @@
 	<h1 id="title">Writing a new blog on HHSOJ</h1>
 	<i id="subtitle">I have to poop for 15 minutes -- CF User</i>
 	<hr />
-	
+
 	<jsp:include page="nav.jsp?at=blogs"></jsp:include>
-	<%  
-		String userLooking=(String)session.getAttribute("username");
-		if(userLooking==null){
+	<%
+		String userLooking = (String) session.getAttribute("username");
+		if (userLooking == null) {
 			out.println("Please login to continue");
 			return;
 		}
@@ -26,20 +32,29 @@
 
 	<script type="text/javascript" src="js/wangEditor.js"></script>
 
-	<b>Now logging in as <%=userLooking%></b>
-	<br />
-	<center>
-		Title:<input type="text" width="50%" id="inpt"/> <br /> <br />
-	</center>
-
-	<div id="div1"></div>
-
+	<p>
+		<i>( Now logging in as <%=userLooking%> )
+		</i>
+	</p>
 	<br />
 
+	<p>
+		Title: <input type="text" id="inpt"
+			style="max-width: 1000px; height: 30px; width: 100%;" />
+	</p>
+	<br />
+	<br />
+
+	<div id="div-content"></div>
+
+	<br />
+
 	<center>
-		<button id="submit">Finish</button>
+		<button id="submit" style="height: 30px; width: 100px;">
+			<p>Finish</p>
+		</button>
 	</center>
-	
+
 	<script>
 		//Post function
 		function httpPost(URL, PARAMS) {
@@ -60,22 +75,22 @@
 
 			return temp;
 		}
-		
+
 		//Add editor
 		var E = window.wangEditor
-		var editor2 = new E('#div1')
+		var editor2 = new E('#div-content')
 		editor2.create()
 
 		//Add action
 
 		document.getElementById("submit").addEventListener("click", function() {
 			//Send a post request
-			var para={
-				"html":editor2.txt.html(),
-				"title":document.getElementById("inpt").value
+			var para = {
+				"html" : editor2.txt.html(),
+				"title" : document.getElementById("inpt").value
 			}
-			
-			httpPost("doWriteBlog.jsp",para);
+
+			httpPost("doWriteBlog.jsp", para);
 		})
 	</script>
 
