@@ -324,3 +324,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w66b: Be prepared for rating color
 
 - 18w67a: Rating system finished
+
+## Version 1.3: Whole Ending
