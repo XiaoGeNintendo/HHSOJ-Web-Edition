@@ -303,3 +303,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w63c: You can now send submissions during contest with the contest submit system! And the grand-new standing system will be displayed at the welcome page! The full contest system is almost there! Please wait for the rating system and the system judge feature.
 
 - 18w64a: Admin now can pend system tests! And users' name changes will reflect to the standing change
+
+- 18w65a: Submit out of competition option has been added

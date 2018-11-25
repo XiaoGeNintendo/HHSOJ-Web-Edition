@@ -54,6 +54,8 @@
 					<b>Contest status: <%=c.getStatusWithTime() %></b> <br/>
 					<a href="contestWelcome.jsp?id=<%=cid %>">→Contest←</a>
 					<a href="conSub.jsp?cid=<%=cid %>">→Submit←</a>
+					<a href="submit.jsp?id=<%=fullInfo %>">→Submit <abbr title="Out of competition">OOC</abbr>←</a>
+					
 					<a href="status.jsp?probId=<%=fullInfo %>">→Status←</a>
 					<a href="status.jsp?probId=<%=fullInfo %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
 				</center>
@@ -66,6 +68,7 @@
 				<center>
 					<a href="contestWelcome.jsp?id=<%=cid %>">→Contest←</a>
 					<a href="conSub.jsp?cid=<%=cid %>">→Submit←</a>
+					<a href="submit.jsp?id=<%=fullInfo %>">→Submit <abbr title="Out of competition">OOC</abbr>←</a>	
 					<a href="status.jsp?probId=<%=fullInfo %>">→Status←</a>
 					<a href="status.jsp?probId=<%=fullInfo %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
 				</center>

@@ -110,6 +110,9 @@
 		<hr />
 
 		<pre>
+Use "C"+contestId+index to submit problems that are in the contest.
+For example, "C1A" means the problem A in the contest id=1
+
 For Java users:
  Out java version is 1.8.0.
  You should name your class "Program" and set it public.

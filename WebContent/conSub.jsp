@@ -30,7 +30,7 @@
 		}
 		
 		if(!c.isContestRunning()){
-			response.sendRedirect("contestWelcome.jsp?id="+c.getId());
+			response.sendRedirect("submit.jsp");
 			return;
 		}
 		
