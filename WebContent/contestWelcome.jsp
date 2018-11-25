@@ -120,12 +120,13 @@
 				for(Problem p:arr){
 					ContestStandingColumn csc=csr.getScores().getOrDefault(p.getConIndex(), new ContestStandingColumn(0,0,0));
 		%>
-					<td align="center"><abbr title="<%=csc.getRawScore() %>-50*<%=csc.getUnsuccessfulSubmitCount()%>"><%=csc.getScore() %></abbr></td>			
+					<td align="center"><abbr title="<%=csc.getScoreSmall()%>+<%=csc.getScoreLarge() %>-50*<%=csc.getUnsuccessfulSubmitCount()%>"><%=csc.getScore() %></abbr></td>			
 		<%
 				}
 		%>
 			</tr>
 		<%
+			rank++;
 		}
 		%>
 	</table>

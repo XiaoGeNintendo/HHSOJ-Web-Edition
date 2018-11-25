@@ -27,6 +27,7 @@
 	<a href="users.jsp">Show all users</a> <br/>
 	<a href="subs.jsp">Show all submissions</a> <br/>
 	<a href="blogs.jsp">Show all posts</a> <br/>
+	<a href="contests.jsp">Show all contests</a> <br/>
 	
 	<hr/>
 	Next to test:<%=(TaskQueue.hasElement()?TaskQueue.getFirstSubmission().toJson():null) %> <br/>

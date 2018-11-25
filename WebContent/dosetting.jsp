@@ -1,3 +1,6 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.ContestStandingRow"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.ContestHelper"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Contest"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Comment"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Blog"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.BlogHelper"%>
@@ -62,6 +65,14 @@
 				}
 			}
 			new BlogHelper().refreshBlog(b);
+		}
+		
+		//Refresh Contest
+		ArrayList<Contest> cons=new ContestHelper().getAllContests();
+		for(Contest c:cons){
+			ContestStandingRow csr=c.getStanding().getContestStandingRowOfUser(nowU.getUsername());
+			csr.setUser(username);
+			new ContestHelper().refreshContest(c);
 		}
 		
 		nowU.setUsername(username);

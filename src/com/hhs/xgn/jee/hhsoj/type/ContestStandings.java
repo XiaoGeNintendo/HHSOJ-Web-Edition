@@ -31,6 +31,20 @@ public class ContestStandings {
 	}
 	
 	/**
+	 * Given a submission that is accepted. Add some following scores into the submission. <br/>
+	 * This is used for counting large scores
+	 * @param s
+	 */
+	public void countLarge(Submission s,String index,int score){
+		ContestStandingRow csr=getContestStandingRowOfUser(s.getUser());
+		ContestStandingColumn csc=csr.getScores().getOrDefault(index, new ContestStandingColumn(0, 0, 0));
+		csc.setScoreLarge(score);
+		csr.getScores().put(index, csc);
+		
+		sortStanding();
+	}
+	
+	/**
 	 * Given a submission that is accepted. Add some following scores into the submission.
 	 * @param s
 	 */

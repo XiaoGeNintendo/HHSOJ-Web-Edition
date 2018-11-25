@@ -83,19 +83,31 @@ public class JudgingThread extends Thread {
 					new SubmissionHelper().storeStatus(s);
 					
 					if(s.isRated()){
-						//Contest Score
-						Contest c=p.getContest();
-						c.getStanding().countSmall(s,p.getConIndex(),c.getInfo().getScores().get(p.getConIndex()).getSmall());
-						new ContestHelper().refreshContest(c);
+						if(s.getTestset().equals("small")){
+							//Contest Score
+							Contest c=p.getContest();
+							c.getStanding().countSmall(s,p.getConIndex(),c.getInfo().getScores().get(p.getConIndex()).getSmall());
+							new ContestHelper().refreshContest(c);
+						}else{
+							//Count large score
+							Contest c=p.getContest();
+							c.getStanding().countLarge(s,p.getConIndex(),c.getInfo().getScores().get(p.getConIndex()).getLarge());
+							new ContestHelper().refreshContest(c);
+						}
+						
 					}
 				}else{
 					//Sorry poor guy..
 					if(s.isRated()){
-						Contest c=p.getContest();
-						c.getStanding().countWrong(s,p.getConIndex());
-						new ContestHelper().refreshContest(c);
+						if(s.getTestset().equals("small")){
+							//Only work for small tests
+							Contest c=p.getContest();
+							c.getStanding().countWrong(s,p.getConIndex());
+							new ContestHelper().refreshContest(c);
+						}
 					}
 				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 

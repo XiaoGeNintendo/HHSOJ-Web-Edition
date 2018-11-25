@@ -16,6 +16,15 @@ public class Contest {
 	private int id;
 	private ContestStandings standing;
 	
+	/**
+	 * returns whether the time is in contest running
+	 * @param st
+	 * @return
+	 */
+	public boolean inRange(long st){
+		return info.getStartTime()<=st && st<=info.getEndTime();
+	}
+	
 	public boolean isContestStarted(){
 		return System.currentTimeMillis()>=info.getStartTime();
 	}
