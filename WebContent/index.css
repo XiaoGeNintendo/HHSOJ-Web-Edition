@@ -135,3 +135,10 @@ body p,span,a{
 #back {
 	display: block;
 }
+
+/*Now this is by XGN :P */
+.userUnrated{
+	text-decoration:none;
+	color:black;
+	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+}

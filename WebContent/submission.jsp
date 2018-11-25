@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.UserRenderer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.ProblemHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.VerdictHelper"%>
@@ -70,7 +71,7 @@
 	
 		Submission ID:<%=id %> <br/>
 		Problem ID:<a href="problem.jsp?id=<%=s.getProb() %>"><%=s.getProb() %></a><br/>
-		Submission Owner:<a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser()%></a><br/>
+		Submission Owner:<%out.println(new UserRenderer().getUserText(s.getUser()));%><br/>
 		Submission Language:<%=s.getLang() %><br/>
 		Submission Verdict:<%=new VerdictHelper().render(s.getHTMLVerdict())%><br/>
 		Submission Time Cost:<%=s.getTimeCost() %><br/>

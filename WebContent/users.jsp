@@ -39,7 +39,9 @@
 
 		<tr>
 			<td align="left">
-				<h2><%=user %></h2>
+				<%out.println(new UserRenderer().getRank(u.getNowRating())); %><br/>
+				<%out.println(new UserRenderer().getUserTextLarge(u));%>
+				<br/>
 				<i><%=u.getLine()%> -- <%=user%></i> <br /> 
 				<img alt="submission" src="asset/submissions.png" />
 				<a href="status.jsp?userId=<%=u.getUsername()%>" >Submissions</a> <br /> 

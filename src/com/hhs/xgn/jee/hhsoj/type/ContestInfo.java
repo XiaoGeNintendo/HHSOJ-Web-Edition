@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.hhs.xgn.jee.hhsoj.db.UserRenderer;
 
 /**
  * Some contest information
@@ -32,7 +33,7 @@ public class ContestInfo {
 	public String getAuthorsHTML(){
 		String s="";
 		for(String a:authors){
-			s+="<a href=\"users.jsp?username="+a+"\">"+a+"</a><br/>";
+			s+=new UserRenderer().getUserText(a)+"<br/>";
 		}
 		return s;
 	}

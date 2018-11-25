@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.UserRenderer"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.PatternMatcher"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.VerdictHelper"%>
 <%@page import="java.util.Comparator"%>
@@ -116,7 +117,7 @@
 				<td><%=new VerdictHelper().render(s.getHTMLVerdict())%></td>
 				<td><%=s.getTimeCost() %></td>
 				<td><%=s.getMemoryCost() %></td>
-				<td><a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser()+(s.isRated()?"<sup><abbr title=\"In-contest submission\">#</abbr></sup>":"")%></a></td>
+				<td><%out.println(new UserRenderer().getUserText(s.getUser())+(s.isRated()?"<sup><abbr title=\"In-contest submission\">#</abbr></sup>":"")); %></td>
 			</tr>
 			
 			<%

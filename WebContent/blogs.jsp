@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.UserRenderer"%>
 <%@page import="java.util.Comparator"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Blog"%>
 <%@page import="java.util.ArrayList"%>
@@ -92,7 +93,7 @@
 		%>
 			<tr class="blogrow">
 				<td align="center" class="blogtitle"><a href="viewPost.jsp?id=<%=b.getId()%>"><%=b.getTitle()%></a></td>
-				<td align="center" class="bloguser"><a href="users.jsp?username=<%=b.getUser() %>"><%=b.getUser() %></a></td>
+				<td align="center" class="bloguser"><%out.println(new UserRenderer().getUserText(b.getUser())); %></td>
 			
 		<%
 			if(b.getVote()>0){

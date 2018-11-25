@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.UserRenderer"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.ContestStandingColumn"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.ContestStandingRow"%>
 <%@page import="java.util.Date"%>
@@ -114,7 +115,7 @@
 		%>
 			<tr>
 				<td align="center"><%=rank %></td>
-				<td align="center"><a href="users.jsp?username=<%=csr.getUser() %>" ><%=csr.getUser() %></a></td>
+				<td align="center"><%out.println(new UserRenderer().getUserText(csr.getUser())); %></td>
 				<td align="center"><abbr title="Penalty:<%=csr.getPenalty()%>"><%=csr.getScore() %></abbr></td>
 		<%
 				for(Problem p:arr){

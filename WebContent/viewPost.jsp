@@ -1,4 +1,5 @@
 
+<%@page import="com.hhs.xgn.jee.hhsoj.db.UserRenderer"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Comment"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Users"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.UserHelper"%>
@@ -37,7 +38,7 @@
 	<!-- Default Template -->
 	
 	<h1 id="title"><%=bl.getTitle()%></h1>
-	<i id="subtitle">By <a href="users.jsp?username=<%=bl.getUser() %>"><%=bl.getUser()%></a> at <%=bl.getReadableTime() %></i>
+	<i id="subtitle">By <%out.println(new UserRenderer().getUserText(bl.getUser()));%> at <%=bl.getReadableTime() %></i>
 	<hr />
 	<jsp:include page="nav.jsp?at=blogs"></jsp:include>
 
@@ -158,7 +159,7 @@
 		<tr>
 			<td>
 				<a name="Comment<%=i %>"></a>
-				<a href="users.jsp?username=<%=c.getUser() %>"><%=c.getUser() %></a>:
+				<%out.println(new UserRenderer().getUserText(c.getUser()));%>:
 				<%=c.getComment() %>
 				<%if(c.getUser().equals(userLooking)){%>
 					<sup><a href="deleteComment.jsp?blogId=<%=bl.getId()%>&commentId=<%=i%>"><abbr title="Delete Comment">x</abbr></a></sup>
