@@ -11,7 +11,59 @@ import com.google.gson.Gson;
  *
  */
 public class ContestStandings {
-	private ArrayList<ContestStandingRow> rows;
+	private ArrayList<ContestStandingRow> rows=new ArrayList<>();
+	
+	/**
+	 * Count the program to be wrong
+	 * @param s
+	 * @param index
+	 */
+	public void countWrong(Submission s,String index){
+		ContestStandingRow csr=getContestStandingRowOfUser(s.getUser());
+		ContestStandingColumn csc=csr.getScores().getOrDefault(index, new ContestStandingColumn(0, 0, 0));
+		if(csc.getRawScore()!=0){
+			return;
+		}
+		csc.addUnsuccessfulSubmitCount();
+		csr.getScores().put(index, csc);
+		
+		sortStanding();
+	}
+	
+	/**
+	 * Given a submission that is accepted. Add some following scores into the submission.
+	 * @param s
+	 */
+	public void countSmall(Submission s,String index,int score){
+		ContestStandingRow csr=getContestStandingRowOfUser(s.getUser());
+		ContestStandingColumn csc=csr.getScores().getOrDefault(index, new ContestStandingColumn(0, 0, 0));
+		if(csc.getScoreSmall()!=0){
+			csc.addUnsuccessfulSubmitCount();
+		}
+		csc.setScoreSmall(score);
+		csc.setLastSubmissionTime(s.getSubmitTime());
+		csr.getScores().put(index, csc);
+		
+		sortStanding();
+	}
+	
+	/**
+	 * Given a username, returns the Standing Row of him. <br/>
+	 * If not found, add one auto and create one
+	 * @param username
+	 * @return
+	 */
+	public ContestStandingRow getContestStandingRowOfUser(String username){
+		for(ContestStandingRow csr:rows){
+			if(csr.getUser().equals(username)){
+				return csr;
+			}
+		}
+		ContestStandingRow csr=new ContestStandingRow();
+		csr.setUser(username);
+		rows.add(csr);
+		return csr;
+	}
 	public String toJson(){
 		return new Gson().toJson(this);
 	}

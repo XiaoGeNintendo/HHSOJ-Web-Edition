@@ -8,7 +8,6 @@
 	String prob=request.getParameter("probid");
 	String code=request.getParameter("code");
 	String lang=request.getParameter("lang");
-	String testset=request.getParameter("testset");
 	String user=(String)session.getAttribute("username");
 	
 	if(prob==null || code==null || lang==null || user==null){
@@ -18,13 +17,7 @@
 	
 	try{
 		Problem p=new ProblemHelper().getProblemData(prob);
-		if(p.getType()==Problem.CONTEST){
-			if(!p.getContest().isContestEnded()){
-				out.println("This problem is not open for practise now.");
-				out.println("Please consider use the contest submit system");
-				return;
-			}
-		}
+		
 	}catch(Exception e){
 		out.println("No such problem.");
 		out.println("<a href=\"submit.jsp\">Resubmit</a>");
@@ -41,15 +34,11 @@
 	s.setLang(lang);
 	s.setUser(user);
 	s.setSubmitTime(System.currentTimeMillis());
+	s.setRated(true);
+	s.setTestset("small");
 	
-	if(testset==null){
-		s.setTestset("tests");	
-	}else{
-		s.setTestset(testset);
-	}
-
 	int id=TaskQueue.addTask(s);
 	
 	
-	response.sendRedirect("status.jsp?id="+id);
+	response.sendRedirect("status.jsp?probId="+prob+"&userId="+user);
 %>

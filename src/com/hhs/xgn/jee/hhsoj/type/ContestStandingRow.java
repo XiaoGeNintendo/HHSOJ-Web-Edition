@@ -1,5 +1,6 @@
 package com.hhs.xgn.jee.hhsoj.type;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -13,7 +14,7 @@ import com.google.gson.Gson;
  */
 public class ContestStandingRow {
 	private String user;
-	private Map<String, ContestStandingColumn> scores;
+	private HashMap<String, ContestStandingColumn> scores=new HashMap<>();
 	
 	public int getScore(){
 		int s=0;
@@ -43,10 +44,10 @@ public class ContestStandingRow {
 	public void setUser(String user) {
 		this.user = user;
 	}
-	public Map<String, ContestStandingColumn> getScores() {
+	public HashMap<String, ContestStandingColumn> getScores() {
 		return scores;
 	}
-	public void setScores(Map<String, ContestStandingColumn> scores) {
+	public void setScores(HashMap<String, ContestStandingColumn> scores) {
 		this.scores = scores;
 	}
 	

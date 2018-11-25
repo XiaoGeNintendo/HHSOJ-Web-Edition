@@ -2,6 +2,8 @@ package com.hhs.xgn.jee.hhsoj.type;
 
 import java.util.Map;
 
+import com.hhs.xgn.jee.hhsoj.db.ContestHelper;
+
 /**
  * Problem class.
  * @author XGN
@@ -34,6 +36,16 @@ public class Problem {
 		return null;
 	}
 
+	/**
+	 * Get the contest where this problem is in
+	 * @return
+	 */
+	public Contest getContest(){
+		if(type!=Problem.CONTEST){
+			return null;
+		}
+		return new ContestHelper().getContestDataById(""+conId);
+	}
 	
 	public int getId() {
 		return id;

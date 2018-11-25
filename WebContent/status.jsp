@@ -116,7 +116,7 @@
 				<td><%=new VerdictHelper().render(s.getHTMLVerdict())%></td>
 				<td><%=s.getTimeCost() %></td>
 				<td><%=s.getMemoryCost() %></td>
-				<td><a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser() %></a></td>
+				<td><a href="users.jsp?username=<%=s.getUser() %>"><%=s.getUser()+(s.isRated()?"<sup><abbr title=\"In-contest submission\">#</abbr></sup>":"")%></a></td>
 			</tr>
 			
 			<%

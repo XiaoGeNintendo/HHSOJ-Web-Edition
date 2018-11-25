@@ -1,3 +1,5 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.ContestStandingColumn"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.type.ContestStandingRow"%>
 <%@page import="java.util.Date"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Problem"%>
 <%@page import="java.util.ArrayList"%>
@@ -75,7 +77,7 @@
 	If you solved the "large" testset, some points will be given too <br/>
 	The small testset will be judged during contest <br/>
 	But the "large" testset will only be tested <b>after the contest</b> <br/>
-	Be careful that every wrong submission that fails on small testset will cause a loss of 50 points
+	Be careful that every wrong submission that fails on small testset or resubmit will cause a loss of 50 points
 	after you have passed the small testset <br/>
 	Each problem has a minimum score of 0 <br/>
 	All solutions that passes "small" testset will be judged on "large" testset after contest <br/>
@@ -91,6 +93,42 @@
 	<h1>Announcement</h1>
 	<jsp:include page="announcement.jsp?id=<%=c.getId() %>"></jsp:include>
 	
+	<h1>Standings</h1>
+	<table border="1" align="center" width="80%">
+		<tr>
+			<th width="10%" align="center">Rank</th>
+			<th width="40%" align="center">User</th>
+			<th width="20%" align="center">Score</th>
+			<%
+				for(Problem p:arr){
+			%>
+				<th align="center"><a href="vcp.jsp?cid=<%=p.getConId()%>&pid=<%=p.getConIndex() %>"><%=p.getConIndex() %></a></th>
+			<%
+				}
+			%>
+		</tr>
+		<%
+			int rank=1;
+			for(ContestStandingRow csr:c.getStanding().getRows()){
+		
+		%>
+			<tr>
+				<td align="center"><%=rank %></td>
+				<td align="center"><a href="users.jsp?username=<%=csr.getUser() %>" ><%=csr.getUser() %></a></td>
+				<td align="center"><abbr title="Penalty:<%=csr.getPenalty()%>"><%=csr.getScore() %></abbr></td>
+		<%
+				for(Problem p:arr){
+					ContestStandingColumn csc=csr.getScores().getOrDefault(p.getConIndex(), new ContestStandingColumn(0,0,0));
+		%>
+					<td align="center"><abbr title="<%=csc.getRawScore() %>-50*<%=csc.getUnsuccessfulSubmitCount()%>"><%=csc.getScore() %></abbr></td>			
+		<%
+				}
+		%>
+			</tr>
+		<%
+		}
+		%>
+	</table>
 	<hr/>
 	<i>HHSOJ Contest System</i>
 	

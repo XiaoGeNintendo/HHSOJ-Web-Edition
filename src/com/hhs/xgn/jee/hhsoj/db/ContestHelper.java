@@ -91,4 +91,15 @@ public class ContestHelper {
 	public Contest getContestDataById(String id){
 		return readSingleContest(new File("hhsoj/contests/"+id));
 	}
+	
+	public void refreshContest(Contest c) {
+		
+		try{
+			PrintWriter pw=new PrintWriter("hhsoj/contests/"+c.getId()+"/full.json");
+			pw.println(new Gson().toJson(c));
+			pw.close();
+		}catch(Exception e){
+			
+		}
+	}
 }

@@ -5,9 +5,11 @@ import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
 import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
+import com.hhs.xgn.jee.hhsoj.db.ContestHelper;
 import com.hhs.xgn.jee.hhsoj.db.ProblemHelper;
 import com.hhs.xgn.jee.hhsoj.db.SubmissionHelper;
 import com.hhs.xgn.jee.hhsoj.type.Config;
+import com.hhs.xgn.jee.hhsoj.type.Contest;
 import com.hhs.xgn.jee.hhsoj.type.Problem;
 import com.hhs.xgn.jee.hhsoj.type.Submission;
 import com.hhs.xgn.jee.hhsoj.type.TestResult;
@@ -79,6 +81,20 @@ public class JudgingThread extends Thread {
 				if (ac) {
 					s.setVerdict("Accepted");
 					new SubmissionHelper().storeStatus(s);
+					
+					if(s.isRated()){
+						//Contest Score
+						Contest c=p.getContest();
+						c.getStanding().countSmall(s,p.getConIndex(),c.getInfo().getScores().get(p.getConIndex()).getSmall());
+						new ContestHelper().refreshContest(c);
+					}
+				}else{
+					//Sorry poor guy..
+					if(s.isRated()){
+						Contest c=p.getContest();
+						c.getStanding().countWrong(s,p.getConIndex());
+						new ContestHelper().refreshContest(c);
+					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.ProblemHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.VerdictHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.TestResult"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Submission"%>
@@ -28,6 +30,15 @@
 			return;
 		}
 		
+		String userLooking=(String)session.getAttribute("username");
+		if(s.isRated() && new ProblemHelper().getProblemData(s.getProb()).getContest().isContestRunning()){
+			
+			if(s.getUser().equals(userLooking)==false){
+				s.setCode("No cheating during contests!!!");	
+			}
+			
+			s.setResults(new ArrayList<>());
+		}
 	%>
 	
 	<script>
@@ -70,7 +81,7 @@
 		<h2>Code</h2>
 		
 		<%
-			String userLooking=(String)session.getAttribute("username");
+			
 			if(userLooking !=null && userLooking.equals(s.getUser())){
 				
 		%>

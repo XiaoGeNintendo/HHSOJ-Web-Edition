@@ -51,9 +51,9 @@
 					<h1><%=p.getName() %> on HHSOJ</h1>
 					<b>Time Limit Per Test:<%=p.getArg("TL") %>MS</b> <br/>
 					<b>Memory Limit Per Test:<%=p.getArg("ML")%>KB</b> <br/>
-					Contest status: <%=c.getStatusWithTime() %> <br/>
+					<b>Contest status: <%=c.getStatusWithTime() %></b> <br/>
 					<a href="contestWelcome.jsp?id=<%=cid %>">→Contest←</a>
-					<a href="submit.jsp?id=<%=fullInfo %>">→Submit←</a>
+					<a href="conSub.jsp?cid=<%=cid %>">→Submit←</a>
 					<a href="status.jsp?probId=<%=fullInfo %>">→Status←</a>
 					<a href="status.jsp?probId=<%=fullInfo %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
 				</center>
@@ -65,9 +65,9 @@
 				
 				<center>
 					<a href="contestWelcome.jsp?id=<%=cid %>">→Contest←</a>
-					<a href="submit.jsp?id=<%=p.getId() %>">→Submit←</a>
-					<a href="status.jsp?probId=<%=p.getId() %>">→Status←</a>
-					<a href="status.jsp?probId=<%=p.getId() %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
+					<a href="conSub.jsp?cid=<%=cid %>">→Submit←</a>
+					<a href="status.jsp?probId=<%=fullInfo %>">→Status←</a>
+					<a href="status.jsp?probId=<%=fullInfo %>&userId=<%=session.getAttribute("username") %>">→My Submission←</a>
 				</center>
 
 </body>

@@ -297,3 +297,7 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w60a: You can now see the submission testset in the status page!  
 
 - 18w61c: You can now submit your program in contest and it will judge! But sadly no standings now.
+
+- 18w62b: Zzzyt's CSS Update
+
+- 18w63c: You can now send submissions during contest with the contest submit system! And the grand-new standing system will be displayed at the welcome page! The full contest system is almost there! Please wait for the rating system and the system judge feature.
