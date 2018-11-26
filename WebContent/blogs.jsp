@@ -41,7 +41,7 @@
 		margin: 0px auto;
 		min-width: 500px;
 		padding:20px;
-		text-align:right;
+		text-align:left;
 	}
 </style>
 </head>
@@ -59,14 +59,15 @@
 	%>
 	<!-- Default End-->
 	<div id="write-blog">
-		<img src="asset/post.png" alt="Post"/><a href="writeBlog.jsp">Write a post</a>
+		<img src="asset/post.png" alt="Post"/>
+		<p style="vertical-align: middle;float:left;margin-top:3px;"><a href="writeBlog.jsp">Write a post</a>&nbsp;</p>
     </div>
 	
 	<table id="blog-table">
 		<tr>
 			<th width="70%">Post title</th>
-			<th width="20%">Author</th>
-			<th width="10%">Popularity</th> 
+			<th width="18%">Author</th>
+			<th width="12%">Popularity</th> 
 		</tr>
 	
 		<%
