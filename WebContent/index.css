@@ -65,6 +65,16 @@ body p,span,a{
 	font-family: Georgia, serif;
 }
 
+.title {
+	margin:5px;
+	font-family: Georgia, serif;
+}
+
+.subtitle {
+	margin:5px;
+	font-family: Georgia, serif;
+}
+
 #nav {
 	clear: both;
 }

@@ -22,15 +22,18 @@
 		min-width: 500px;
 		border:1px solid #cccccc;
 		background:#f0f0f0;
+		text-align:left;
 	}
 	
 	#blog-table th{
 		padding: 3px;
+		padding-left:5px;
 		border: 1px solid #cccccc;
 	}
 	
 	#blog-table td{
 		padding: 3px;
+		padding-left:5px;
 		border: 1px solid #cccccc;
 	}
 	
@@ -93,8 +96,8 @@
 				}
 		%>
 			<tr class="blogrow">
-				<td align="center" class="blogtitle"><a href="viewPost.jsp?id=<%=b.getId()%>"><%=b.getTitle()%></a></td>
-				<td align="center" class="bloguser"><%out.println(new UserRenderer().getUserText(b.getUser())); %></td>
+				<td class="blogtitle"><a href="viewPost.jsp?id=<%=b.getId()%>"><%=b.getTitle()%></a></td>
+				<td class="bloguser"><%out.println(new UserRenderer().getUserText(b.getUser())); %></td>
 			
 		<%
 			if(b.getVote()>0){
