@@ -332,3 +332,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w69d: Fixed that time displaying error
 
 - 18w70d: Using long to store length
+
+- 18w71d: Fixed that admin platform will cause NullPointerException

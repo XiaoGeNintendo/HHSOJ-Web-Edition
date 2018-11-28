@@ -11,10 +11,15 @@
 </head>
 <body>
 	<%
+	try{
 		boolean in=(Boolean)session.getAttribute("admin");
 		if(!in){
 			return;
 		}
+	}catch(Exception e){
+		out.println("<!-- "+e+" -->");
+		return;
+	}
 	%>
 	<h1>Admin Platform</h1>
 	<hr/>

@@ -15,8 +15,13 @@
 </head>
 <body>
 	<%
-		boolean in=(Boolean)session.getAttribute("admin");
-		if(!in){
+		try{
+			boolean in=(Boolean)session.getAttribute("admin");
+			if(!in){
+				return;
+			}
+		}catch(Exception e){
+			out.println("<!-- "+e+" -->");
 			return;
 		}
 		

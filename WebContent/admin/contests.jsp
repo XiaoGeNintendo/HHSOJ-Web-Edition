@@ -13,10 +13,15 @@
 </head>
 <body>
 	<%
+	try{
 		boolean in=(Boolean)session.getAttribute("admin");
 		if(!in){
 			return;
 		}
+	}catch(Exception e){
+		out.println("<!-- "+e+" -->");
+		return;
+	}
 		ArrayList<Contest> con=new ContestHelper().getAllContests();
 		for(Contest c:con){
 			out.println("<b>Contest #"+c.getId()+"</b> - "+c.getInfo().getName()+" - "+c.getStatusWithTime());

@@ -9,10 +9,15 @@
 </head>
 <body>
 	<%
+	try{
 		boolean in=(Boolean)session.getAttribute("admin");
 		if(!in){
 			return;
 		}
+	}catch(Exception e){
+		out.println("<!-- "+e+" -->");
+		return;
+	}
 		String verdict=request.getParameter("verdict");
 		if(verdict!=null){
 			TaskQueue.clear(verdict);

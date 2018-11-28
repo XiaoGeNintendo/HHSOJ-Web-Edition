@@ -9,8 +9,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
-boolean in=(Boolean)session.getAttribute("admin");
-if(!in){
+try{
+	boolean in=(Boolean)session.getAttribute("admin");
+	if(!in){
+		return;
+	}
+}catch(Exception e){
+	out.println("<!-- "+e+" -->");
 	return;
 }
 
