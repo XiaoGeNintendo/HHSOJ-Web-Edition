@@ -25,6 +25,7 @@ if(c==null){
 }
 
 new RatingCalc().calc4(c);
+
 out.println("Please view console logs for detail");
 		
 %>
