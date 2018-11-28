@@ -29,7 +29,11 @@ public class ContestHelper {
 		
 		ArrayList<Contest> arr=new ArrayList<>();
 		for(File sub:f.listFiles()){
-			arr.add(readSingleContest(sub));
+			Contest c=readSingleContest(sub);
+			if(c!=null){
+				arr.add(c);
+			}
+			
 		}
 		
 		return arr;

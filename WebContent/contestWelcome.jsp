@@ -149,7 +149,7 @@
 					location.reload(true);
 					return;
 				}
-				document.getElementById("time").innerHTML="Before start <b>"+parseInt(delta/3600)+"h"+parseInt(delta/60%3600)+"m"+parseInt(delta%60)+"s</b>";
+				document.getElementById("time").innerHTML="Before start <b>"+parseInt(delta/3600)+"h"+parseInt(delta%3600/60)+"m"+parseInt(delta%60)+"s</b>";
 			}else{
 				if(status.indexOf("Running")!=-1){
 					var delta=end-now;
@@ -158,7 +158,7 @@
 						return;
 					}
 					
-					document.getElementById("time").innerHTML="Before end <b>"+parseInt(delta/3600)+"h"+parseInt(delta/60%3600)+"m"+parseInt(delta%60)+"s</b>";
+					document.getElementById("time").innerHTML="Before end <b>"+parseInt(delta/3600)+"h"+parseInt(delta%3600/60)+"m"+parseInt(delta%60)+"s</b>";
 				}else{
 					document.getElementById("time").innerHTML="Contest ended";
 				}

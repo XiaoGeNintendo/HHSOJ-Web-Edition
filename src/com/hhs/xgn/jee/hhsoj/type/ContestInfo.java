@@ -17,7 +17,7 @@ public class ContestInfo {
 	/**
 	 * In milliseconds
 	 */
-	private int length;
+	private long length;
 	/**
 	 * The scores of problem index
 	 */
@@ -25,9 +25,9 @@ public class ContestInfo {
 	private ArrayList<String> authors;
 	
 	public String getReadableLength(){
-		int sec=length/1000;
-		int min=sec/60;
-		int hour=min/60;
+		long sec=length/1000;
+		long min=sec/60;
+		long hour=min/60;
 		return hour+"h"+min%60+"m"+sec%60+"s";
 	}
 	public String getAuthorsHTML(){
@@ -57,10 +57,10 @@ public class ContestInfo {
 	public void setStartTime(long startTime) {
 		this.startTime = startTime;
 	}
-	public int getLength() {
+	public long getLength() {
 		return length;
 	}
-	public void setLength(int length) {
+	public void setLength(long length) {
 		this.length = length;
 	}
 	public Map<String, ProblemScore> getScores() {
