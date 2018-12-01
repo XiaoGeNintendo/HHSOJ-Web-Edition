@@ -342,3 +342,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w74a: Delay/Increase Contest Length without modifying the files!! New admin feature added!
 
 - 18w75a: Admins will now be able to see the clarifications... But they cannot reply yet.
+
+- 18w76e: HHSOJ Folder Update
