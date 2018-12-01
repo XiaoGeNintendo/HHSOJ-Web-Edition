@@ -336,3 +336,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w71d: Fixed that admin platform will cause NullPointerException
 
 - 18w72e: Update HHSOJ Folder. (but nth was changed in fact)
+
+- 18w73a: You can now send Contest Clarifications... But admin cannot reply to it.

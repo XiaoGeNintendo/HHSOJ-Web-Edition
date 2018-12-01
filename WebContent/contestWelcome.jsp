@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Question"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.UserRenderer"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.ContestStandingColumn"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.ContestStandingRow"%>
@@ -24,6 +25,8 @@
 		response.sendRedirect("contests.jsp");
 		return;
 	}
+	
+	String userLooking=(String)session.getAttribute("username");
 %>
 <title>HHSOJ - Contest Main Page of <%=c.getInfo().getName() %></title>
 </head>
@@ -130,6 +133,45 @@
 			rank++;
 		}
 		%>
+	</table>
+	
+	<h1>Clarifications</h1>
+	
+	<%
+		if(!c.isContestEnded() && userLooking!=null){		
+	%>
+			<center>
+			<form action="doClear.jsp?id=<%=c.getId()%>" method="post">
+				<textarea name="clarification" placeholder="Post a clarification" rows="5" cols="80"></textarea>
+				<input type="submit" value="Submit"/>
+			</form>
+			<br/>
+			</center>
+	<%
+		}
+	%>
+	
+	<table border="1" align="center" width="80%">
+		<tr>
+			<th width="20%" align="center">Asker</th>
+			<th width="40%" align="center">Question</th>
+			<th width="40%" align="center">Answer</th>
+		</tr>
+	<%
+		ArrayList<Question> q=c.getQuestions();
+		
+		for(Question qr:q){
+			if(!qr.isOpen() && !qr.getAsker().equals(userLooking)){
+				continue;
+			}
+	%>
+		<tr>
+			<td align="center"><%out.println(new UserRenderer().getUserText(qr.getAsker()));%></td>
+			<td align="center"><%=qr.getQuestion() %></td>
+			<td align="center"><%=qr.getAnswer() %></td>
+		</tr>
+	<%} %>
+	
 	</table>
 	<hr/>
 	<i>HHSOJ Contest System</i>

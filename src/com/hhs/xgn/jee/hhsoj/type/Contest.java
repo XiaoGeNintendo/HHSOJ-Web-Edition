@@ -15,6 +15,7 @@ public class Contest {
 	private ContestInfo info;
 	private int id;
 	private ContestStandings standing;
+	private ArrayList<Question> questions;
 	
 	/**
 	 * returns whether the time is in contest running
@@ -81,6 +82,7 @@ public class Contest {
 		info=new ContestInfo();
 		id=0;
 		standing=new ContestStandings();
+		questions=new ArrayList<>();
 	}
 	
 	/**
@@ -91,6 +93,7 @@ public class Contest {
 		info=ci;
 		id=Id;
 		standing=new ContestStandings();
+		questions=new ArrayList<>();
 	}
 
 	/**
@@ -151,6 +154,14 @@ public class Contest {
 	}
 	public void setStanding(ContestStandings standing) {
 		this.standing = standing;
+	}
+
+	public ArrayList<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(ArrayList<Question> questions) {
+		this.questions = questions;
 	}
 	
 	
