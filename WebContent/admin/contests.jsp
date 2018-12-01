@@ -24,9 +24,8 @@
 	}
 		ArrayList<Contest> con=new ContestHelper().getAllContests();
 		for(Contest c:con){
-			out.println("<b>Contest #"+c.getId()+"</b> - "+c.getInfo().getName()+" - "+c.getStatusWithTime());
-			out.println("<a href=\"sys.jsp?id="+c.getId()+"\">Run system test</a> ");
-			out.println("<a href=\"pr.jsp?id="+c.getId()+"\">Pend Rating Change</a>");
+			out.println("<b>Contest #"+c.getId()+"</b> - <a href=\"cc.jsp?id="+c.getId()+"\">"+c.getInfo().getName()+"</a> - "+c.getStatusWithTime());
+
 			out.println("<br/>");
 		}
 		

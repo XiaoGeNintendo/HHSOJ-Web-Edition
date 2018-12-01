@@ -24,6 +24,22 @@ public class ContestInfo {
 	private Map<String,ProblemScore> scores;
 	private ArrayList<String> authors;
 	
+	/**
+	 * Delay start time
+	 * @param time
+	 */
+	public void delay(long time){
+		startTime+=time;
+	}
+	
+	/**
+	 * Increase contest length
+	 * @param inc
+	 */
+	public void increaseLength(long inc){
+		length+=inc;
+	}
+	
 	public String getReadableLength(){
 		long sec=length/1000;
 		long min=sec/60;
