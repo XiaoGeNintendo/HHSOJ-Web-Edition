@@ -344,3 +344,6 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w75a: Admins will now be able to see the clarifications... But they cannot reply yet.
 
 - 18w76e: HHSOJ Folder Update
+
+- 18w77a: Contest Clarification System Finished
+ 

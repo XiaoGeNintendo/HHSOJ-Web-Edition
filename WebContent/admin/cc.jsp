@@ -44,6 +44,13 @@
 		<button id="inclen">Increase length by x minutes</button>
 		<hr/>
 		<h2>Clarifications</h2>
+		Draft a new announcement:
+		<form name="new" action="dr.jsp?id=<%=c.getId() %>" method="POST">
+			<textarea name="question" placeholder="Question text" rows="5" cols="40"></textarea> <br/>
+			<textarea name="answer" placeholder="Answer Text" rows="5" cols="40"></textarea> <br/>
+			<input type="submit" value="Send">
+		</form>
+		
 		<table border="1" width="80%">
 			<tr>
 				<th width="10%">Asker</th>
@@ -64,7 +71,7 @@
 						<td><%=q.getAnswer() %></td>
 						<td><%=(q.isOpen()?"Y":"N") %></td>
 						<td>
-							<form action="wr.jsp?cid=<%=c.getId()%>&qid=<%=cnt%>">
+							<form action="wr.jsp?cid=<%=c.getId()%>&qid=<%=cnt%>" method="post">
 								<textarea name="response" rows="5" cols="40" placeholder="Write response here"></textarea>
 								<input type="submit" value="Submit"/>
 							</form>
