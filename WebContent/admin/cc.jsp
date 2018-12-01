@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Question"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Contest"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.ContestHelper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -38,9 +39,45 @@
 		<h2>Config</h2>
 		<a href="sys.jsp?id=<%=c.getId() %>">Run system test</a> <br/>
 		<a href="pr.jsp?id=<%=c.getId() %>">Pend Rating Change</a> <br/>
-		<input id="time" placeholder="input 'x' "/>
+		<input id="time" placeholder="input 'x' negative is ok too"/>
 		<button id="delay">Delay by x minutes</button>
 		<button id="inclen">Increase length by x minutes</button>
+		<hr/>
+		<h2>Clarifications</h2>
+		<table border="1" width="80%">
+			<tr>
+				<th width="10%">Asker</th>
+				<th width="25%">Question</th>
+				<th width="25%">Answer</th>
+				<th width="5%">Open?</th>
+				<th width="25%">Write new answer</th>
+				<th width="10%">Toggle Public/Private</th>
+			</tr>
+			
+			<%
+				int cnt=0;
+				for(Question q:c.getQuestions()){ 
+			%>
+					<tr>
+						<td><%=q.getAsker() %></td>
+						<td><%=q.getQuestion() %></td>
+						<td><%=q.getAnswer() %></td>
+						<td><%=(q.isOpen()?"Y":"N") %></td>
+						<td>
+							<form action="wr.jsp?cid=<%=c.getId()%>&qid=<%=cnt%>">
+								<textarea name="response" rows="5" cols="40" placeholder="Write response here"></textarea>
+								<input type="submit" value="Submit"/>
+							</form>
+						</td>
+						<td>
+							<a href="toggle.jsp?cid=<%=c.getId()%>&qid=<%=cnt%>">Toggle</a>
+						</td>
+					</tr>
+			<%
+				cnt++;
+				}
+			%>
+		</table>
 		
 		<script>
 			//Post function
