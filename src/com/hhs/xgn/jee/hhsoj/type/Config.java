@@ -6,6 +6,10 @@ public class Config {
 	private String windowsPassword;
 	private String adminUsername;
 	private String adminPassword;
+	private String codeforcesUsername;
+	private String codeforcesPassword;
+	private boolean enableRemoteJudge;
+	private long queryTime;
 	
 	public boolean isEnableCPP11() {
 		return enableCPP11;
@@ -36,6 +40,30 @@ public class Config {
 	}
 	public void setAdminPassword(String adminPassword) {
 		this.adminPassword = adminPassword;
+	}
+	public String getCodeforcesUsername() {
+		return codeforcesUsername;
+	}
+	public void setCodeforcesUsername(String codeforcesUsername) {
+		this.codeforcesUsername = codeforcesUsername;
+	}
+	public String getCodeforcesPassword() {
+		return codeforcesPassword;
+	}
+	public void setCodeforcesPassword(String codeforcesPassword) {
+		this.codeforcesPassword = codeforcesPassword;
+	}
+	public boolean isEnableRemoteJudge() {
+		return enableRemoteJudge;
+	}
+	public void setEnableRemoteJudge(boolean enableRemoteJudge) {
+		this.enableRemoteJudge = enableRemoteJudge;
+	}
+	public long getQueryTime() {
+		return queryTime;
+	}
+	public void setQueryTime(long queryTime) {
+		this.queryTime = queryTime;
 	}
 	
 }

@@ -144,6 +144,13 @@ Oh, the highlighter and editor are provided by [Mr.Wang](http://www.wangeditor.c
 
 The Elo editorial is here [Elo](https://bbs.gameres.com/thread_228018_1_1.html) . (Sorry it's Chinese too).
 
+Thanks for Mike Mirzayanov for the great Codeforces System and API. 
+
+```
+Codeforces (c) Copyright 2010-2018 Mike Mirzayanov
+The only programming contests Web 2.0 platform
+```
+
 You can donate us by Wechat or Paypal :) But that's useless, isn't it? So the donate address will not be public.
 
 
@@ -162,6 +169,10 @@ From version 18w35a you can find the file "hhsoj/config.json" then change the se
     "windowsPassword":"", //the windows system password
     "adminUsername":"admin", //the admin username (after 18w46a)
     "adminPassword":"admin" //the admin password (after 18w46a)
+    "enableRemoteJudge":true, //Enable viewing/submitting problems to Codeforces? (after 18w80a)
+    "codeforcesUsername":"", //The Codeforces username the system will submit solutions on. (after 18w80a)
+    "codeforcesPassword":"", //The Codeforces password (after 18w80a)
+    "queryTime":7200000 //What's the query internal. In Milliseconds. Smaller number means more accurate results but may takes longer time to load pages (after 18w80a)
 }
 ```
 
@@ -350,3 +361,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w78e: Readme update for 100th commit celebration
  
 - 18w79b: XGN's CSS update
+
+- 18w80a: Two new problemsets: Contest Problemset/ Codeforces Problemset

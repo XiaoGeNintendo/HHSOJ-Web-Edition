@@ -112,6 +112,7 @@
 		<pre>
 Use "C"+contestId+index to submit problems that are in the contest.
 For example, "C1A" means the problem A in the contest id=1
+This is for practise only. To submit during an active contest, please use the Contest Submit System. 
 
 For Java users:
  Out java version is 1.8.0.
