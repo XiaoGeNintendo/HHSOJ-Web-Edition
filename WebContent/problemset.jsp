@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
-<title>HHSOJ-Problems</title>
+<title>HHSOJ-Problems</title> 
 <style type="text/css">
 	#problem-table {
 		border-collapse: collapse;
@@ -36,6 +36,14 @@
 	<i id="subtitle">Solve them? Impossible! --Zzzyt</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=problemset"></jsp:include>
+	
+	<a href="#" class="problemset pselect">Practice Problemset</a>
+	<a href="cpset.jsp" class="problemset">Contest Problemset</a>
+	<a href="cfset.jsp" class="problemset">Codeforces Problemset</a>
+	
+	<br/>
+	<br/>
+	
 	<table id="problem-table">
 		<tr>
 			<th width="10%">ID</th>

@@ -223,3 +223,23 @@ body p,span,a{
 /* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
 	font-weight:bold;
 }
+
+.problemset {
+	font-weight:bold;
+	font-family:'Trebuchet MS', Helvetica, sans-serif;
+	margin-left: 20px;
+	margin-right: 20px;
+	font: 20px;
+	color: #000000;
+	text-decoration: none;
+	float:left;
+	display:block;
+	text-decoration: none;
+	
+}
+
+.pselect{
+	border:2px solid #66ccff;
+	border-radius:25px;
+	box-shadow: 5px 5px 5px #787878;
+}

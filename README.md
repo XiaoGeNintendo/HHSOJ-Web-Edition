@@ -349,3 +349,4 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 
 - 18w78e: Readme update for 100th commit celebration
  
+- 18w79b: XGN's CSS update
