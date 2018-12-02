@@ -8,6 +8,8 @@ import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
 import com.hhs.xgn.jee.hhsoj.db.ContestHelper;
 import com.hhs.xgn.jee.hhsoj.db.ProblemHelper;
 import com.hhs.xgn.jee.hhsoj.db.SubmissionHelper;
+import com.hhs.xgn.jee.hhsoj.remote.CodeforcesHelper;
+import com.hhs.xgn.jee.hhsoj.remote.CodeforcesSubmission;
 import com.hhs.xgn.jee.hhsoj.type.Config;
 import com.hhs.xgn.jee.hhsoj.type.Contest;
 import com.hhs.xgn.jee.hhsoj.type.Problem;
@@ -45,6 +47,14 @@ public class JudgingThread extends Thread {
 
 				Thread.sleep(1000);
 
+				
+				
+				if (!checkEnvironment(s)) {
+					continue;
+				}
+
+				copyFiles(s, p);
+
 				if(p.getType()==Problem.CODEFORCES){
 					//Codeforces Special Judge
 					if(!con.isEnableRemoteJudge()){
@@ -55,16 +65,10 @@ public class JudgingThread extends Thread {
 						continue;
 					}
 					
-					submitCodeforces(s);
+					submitCodeforces(s,con);
 					continue;
 				}
 				
-				if (!checkEnvironment(s)) {
-					continue;
-				}
-
-				copyFiles(s, p);
-
 				s.setNowTest(0);
 				s.setMaxTest(testfiles.list().length);
 
@@ -134,13 +138,46 @@ public class JudgingThread extends Thread {
 		}
 	}
 
-	/**
-	 * To submit on Codeforces
-	 * @param s 
-	 */
-	private void submitCodeforces(Submission s) {
-		s.setVerdict("Submit Failed");
-		new SubmissionHelper().storeStatus(s);
+	private void submitCodeforces(Submission s,Config c) {
+		
+		try{
+			System.out.println("===========Python Start=============");
+			ProcessBuilder pb=new ProcessBuilder("python","cf.py",c.getCodeforcesUsername(),c.getCodeforcesPassword(),s.getProb().substring(1),"Program."+getExtension(s.getLang()),s.getLang());
+			pb.directory(new File("hhsoj/judge/"));
+			pb.inheritIO();
+			Process p=pb.start();
+//			System.out.println("start waiting for");
+			p.waitFor();
+			p.destroyForcibly();
+			int exitcode=p.exitValue();
+			if(exitcode!=0){
+				s.setVerdict("Submit Failed");
+				s.setCompilerComment("The spider exit code is "+exitcode);
+				new SubmissionHelper().storeStatus(s);
+				return;
+			}
+			
+			//Start Listening On Codeforces every 1000ms
+			s.setVerdict("Judging");
+			s.getResults().add(new TestResult("??", 0, 0, "??", "??"));
+			while(true){
+				Thread.sleep(1000);
+				CodeforcesSubmission cs=CodeforcesHelper.getLastSubmission();
+				
+				s.setVerdict(cs.getExchangeVerdict());
+				s.setNowTest(cs.getPassedTestCount()+1);
+				s.getResults().set(0,new TestResult(cs.getVerdict(),cs.getTimeConsumedMillis(),cs.getMemoryConsumedBytes(),"??","??"));
+				
+				new SubmissionHelper().storeStatus(s);
+				if(!cs.getVerdict().equals("TESTING")){
+					break;
+				}
+			}
+		}catch(Exception e){
+			s.setVerdict("Judgement Failed");
+			s.setCompilerComment(e+"");
+			new SubmissionHelper().storeStatus(s);
+		}
 	}
 
 	private Config readGlobalConfig() {
@@ -572,15 +609,17 @@ public class JudgingThread extends Thread {
 		System.out.println("Copying files");
 
 		// Copy Solution
-		File oldSol = new File(p.getPath() + "/" + p.getArg("Solution"));
-		File newSol = new File("hhsoj/judge/sol.exe");
-		copyFile(oldSol, newSol);
-
-		// Copy Checker
-		File oldChk = new File(p.getPath() + "/" + p.getArg("Checker"));
-		File newChk = new File("hhsoj/judge/checker.exe");
-		copyFile(oldChk, newChk);
-
+		if(p.getType()!=Problem.CODEFORCES){
+			File oldSol = new File(p.getPath() + "/" + p.getArg("Solution"));
+			File newSol = new File("hhsoj/judge/sol.exe");
+			copyFile(oldSol, newSol);
+	
+			// Copy Checker
+			File oldChk = new File(p.getPath() + "/" + p.getArg("Checker"));
+			File newChk = new File("hhsoj/judge/checker.exe");
+			copyFile(oldChk, newChk);
+		}
+		
 		// Copy User's Program
 		PrintWriter pw = new PrintWriter("hhsoj/judge/Program." + getExtension(s.getLang()));
 		pw.println(s.getCode());
@@ -596,6 +635,10 @@ public class JudgingThread extends Thread {
 		File njt=new File("hhsoj/judge/test.jar");
 		copyFile(jvt,njt);
 		
+		//Copy CF Submiter
+		File cfs=new File("hhsoj/runtime/SubmitCF.py");
+		File ncf=new File("hhsoj/judge/cf.py");
+		copyFile(cfs,ncf);
 	}
 
 	private String getExtension(String lang) {

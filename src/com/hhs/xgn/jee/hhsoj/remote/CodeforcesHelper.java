@@ -51,7 +51,7 @@ public class CodeforcesHelper {
 	 * Get the Codeforces Problems according to the API
 	 * @return
 	 */
-	public static List<CodeforcesProblem> getCodeforcesProblems(){
+	public synchronized static List<CodeforcesProblem> getCodeforcesProblems(){
 		Config c=new ConfigLoader().load();
 		if(c.isEnableRemoteJudge()){
 			//OK. Now check time
@@ -79,6 +79,9 @@ public class CodeforcesHelper {
 		
 		try{
 			String s=get("https://codeforces.com/api/problemset.problems");
+			
+			System.out.println("Webpage Downloaded");
+			
 			JsonParser jp=new JsonParser();
 			JsonObject root=(JsonObject) jp.parse(s);
 			
@@ -99,6 +102,34 @@ public class CodeforcesHelper {
 
 		}catch(Exception e){
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Get the last submission on Codeforces
+	 */
+	public static CodeforcesSubmission getLastSubmission(){
+		
+		try{
+			Config c=new ConfigLoader().load();
+			if(!c.isEnableRemoteJudge()){
+				return null;
+			}
+			String res=get("http://codeforces.com/api/user.status?handle="+c.getCodeforcesUsername()+"&from=1&count=1");
+			JsonParser jp=new JsonParser();
+			JsonObject root=(JsonObject)jp.parse(res);
+			String status=root.get("status").getAsString();
+			
+			if(!status.equals("OK")){
+				String message=root.get("comment").getAsString();
+				throw new Exception("Failed:"+message);
+			}
+			
+			JsonArray ja=root.get("result").getAsJsonArray();
+			return new Gson().fromJson(ja.get(0),CodeforcesSubmission.class);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
 		}
 	}
 	/**
