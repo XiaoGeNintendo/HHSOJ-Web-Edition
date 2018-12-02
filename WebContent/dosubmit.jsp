@@ -25,6 +25,9 @@
 				return;
 			}
 		}
+		if(p.getType()==Problem.CODEFORCES){
+			
+		}
 	}catch(Exception e){
 		out.println("No such problem.");
 		out.println("<a href=\"submit.jsp\">Resubmit</a>");

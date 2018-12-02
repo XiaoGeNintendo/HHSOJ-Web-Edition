@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.hhs.xgn.jee.hhsoj.remote.CodeforcesHelper;
+import com.hhs.xgn.jee.hhsoj.remote.CodeforcesProblem;
 import com.hhs.xgn.jee.hhsoj.type.Problem;
 
 /**
@@ -33,6 +35,15 @@ public class ProblemHelper {
 	}
 	
 	/**
+	 * Returns the Codeforces Problem by the String
+	 * @param s
+	 * @return
+	 */
+	public CodeforcesProblem getProblemDataR(String s){
+		s=s.substring(1);
+		return CodeforcesHelper.getCodeforcesProblem(s);
+	}
+	/**
 	 * Get the problem data by a unique problem name
 	 * @param s
 	 * @return
@@ -40,6 +51,11 @@ public class ProblemHelper {
 	public synchronized Problem getProblemData(String s){
 		if(s.startsWith("C")){
 			return readContestProblem(s);
+		}
+		if(s.startsWith("R")){
+			Problem p=new Problem();
+			p.setType(Problem.CODEFORCES);
+			return p;
 		}
 		return readSingleProblem(s);
 	}

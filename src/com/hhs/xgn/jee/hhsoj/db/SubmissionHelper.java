@@ -61,7 +61,11 @@ public class SubmissionHelper {
 				String s=br.readLine();
 				br.close();
 				
-				sb.add(gs.fromJson(s, Submission.class));
+				Submission sss=gs.fromJson(s, Submission.class);
+				if(sss!=null){
+					sb.add(sss);
+				}
+				
 			}catch(Exception e){
 				e.printStackTrace();
 			}

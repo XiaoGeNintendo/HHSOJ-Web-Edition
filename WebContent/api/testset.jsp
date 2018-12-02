@@ -8,6 +8,10 @@
 try{
 	String probId=request.getParameter("id");
 	if(probId==null) throw new Exception("1");
+	if(probId.startsWith("R")){
+		out.println("<option value=\"cf\">Codeforces</option>");
+		return;
+	}
 	Problem p=new ProblemHelper().getProblemData(probId);
 	if(p==null) throw new Exception("2");
 	

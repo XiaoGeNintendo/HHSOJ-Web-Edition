@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.remote.CodeforcesProblem"%>
 <%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -29,6 +30,12 @@
 			if (sid.startsWith("C")) {
 				Problem p = new ProblemHelper().getProblemData(sid);
 				response.sendRedirect("vcp.jsp?cid=" + p.getConId() + "&pid=" + p.getConIndex());
+				return;
+			}
+			if(sid.startsWith("R")){
+				//Codeforces Problem
+				CodeforcesProblem cp=new ProblemHelper().getProblemDataR(sid);
+				response.sendRedirect("https://codeforces.com/contest/"+cp.getContestId()+"/problem/"+cp.getIndex());
 				return;
 			}
 			id = Integer.parseInt(request.getParameter("id"));

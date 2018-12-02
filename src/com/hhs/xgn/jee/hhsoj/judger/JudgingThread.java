@@ -33,6 +33,8 @@ public class JudgingThread extends Thread {
 			Submission s = TaskQueue.getFirstSubmission();
 			Problem p = new ProblemHelper().getProblemData(s.getProb());
 			
+			
+			
 			try {
 
 				File testfiles = new File(p.getPath() + "/"+s.getTestset());
@@ -43,6 +45,20 @@ public class JudgingThread extends Thread {
 
 				Thread.sleep(1000);
 
+				if(p.getType()==Problem.CODEFORCES){
+					//Codeforces Special Judge
+					if(!con.isEnableRemoteJudge()){
+						//Not allowed
+						s.setVerdict("Submit Failed");
+						s.setCompilerComment("Remote Judge is not allowed");
+						new SubmissionHelper().storeStatus(s);
+						continue;
+					}
+					
+					submitCodeforces(s);
+					continue;
+				}
+				
 				if (!checkEnvironment(s)) {
 					continue;
 				}
@@ -116,6 +132,15 @@ public class JudgingThread extends Thread {
 				new SubmissionHelper().storeStatus(s);
 			}
 		}
+	}
+
+	/**
+	 * To submit on Codeforces
+	 * @param s 
+	 */
+	private void submitCodeforces(Submission s) {
+		s.setVerdict("Submit Failed");
+		new SubmissionHelper().storeStatus(s);
 	}
 
 	private Config readGlobalConfig() {

@@ -363,3 +363,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w79b: XGN's CSS update
 
 - 18w80a: Two new problemsets: Contest Problemset/ Codeforces Problemset
+
+- 18w81a: Be prepared for Codeforces submission

@@ -114,6 +114,10 @@ Use "C"+contestId+index to submit problems that are in the contest.
 For example, "C1A" means the problem A in the contest id=1
 This is for practise only. To submit during an active contest, please use the Contest Submit System. 
 
+User "R"+contestId+index to submit a Codeforces problem.
+For example, "R1A" means submitting to "Theater Square"
+Notice that if the admin doesn't allow remote judge, then you can't submit
+
 For Java users:
  Out java version is 1.8.0.
  You should name your class "Program" and set it public.

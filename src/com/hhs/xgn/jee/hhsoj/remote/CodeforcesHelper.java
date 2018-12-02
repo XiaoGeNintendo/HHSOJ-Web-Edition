@@ -32,6 +32,20 @@ public class CodeforcesHelper {
 	 */
 	public static List<CodeforcesProblem> problems=new ArrayList<>();
 	
+	/**
+	 * Given problem conId and index. Returns the problem
+	 * @param s
+	 * @return
+	 */
+	public static CodeforcesProblem getCodeforcesProblem(String s){
+		List<CodeforcesProblem> l=getCodeforcesProblems();
+		for(CodeforcesProblem c:l){
+			if((c.getContestId()+c.getIndex()).equals(s)){
+				return c;
+			}
+		}
+		return null;
+	}
 	
 	/**
 	 * Get the Codeforces Problems according to the API
@@ -47,7 +61,6 @@ public class CodeforcesHelper {
 			if(lastQuery<expectedLastTime){
 				//Out-of-date data. Will update
 				updateCFProblems();
-				lastQuery=System.currentTimeMillis();
 			}
 			
 			return problems;
@@ -61,6 +74,8 @@ public class CodeforcesHelper {
 	 * Update Codeforce Problem Database
 	 */
 	public static void updateCFProblems() {
+		System.out.println("Updating Codeforces Database");
+		long now=System.currentTimeMillis();
 		
 		try{
 			String s=get("https://codeforces.com/api/problemset.problems");
@@ -78,6 +93,10 @@ public class CodeforcesHelper {
 				String message=root.get("comment").getAsString();
 				throw new Exception("Status check failed:"+status+":"+message);
 			}
+			
+			System.out.println("Success:"+(System.currentTimeMillis()-now)+"ms cost.");
+			lastQuery=System.currentTimeMillis();
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}
