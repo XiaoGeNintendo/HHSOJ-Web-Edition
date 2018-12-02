@@ -1,7 +1,11 @@
 {
-    "enableCPP11":false,
+    "enableCPP11":true,
     "windowsUsername":"",
     "windowsPassword":"",
     "adminUsername":"admin",
-    "adminPassword":"admin"
+    "adminPassword":"admin",
+    "enableRemoteJudge":false,
+    "codeforcesUsername":"",
+    "codeforcesPassword":"",
+    "queryTime":7200000
 }

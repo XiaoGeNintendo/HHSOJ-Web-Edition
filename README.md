@@ -179,7 +179,7 @@ From version 18w35a you can find the file "hhsoj/config.json" then change the se
 # Remote Judge
 Remote Judge is a new feature after 18w82c. It allows users to submit/search for problems on [Codeforces](https://codeforces.com) By enable it, you can set "enableRemoteJudge" to true in config.json and fill in the Codeforces username and password.
 
-**Please use this feature carefully because if Codeforces crashes down, HHSOJ may crash down too because of the single-thread judging feature**
+**Please use this feature carefully because if Codeforces crashes down, HHSOJ may crash down too because of the single-thread judging feature. And it will cause many resource usage**
 
 # Rating System of HHSOJ
 We used simple Elo rating system for HHSOJ. It is that:
@@ -372,3 +372,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w81a: Be prepared for Codeforces submission
 
 - 18w82c: Supports Remote Judge!
+
+- 18w83c: HHSOJ Update
