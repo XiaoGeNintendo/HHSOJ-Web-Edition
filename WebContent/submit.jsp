@@ -62,11 +62,11 @@
 					document.getElementById("testset").innerHTML = xmlhttp.responseText;
 				}
 			}
-			
-			var href=window.location.href;
-			href=href.slice(0,href.lastIndexOf("/"));
-			xmlhttp.open("GET", href+"/api/testset.jsp?id="+document.getElementById("pid").value,
-					true);
+
+			var href = window.location.href;
+			href = href.slice(0, href.lastIndexOf("/"));
+			xmlhttp.open("GET", href + "/api/testset.jsp?id="
+					+ document.getElementById("pid").value, true);
 			xmlhttp.send();
 		}
 	</script>
@@ -87,49 +87,56 @@
 
 		<form name="submit" action="dosubmit.jsp"
 			onsubmit="return callsubmit()" method="post">
-			Problem:
-			<input type="text" id="pid" name="probid" onkeyup="call()" value="<%=(request.getParameter("id") == null ? "" : request.getParameter("id"))%>">
-			<br /> Code: <br />
-			<textarea name="code" cols="70" rows="20" id="code"></textarea>
-			<br /> 
-			Language: <input type="radio" name="lang" value="java">
-			<acronym title="Java1.8.0 : Name your class 'Program' and don't place it in a package!">Java</acronym>
-			<input type="radio" name="lang" value="cpp">
-			<acronym title="C++11 : Don't upload harmful code thx :(">C++</acronym> 
-			<input type="radio" name="lang" value="python"> 
-			<acronym title="Python 3.6 : A short and powerful language">Python</acronym>
-			<br /> 
-			Testsets: 
-			<select id="testset" name="testset">
-				<option value="tests">No testsets...</option>
-			</select> 
-			<br/>
-			<input type="submit" name="submit" value="Submit">
+			<p>
+				Problem: <input type="text" id="pid" name="probid" onkeyup="call()"
+					value="<%=(request.getParameter("id") == null ? "" : request.getParameter("id"))%>">
+			</p>
+
+			<p>
+				Language: <input type="radio" name="lang" value="java"> <acronym
+					title="Java1.8.0 : Name your class 'Program' and don't place it in a package!">Java</acronym>
+				<input type="radio" name="lang" value="cpp"> <acronym
+					title="C++11 : Don't upload harmful code thx :(">C++</acronym> <input
+					type="radio" name="lang" value="python"> <acronym
+					title="Python 3.6 : A short and powerful language">Python</acronym>
+			<p>
+			<p>
+				Testsets: <select id="testset" name="testset">
+					<option value="tests">No testsets...</option>
+				</select>
+			</p>
+
+			<br />
+			<p>Code:</p>
+
+			<textarea name="code" cols="70" rows="20" id="code"
+				style="width: 80%; max-width:800px;"></textarea>
+			<br /> <input type="submit" name="submit" value="Submit"
+				style="height: 30px; width: 100px;">
 		</form>
+	</center>
+	<br/>
+	<hr />
 
-		<hr />
 
-		<pre>
+	<pre>
 Use "C"+contestId+index to submit problems that are in the contest.
-For example, "C1A" means the problem A in the contest id=1
+For example, "C1A" means the problem A in the contest id=1.
 This is for practise only. To submit during an active contest, please use the Contest Submit System. 
 
 User "R"+contestId+index to submit a Codeforces problem.
-For example, "R1A" means submitting to "Theater Square"
-Notice that if the admin doesn't allow remote judge, then you can't submit
+For example, "R1A" means submitting to "Theater Square".
+Notice that if the admin doesn't allow remote judge, then you can't submit.
 
 For Java users:
- Out java version is 1.8.0.
- You should name your class "Program" and set it public.
- Don't put your code in a package
- If you get "Judgement Failed" , please check if you put the code into a package.
- And more, don't use stuff like "System.exit(0)" to terminal your program.
- Otherwise a "Runtime Error" may be raised. 
+  Our java version is 1.8.0.
+  You should name your class "Program" and set it public.
+  Don't put your code in a package,If you get "Judgement Failed",please check if you put the code into a package.
+  And more, don't use stuff like "System.exit(0)" to terminal your program,Otherwise a "Runtime Error" may be raised. 
 		</pre>
-	</center>
 
 	<script>
-		call()	
+		call()
 	</script>
 	<%
 		}

@@ -130,7 +130,7 @@ body p,span,a{
 }
 
 #seperator {
-	height: 50px;
+	height: 30px;
 }
 
 #marquee {
@@ -227,19 +227,17 @@ body p,span,a{
 .problemset {
 	font-weight:bold;
 	font-family:'Trebuchet MS', Helvetica, sans-serif;
-	margin-left: 20px;
-	margin-right: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
 	font: 20px;
 	color: #000000;
 	text-decoration: none;
 	float:left;
 	display:block;
 	text-decoration: none;
-	
+	padding:3px;
 }
 
 .pselect{
-	border:2px solid #66ccff;
-	border-radius:25px;
-	box-shadow: 5px 5px 5px #787878;
+	border-bottom: 3px solid #66ccff;
 }
