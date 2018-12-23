@@ -24,7 +24,7 @@ public class BlogHelper {
 		b.setTime(System.currentTimeMillis());
 		
 		try{
-			PrintWriter pw=new PrintWriter(new File("hhsoj/blog/"+id));
+			PrintWriter pw=new PrintWriter(new File(ConfigLoader.getPath()+"/blog/"+id));
 			pw.println(gs.toJson(b));
 			pw.close();
 		}catch(Exception e){
@@ -34,7 +34,7 @@ public class BlogHelper {
 	
 	public synchronized void refreshBlog(Blog b){
 		try{
-			PrintWriter pw=new PrintWriter("hhsoj/blog/"+b.getId());
+			PrintWriter pw=new PrintWriter(ConfigLoader.getPath()+"/blog/"+b.getId());
 			pw.println(new Gson().toJson(b));
 			pw.close();
 		}catch(Exception e){
@@ -60,7 +60,7 @@ public class BlogHelper {
 	}
 	
 	public synchronized ArrayList<Blog> getAllBlogs(){
-		File f=new File("hhsoj/blog");
+		File f=new File(ConfigLoader.getPath()+"/blog");
 		ArrayList<Blog> arr=new ArrayList<Blog>();
 		
 		for(File bl:f.listFiles()){
@@ -85,7 +85,7 @@ public class BlogHelper {
 	}
 	
 	public synchronized int getBlogCount(){
-		File f=new File("hhsoj/blog");
+		File f=new File(ConfigLoader.getPath()+"/blog");
 		if(!f.exists()){
 			f.mkdirs();
 		}

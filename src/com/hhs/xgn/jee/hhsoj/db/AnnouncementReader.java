@@ -13,7 +13,7 @@ public class AnnouncementReader {
 
 	public synchronized String readAnnouncement(){
 		try{
-			File f=new File("hhsoj/announcement.txt");
+			File f=new File(ConfigLoader.getPath()+"/announcement.txt");
 			if(!f.exists()){
 				f.createNewFile();
 			}

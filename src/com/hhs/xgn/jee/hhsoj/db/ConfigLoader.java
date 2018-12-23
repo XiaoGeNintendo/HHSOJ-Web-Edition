@@ -15,6 +15,28 @@ import com.hhs.xgn.jee.hhsoj.type.Config;
  */
 public class ConfigLoader {
 	
+	static String RootPath=null;
+	
+	public static String getPath() {
+		if(RootPath==null) {
+			if(System.getProperty("os.name").toLowerCase().indexOf("win")>=0){
+				//Windows
+				javax.swing.filechooser.FileSystemView fsv = javax.swing.filechooser.FileSystemView.getFileSystemView(); 
+				RootPath=fsv.getHomeDirectory().getAbsolutePath();
+				RootPath+="\\hhsoj";
+			}
+			else if(System.getProperty("os.name").toLowerCase().indexOf("lunix")>=0) {
+				//Lunix
+				RootPath="/usr/hhsoj";
+			}
+			else {
+				RootPath="hhsoj";
+			}
+			System.out.println("HHSOJ root folder=\""+RootPath+"\"");
+		}
+		return RootPath;
+	}
+	
 	public Config load(){
 		
 		try{

@@ -19,7 +19,7 @@ public class WindowsHelper {
 	public synchronized String getUser(){
 		
 		try{
-			File con=new File("hhsoj/user.txt");
+			File con=new File(ConfigLoader.getPath()+"/user.txt");
 			if(con.exists()==false){
 				con.createNewFile();
 			}
@@ -39,7 +39,7 @@ public class WindowsHelper {
 	public synchronized String getPsd(){
 		
 		try{
-			File con=new File("hhsoj/psd.txt");
+			File con=new File(ConfigLoader.getPath()+"/psd.txt");
 			if(con.exists()==false){
 				con.createNewFile();
 			}

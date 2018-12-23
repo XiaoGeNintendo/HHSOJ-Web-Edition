@@ -22,9 +22,9 @@ public class UserHelper {
 		//Init
 		ArrayList<Users> arr=new ArrayList<Users>();
 		
-		new File("hhsoj").mkdirs();
+		new File(ConfigLoader.getPath()).mkdirs();
 		
-		File f=new File("hhsoj/users");
+		File f=new File(ConfigLoader.getPath()+"/users");
 		
 		if(!f.exists()){
 			f.mkdirs();
@@ -66,7 +66,7 @@ public class UserHelper {
 	}
 	
 	public synchronized int getSize(){
-		File f=new File("hhsoj/users");
+		File f=new File(ConfigLoader.getPath()+"/users");
 		return f.list().length;
 	}
 	
@@ -86,10 +86,10 @@ public class UserHelper {
 		
 		int sz=getSize();
 		
-		String path="hhsoj/users";
+		String path=ConfigLoader.getPath()+"/users";
 		
-		if(new File("hhsoj/users").exists()==false){
-			new File("hhsoj/users").mkdirs();
+		if(new File(ConfigLoader.getPath()+"/users").exists()==false){
+			new File(ConfigLoader.getPath()+"/users").mkdirs();
 		}
 		
 		try{
@@ -108,7 +108,7 @@ public class UserHelper {
 		ArrayList<Users> a=getAllUsers();
 		for(Users u:a){
 			if(u.getUsername().equals(username)){
-				new File("hhsoj/users/"+u.getId()).delete();
+				new File(ConfigLoader.getPath()+"/users/"+u.getId()).delete();
 				return;
 			}
 		}
@@ -120,7 +120,7 @@ public class UserHelper {
 	 */
 	public synchronized void refreshUser(Users u){
 		try{
-			PrintWriter pw=new PrintWriter("hhsoj/users/"+u.getId());
+			PrintWriter pw=new PrintWriter(ConfigLoader.getPath()+"/users/"+u.getId());
 			pw.println(u.toJson());
 			pw.close();
 		}catch(Exception e){

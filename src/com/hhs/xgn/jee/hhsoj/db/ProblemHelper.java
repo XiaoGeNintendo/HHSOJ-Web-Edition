@@ -20,7 +20,7 @@ import com.hhs.xgn.jee.hhsoj.type.Problem;
 public class ProblemHelper {
 	
 	public synchronized ArrayList<Problem> getAllProblems(){
-		File f=new File("hhsoj/problems");
+		File f=new File(ConfigLoader.getPath()+"/problems");
 		if(!f.exists()){
 			f.mkdirs();
 		}
@@ -111,7 +111,7 @@ public class ProblemHelper {
 	}
 	
 	public synchronized Problem readSingleProblem(String folder){
-		return readSingleProblem(folder,"hhsoj/problems",true);
+		return readSingleProblem(folder,ConfigLoader.getPath()+"/problems",true);
 	}
 	
 	/* Folder Structure

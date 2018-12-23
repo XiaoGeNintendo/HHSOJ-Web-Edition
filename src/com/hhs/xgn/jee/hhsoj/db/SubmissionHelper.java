@@ -22,7 +22,7 @@ public class SubmissionHelper {
 	 * @return
 	 */
 	public synchronized int getNewId(){
-		File f=new File("hhsoj/submission");
+		File f=new File(ConfigLoader.getPath()+"/submission");
 		if(!f.exists()){
 			f.mkdirs();
 		}
@@ -38,7 +38,7 @@ public class SubmissionHelper {
 		try{
 			Gson gson=new Gson();
 			String json=gson.toJson(s);
-			File f=new File("hhsoj/submission/"+s.getId());
+			File f=new File(ConfigLoader.getPath()+"/submission/"+s.getId());
 			PrintWriter pw=new PrintWriter(f);
 			pw.println(json);
 			pw.close();
@@ -51,7 +51,7 @@ public class SubmissionHelper {
 	public synchronized ArrayList<Submission> getAllSubmissions(){
 		ArrayList<Submission> sb=new ArrayList<Submission>();
 		
-		File f=new File("hhsoj/submission");
+		File f=new File(ConfigLoader.getPath()+"/submission");
 		
 		Gson gs=new Gson();
 		for(File sub:f.listFiles()){
@@ -78,7 +78,7 @@ public class SubmissionHelper {
 	public synchronized Submission getSubmission(int id){
 		
 		try{
-			File f=new File("hhsoj/submission/"+id);
+			File f=new File(ConfigLoader.getPath()+"/submission/"+id);
 			Gson gs=new Gson();
 			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(f)));
 			String s=br.readLine();
