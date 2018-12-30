@@ -34,7 +34,7 @@ public class UserHelper {
 			try{
 				
 				
-				BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(ff)));
+				BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(ff),"utf-8"));
 				String json=br.readLine();
 				
 				br.close();

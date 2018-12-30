@@ -4,9 +4,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <%
+	request.setCharacterEncoding("utf-8");
+
 	String html=request.getParameter("html");
 	String user=(String)session.getAttribute("username");
 	String title=request.getParameter("title");
+	
+	//System.out.println(html+" "+user+" "+title);
+	
 	if(html==null || user==null || html.equals("") || user.equals("") || title==null || title.equals("")){
 		out.println("An error occurred while processing your operation.");
 		out.println("Please go back to another page.");

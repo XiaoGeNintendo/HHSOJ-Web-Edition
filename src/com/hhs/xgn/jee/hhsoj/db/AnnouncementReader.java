@@ -18,7 +18,7 @@ public class AnnouncementReader {
 				f.createNewFile();
 			}
 			
-			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(f),"utf-8"));
 			String anno=br.readLine();
 			br.close();
 			return anno;

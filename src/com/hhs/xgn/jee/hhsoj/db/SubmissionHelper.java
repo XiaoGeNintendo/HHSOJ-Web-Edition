@@ -57,7 +57,7 @@ public class SubmissionHelper {
 		for(File sub:f.listFiles()){
 			
 			try{
-				BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(sub)));
+				BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(sub),"utf-8"));
 				String s=br.readLine();
 				br.close();
 				

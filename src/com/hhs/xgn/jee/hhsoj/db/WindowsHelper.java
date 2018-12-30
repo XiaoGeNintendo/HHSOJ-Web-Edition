@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
  * Windows Helper
  * Get windows password and username
  * @author XGN
- *
+ * @deprecated
  */
 public class WindowsHelper {
 	/**

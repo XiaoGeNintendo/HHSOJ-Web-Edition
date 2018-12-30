@@ -50,7 +50,7 @@ public class ContestHelper {
 		if(full.exists()){
 			//Full file exists
 			try{
-				BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(full)));
+				BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(full),"utf-8"));
 				String json=br.readLine();
 				br.close();
 				return new Gson().fromJson(json, Contest.class);

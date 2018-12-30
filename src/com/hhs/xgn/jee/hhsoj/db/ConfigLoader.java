@@ -32,7 +32,7 @@ public class ConfigLoader {
 			else {
 				RootPath="hhsoj";
 			}
-			System.out.println("HHSOJ root folder=\""+RootPath+"\"");
+//			System.out.println("HHSOJ root folder=\""+RootPath+"\"");
 		}
 		return RootPath;
 	}

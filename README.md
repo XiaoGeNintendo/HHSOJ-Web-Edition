@@ -374,3 +374,6 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w82c: Supports Remote Judge!
 
 - 18w83c: HHSOJ Update
+
+- 18w84d: Fixed that problem statement and blog contains random characters by setting the charset into utf-8
+

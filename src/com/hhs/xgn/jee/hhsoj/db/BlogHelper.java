@@ -23,8 +23,9 @@ public class BlogHelper {
 		b.setId(id);
 		b.setTime(System.currentTimeMillis());
 		
+		
 		try{
-			PrintWriter pw=new PrintWriter(new File(ConfigLoader.getPath()+"/blog/"+id));
+			PrintWriter pw=new PrintWriter(new File(ConfigLoader.getPath()+"/blog/"+id),"utf-8");
 			pw.println(gs.toJson(b));
 			pw.close();
 		}catch(Exception e){
@@ -66,7 +67,7 @@ public class BlogHelper {
 		for(File bl:f.listFiles()){
 			
 			try{
-				BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(bl)));
+				BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(bl),"utf-8"));
 				
 				Blog b=new Gson().fromJson(br.readLine(), Blog.class);
 				if(b==null){
