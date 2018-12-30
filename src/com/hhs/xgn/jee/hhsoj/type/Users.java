@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.google.gson.Gson;
+import com.hhs.xgn.jee.hhsoj.db.ContestHelper;
+import com.hhs.xgn.jee.hhsoj.db.SubmissionHelper;
 
 /**
  * The user type. it's javabean
@@ -24,8 +27,80 @@ public class Users {
 	private Map<Integer, Integer> blogStatus;
 	private String userPic;
 	
+	/**
+	 * Return the languages in Javascript Text
+	 * @return
+	 */
+	public String JSgetLang(){
+		ArrayList<Submission> arr=new SubmissionHelper().getAllSubmissions();
+		HashMap<String, Integer> cnt=new HashMap<>();
+		
+		for(Submission s:arr){
+			if(s.getUser().equals(username)){
+				cnt.put(s.getLang(), cnt.getOrDefault(s.getLang(),0)+1);
+			}
+		}
+		
+		String ans="[";
+		for(Entry<String,Integer> e:cnt.entrySet()){
+			ans+="['"+e.getKey()+"',"+e.getValue()+"],";
+		}
+		ans=ans.substring(0, ans.length()-1);
+		ans+="]";
+		
+		return ans;
+	}
 	
+	/**
+	 * Return the verdict in Javascript Text
+	 * @return
+	 */
+	public String JSgetVerdict(){
+		ArrayList<Submission> arr=new SubmissionHelper().getAllSubmissions();
+		HashMap<String, Integer> cnt=new HashMap<>();
+		
+		for(Submission s:arr){
+			if(s.getUser().equals(username)){
+				cnt.put(s.getVerdict(), cnt.getOrDefault(s.getVerdict(),0)+1);
+			}
+		}
+		
+		String ans="[";
+		for(Entry<String,Integer> e:cnt.entrySet()){
+			ans+="['"+e.getKey()+"',"+e.getValue()+"],";
+		}
+		ans=ans.substring(0, ans.length()-1);
+		ans+="]";
+		
+		return ans;
+	}
 	
+	/**
+	 * Return the contest name in Javascript text
+	 * @return
+	 */
+	public String JSgetContestName(){
+		String s="['Inital Rating'";
+		for(ContestRecord cr:ratings){
+			s+=",'"+new ContestHelper().getContestDataById(cr.getId()+"").getInfo().getName()+"'";
+		}
+		s+="]";
+		return s;
+	}
+	/**
+	 * Return the rating information in Javascript text
+	 * @return the rating text
+	 */
+	public String JSgetRating(){
+		int rating=1500;
+		String s="[1500";
+		for(ContestRecord cr:ratings){
+			rating+=cr.getRatingChange();
+			s+=","+rating;
+		}
+		s+="]";
+		return s;
+	}
 	public Users(){
 		ratings=new ArrayList<ContestRecord>();
 		blogStatus=new HashMap<>();
