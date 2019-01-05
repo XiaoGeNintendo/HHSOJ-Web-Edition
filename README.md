@@ -383,3 +383,4 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 
 - 19w01a: The first update of 2019! Allows disabling folder-clear after judging program. Allows admins to see/toggle the status of the judging thread.
 
+- 19w02e: HHSOJ folder update

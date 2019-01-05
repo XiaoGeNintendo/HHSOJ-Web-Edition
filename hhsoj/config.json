@@ -7,5 +7,6 @@
     "enableRemoteJudge":false,
     "codeforcesUsername":"",
     "codeforcesPassword":"",
-    "queryTime":7200000
+    "queryTime":7200000,
+    "clearFolder":false
 }
