@@ -43,7 +43,8 @@
 	Use this wisely to allow or deny submissions <br/>
 	
 	<hr/>
-	
+	<a href="console.jsp">Console</a>
+	<hr/>
 	
 	The running log can be found in catalina.out <br/>
 	<i> HHSOJ Admin Platform </i>

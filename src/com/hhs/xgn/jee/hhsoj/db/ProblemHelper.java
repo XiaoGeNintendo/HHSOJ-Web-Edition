@@ -28,7 +28,15 @@ public class ProblemHelper {
 
 		ArrayList<Problem> arr = new ArrayList<Problem>();
 		for (String sub : f.list()) {
-			arr.add(readSingleProblem(sub));
+			try{
+//				System.out.println(sub);
+				Problem p=readSingleProblem(sub);
+				if(p!=null){
+					arr.add(p);
+				}
+			}catch(Exception e){
+//				e.printStackTrace();
+			}
 		}
 
 		// System.out.println("Read "+arr.size()+" problems.");
@@ -132,8 +140,11 @@ public class ProblemHelper {
 	 * Statement=statement.jsp
 	 */
 	public synchronized Problem readSingleProblem(String folder, String root, boolean setId) {
+		
 		String base = root + "/" + folder + "/";
-
+		
+//		System.out.println(base);
+		
 		Problem p = new Problem();
 
 		p.setArg(getArg(base + "arg.txt"));
@@ -147,15 +158,19 @@ public class ProblemHelper {
 
 	private synchronized Map<String, String> getArg(String file) {
 		File f = new File(file);
-
+//		System.out.println(f);
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f),"utf-8"));
 
 			Map<String, String> mp = new HashMap<String, String>();
 
 			String line;
 			while ((line = br.readLine()) != null) {
+//				System.out.println(line);
 				int pos = line.indexOf("=");
+				if(pos==-1){
+					continue; //Invalid line
+				}
 				String key = line.substring(0, pos);
 				String value = line.substring(pos + 1);
 				mp.put(key, value);
@@ -163,10 +178,10 @@ public class ProblemHelper {
 
 			br.close();
 
-			// System.out.println(mp);
+//			 System.out.println(f.getAbsolutePath()+" "+mp);
 			return mp;
 		} catch (Exception e) {
-			// e.printStackTrace();
+			 e.printStackTrace();
 			return null;
 		}
 	}
