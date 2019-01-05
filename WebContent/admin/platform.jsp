@@ -37,9 +37,15 @@
 	<hr/>
 	Next to test:<%=(TaskQueue.hasElement()?TaskQueue.getFirstSubmission().toJson():null) %> <br/>
 	<a href="clear.jsp">Clear judging queue</a> <br/>
+	Is judger running: <%=TaskQueue.isOpen() %> <a href="tj.jsp">Toggle Judger Running Status</a><br/>
+	Note that if the value is false, the system will try to generate a new judger when a new task comes. <br/>
+	If it is true, the system will not try to generate even it is not running. <br/>
+	Use this wisely to allow or deny submissions <br/>
 	
 	<hr/>
 	
+	
+	The running log can be found in catalina.out <br/>
 	<i> HHSOJ Admin Platform </i>
 </body>
 </html>

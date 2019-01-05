@@ -23,8 +23,11 @@ public class JudgingThread extends Thread {
 	public void run() {
 		System.out.println("Judging Thread Initaize Ok!");
 		while (true) {
-
-			ClearFolder();
+			
+			if(con!=null && con.isClearFolder()){
+				ClearFolder();
+			}
+			
 			while (TaskQueue.hasElement() == false) {
 
 			}

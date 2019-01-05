@@ -10,6 +10,7 @@ public class Config {
 	private String codeforcesPassword;
 	private boolean enableRemoteJudge;
 	private long queryTime;
+	private boolean clearFolder;
 	
 	public boolean isEnableCPP11() {
 		return enableCPP11;
@@ -64,6 +65,12 @@ public class Config {
 	}
 	public void setQueryTime(long queryTime) {
 		this.queryTime = queryTime;
+	}
+	public boolean isClearFolder() {
+		return clearFolder;
+	}
+	public void setClearFolder(boolean clearFolder) {
+		this.clearFolder = clearFolder;
 	}
 	
 }

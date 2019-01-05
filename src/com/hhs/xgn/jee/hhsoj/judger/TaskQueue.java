@@ -27,6 +27,7 @@ public class TaskQueue {
 		open=true;
 	}
 	
+	
 	public synchronized static boolean hasElement(){
 		return !queue.isEmpty();
 	}
@@ -60,5 +61,15 @@ public class TaskQueue {
 		
 		openThread();
 		return s.getId();
+	}
+
+
+	public static boolean isOpen() {
+		return open;
+	}
+
+
+	public static void setOpen(boolean open) {
+		TaskQueue.open = open;
 	}
 }

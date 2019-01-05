@@ -380,3 +380,6 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 18w85a: Language Graph, Verdict Graph and Rating Graph are added!
 
 ## Version 1.5: More graphs
+
+- 19w01a: The first update of 2019! Allows disabling folder-clear after judging program. Allows admins to see/toggle the status of the judging thread.
+
