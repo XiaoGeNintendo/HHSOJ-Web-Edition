@@ -235,7 +235,7 @@ input {
 
 #login_table {
 	margin-top: 100px;
-	padding:30px;
+	padding: 30px;
 	border: 1px solid #cccccc;
 	background: #f0f0f0;
 }
@@ -244,4 +244,38 @@ input {
 	margin: 2px;
 	padding: 2px;
 	border: 0px;
+}
+
+#blog-table {
+	border-collapse: collapse;
+	width: 60%;
+	min-width: 400px;
+	align-self: center;
+	margin: 0px auto;
+	min-width: 500px;
+	border: 1px solid #cccccc;
+	background: #f0f0f0;
+	text-align: left;
+}
+
+#blog-table>tbody>tr>th {
+	padding: 3px;
+	padding-left: 5px;
+	border: 1px solid #cccccc;
+}
+
+#blog-table>tbody>tr>td {
+	padding: 3px;
+	padding-left: 5px;
+	border: 1px solid #cccccc;
+}
+
+#write-blog {
+	width: 60%;
+	min-width: 400px;
+	align-self: center;
+	margin: 0px auto;
+	min-width: 500px;
+	padding: 20px;
+	text-align: left;
 }
