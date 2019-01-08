@@ -6,21 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-Register</title>
-<style type="text/css">
-	#login_table {
-		border: 0px;
-	}
-	
-	#login_table th{
-		padding: 2px;
-		border: 0px;
-	}
-	
-	#login_table th{
-		padding: 2px;
-		border: 0px;
-	}
-</style>
 </head>
 <body>
 	<script>
@@ -95,7 +80,7 @@
 			<tr>
 			
 				<td colspan="2"  style="text-align:center;" >
-					<input type="submit" value="Register" style="width:90px;">
+					<input type="submit" value="Register" style="width:90px;height:30px;margin-top:20px;">
 				</td>
 			</tr>
 		</table>

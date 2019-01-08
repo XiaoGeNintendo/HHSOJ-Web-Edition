@@ -232,3 +232,16 @@ input {
 	padding: 3px;
 	border: 1px solid #cccccc;
 }
+
+#login_table {
+	margin-top: 100px;
+	padding:30px;
+	border: 1px solid #cccccc;
+	background: #f0f0f0;
+}
+
+#login_table>tr>td {
+	margin: 2px;
+	padding: 2px;
+	border: 0px;
+}

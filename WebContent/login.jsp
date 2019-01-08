@@ -6,24 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-Login</title>
-<style type="text/css">
-	#login_table {
-		margin: 50px auto;
-		border: 0px;
-	}
-	
-	#login_table tr{
-		margin: 2px;
-		padding: 2px;
-		border: 0px;
-	}
-	
-	#login_table th,td{
-		margin: 2px;
-		padding: 2px;
-		border: 0px;
-	}
-</style>
 </head>
 <body>
 	
@@ -83,7 +65,7 @@
 				<tr>
 					<td colspan="2" style="text-align:center;" >
 						<input type="hidden" name="type" value="<%=type %>">
-						<input type="submit" value="Login" style="width:90px;height:30px;" />
+						<input type="submit" value="Login" style="width:90px;height:30px;margin-top:20px;" />
 					</td>
 				</tr>
 			</table>
