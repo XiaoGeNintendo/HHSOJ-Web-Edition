@@ -9,27 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-Problems</title> 
-<style type="text/css">
-	#problem-table {
-		border-collapse: collapse;
-		width: 80%;
-		align-self: center;
-		margin: 0px auto;
-		min-width: 500px;
-		border:1px solid #cccccc;
-		background:#f0f0f0;
-	}
-	
-	#problem-table th{
-		padding: 3px;
-		border: 1px solid #cccccc;
-	}
-	
-	#problem-table td{
-		padding: 3px;
-		border: 1px solid #cccccc;
-	}
-</style>
 </head>
 <body>
 	<h1 id="title">Problems in HHSOJ</h1>
@@ -37,7 +16,7 @@
 	<hr />
 	<jsp:include page="nav.jsp?at=problemset"></jsp:include>
 	
-	<a href="#" class="problemset pselect">Practice Problemset</a>
+	<a href="problemset.jsp" class="problemset selected">Practice Problemset</a>
 	<a href="cpset.jsp" class="problemset">Contest Problemset</a>
 	<a href="cfset.jsp" class="problemset">Codeforces Problemset</a>
 	

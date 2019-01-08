@@ -25,8 +25,8 @@ public class ConfigLoader {
 				RootPath=fsv.getHomeDirectory().getAbsolutePath();
 				RootPath+="\\hhsoj";
 			}
-			else if(System.getProperty("os.name").toLowerCase().indexOf("lunix")>=0) {
-				//Lunix
+			else if(System.getProperty("os.name").toLowerCase().indexOf("linux")>=0) {
+				//Linux
 				RootPath="/usr/hhsoj";
 			}
 			else {

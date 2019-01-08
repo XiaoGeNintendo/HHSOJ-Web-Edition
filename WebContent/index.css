@@ -4,40 +4,30 @@ body {
 	background: #e8e8e8;
 	margin-left: 50px;
 	margin-right: 50px;
-	margin-top: 100px;
+	margin-top: 50px;
 	min-width: 800px;
 }
 
-body span, pre, code {
-	font-family: "Courier New", "Consolas";
-}
-
-td *{
-	/* Gonna explode..*/
-	font-family: "Courier New", "Consolas";
-}
-
-tr *{
-	/* Gonna explode..*/
-	font-family: "Courier New", "Consolas";
-}
-
-body h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
 	font-family: serif;
 }
 
-body hr {
+hr {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	clear: both;
 }
 
-body p,span,a{
+p, span, a, th, td {
 	margin-block-start: 0px;
-    margin-block-end: 0px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-	font-family: "Courier New", "Consolas";
+	margin-block-end: 0px;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-family: "Consolas";
+}
+
+input {
+	font-family: "Consolas";
 }
 
 #title {
@@ -66,12 +56,12 @@ body p,span,a{
 }
 
 .title {
-	margin:5px;
+	margin: 5px;
 	font-family: Georgia, serif;
 }
 
 .subtitle {
-	margin:5px;
+	margin: 5px;
 	font-family: Georgia, serif;
 }
 
@@ -80,8 +70,8 @@ body p,span,a{
 }
 
 .nav-link-left {
-	font-weight:bold;
-	font-family:'Trebuchet MS', Helvetica, sans-serif;
+	font-weight: bold;
+	font-family: 'Trebuchet MS', Helvetica, sans-serif;
 	margin-left: 20px;
 	margin-right: 20px;
 	font: 20px;
@@ -93,8 +83,8 @@ body p,span,a{
 }
 
 .nav-link-right {
-	font-weight:bold;
-	font-family:'Trebuchet MS', Helvetica, sans-serif;
+	font-weight: bold;
+	font-family: 'Trebuchet MS', Helvetica, sans-serif;
 	margin-left: 20px;
 	margin-right: 20px;
 	font: 20px;
@@ -118,18 +108,18 @@ body p,span,a{
 	font-weight: bold;
 }
 
-#filter-top{
+#filter-top {
 	border-collapse: collapse;
 	width: 80%;
 	align-self: center;
 	margin: 0px auto;
 	min-width: 500px;
-	border:1px solid #cccccc;
-	background:#f0f0f0;
-	padding:10px;
+	border: 1px solid #cccccc;
+	background: #f0f0f0;
+	padding: 10px;
 }
 
-#seperator {
+.seperator {
 	height: 30px;
 }
 
@@ -142,102 +132,103 @@ body p,span,a{
 	margin-top: 30px;
 }
 
-#back {
-	display: block;
-}
-
 /* Now this is by XGN :P */
 /* No ugly fonts!!!Me again!!!--Zzzyt */
-.userUnrated{
-	text-decoration:none;
-	color:black;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
+.userUnrated {
+	text-decoration: none;
+	color: black;
 }
 
-.userNewbie{
-	text-decoration:none;
-	color:grey;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
-	font-weight:bold;
+.userNewbie {
+	text-decoration: none;
+	color: grey;
+	font-weight: bold;
 }
 
-.userPupil{
-	text-decoration:none;
-	color:green;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
-	font-weight:bold;
+.userPupil {
+	text-decoration: none;
+	color: green;
+	font-weight: bold;
 }
 
-.userSpecialist{
-	text-decoration:none;
-	color:cyan;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
-	font-weight:bold;
+.userSpecialist {
+	text-decoration: none;
+	color: cyan;
+	font-weight: bold;
 }
 
-.userExpert{
-	text-decoration:none;
-	color:blue;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
-	font-weight:bold;
+.userExpert {
+	text-decoration: none;
+	color: blue;
+	font-weight: bold;
 }
 
-.userCandidateMaster{
-	text-decoration:none;
-	color:purple;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
-	font-weight:bold;
+.userCandidateMaster {
+	text-decoration: none;
+	color: purple;
+	font-weight: bold;
 }
 
-.userMaster{
-	text-decoration:none;
-	color:yellow;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
-	font-weight:bold;
+.userMaster {
+	text-decoration: none;
+	color: yellow;
+	font-weight: bold;
 }
 
-.userInternationalMaster{
-	text-decoration:none;
-	color:yellow;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
-	font-weight:bold;
+.userInternationalMaster {
+	text-decoration: none;
+	color: yellow;
+	font-weight: bold;
 }
 
-.userGrandmaster{
-	text-decoration:none;
-	color:red;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
-	font-weight:bold;
+.userGrandmaster {
+	text-decoration: none;
+	color: red;
+	font-weight: bold;
 }
 
-.userInternationalGrandmaster{
-	text-decoration:none;
-	color:red;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
-	font-weight:bold;
+.userInternationalGrandmaster {
+	text-decoration: none;
+	color: red;
+	font-weight: bold;
 }
 
-.userLegendaryGrandmaster{
-	text-decoration:none;
-	color:black;
-/* 	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; */
-	font-weight:bold;
+.userLegendaryGrandmaster {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
 }
 
 .problemset {
-	font-weight:bold;
-	font-family:'Trebuchet MS', Helvetica, sans-serif;
+	font-weight: bold;
+	font-family: 'Trebuchet MS', Helvetica, sans-serif;
 	margin-left: 10px;
 	margin-right: 10px;
 	font: 20px;
 	color: #000000;
 	text-decoration: none;
-	float:left;
-	display:block;
+	float: left;
+	display: block;
 	text-decoration: none;
-	padding:3px;
+	padding: 3px;
 }
 
-.pselect{
-	border-bottom: 3px solid #66ccff;
+#problem-table {
+	border-collapse: collapse;
+	width: 80%;
+	align-self: center;
+	margin: 0px auto;
+	min-width: 500px;
+	border: 1px solid #cccccc;
+	background: #f0f0f0;
+}
+
+#problem-table>tbody>tr>th {
+	padding: 3px;
+	border: 1px solid #cccccc;
+}
+
+#problem-table>tbody>tr>td {
+	padding: 3px;
+	border: 1px solid #cccccc;
 }
