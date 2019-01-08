@@ -11,42 +11,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-Blogs</title>
-
-<style type="text/css">
-	#blog-table {
-		border-collapse: collapse;
-		width: 60%;
-		min-width: 400px;
-		align-self: center;
-		margin: 0px auto;
-		min-width: 500px;
-		border:1px solid #cccccc;
-		background:#f0f0f0;
-		text-align:left;
-	}
-	
-	#blog-table th{
-		padding: 3px;
-		padding-left:5px;
-		border: 1px solid #cccccc;
-	}
-	
-	#blog-table td{
-		padding: 3px;
-		padding-left:5px;
-		border: 1px solid #cccccc;
-	}
-	
-	#write-blog{
-		width: 60%;
-		min-width: 400px;
-		align-self: center;
-		margin: 0px auto;
-		min-width: 500px;
-		padding:20px;
-		text-align:left;
-	}
-</style>
 </head>
 <body>
 	<!-- Default Template -->
@@ -95,9 +59,9 @@
 					continue;
 				}
 		%>
-			<tr class="blogrow">
-				<td class="blogtitle"><a href="viewPost.jsp?id=<%=b.getId()%>"><%=b.getTitle()%></a></td>
-				<td class="bloguser"><%out.println(new UserRenderer().getUserText(b.getUser())); %></td>
+			<tr>
+				<td><a href="viewBlog.jsp?id=<%=b.getId()%>"><%=b.getTitle()%></a></td>
+				<td><%out.println(new UserRenderer().getUserText(b.getUser())); %></td>
 			
 		<%
 			if(b.getVote()>0){

@@ -34,7 +34,7 @@
 		new UserHelper().refreshUser(u);
 		new BlogHelper().refreshBlog(b);
 		
-		response.sendRedirect("viewPost.jsp?id="+id);
+		response.sendRedirect("viewBlog.jsp?id="+id);
 		
 	}catch(Exception e){
 		out.println("Permission denied: You may have voted once or some internal error occurred");

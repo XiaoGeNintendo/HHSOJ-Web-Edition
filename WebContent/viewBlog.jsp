@@ -50,7 +50,7 @@
 	<!-- Default End-->
 
 	
-	<div id="reader">
+	<div id="blog-content">
 		<!-- Blog post HTML -->
 
 		<%
@@ -126,8 +126,8 @@
 		
 		if(bl.getUser().equals(userLooking)){
 	%>
-		<a href="editPost.jsp?id=<%=bl.getId() %>">Edit</a> 
-		<a href="deletePost.jsp?id=<%=bl.getId() %>">Delete</a>
+		<a href="editBlog.jsp?id=<%=bl.getId() %>">Edit</a> 
+		<a href="deleteBlog.jsp?id=<%=bl.getId() %>">Delete</a>
 		<br/>
 	<%			
 		}
@@ -153,7 +153,7 @@
 	
 	<h3>Comments</h3>
 	
-	<table border="1">
+	<table id="comment-table">
 	<%
 		for(int i=bl.getComments().size()-1;i>=0;i--){
 			Comment c=bl.getComments().get(i);

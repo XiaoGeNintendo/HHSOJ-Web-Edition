@@ -11,14 +11,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-<%=request.getParameter("id")%></title>
-<style>
-.link {
-	margin: 10px;
-	text-decoration: none;
-	color:#66ccff;
-	font-weight: bold;
-}
-</style>
 </head>
 <body>
 	<%
@@ -89,18 +81,14 @@
 		<a href="status.jsp?probId=<%=p.getId()%>&userId=<%=session.getAttribute("username")%>" class="link">My Submission</a>
 	</center>
 
-	<br />
-	<br />
-	<br />
+	<div class="seperator"></div>
 
 	<%
 		out.println("<!-- Statement -->");
 		out.println(new ProblemHelper().getProblemStatement("" + p.getId()));
 	%>
 
-	<br />
-	<br />
-	<br />
+	<div class="seperator"></div>
 
 	<center>
 		<a href="submit.jsp?id=<%=p.getId()%>" class="link">Submit</a>
@@ -112,8 +100,6 @@
 		}
 	%>
 	
-	<br />
-	<br />
-	<br />
+	<div class="seperator"></div>
 </body>
 </html>

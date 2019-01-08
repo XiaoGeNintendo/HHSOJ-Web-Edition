@@ -20,7 +20,7 @@
 		}
 		b.getComments().remove(cid);
 		new BlogHelper().refreshBlog(b);
-		response.sendRedirect("viewPost.jsp?id="+blogId);
+		response.sendRedirect("viewBlog.jsp?id="+blogId);
 	}catch(Exception e){
 		out.println("Error");
 		out.println("<!--"+e+"-->");

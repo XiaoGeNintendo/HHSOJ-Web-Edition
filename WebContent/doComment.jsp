@@ -16,6 +16,6 @@
 	b.addComment(user, comment);
 	
 	new BlogHelper().refreshBlog(b);
-	response.sendRedirect("viewPost.jsp?id="+id+"#Comment"+(b.getComments().size()-1));
+	response.sendRedirect("viewBlog.jsp?id="+id+"#Comment"+(b.getComments().size()-1));
 	
 %>

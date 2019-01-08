@@ -130,7 +130,7 @@ public class Contest {
 		if(st<=now && now<=ed){
 			long delta=ed-now;
 			delta/=1000;
-			return "<font color=#ff0000>Running "+delta/3600+"h"+delta%3600/60+"m"+delta%60+"s"+"</font>";
+			return "<font color=#ff0000>Running "+delta/3600+"h "+delta%3600/60+"m "+delta%60+"s"+"</font>";
 		}
 		if(ed<now){
 			return "<font color=#787878>Finished</font>";

@@ -96,7 +96,7 @@
 				"id":<%=b.getId()%>
 			}
 			
-			httpPost("doEditPost.jsp",para);
+			httpPost("doEditBlog.jsp",para);
 		})
 	</script>
 
