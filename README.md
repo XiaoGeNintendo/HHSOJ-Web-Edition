@@ -395,4 +395,4 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 
 - 19w06d: Fixed that submission.jsp doesn't work
 
-- 19w07d: Security Update: You can't hack the OJ by changing local files now.
+- 19w07d: Security Update: You can't hack the OJ by changing local files now(only for register).
