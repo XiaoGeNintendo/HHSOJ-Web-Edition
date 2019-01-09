@@ -390,3 +390,7 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w04d: Fixed some problem reading problems.
 
 ## Version 1.6: Admin console
+
+- 19w05b: CSS
+
+- 19w06d: Fixed that submission.jsp doesn't work

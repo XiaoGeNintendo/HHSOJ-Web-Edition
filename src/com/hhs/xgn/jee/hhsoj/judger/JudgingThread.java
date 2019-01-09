@@ -396,7 +396,7 @@ public class JudgingThread extends Thread {
 	}
 
 	private boolean runUserJava(Submission s, File f, Problem p) throws Exception {
-		ProcessBuilder pb=new ProcessBuilder("java.exe","-jar","test.jar",p.getArg("TL"),p.getArg("ML"),f.getName());
+		ProcessBuilder pb=new ProcessBuilder("java","-jar","test.jar",p.getArg("TL"),p.getArg("ML"),f.getName());
 		pb.directory(new File("hhsoj/judge"));
 		pb.inheritIO();
 		Process pro=pb.start();

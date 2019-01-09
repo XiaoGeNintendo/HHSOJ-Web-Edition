@@ -12,10 +12,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
+
 <title>HHSOJ-Submission <%=request.getParameter("id") %></title>
 </head>
 <body>
-	<script src="js/jquery-1.11.0.js" type="text/javascript"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
 	<script src="js/wangHighLighter-1.0.0-min.js" type="text/javascript"></script>
 	
 	
