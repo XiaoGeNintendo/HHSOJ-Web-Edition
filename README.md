@@ -1,5 +1,7 @@
 # HHSOJ-WebEdition
 Another stupid Online Judge with Java EE version.
+
+Sometimes we call it HellOJ
 # What's it
 It's an easy online judge. It's still beta!
 # About "hhsoj" folder
