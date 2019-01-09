@@ -1,7 +1,7 @@
 /* HHSOJ CSS file */
 /* by Zzzyt */
 body {
-	background: #e8e8e8;
+	background: #f0f0f0;
 	margin-left: 50px;
 	margin-right: 50px;
 	margin-top: 50px;
@@ -115,7 +115,7 @@ input {
 	margin: 0px auto;
 	min-width: 500px;
 	border: 1px solid #cccccc;
-	background: #f0f0f0;
+	background: #ffffff;
 	padding: 10px;
 }
 
@@ -216,12 +216,12 @@ input {
 .link {
 	margin: 10px;
 	text-decoration: none;
-	color:#66ccff;
+	color: #66ccff;
 	font-weight: bold;
 }
 
-#blog-content{
-	padding:30px;
+#blog-content {
+	padding: 30px;
 }
 
 #problem-table {
@@ -230,7 +230,7 @@ input {
 	margin: 0px auto;
 	min-width: 500px;
 	border: 1px solid #cccccc;
-	background: #f0f0f0;
+	background: #ffffff;
 }
 
 #problem-table>tbody>tr>th {
@@ -247,7 +247,7 @@ input {
 	margin-top: 100px;
 	padding: 30px;
 	border: 1px solid #cccccc;
-	background: #f0f0f0;
+	background: #ffffff;
 }
 
 #login_table>tr>td {
@@ -263,7 +263,7 @@ input {
 	margin: 0px auto;
 	min-width: 500px;
 	border: 1px solid #cccccc;
-	background: #f0f0f0;
+	background: #ffffff;
 	text-align: left;
 }
 
@@ -301,4 +301,26 @@ input {
 	min-width: 500px;
 	padding: 20px;
 	text-align: left;
+}
+
+#status-table {
+	border-collapse: collapse;
+	width: 80%;
+	align-self: center;
+	margin: 0px auto;
+	min-width: 500px;
+	border: 1px solid #cccccc;
+	background: #ffffff;
+}
+
+#status-table>tbody>tr>th {
+	text-align: center;
+	padding: 3px;
+	border: 1px solid #cccccc;
+}
+
+#status-table>tbody>tr>td {
+	text-align: center;
+	padding: 3px;
+	border: 1px solid #cccccc;
 }

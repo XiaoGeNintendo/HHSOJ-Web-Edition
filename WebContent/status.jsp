@@ -13,29 +13,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ-Status</title>
-<style type="text/css">
-	#status-table {
-		border-collapse: collapse;
-		width: 80%;
-		align-self: center;
-		margin: 0px auto;
-		min-width: 500px;
-		border:1px solid #cccccc;
-		background:#f0f0f0;
-	}
-	
-	#status-table th{
-		text-align:center;
-		padding: 3px;
-		border: 1px solid #cccccc;
-	}
-	
-	#status-table td{
-		text-align:center;
-		padding: 3px;
-		border: 1px solid #cccccc;
-	}
-</style>
 </head>
 <body>
 	

@@ -4,8 +4,7 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="index.css" rel="stylesheet" type="text/css">
+<jsp:include page="head.jsp"></jsp:include>
 <title>HHSOJ</title>
 </head>
 <body>
