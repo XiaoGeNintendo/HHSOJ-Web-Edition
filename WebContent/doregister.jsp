@@ -29,6 +29,15 @@
 		}
 	}
 	
+	if(username==null){
+		response.sendRedirect("register.jsp");
+		return;
+	}
+	
+	if(!username.matches("[a-z0-9A-Z]{1,50}")){
+		out.println("Hey! You are trying to hack this OJ by changing the js file! Don't u?");
+		return;
+	}
 	if(!ok){
 		Users u=new Users();
 		u.setUsername(username);
