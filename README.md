@@ -11,7 +11,7 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 
 **(Before 18w46a)** You can go to the "credits.jsp" and click "View Source" and find your HHSOJ path in source code
 
-**(After 18w46a)** Go to the admin platform to see the HHSOJ path
+**(After 18w46a)** Go to the admin platform to see the HHSOJ path. **(After 19w08d)** If you didn't copy the hhsoj folder so the admin password may become null. In this situation, just input anything you like and the system will give you the folder path after doing so.
 
 # Building
 0. System requirement: Windows x64 system with Tomcat9.0 server and JRE. You may need to install VC libraries for sandbox to run.
@@ -120,6 +120,8 @@ You can
 - See the id of all users/submissions/blogs
 - See the system directory
 - Clears the judging queue with a specified verdict 
+- Use the console to change files online
+- Toggle Judger Status
 
 # Languages
 
@@ -396,3 +398,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w06d: Fixed that submission.jsp doesn't work
 
 - 19w07d: Security Update: You can't hack the OJ by changing local files now(only for register).
+
+- 19w08d: Fixed if you don't know the hhsoj holder and you launched the program for the first time you will be confused.
