@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="index.css" rel="stylesheet" type="text/css">
 <title>HHSOJ</title>
 </head>
@@ -35,5 +36,17 @@
 	<a href="TimeChanger.jsp" id="timeChanger">Online Timestamp Changer</a>
 	<br/>
 	<a href="HMSChanger.jsp" id="hms">Online HMS to ms Changer</a>
+	<br/>
+	<%
+		if(System.getProperty("os.name").toLowerCase().indexOf("linux")>=0){	
+	%>
+			<abbr title="Secure Judging,Widely Used"><p class="fa fa-linux">Now running on Linux</p></abbr>
+	<%
+		}else{
+	%>
+			<abbr title="Original Version,Easy Testing"><p class="fa fa-windows">Now running on Windows</p></abbr>
+	<%
+		}
+	%>
 </body>
 </html>
