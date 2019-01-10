@@ -420,3 +420,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w11d: Fixed that the admin pages are not influenced by 19w10d
 
 - 19w12c: Disabled Stack Option of G++
+
+- 19w13c: Minimizing G++ Compiler Option

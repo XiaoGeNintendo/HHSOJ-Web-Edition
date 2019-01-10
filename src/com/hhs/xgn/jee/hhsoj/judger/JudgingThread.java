@@ -576,8 +576,7 @@ public class JudgingThread extends Thread {
 		}
 		if (lang.equals("cpp")) {
 
-			return new String[] { "g++", "-static", "-DONLINE_JUDGE", (con.isEnableCPP11()?"-std=c++11":"-DNOCPP"), "-O2", "-Wl",
-					"-s", "-x", "c++", "-o", "Program.exe", "Program.cpp" };
+			return new String[] { "g++", "Program.cpp", "-o","Program.exe","-DONLINE_JUDGE", (con.isEnableCPP11()?"-std=c++11":"-DNOCPP"), "-O2"};
 		}
 
 		if (lang.equals("java")) {
