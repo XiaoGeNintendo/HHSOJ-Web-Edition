@@ -9,18 +9,17 @@
 	Config c;
 	try{
 		c=new ConfigLoader().load();
-	}catch(Exception e){
+		String psd=request.getParameter("adminPsd");
+		String usr=request.getParameter("adminName");
+		if(c.getAdminPassword().equals(psd) && c.getAdminUsername().equals(usr)){
+			session.setAttribute("admin", true);
+
+			response.sendRedirect("platform.jsp");
+		}else{
+			response.sendRedirect("login.jsp");
+		}
+	}catch(NullPointerException e){
 		out.println(new File("hhsoj").getAbsolutePath());
 		return;
-	}
-	
-	String psd=request.getParameter("adminPsd");
-	String usr=request.getParameter("adminName");
-	if(c.getAdminPassword().equals(psd) && c.getAdminUsername().equals(usr)){
-		session.setAttribute("admin", true);
-		
-		response.sendRedirect("platform.jsp");
-	}else{
-		response.sendRedirect("login.jsp");
 	}
 %>
