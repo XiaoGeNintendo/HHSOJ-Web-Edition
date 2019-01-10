@@ -405,3 +405,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w08d: Fixed if you don't know the hhsoj holder and you launched the program for the first time you will be confused.
 
 - 19w09d: Too much log! Deleted some logs!
+
+- 19w10d: Fixed that in Linux, the hhsoj folder cannot be found.

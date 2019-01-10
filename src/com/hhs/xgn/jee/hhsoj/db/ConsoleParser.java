@@ -152,7 +152,7 @@ public class ConsoleParser {
 			return toJson(position,"Error 001:Unknown command "+cmd,stream);
 		}catch(Exception e){
 			e.printStackTrace();
-			return toJson("hhsoj/","FATAL ERROR:"+e,"");
+			return toJson(ConfigLoader.getPath(),"FATAL ERROR:"+e,"");
 		}
 	
 	}

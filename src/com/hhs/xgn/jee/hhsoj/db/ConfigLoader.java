@@ -40,7 +40,7 @@ public class ConfigLoader {
 	public Config load(){
 		
 		try{
-			File f=new File("hhsoj/config.json");
+			File f=new File(ConfigLoader.getPath()+"/config.json");
 			if(!f.exists()){
 				f.createNewFile();
 			}

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
+import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
 import com.hhs.xgn.jee.hhsoj.db.ProblemHelper;
 
 /**
@@ -58,12 +59,12 @@ public class Contest {
 	 * @return
 	 */
 	public ArrayList<Problem> getProblems(){
-		File f=new File("hhsoj/contests/"+id+"/");
+		File f=new File(ConfigLoader.getPath()+"/contests/"+id+"/");
 		ArrayList<Problem> arr=new ArrayList<Problem>();
 		
 		for(File sub:f.listFiles()){
 			if(sub.isDirectory()){
-				Problem p=new ProblemHelper().readSingleProblem(sub.getName(),"hhsoj/contests/"+id,false);
+				Problem p=new ProblemHelper().readSingleProblem(sub.getName(),ConfigLoader.getPath()+"/contests/"+id,false);
 				p.setType(Problem.CONTEST);
 				p.setConId(id);
 				p.setConIndex(sub.getName());

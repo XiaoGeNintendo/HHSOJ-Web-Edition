@@ -18,7 +18,7 @@ import com.hhs.xgn.jee.hhsoj.type.*;
 public class ContestHelper {
 	
 	public synchronized File checkFolder(){
-		File f=new File("hhsoj/contests");
+		File f=new File(ConfigLoader.getPath()+"/contests");
 		if(!f.exists()){
 			f.mkdirs();
 		}
@@ -93,13 +93,13 @@ public class ContestHelper {
 	}
 	
 	public Contest getContestDataById(String id){
-		return readSingleContest(new File("hhsoj/contests/"+id));
+		return readSingleContest(new File(ConfigLoader.getPath()+"/contests/"+id));
 	}
 	
 	public void refreshContest(Contest c) {
 		
 		try{
-			PrintWriter pw=new PrintWriter("hhsoj/contests/"+c.getId()+"/full.json");
+			PrintWriter pw=new PrintWriter(ConfigLoader.getPath()+"/contests/"+c.getId()+"/full.json");
 			pw.println(new Gson().toJson(c));
 			pw.close();
 		}catch(Exception e){

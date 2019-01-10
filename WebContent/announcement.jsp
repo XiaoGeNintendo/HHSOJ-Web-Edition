@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.ConfigLoader"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Contest"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.ContestHelper"%>
 <%@page import="java.io.FileInputStream"%>
@@ -17,7 +18,7 @@
 		out.println("Don't view this page, thx.");
 		return;
 	}
-	File statementPath=new File("hhsoj/contests/"+id+"/index.html");
+	File statementPath=new File(ConfigLoader.getPath()+"/contests/"+id+"/index.html");
 	BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(statementPath)));
 	String s;
 	while((s=br.readLine())!=null){

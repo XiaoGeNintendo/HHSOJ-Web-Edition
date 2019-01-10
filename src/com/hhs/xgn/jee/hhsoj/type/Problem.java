@@ -2,6 +2,7 @@ package com.hhs.xgn.jee.hhsoj.type;
 
 import java.util.Map;
 
+import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
 import com.hhs.xgn.jee.hhsoj.db.ContestHelper;
 
 /**
@@ -25,10 +26,10 @@ public class Problem {
 	
 	public String getPath(){
 		if(type==PROBLEMSET){
-			return "hhsoj/problems/"+id;
+			return ConfigLoader.getPath()+"/problems/"+id;
 		}
 		if(type==CONTEST){
-			return "hhsoj/contests/"+conId+"/"+conIndex;
+			return ConfigLoader.getPath()+"/contests/"+conId+"/"+conIndex;
 		}
 		if(type==CODEFORCES){
 			return null;

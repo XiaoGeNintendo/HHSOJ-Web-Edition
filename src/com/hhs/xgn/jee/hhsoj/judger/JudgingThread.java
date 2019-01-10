@@ -146,7 +146,7 @@ public class JudgingThread extends Thread {
 		try{
 			System.out.println("===========Python Start=============");
 			ProcessBuilder pb=new ProcessBuilder("python","cf.py",c.getCodeforcesUsername(),c.getCodeforcesPassword(),s.getProb().substring(1),"Program."+getExtension(s.getLang()),s.getLang());
-			pb.directory(new File("hhsoj/judge/"));
+			pb.directory(new File(ConfigLoader.getPath()+"/judge/"));
 			pb.inheritIO();
 			Process p=pb.start();
 //			System.out.println("start waiting for");
@@ -192,13 +192,13 @@ public class JudgingThread extends Thread {
 		System.out.println("Testing...");
 
 		// Copy input file
-		copyFile(f, new File("hhsoj/judge/in.txt"));
+		copyFile(f, new File(ConfigLoader.getPath()+"/judge/in.txt"));
 
 		// Use Std to generate output
-		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sol.exe").getAbsolutePath());
-		pb.directory(new File("hhsoj/judge/"));
-		pb.redirectInput(new File("hhsoj/judge/in.txt"));
-		pb.redirectOutput(new File("hhsoj/judge/ans.txt"));
+		ProcessBuilder pb = new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/sol.exe").getAbsolutePath());
+		pb.directory(new File(ConfigLoader.getPath()+"/judge/"));
+		pb.redirectInput(new File(ConfigLoader.getPath()+"/judge/in.txt"));
+		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/ans.txt"));
 		Process pr = pb.start();
 
 		// We made sure that std is right and no harmful, but may TLE
@@ -254,11 +254,11 @@ public class JudgingThread extends Thread {
 
 		
 	private boolean runUserPython(Submission s, File f, Problem p) throws Exception{
-		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(), "python \""+new File("hhsoj/judge/Program.py").getAbsolutePath()+"\"",
+		ProcessBuilder pb = new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/sandbox.exe").getAbsolutePath(), "python \""+new File(ConfigLoader.getPath()+"/judge/Program.py").getAbsolutePath()+"\"",
 				con.getWindowsUsername(), con.getWindowsPassword(), "in.txt", "out.txt", p.getArg("TL"),
 				p.getArg("ML"));
 		
-		pb.directory(new File("hhsoj/judge"));
+		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 		//pb.redirectInput(new File("hhsoj/judge/in.txt"));
 		//pb.redirectOutput(new File("hhsoj/judge/out.txt"));
 
@@ -276,7 +276,7 @@ public class JudgingThread extends Thread {
 		Runtime.getRuntime().exec("taskkill /f /im sandbox.exe /t");
 
 		// Get everything
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/V2.txt")));
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(ConfigLoader.getPath()+"/judge/V2.txt")));
 		int time = Integer.parseInt(br.readLine());
 		int mem = Integer.parseInt(br.readLine());
 		int exit = Integer.parseInt(br.readLine());
@@ -325,11 +325,11 @@ public class JudgingThread extends Thread {
 
 	private boolean runUserCpp(Submission s, File f, Problem p) throws Exception {
 
-		ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/sandbox.exe").getAbsolutePath(), "Program.exe",
+		ProcessBuilder pb = new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/sandbox.exe").getAbsolutePath(), "Program.exe",
 				con.getWindowsUsername(), con.getWindowsPassword(), "in.txt", "out.txt", p.getArg("TL"),
 				p.getArg("ML"));
 		
-		pb.directory(new File("hhsoj/judge"));
+		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 		//pb.redirectInput(new File("hhsoj/judge/in.txt"));
 		//pb.redirectOutput(new File("hhsoj/judge/out.txt"));
 
@@ -347,7 +347,7 @@ public class JudgingThread extends Thread {
 		Runtime.getRuntime().exec("taskkill /f /im sandbox.exe /t");
 
 		// Get everything
-		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/V2.txt")));
+		BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(ConfigLoader.getPath()+"/judge/V2.txt")));
 		int time = Integer.parseInt(br.readLine());
 		int mem = Integer.parseInt(br.readLine());
 		int exit = Integer.parseInt(br.readLine());
@@ -397,7 +397,7 @@ public class JudgingThread extends Thread {
 
 	private boolean runUserJava(Submission s, File f, Problem p) throws Exception {
 		ProcessBuilder pb=new ProcessBuilder("java","-jar","test.jar",p.getArg("TL"),p.getArg("ML"),f.getName());
-		pb.directory(new File("hhsoj/judge"));
+		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 		pb.inheritIO();
 		Process pro=pb.start();
 		boolean notle=pro.waitFor(10, TimeUnit.SECONDS);
@@ -416,7 +416,7 @@ public class JudgingThread extends Thread {
 			}
 			
 			//Read data.txt
-			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream("hhsoj/judge/data.txt")));
+			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(ConfigLoader.getPath()+"/judge/data.txt")));
 			String json=br.readLine();
 			br.close();
 			
@@ -446,9 +446,9 @@ public class JudgingThread extends Thread {
 	private boolean processCompare(Submission s, Problem p, int time, int mem, String file) {
 
 		try {
-			ProcessBuilder pb = new ProcessBuilder(new File("hhsoj/judge/checker").getAbsolutePath(), "in.txt",
+			ProcessBuilder pb = new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/checker").getAbsolutePath(), "in.txt",
 					"out.txt", "ans.txt", "checker.txt");
-			pb.directory(new File("hhsoj/judge"));
+			pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 			
 			
 			Process pro = pb.start();
@@ -463,13 +463,13 @@ public class JudgingThread extends Thread {
 					// Wa
 					s.setVerdict("Wrong Answer");
 					s.getResults()
-							.add(new TestResult("Wrong Answer", time, mem, file, readFile("hhsoj/judge/checker.txt")));
+							.add(new TestResult("Wrong Answer", time, mem, file, readFile(ConfigLoader.getPath()+"/judge/checker.txt")));
 					new SubmissionHelper().storeStatus(s);
 					return false;
 				}
 
 				// Ac
-				s.getResults().add(new TestResult("Accepted", time, mem, file, readFile("hhsoj/judge/checker.txt")));
+				s.getResults().add(new TestResult("Accepted", time, mem, file, readFile(ConfigLoader.getPath()+"/judge/checker.txt")));
 				new SubmissionHelper().storeStatus(s);
 				return true;
 			} else {
@@ -487,7 +487,7 @@ public class JudgingThread extends Thread {
 
 	private void ClearFolder() {
 		System.out.println("Clearing folder");
-		File ff = new File("hhsoj/judge");
+		File ff = new File(ConfigLoader.getPath()+"/judge");
 		for (File f : ff.listFiles()) {
 			f.delete();
 		}
@@ -500,9 +500,9 @@ public class JudgingThread extends Thread {
 		new SubmissionHelper().storeStatus(s);
 
 		ProcessBuilder pb = new ProcessBuilder(getCompiler(s.getLang()));
-		pb.directory(new File("hhsoj/judge"));
+		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 
-		pb.redirectError(new File("hhsoj/judge/compile.txt"));
+		pb.redirectError(new File(ConfigLoader.getPath()+"/judge/compile.txt"));
 
 		Process p = pb.start();
 
@@ -524,14 +524,14 @@ public class JudgingThread extends Thread {
 			if (id != 0) {
 				// Compile Error
 				s.setVerdict("Compile Error");
-				s.setCompilerComment(readFile("hhsoj/judge/compile.txt"));
+				s.setCompilerComment(readFile(ConfigLoader.getPath()+"/judge/compile.txt"));
 				new SubmissionHelper().storeStatus(s);
 
 				return false;
 			}
 
 			s.setVerdict("Judging");
-			s.setCompilerComment(readFile("hhsoj/judge/compile.txt"));
+			s.setCompilerComment(readFile(ConfigLoader.getPath()+"/judge/compile.txt"));
 			new SubmissionHelper().storeStatus(s);
 
 			return true;
@@ -550,7 +550,7 @@ public class JudgingThread extends Thread {
 	private void killCompiler(Submission s) throws IOException {
 		if (s.getLang().equals("cpp")) {
 			ProcessBuilder pb = new ProcessBuilder("taskkill", "/f", "/im", "g++.exe", "/t");
-			pb.directory(new File("hhsoj/runtime"));
+			pb.directory(new File(ConfigLoader.getPath()+"/runtime"));
 			pb.start();
 		}
 	}
@@ -614,33 +614,33 @@ public class JudgingThread extends Thread {
 		// Copy Solution
 		if(p.getType()!=Problem.CODEFORCES){
 			File oldSol = new File(p.getPath() + "/" + p.getArg("Solution"));
-			File newSol = new File("hhsoj/judge/sol.exe");
+			File newSol = new File(ConfigLoader.getPath()+"/judge/sol.exe");
 			copyFile(oldSol, newSol);
 	
 			// Copy Checker
 			File oldChk = new File(p.getPath() + "/" + p.getArg("Checker"));
-			File newChk = new File("hhsoj/judge/checker.exe");
+			File newChk = new File(ConfigLoader.getPath()+"/judge/checker.exe");
 			copyFile(oldChk, newChk);
 		}
 		
 		// Copy User's Program
-		PrintWriter pw = new PrintWriter("hhsoj/judge/Program." + getExtension(s.getLang()));
+		PrintWriter pw = new PrintWriter(ConfigLoader.getPath()+"/judge/Program." + getExtension(s.getLang()));
 		pw.println(s.getCode());
 		pw.close();
 
 		// Copy Sandbox
-		File snd = new File("hhsoj/runtime/JudgerV2.exe");
-		File nws = new File("hhsoj/judge/sandbox.exe");
+		File snd = new File(ConfigLoader.getPath()+"/runtime/JudgerV2.exe");
+		File nws = new File(ConfigLoader.getPath()+"/judge/sandbox.exe");
 		copyFile(snd, nws);
 		
 		// Copy Java tester
-		File jvt=new File("hhsoj/runtime/JavaTester.jar");
-		File njt=new File("hhsoj/judge/test.jar");
+		File jvt=new File(ConfigLoader.getPath()+"/runtime/JavaTester.jar");
+		File njt=new File(ConfigLoader.getPath()+"/judge/test.jar");
 		copyFile(jvt,njt);
 		
 		//Copy CF Submiter
-		File cfs=new File("hhsoj/runtime/SubmitCF.py");
-		File ncf=new File("hhsoj/judge/cf.py");
+		File cfs=new File(ConfigLoader.getPath()+"/runtime/SubmitCF.py");
+		File ncf=new File(ConfigLoader.getPath()+"/judge/cf.py");
 		copyFile(cfs,ncf);
 	}
 
@@ -657,12 +657,12 @@ public class JudgingThread extends Thread {
 
 		System.out.println("Checking environment");
 
-		File f = new File("hhsoj/judge");
+		File f = new File(ConfigLoader.getPath()+"/judge");
 		if (!f.exists()) {
 			f.mkdirs();
 		}
 
-		File f2 = new File("hhsoj/runtime/JudgerV2.exe");
+		File f2 = new File(ConfigLoader.getPath()+"/runtime/JudgerV2.exe");
 		if (!f2.exists()) {
 			s.setVerdict("Library Missing");
 			s.setCompilerComment(
@@ -671,7 +671,7 @@ public class JudgingThread extends Thread {
 			return false;
 		}
 
-		File f3=new File("hhsoj/runtime/JavaTester.jar");
+		File f3=new File(ConfigLoader.getPath()+"/runtime/JavaTester.jar");
 		if (!f3.exists()) {
 			s.setVerdict("Library Missing");
 			s.setCompilerComment(
