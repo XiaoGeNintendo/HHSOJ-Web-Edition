@@ -19,7 +19,7 @@
 			response.sendRedirect("login.jsp");
 		}
 	}catch(NullPointerException e){
-		out.println(new File("hhsoj").getAbsolutePath());
+		out.println(ConfigLoader.getPath());
 		return;
 	}
 %>

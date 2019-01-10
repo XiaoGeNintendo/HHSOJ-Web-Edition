@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.ConfigLoader"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.judger.TaskQueue"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.judger.JudgingThread"%>
 <%@page import="java.io.File"%>
@@ -23,7 +24,7 @@
 	%>
 	<h1>Admin Platform</h1>
 	<hr/>
-	HHSOJ system path: <%=new File("hhsoj").getAbsolutePath() %> <br/>
+	HHSOJ system path: <%=ConfigLoader.getPath()%> <br/>
 		
 	Catalina base:<%=System.getProperty("catalina.base")%> <br/>
 	Cataline home: <%=System.getProperty("catalina.home")%>

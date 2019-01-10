@@ -407,3 +407,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w09d: Too much log! Deleted some logs!
 
 - 19w10d: Fixed that in Linux, the hhsoj folder cannot be found.
+
+- 19w11d: Fixed that the admin pages are not influenced by 19w10d
