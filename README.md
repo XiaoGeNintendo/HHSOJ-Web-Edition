@@ -15,8 +15,17 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 
 **(After 18w46a)** Go to the admin platform to see the HHSOJ path. **(After 19w08d)** If you didn't copy the hhsoj folder so the admin password may become null. In this situation, just input anything you like and the system will give you the folder path after doing so.
 
-# Building
-0. System requirement: Windows x64 system with Tomcat9.0 server and JRE. You may need to install VC libraries for sandbox to run.
+# Building on Linux
+0. **Note!!! Linux version is experimental now!!No code can be judged successfully!**
+ 
+1. System requirement: Any Linux that runs Java8. 
+
+2. Then do the same as Windows. The system will detect your OS.
+
+3. **Note!!! Some functions don't work the same on different OS!**
+
+# Building on Windows
+0. System requirement: Windows x64 system with Tomcat9.0 server and JRE. You may need to install VC libraries for sandbox to run. 
 
 1. Install g++ compiler, python compiler
 
