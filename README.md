@@ -18,7 +18,7 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 # Building on Linux
 0. **Note!!! Linux version is experimental now!!No code can be judged successfully!**
  
-1. System requirement: Any Linux that runs Java8. 
+1. System requirement: Any Linux that runs Java8. Install seccomp.h 
 
 2. Then do the same as Windows. The system will detect your OS.
 
@@ -205,6 +205,10 @@ Then we get ![We](https://di.gameres.com/attachment/forum/201310/28/2223022qgswj
 
 Let W to be the rank of the user. Then the new rating of the user is ![R](https://di.gameres.com/attachment/forum/201310/28/2223026yywcfwyubbzwb66.png) where Ro is the old rating of the user. Constant K=16
 
+# Compiling Guide
+JavaTester.jar : `javac JavaTester.java`
+JugderV2 : `Use Microsoft VS2017`
+Sandbox4Linux: `sudo g++ main.c container.h container.c executor.c executor.h scmp_rules.c scmp_rules.h killer.c killer.h -o main -lseccomp -lpthread` **Need Seccomp.h**
 
 # Changelog
 
