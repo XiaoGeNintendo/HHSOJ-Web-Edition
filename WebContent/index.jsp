@@ -4,9 +4,7 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="index.css" rel="stylesheet" type="text/css">
+<jsp:include page="head.jsp"></jsp:include>
 <title>HHSOJ</title>
 </head>
 <body>
@@ -16,35 +14,54 @@
 		Studios</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
-	
+
 	<%
-		String marquee=new AnnouncementReader().readAnnouncement();
-		if(marquee==null){
-			marquee="Welcome to HHSOJ!";
+		String marquee = new AnnouncementReader().readAnnouncement();
+		if (marquee == null) {
+			marquee = "Welcome to HHSOJ!";
 		}
 	%>
-	<marquee id="marquee"><p><%=marquee %></p></marquee>
-	<p>This system is still under developing. Please don't upload any harmful
-	code. Thanks :(</p>
+	<marquee id="marquee">
+		<p><%=marquee%></p>
+	</marquee>
+	<p>This system is still under developing. Please don't upload any
+		harmful code. Thanks :(</p>
 	<br />
 	<a href="verdict.jsp" id="verdict">Verdicts List</a>
-	<br/>
+	<br />
 	<a href="credits.jsp" id="credit">Credits</a>
-	<br/>
+	<br />
 	<a href="richtextEditor.jsp" id="richtext">Online Rich Text Editor</a>
-	<br/>
+	<br />
 	<a href="TimeChanger.jsp" id="timeChanger">Online Timestamp Changer</a>
-	<br/>
+	<br />
 	<a href="HMSChanger.jsp" id="hms">Online HMS to ms Changer</a>
-	<br/>
+	<br />
+	
+	
 	<%
-		if(System.getProperty("os.name").toLowerCase().indexOf("linux")>=0){	
+		if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
 	%>
-			<abbr title="Secure Judging,Widely Used"><p class="fa fa-linux">Now running on Linux</p></abbr>
+	<p style="font-size: 20px;">
+		<i class="fa fa-linux"></i>Now running on Linux <abbr
+			title="Secure judging for servers"><i
+			class="	fa fa-info-circle"></i></abbr>
+	</p>
 	<%
-		}else{
+		} else if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
 	%>
-			<abbr title="Original Version,Easy Testing"><p class="fa fa-windows">Now running on Windows</p></abbr>
+	<p style="font-size: 20px;">
+		<i class="fa fa-windows"></i> Now running on Windows <abbr
+			title="Original version, easy to debug"><i
+			class="	fa fa-info-circle"></i></abbr>
+	</p>
+	<%
+		} else {
+	%>
+	<p style="font-size: 20px;">
+		<i class="fa fa-question"></i> Now running on other OS <abbr
+			title="Does not guarantee all functions working"> <i class="fa fa-info-circle"></i></abbr>
+	</p>
 	<%
 		}
 	%>
