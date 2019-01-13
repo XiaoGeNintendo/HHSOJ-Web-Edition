@@ -392,7 +392,7 @@ public class JudgingThread extends Thread {
 		//Copy it
 		ProcessBuilder pb2=new ProcessBuilder("cp","Judge",ConfigLoader.getPath()+"/judge/judge");
 		pb2.inheritIO();
-		pb.directory(new File(ConfigLoader.getPath()+"/runtime/source/Linux"));
+		pb2.directory(new File(ConfigLoader.getPath()+"/runtime/source/Linux"));
 		Process p2=pb2.start();
 		p2.waitFor();
 	}
