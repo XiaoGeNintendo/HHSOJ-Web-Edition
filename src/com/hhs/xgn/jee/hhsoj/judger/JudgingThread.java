@@ -76,9 +76,9 @@ public class JudgingThread extends Thread {
 				if(ConfigLoader.isLinux()){
 					//Linux Method of Testing
 					
-					if(s.getLang().equals("python")){
+					if(!s.getLang().equals("cpp")){
 						s.setVerdict("Unsupported Language");
-						s.setCompilerComment("Python is not ready for Linux now!");
+						s.setCompilerComment("Python/Java is not ready for Linux now!");
 						continue;
 					}
 					
