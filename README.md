@@ -50,7 +50,6 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 2. Create some subfolders with different names(at least 1) and a text file "arg.txt". **For users below 18w51c, a subfolder called "tests" must be created**
 
 3. **Windows** In the "arg.txt" input the following things:
-
 ```
     Solution=sol.exe //The solution executable file . Put it in the same folder
     Checker=checker.exe //The checker executable file. Please use testlib
@@ -64,14 +63,14 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 **Linux** In the "arg.txt" input the following things:
 ```
 	Solution=sol.cpp //The solution code file.MUST BE C++ FILE. Put it in the same folder
-    Checker=checker.cpp //The checker executable file.MUST BE C++ FILE Please use testlib
+    Checker=checker.cpp //The checker code file.MUST BE C++ FILE. Please use testlib
     Name=A+b Problem //The problem name for displaying
     TL=1000 //Time Limit in ms
     ML=1000 //Memory Limit in kb
     Tag=math,implementation //Tags. Write it as you like
     Statement=statement.jsp //Statement file position
 ```
-Place/Link a "testlib.h" if you needed
+A "testlib.h" is included in the hhsoj/runtime. If you want to update the file, just change it. **But please don't change its name**
 
 **Both** Please don't place trailing/leading spaces/tabs.
 
