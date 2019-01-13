@@ -285,11 +285,11 @@ public class JudgingThread extends Thread {
 			return false;
 		}
 		
-		String content=readFile(ConfigLoader.getPath()+"/judge/judge.txt");
+		String content=readFile(ConfigLoader.getPath()+"/judge/judge.txt").split("\n")[0];
 		String[] ans=content.split(" ");
-		int result=Integer.parseInt(ans[0]);
-		int mcost=Integer.parseInt(ans[1]);
-		int tcost=Integer.parseInt(ans[2]);
+		int result=Integer.parseInt(ans[0].trim());
+		int mcost=Integer.parseInt(ans[1].trim());
+		int tcost=Integer.parseInt(ans[2].trim());
 		String[] int2str=new String[]{"Improper Verdict",
 									  "Improper Verdict",
 									  "Accepted", //OK 2
