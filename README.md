@@ -1,5 +1,5 @@
 # HHSOJ-WebEdition
-Another stupid Online Judge with Java EE version.
+Another stupid cross-platform Online Judge with Java EE.
 
 Sometimes we call it HellOJ
 # What's it
@@ -25,6 +25,8 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 3. **Note!!! Some functions don't work the same on different OS!**
 
 4. Configure the Sandbox: Find the `/runtime/Linux_config.ini` to change some linux sandbox settings. You can add allowed system call in the file `/runtime/Linux_okcall.cfg` in the following format: `<call Id> := <call Limit>`
+
+5. You'd better use root account to launch the program.
 
 # Building on Windows
 0. System requirement: Windows x64 system with Tomcat9.0 server and JRE. You may need to install VC libraries for sandbox to run. 
