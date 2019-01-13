@@ -249,16 +249,29 @@ public class JudgingThread extends Thread {
 		if(s.getLang().equals("java")){
 			langCode=3;
 		}else{
-			if(con.isEnableCPP11()){
-				langCode=4;
-			}else{
-				langCode=2;
-			}
+			langCode=2;
+//			if(con.isEnableCPP11()){
+//				langCode=4;
+//			}else{
+//				langCode=2;
+//			}
 		}
 		
+		PrintWriter pw=new PrintWriter(new File(ConfigLoader.getPath()+"/judge/test.sh"));
+		pw.println("./judge -l "+langCode+" -D data -d temp -t "+p.getArg("TL")+" -m "+p.getArg("ML")+" -o 1048576");
+		pw.close();
 		
-		ProcessBuilder pb=new ProcessBuilder("./judge", "-l",langCode+"","-D","data","-d","temp","-t",p.getArg("TL"),"-m",p.getArg("ML"),"-o","1048576");
+		{
+			//add chmod
+			ProcessBuilder pb=new ProcessBuilder("chmod","-R","777","judge/");
+			pb.inheritIO();
+			pb.directory(new File(ConfigLoader.getPath()));
+			Process px=pb.start();
+			px.waitFor();
+			px.destroyForcibly();
+		}
 		
+		ProcessBuilder pb=new ProcessBuilder("./test.sh");
 		pb.directory(new File(ConfigLoader.getPath()+"/judge/"));
 		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
 		pb.redirectError(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
@@ -381,13 +394,7 @@ public class JudgingThread extends Thread {
 			
 			LinuxSanboxCompile(s);
 			
-			//add chmod
-			ProcessBuilder pb=new ProcessBuilder("chmod","777","*");
-			pb.inheritIO();
-			pb.directory(new File(ConfigLoader.getPath()+"/judge"));
-			Process p=pb.start();
-			p.waitFor();
-			p.destroyForcibly();
+
 	}
 
 	private void LinuxSanboxCompile(Submission s) throws IOException, InterruptedException {
