@@ -455,3 +455,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w17c: Linux C++ Testing Done! But now can only test slowly because of poor implementation
 
 - 19w18c: Faster! Faster! Faster! Linux C++ Testing Done!
+
+## Version 1.7: Linux C++ Testing
