@@ -211,7 +211,7 @@ public class JudgingThread extends Thread {
 		LinuxSandboxSetup(s,f);
 		
 		// Use Std to generate output
-		ProcessBuilder pb = new ProcessBuilder("chmod","+x",new File(ConfigLoader.getPath()+"/judge/data/sol.exe").getAbsolutePath());
+		ProcessBuilder pb = new ProcessBuilder("chmod","+x",new File(ConfigLoader.getPath()+"/judge/data/sol").getAbsolutePath());
 		pb.directory(new File(ConfigLoader.getPath()+"/judge/data/"));
 		pb.redirectInput(new File(ConfigLoader.getPath()+"/judge/data/a.in"));
 		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/data/a.out"));
@@ -237,7 +237,7 @@ public class JudgingThread extends Thread {
 		}
 		
 		//Prevent Sandbox Treating the Solution as a input/output file.
-		File std=new File(ConfigLoader.getPath()+"/judge/data/sol.exe");
+		File std=new File(ConfigLoader.getPath()+"/judge/data/sol");
 		std.delete();
 		
 		return LinuxRunUserProgram(s,f,p);
@@ -255,6 +255,8 @@ public class JudgingThread extends Thread {
 				langCode=2;
 			}
 		}
+		
+		
 		
 		ProcessBuilder pb=new ProcessBuilder("chmod","+x","./judge","-l",langCode+"","-D","data","-d","temp","-t",p.getArg("TL"),"-m",p.getArg("ML"),"-o","1048576");
 		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
@@ -312,7 +314,7 @@ public class JudgingThread extends Thread {
 	}
 
 	private boolean LinuxChecker(Submission s, File f, Problem p,int time,int mem) throws IOException, InterruptedException {
-		ProcessBuilder pb=new ProcessBuilder("chmod","+x","checker.exe",
+		ProcessBuilder pb=new ProcessBuilder("chmod","+x","checker",
 											 ConfigLoader.getPath()+"/judge/data/a.in",
 											 ConfigLoader.getPath()+"/judge/temp/a.out",
 											 ConfigLoader.getPath()+"/judge/data/a.out",
@@ -359,7 +361,6 @@ public class JudgingThread extends Thread {
 			}
 			
 			//Copy configs
-			copyFile(new File(ConfigLoader.getPath()+"/runtime/LinuxJudge"), new File(ConfigLoader.getPath()+"/judge/judge"));
 			copyFile(new File(ConfigLoader.getPath()+"/runtime/Linux_config.ini"), new File(ConfigLoader.getPath()+"/judge/config.ini"));
 			copyFile(new File(ConfigLoader.getPath()+"/runtime/Linux_okcall.cfg"), new File(ConfigLoader.getPath()+"/judge/okcall.cfg"));
 			
@@ -370,7 +371,61 @@ public class JudgingThread extends Thread {
 			copyFile(f,new File(ConfigLoader.getPath()+"/judge/data/a.in"));
 			
 			//Recopy solutions to Data
-			copyFile(new File(ConfigLoader.getPath()+"/judge/sol.exe"),new File(ConfigLoader.getPath()+"/judge/data/sol.exe"));
+			copyFile(new File(ConfigLoader.getPath()+"/judge/sol.exe"),new File(ConfigLoader.getPath()+"/judge/data/sol.cpp"));
+			
+			//Recopy Checker
+			copyFile(new File(ConfigLoader.getPath()+"/judge/checker.exe"),new File(ConfigLoader.getPath()+"/judge/checker.cpp"));
+			
+			LinuxCompile(s);
+			
+			LinuxSanboxCompile(s);
+	}
+
+	private void LinuxSanboxCompile(Submission s) throws IOException, InterruptedException {
+		//Make it
+		ProcessBuilder pb=new ProcessBuilder("make");
+		pb.inheritIO();
+		pb.directory(new File(ConfigLoader.getPath()+"/runtime/source/Linux"));
+		Process p=pb.start();
+		p.waitFor();
+		
+		//Copy it
+		ProcessBuilder pb2=new ProcessBuilder("cp","Judge",ConfigLoader.getPath()+"/judge/judge");
+		pb2.inheritIO();
+		pb.directory(new File(ConfigLoader.getPath()+"/runtime/source/Linux"));
+		Process p2=pb2.start();
+		p2.waitFor();
+	}
+
+	/**
+	 * Compile the solution and checker.
+	 * @param s
+	 * @throws Exception 
+	 */
+	private void LinuxCompile(Submission s) throws Exception {
+		ProcessBuilder pb=new ProcessBuilder("g++","sol.cpp","-o","sol");
+		pb.directory(new File(ConfigLoader.getPath()+"/judge/data"));
+		pb.inheritIO();
+		Process p=pb.start();
+		//We assume that there's no hacks compiling the program
+		p.waitFor();
+		
+		int ex=p.exitValue();
+		if(ex!=0){
+			throw new Exception("Standard Program Compile Error");
+		}
+		
+		copyFile(new File(ConfigLoader.getPath()+"/runtime/testlib.h"),new File(ConfigLoader.getPath()+"/judge/testlib.h"));
+		
+		ProcessBuilder pb2=new ProcessBuilder("g++","checker.cpp","-o","checker");
+		pb2.directory(new File(ConfigLoader.getPath()+"/judge"));
+		pb2.inheritIO();
+		Process p2=pb2.start();
+		p2.waitFor();
+		int ex2=p2.exitValue();
+		if(ex2!=0){
+			throw new Exception("Checker Compile Error");
+		}
 	}
 
 	private void submitCodeforces(Submission s,Config c) {

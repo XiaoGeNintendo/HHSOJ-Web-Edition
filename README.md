@@ -49,17 +49,31 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 
 2. Create some subfolders with different names(at least 1) and a text file "arg.txt". **For users below 18w51c, a subfolder called "tests" must be created**
 
-3. In the "arg.txt" input the following things:
+3. **Windows** In the "arg.txt" input the following things:
 
 ```
-    Solution=sol.exe //The solution file. Put it in the same folder
-    Checker=checker.exe //The checker file. Please use testlib
+    Solution=sol.exe //The solution executable file . Put it in the same folder
+    Checker=checker.exe //The checker executable file. Please use testlib
     Name=A+b Problem //The problem name for displaying
     TL=1000 //Time Limit in ms
     ML=1000 //Memory Limit in kb
     Tag=math,implementation //Tags. Write it as you like
     Statement=statement.jsp //Statement file position
 ```
+
+**Linux** In the "arg.txt" input the following things:
+```
+	Solution=sol.cpp //The solution code file.MUST BE C++ FILE. Put it in the same folder
+    Checker=checker.cpp //The checker executable file.MUST BE C++ FILE Please use testlib
+    Name=A+b Problem //The problem name for displaying
+    TL=1000 //Time Limit in ms
+    ML=1000 //Memory Limit in kb
+    Tag=math,implementation //Tags. Write it as you like
+    Statement=statement.jsp //Statement file position
+```
+Place/Link a "testlib.h" if you needed
+
+**Both** Please don't place trailing/leading spaces/tabs.
 
 4. Check your HHSOJ version and write problem statement in HTML format:
 
@@ -434,3 +448,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w14c: Add source for Linux Judging. Moved Java Tester source
 
 - 19w15c: Finish C++ Linux Testing
+
+- 19w16c: chmod
