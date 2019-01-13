@@ -449,3 +449,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w15c: Finish C++ Linux Testing
 
 - 19w16c: chmod
+
+- 19w17c: Linux C++ Testing Done! But now can only test slowly because of poor implementation
