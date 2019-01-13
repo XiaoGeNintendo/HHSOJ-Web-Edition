@@ -76,12 +76,20 @@ public class JudgingThread extends Thread {
 				if(ConfigLoader.isLinux()){
 					//Linux Method of Testing
 					
+					if(s.getLang().equals("python")){
+						s.setVerdict("Unsupported Language");
+						s.setCompilerComment("Python is not ready for Linux now!");
+						continue;
+					}
+					
 					if(!testfiles.isDirectory()){
 						throw new Exception("Testcase is not ready");
 					}
 					
 					int cnt=1;
 					boolean ac=true;
+					
+					LinuxSandboxSetup(s,p);
 					
 					for(File f:testfiles.listFiles()){
 						s.setVerdict("Running");
@@ -208,7 +216,9 @@ public class JudgingThread extends Thread {
 	 * @throws Exception 
 	 */
 	private boolean LinuxJudgeOneTestCase(Submission s, File f, Problem p) throws Exception {
-		LinuxSandboxSetup(s,f);
+		
+		//Copy Input Files
+		copyFile(f,new File(ConfigLoader.getPath()+"/judge/data/a.in"));
 		
 		// Use Std to generate output
 		ProcessBuilder pb = new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/data/sol").getAbsolutePath());
@@ -230,11 +240,7 @@ public class JudgingThread extends Thread {
 			return false;
 		}
 		
-		if(s.getLang().equals("python")){
-			s.setVerdict("Unsupported Language");
-			s.getResults().add(new TestResult("Unsupported Language: Python.",0,0,f.getName(),"Python is not supported on Linux OS now."));
-			return false;
-		}
+		
 		
 		//Prevent Sandbox Treating the Solution as a input/output file.
 		File std=new File(ConfigLoader.getPath()+"/judge/data/sol");
@@ -245,32 +251,7 @@ public class JudgingThread extends Thread {
 
 	
 	private boolean LinuxRunUserProgram(Submission s, File f, Problem p) throws IOException, NumberFormatException, InterruptedException {
-		int langCode;
-		if(s.getLang().equals("java")){
-			langCode=3;
-		}else{
-			langCode=2;
-//			if(con.isEnableCPP11()){
-//				langCode=4;
-//			}else{
-//				langCode=2;
-//			}
-		}
-		
-		PrintWriter pw=new PrintWriter(new File(ConfigLoader.getPath()+"/judge/test.sh"));
-		pw.println("./judge -l "+langCode+" -D data -d temp -t "+p.getArg("TL")+" -m "+p.getArg("ML")+" -o 1048576");
-		pw.close();
-		
-		{
-			//add chmod
-			ProcessBuilder pb=new ProcessBuilder("chmod","-R","777","judge/");
-			pb.inheritIO();
-			pb.directory(new File(ConfigLoader.getPath()));
-			Process px=pb.start();
-			px.waitFor();
-			px.destroyForcibly();
-		}
-		
+
 		ProcessBuilder pb=new ProcessBuilder("./test.sh");
 		pb.directory(new File(ConfigLoader.getPath()+"/judge/"));
 		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
@@ -360,8 +341,32 @@ public class JudgingThread extends Thread {
 		return true;
 	}
 
-	private void LinuxSandboxSetup(Submission s,File f) throws Exception {
+	/**
+	 * Create data and temp folders <br/>
+	 * Copy configs<br/>
+	 * Copy Solutions To Data<br/>
+	 * Copy Program To Temp<br/>
+	 * Copy Checker <br/>
+	 * Make the Linux Sandbox <br/>
+	 * Compile the Programs <br/>
+	 * Add CHMOD <br/>
+	 * @param s
+	 * @throws Exception
+	 */
+	private void LinuxSandboxSetup(Submission s,Problem p) throws Exception {
 		
+			//Create shell
+			int langCode;
+			if(s.getLang().equals("java")){
+				langCode=3;
+			}else{
+				langCode=2;
+			}
+			
+			PrintWriter pw=new PrintWriter(new File(ConfigLoader.getPath()+"/judge/test.sh"));
+			pw.println("./judge -l "+langCode+" -D data -d temp -t "+p.getArg("TL")+" -m "+p.getArg("ML")+" -o 1048576");
+			pw.close();
+			
 			File data=new File(ConfigLoader.getPath()+"/judge/data");
 			File temp=new File(ConfigLoader.getPath()+"/judge/temp");
 			if(data.exists() && data.isFile()){
@@ -383,9 +388,7 @@ public class JudgingThread extends Thread {
 			
 			//Copy Solution to Temp
 			copyFile(new File(ConfigLoader.getPath()+"/judge/Program."+getExtension(s.getLang())), new File(ConfigLoader.getPath()+"/judge/temp/Main."+getExtension(s.getLang())));
-			
-			//Copy Input Files
-			copyFile(f,new File(ConfigLoader.getPath()+"/judge/data/a.in"));
+
 			
 			//Recopy solutions to Data
 			copyFile(new File(ConfigLoader.getPath()+"/judge/sol.exe"),new File(ConfigLoader.getPath()+"/judge/data/sol.cpp"));
@@ -397,7 +400,15 @@ public class JudgingThread extends Thread {
 			
 			LinuxSanboxCompile(s);
 			
-
+			{
+				//add chmod
+				ProcessBuilder pb=new ProcessBuilder("chmod","-R","777","judge/");
+				pb.inheritIO();
+				pb.directory(new File(ConfigLoader.getPath()));
+				Process px=pb.start();
+				px.waitFor();
+				px.destroyForcibly();
+			}
 	}
 
 	private void LinuxSanboxCompile(Submission s) throws IOException, InterruptedException {
