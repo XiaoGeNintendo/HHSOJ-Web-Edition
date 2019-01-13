@@ -90,7 +90,7 @@ public class JudgingThread extends Thread {
 					int cnt=1;
 					boolean ac=true;
 					
-					s.setVerdict("Initizing");
+					s.setVerdict("Initalizing");
 					new SubmissionHelper().storeStatus(s);
 					LinuxSandboxSetup(s,p);
 					
