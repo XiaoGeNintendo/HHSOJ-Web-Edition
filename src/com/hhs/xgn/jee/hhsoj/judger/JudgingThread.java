@@ -211,7 +211,7 @@ public class JudgingThread extends Thread {
 		LinuxSandboxSetup(s,f);
 		
 		// Use Std to generate output
-		ProcessBuilder pb = new ProcessBuilder("chmod","+x",new File(ConfigLoader.getPath()+"/judge/data/sol").getAbsolutePath());
+		ProcessBuilder pb = new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/data/sol").getAbsolutePath());
 		pb.directory(new File(ConfigLoader.getPath()+"/judge/data/"));
 		pb.redirectInput(new File(ConfigLoader.getPath()+"/judge/data/a.in"));
 		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/data/a.out"));
@@ -257,9 +257,8 @@ public class JudgingThread extends Thread {
 		}
 		
 		
-		
-		ProcessBuilder pb=new ProcessBuilder("chmod","+x","./judge -l "+langCode+" -D data -d temp -t"+p.getArg("TL")+" -m "+p.getArg("ML")+" -o 1048576");
-		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
+		ProcessBuilder pb=new ProcessBuilder("./judge -l "+langCode+" -D data -d temp -t "+p.getArg("TL")+" -m "+p.getArg("ML")+" -o 1048576");
+		pb.directory(new File(ConfigLoader.getPath()+"/judge/"));
 		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
 		pb.redirectError(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
 		Process pro=pb.start();
@@ -315,7 +314,7 @@ public class JudgingThread extends Thread {
 	}
 
 	private boolean LinuxChecker(Submission s, File f, Problem p,int time,int mem) throws IOException, InterruptedException {
-		ProcessBuilder pb=new ProcessBuilder("chmod","+x","checker "+
+		ProcessBuilder pb=new ProcessBuilder("checker "+
 											 ConfigLoader.getPath()+"/judge/data/a.in "+
 											 ConfigLoader.getPath()+"/judge/temp/a.out "+
 											 ConfigLoader.getPath()+"/judge/data/a.out "+
@@ -380,6 +379,14 @@ public class JudgingThread extends Thread {
 			LinuxCompile(s);
 			
 			LinuxSanboxCompile(s);
+			
+			//add chmod
+			ProcessBuilder pb=new ProcessBuilder("chmod","777","*");
+			pb.inheritIO();
+			pb.directory(new File(ConfigLoader.getPath()+"/judge"));
+			Process p=pb.start();
+			p.waitFor();
+			p.destroyForcibly();
 	}
 
 	private void LinuxSanboxCompile(Submission s) throws IOException, InterruptedException {
