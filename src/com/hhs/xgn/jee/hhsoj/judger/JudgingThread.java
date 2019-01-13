@@ -307,6 +307,15 @@ public class JudgingThread extends Thread {
 									  "Judgement Failed",
 									  "Runtime Error"};
 		
+		
+		if(result==8){
+			String verdict=int2str[result];
+			s.setVerdict(verdict);
+			s.setCompilerComment(readFile(ConfigLoader.getPath()+"/judge/temp/ce.txt"));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+		
 		if(result!=2 && result!=3 && result!=6){
 			//Bad verdict
 			String verdict=int2str[result];
@@ -315,13 +324,7 @@ public class JudgingThread extends Thread {
 			new SubmissionHelper().storeStatus(s);
 			return false;
 		}
-		if(result==8){
-			String verdict=int2str[result];
-			s.setVerdict(verdict);
-			s.setCompilerComment(readFile(ConfigLoader.getPath()+"/judge/temp/ce.txt"));
-			new SubmissionHelper().storeStatus(s);
-			return false;
-		}
+		
 		
 		//Good verdict. Continue to call the checker. The output file is hhsoj/judge/temp/a.out
 		return LinuxChecker(s,f,p,tcost,mcost);
