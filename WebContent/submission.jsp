@@ -26,6 +26,7 @@
 		try{
 			id=Integer.parseInt(request.getParameter("id"));
 			s=new SubmissionHelper().getSubmission(id);
+			s.getCompilerComment(); //test null
 		}catch(Exception e){
 			out.println("Submission doesn't exist");
 			out.println("<a href=\"javascript:location.replace(document.referrer);\">←Back</a>");
