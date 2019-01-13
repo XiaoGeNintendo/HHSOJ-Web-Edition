@@ -41,7 +41,8 @@
 #include <sys/time.h>
 #include "judge.h"
 #include "okcall.h"
-
+#include <fstream>
+ 
 #define Max(x, y) (x) > (y) ? (x) : (y)
 using namespace std;
 //#define JUDGE_DEBUG
@@ -97,6 +98,7 @@ void compare_until_nonspace(int &c_std, int &c_usr, FILE *&fd_std, FILE *&fd_usr
             c_std = fgetc(fd_std);
         if (isspace(c_usr))
             c_usr = fgetc(fd_usr);
+//            cout<<"get:"<<c_usr<<endl; 
     }
 }
 
@@ -236,10 +238,33 @@ int spj_compare_output(
 //普通比较
 int tt_compare_output(string &file_std, string &file_usr)
 {
+
     int ret = judge_conf::OJ_AC;
+    //	cout<<"Hello! Boys and Girls!"<<file_usr<<endl;
+//    
+//    //Do backup
+//	ofstream os("backup.out");
+//	ifstream is(file_usr.c_str());
+//	string s;
+//	
+//	while(getline(is,s)){
+//		cout<<"We find "<<s<<endl;
+//		os<<s<<endl;
+//	} 
+//	os.close();
+//	is.close();
+//    return ret;
+	 
     int c_std, c_usr;
     FILE *fd_std = fopen(file_std.c_str(), "r");
     FILE *fd_usr = fopen(file_usr.c_str(), "r");
+    
+//    ofstream os("backup.out");
+//    char chr;
+//    while(chr=fgetc(fd_usr)){
+//    	os<<chr;
+//	}
+//	return ret;
     //char *buffer;
         //buffer = getcwd(NULL, 0);
         //if (buffer != NULL) LOG_DEBUG("this is %s", buffer);
@@ -344,6 +369,8 @@ void io_redirect()
     freopen(problem::input_file.c_str(), "r", stdin);
     freopen(problem::output_file.c_str(), "w", stdout);
     freopen(problem::output_file.c_str(), "w", stderr);
+//	cout<<"Good for your health! Man!"<<endl;
+	
     if (stdin == NULL || stdout == NULL)
     {
         LOG_BUG("error in freopen: stdin(%p) stdout(%p)", stdin, stdout);
@@ -649,6 +676,18 @@ int main(int argc, char *argv[])
                         //java 返回非0表示出错
                         if (!Langs[problem::lang]->VMrunning || WEXITSTATUS(status) == EXIT_SUCCESS)
                         {
+//                        	//TEST PUT
+//                        	ofstream os("backup.out");
+//							ifstream is("temp/a.out");
+//							string s;
+//							
+//							while(getline(is,s)){
+//								cout<<"We find "<<s<<endl;
+//								os<<s<<endl;
+//							} 
+//							os.close();
+//							is.close();
+							
                             int result;
                             if (problem::spj)
                             {
