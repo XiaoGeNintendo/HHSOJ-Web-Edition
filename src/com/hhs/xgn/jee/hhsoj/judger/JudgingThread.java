@@ -258,7 +258,7 @@ public class JudgingThread extends Thread {
 		
 		
 		
-		ProcessBuilder pb=new ProcessBuilder("chmod","+x","./judge -l "+langCode+" -D data -d temp -t"+p.getArg("TL")+"-m "+p.getArg("ML")+"-o 1048576");
+		ProcessBuilder pb=new ProcessBuilder("chmod","+x","./judge -l "+langCode+" -D data -d temp -t"+p.getArg("TL")+" -m "+p.getArg("ML")+" -o 1048576");
 		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
 		pb.redirectError(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
