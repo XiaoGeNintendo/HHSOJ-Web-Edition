@@ -258,9 +258,10 @@ public class JudgingThread extends Thread {
 		
 		
 		
-		ProcessBuilder pb=new ProcessBuilder("chmod","+x","./judge","-l",langCode+"","-D","data","-d","temp","-t",p.getArg("TL"),"-m",p.getArg("ML"),"-o","1048576");
+		ProcessBuilder pb=new ProcessBuilder("chmod","+x","./judge -l "+langCode+" -D data -d temp -t"+p.getArg("TL")+"-m "+p.getArg("ML")+"-o 1048576");
 		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
+		pb.redirectError(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
 		Process pro=pb.start();
 		boolean ac=pro.waitFor(Integer.parseInt(p.getArg("TL"))+10000,TimeUnit.MILLISECONDS);
 		pro.destroyForcibly();
@@ -314,11 +315,11 @@ public class JudgingThread extends Thread {
 	}
 
 	private boolean LinuxChecker(Submission s, File f, Problem p,int time,int mem) throws IOException, InterruptedException {
-		ProcessBuilder pb=new ProcessBuilder("chmod","+x","checker",
-											 ConfigLoader.getPath()+"/judge/data/a.in",
-											 ConfigLoader.getPath()+"/judge/temp/a.out",
-											 ConfigLoader.getPath()+"/judge/data/a.out",
-											 ConfigLoader.getPath()+"/judge/checker.txt");
+		ProcessBuilder pb=new ProcessBuilder("chmod","+x","checker "+
+											 ConfigLoader.getPath()+"/judge/data/a.in "+
+											 ConfigLoader.getPath()+"/judge/temp/a.out "+
+											 ConfigLoader.getPath()+"/judge/data/a.out "+
+											 ConfigLoader.getPath()+"/judge/checker.txt ");
 		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 		Process pro=pb.start();
 		boolean ac=pro.waitFor(15,TimeUnit.SECONDS);
