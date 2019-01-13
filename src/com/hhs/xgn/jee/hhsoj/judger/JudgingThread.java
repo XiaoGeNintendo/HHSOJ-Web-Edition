@@ -328,10 +328,10 @@ public class JudgingThread extends Thread {
 	}
 
 	private boolean LinuxChecker(Submission s, File f, Problem p,int time,int mem) throws IOException, InterruptedException {
-		ProcessBuilder pb=new ProcessBuilder("checker "+
-											 ConfigLoader.getPath()+"/judge/data/a.in "+
-											 ConfigLoader.getPath()+"/judge/temp/a.out "+
-											 ConfigLoader.getPath()+"/judge/data/a.out "+
+		ProcessBuilder pb=new ProcessBuilder("./checker",
+											 ConfigLoader.getPath()+"/judge/data/a.in ",
+											 ConfigLoader.getPath()+"/judge/temp/a.out ",
+											 ConfigLoader.getPath()+"/judge/data/a.out ",
 											 ConfigLoader.getPath()+"/judge/checker.txt ");
 		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 		Process pro=pb.start();
