@@ -89,6 +89,8 @@ public class JudgingThread extends Thread {
 					int cnt=1;
 					boolean ac=true;
 					
+					s.setVerdict("Initizing");
+					new SubmissionHelper().storeStatus(s);
 					LinuxSandboxSetup(s,p);
 					
 					for(File f:testfiles.listFiles()){
@@ -240,11 +242,9 @@ public class JudgingThread extends Thread {
 			return false;
 		}
 		
-		
-		
-		//Prevent Sandbox Treating the Solution as a input/output file.
-		File std=new File(ConfigLoader.getPath()+"/judge/data/sol");
-		std.delete();
+//		//Prevent Sandbox Treating the Solution as a input/output file.
+//		File std=new File(ConfigLoader.getPath()+"/judge/data/sol");
+//		std.delete();
 		
 		return LinuxRunUserProgram(s,f,p);
 	}
