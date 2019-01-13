@@ -17,6 +17,11 @@ public class ConfigLoader {
 	
 	static String RootPath=null;
 	
+	public static boolean isLinux(){
+//		return true;
+		return System.getProperty("os.name").toLowerCase().contains("linux");
+	}
+	
 	public static String getPath() {
 		if(RootPath==null) {
 			if(System.getProperty("os.name").toLowerCase().indexOf("win")>=0){

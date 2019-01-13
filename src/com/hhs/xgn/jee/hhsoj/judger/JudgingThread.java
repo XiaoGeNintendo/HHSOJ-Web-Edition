@@ -49,8 +49,6 @@ public class JudgingThread extends Thread {
 				System.out.println("Now testing:" + s.getId());
 
 				Thread.sleep(1000);
-
-				
 				
 				if (!checkEnvironment(s)) {
 					continue;
@@ -75,61 +73,121 @@ public class JudgingThread extends Thread {
 				s.setNowTest(0);
 				s.setMaxTest(testfiles.list().length);
 
-				if (!compileFiles(s)) {
-					continue;
-				}
+				if(ConfigLoader.isLinux()){
+					//Linux Method of Testing
+					
+					if(!testfiles.isDirectory()){
+						throw new Exception("Testcase is not ready");
+					}
+					
+					int cnt=1;
+					boolean ac=true;
+					
+					for(File f:testfiles.listFiles()){
+						s.setVerdict("Running");
+						s.setNowTest(cnt);
+						new SubmissionHelper().storeStatus(s);
+						
+						boolean goon=LinuxJudgeOneTestCase(s,f,p);
+						
+						if(!goon){
+							ac=false;
+							break;
+						}
+						cnt++;
+					}
+					
+					if (ac) {
+						s.setVerdict("Accepted");
+						new SubmissionHelper().storeStatus(s);
+						
+						if(s.isRated()){
+							if(s.getTestset().equals("small")){
+								//Contest Score
+								Contest c=p.getContest();
+								c.getStanding().countSmall(s,p.getConIndex(),c.getInfo().getScores().get(p.getConIndex()).getSmall());
+								new ContestHelper().refreshContest(c);
+							}else{
+								//Count large score
+								Contest c=p.getContest();
+								c.getStanding().countLarge(s,p.getConIndex(),c.getInfo().getScores().get(p.getConIndex()).getLarge());
+								new ContestHelper().refreshContest(c);
+							}
+							
+						}
+					}else{
+						//Sorry poor guy..
+						if(s.isRated()){
+							if(s.getTestset().equals("small")){
+								//Only work for small tests
+								Contest c=p.getContest();
+								c.getStanding().countWrong(s,p.getConIndex());
+								new ContestHelper().refreshContest(c);
+							}
+						}
+					}
+					
+					
+				}else{
+					
+					//Windows Method of Testing
+					if (!compileFiles(s)) {
+						continue;
+					}
 
 
-				if(!testfiles.isDirectory()){
-					throw new Exception("Testcase is not ready");
+					if(!testfiles.isDirectory()){
+						throw new Exception("Testcase is not ready");
+					}
+					
+					int cnt = 1;
+
+					boolean ac = true;
+
+					for (File f : testfiles.listFiles()) {
+						s.setVerdict("Running");
+						s.setNowTest(cnt);
+						new SubmissionHelper().storeStatus(s);
+						boolean goon = judgeOneTestCase(s, f, p);
+						if (!goon) {
+							ac = false;
+							break;
+						}
+
+						cnt++;
+					}
+
+					if (ac) {
+						s.setVerdict("Accepted");
+						new SubmissionHelper().storeStatus(s);
+						
+						if(s.isRated()){
+							if(s.getTestset().equals("small")){
+								//Contest Score
+								Contest c=p.getContest();
+								c.getStanding().countSmall(s,p.getConIndex(),c.getInfo().getScores().get(p.getConIndex()).getSmall());
+								new ContestHelper().refreshContest(c);
+							}else{
+								//Count large score
+								Contest c=p.getContest();
+								c.getStanding().countLarge(s,p.getConIndex(),c.getInfo().getScores().get(p.getConIndex()).getLarge());
+								new ContestHelper().refreshContest(c);
+							}
+							
+						}
+					}else{
+						//Sorry poor guy..
+						if(s.isRated()){
+							if(s.getTestset().equals("small")){
+								//Only work for small tests
+								Contest c=p.getContest();
+								c.getStanding().countWrong(s,p.getConIndex());
+								new ContestHelper().refreshContest(c);
+							}
+						}
+					}
 				}
 				
-				int cnt = 1;
-
-				boolean ac = true;
-
-				for (File f : testfiles.listFiles()) {
-					s.setVerdict("Running");
-					s.setNowTest(cnt);
-					new SubmissionHelper().storeStatus(s);
-					boolean goon = judgeOneTestCase(s, f, p);
-					if (!goon) {
-						ac = false;
-						break;
-					}
-
-					cnt++;
-				}
-
-				if (ac) {
-					s.setVerdict("Accepted");
-					new SubmissionHelper().storeStatus(s);
-					
-					if(s.isRated()){
-						if(s.getTestset().equals("small")){
-							//Contest Score
-							Contest c=p.getContest();
-							c.getStanding().countSmall(s,p.getConIndex(),c.getInfo().getScores().get(p.getConIndex()).getSmall());
-							new ContestHelper().refreshContest(c);
-						}else{
-							//Count large score
-							Contest c=p.getContest();
-							c.getStanding().countLarge(s,p.getConIndex(),c.getInfo().getScores().get(p.getConIndex()).getLarge());
-							new ContestHelper().refreshContest(c);
-						}
-						
-					}
-				}else{
-					//Sorry poor guy..
-					if(s.isRated()){
-						if(s.getTestset().equals("small")){
-							//Only work for small tests
-							Contest c=p.getContest();
-							c.getStanding().countWrong(s,p.getConIndex());
-							new ContestHelper().refreshContest(c);
-						}
-					}
-				}
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -139,6 +197,180 @@ public class JudgingThread extends Thread {
 				new SubmissionHelper().storeStatus(s);
 			}
 		}
+	}
+
+	/**
+	 * Test one case in the linux program
+	 * @param s
+	 * @param f
+	 * @param p
+	 * @return
+	 * @throws Exception 
+	 */
+	private boolean LinuxJudgeOneTestCase(Submission s, File f, Problem p) throws Exception {
+		LinuxSandboxSetup(s,f);
+		
+		// Use Std to generate output
+		ProcessBuilder pb = new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/data/sol.exe").getAbsolutePath());
+		pb.directory(new File(ConfigLoader.getPath()+"/judge/data/"));
+		pb.redirectInput(new File(ConfigLoader.getPath()+"/judge/data/a.in"));
+		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/data/a.out"));
+		Process pr = pb.start();
+		// We made sure that std is right and no harmful, but may TLE
+    	long now = System.currentTimeMillis();
+		boolean ac = pr.waitFor(Integer.parseInt(p.getArg("TL")), TimeUnit.MILLISECONDS);
+		pr.destroyForcibly();
+		System.out.println("STD TC=" + (System.currentTimeMillis() - now));
+				
+		if(!ac){
+			// Std error
+			s.setVerdict("Standard Program Time Limit Exceeded");
+			s.getResults().add(new TestResult("Standard Program Time Limit Exceeded", 0, 0, f.getName(), "std error"));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+		
+		if(s.getLang().equals("python")){
+			s.setVerdict("Unsupported Language");
+			s.getResults().add(new TestResult("Unsupported Language: Python.",0,0,f.getName(),"Python is not supported on Linux OS now."));
+			return false;
+		}
+		
+		//Prevent Sandbox Treating the Solution as a input/output file.
+		File std=new File(ConfigLoader.getPath()+"/judge/data/sol.exe");
+		std.delete();
+		
+		return LinuxRunUserProgram(s,f,p);
+	}
+
+	
+	private boolean LinuxRunUserProgram(Submission s, File f, Problem p) throws IOException, NumberFormatException, InterruptedException {
+		int langCode;
+		if(s.getLang().equals("java")){
+			langCode=3;
+		}else{
+			if(con.isEnableCPP11()){
+				langCode=4;
+			}else{
+				langCode=2;
+			}
+		}
+		
+		ProcessBuilder pb=new ProcessBuilder("./judge","-l",langCode+"","-D","data","-d","temp","-t",p.getArg("TL"),"-m",p.getArg("ML"),"-o","1048576");
+		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
+		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
+		Process pro=pb.start();
+		boolean ac=pro.waitFor(Integer.parseInt(p.getArg("TL"))+10000,TimeUnit.MILLISECONDS);
+		pro.destroyForcibly();
+		if(!ac){
+			s.setVerdict("Time Limit Exceeded");
+			s.getResults().add(new TestResult("Time Limit Exceeded", Integer.parseInt(p.getArg("TL")), 0, f.getName(), "Sandbox TLE"));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+		
+		String content=readFile(ConfigLoader.getPath()+"/judge/judge.txt");
+		String[] ans=content.split(" ");
+		int result=Integer.parseInt(ans[0]);
+		int mcost=Integer.parseInt(ans[1]);
+		int tcost=Integer.parseInt(ans[2]);
+		String[] int2str=new String[]{"Improper Verdict",
+									  "Improper Verdict",
+									  "Accepted", //OK 2
+									  "Persentation Error", //OK 3
+									  "Time Limit Exceeded",
+									  "Memory Limit Exceeded",
+									  "Wrong Answer", //OK 6
+									  "Output Limit Exceeded",
+									  "Compile Error", //CE 8
+									  "Segmentation Fault",
+									  "Divide By Zero",
+									  "Abort Error",
+									  "Runtime Error",
+									  "Restricted Function",
+									  "Judgement Failed",
+									  "Runtime Error"};
+		
+		if(result!=2 && result!=3 && result!=6){
+			//Bad verdict
+			String verdict=int2str[result];
+			s.setVerdict(verdict);
+			s.getResults().add(new TestResult(verdict, tcost, mcost, f.getName(), ""));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+		if(result==8){
+			String verdict=int2str[result];
+			s.setVerdict(verdict);
+			s.setCompilerComment(readFile(ConfigLoader.getPath()+"/judge/temp/ce.txt"));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+		
+		//Good verdict. Continue to call the checker. The output file is hhsoj/judge/temp/a.out
+		return LinuxChecker(s,f,p,tcost,mcost);
+	}
+
+	private boolean LinuxChecker(Submission s, File f, Problem p,int time,int mem) throws IOException, InterruptedException {
+		ProcessBuilder pb=new ProcessBuilder("checker.exe",
+											 ConfigLoader.getPath()+"/judge/data/a.in",
+											 ConfigLoader.getPath()+"/judge/temp/a.out",
+											 ConfigLoader.getPath()+"/judge/data/a.out",
+											 ConfigLoader.getPath()+"/judge/checker.txt");
+		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
+		Process pro=pb.start();
+		boolean ac=pro.waitFor(15,TimeUnit.SECONDS);
+		pro.destroyForcibly();
+		if(!ac){
+			s.setVerdict("Checker Error");
+			s.getResults().add(new TestResult("Checker Error", time, mem, f.getName(), "Checker Time Limit Exceeded"));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+		
+		int exitCode=pro.exitValue();
+		if(exitCode!=0){
+			s.setVerdict("Wrong Answer");
+			s.getResults().add(new TestResult("Wrong Answer",time,mem,f.getName(),readFile(ConfigLoader.getPath()+"/judge/checker.txt")));
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+		s.getResults().add(new TestResult("Accepted",time,mem,f.getName(),readFile(ConfigLoader.getPath()+"/judge/checker.txt")));
+		new SubmissionHelper().storeStatus(s);
+		
+		return true;
+	}
+
+	private void LinuxSandboxSetup(Submission s,File f) throws Exception {
+		
+			File data=new File(ConfigLoader.getPath()+"/judge/data");
+			File temp=new File(ConfigLoader.getPath()+"/judge/temp");
+			if(data.exists() && data.isFile()){
+				throw new Exception("Data is not folder");
+			}
+			if(temp.exists() && temp.isFile()){
+				throw new Exception("Temp is not folder");
+			}
+			if(!data.exists()){
+				data.mkdirs();
+			}
+			if(!temp.exists()){
+				temp.mkdirs();
+			}
+			
+			//Copy configs
+			copyFile(new File(ConfigLoader.getPath()+"/runtime/LinuxJudge"), new File(ConfigLoader.getPath()+"/judge/judge"));
+			copyFile(new File(ConfigLoader.getPath()+"/runtime/Linux_config.ini"), new File(ConfigLoader.getPath()+"/judge/config.ini"));
+			copyFile(new File(ConfigLoader.getPath()+"/runtime/Linux_okcall.cfg"), new File(ConfigLoader.getPath()+"/judge/okcall.cfg"));
+			
+			//Copy Solution to Temp
+			copyFile(new File(ConfigLoader.getPath()+"/judge/Program."+getExtension(s.getLang())), new File(ConfigLoader.getPath()+"/judge/temp/Main."+getExtension(s.getLang())));
+			
+			//Copy Input Files
+			copyFile(f,new File(ConfigLoader.getPath()+"/judge/data/a.in"));
+			
+			//Recopy solutions to Data
+			copyFile(new File(ConfigLoader.getPath()+"/judge/sol.exe"),new File(ConfigLoader.getPath()+"/judge/data/sol.exe"));
 	}
 
 	private void submitCodeforces(Submission s,Config c) {
@@ -627,6 +859,7 @@ public class JudgingThread extends Thread {
 		pw.println(s.getCode());
 		pw.close();
 
+		
 		// Copy Sandbox
 		File snd = new File(ConfigLoader.getPath()+"/runtime/JudgerV2.exe");
 		File nws = new File(ConfigLoader.getPath()+"/judge/sandbox.exe");
