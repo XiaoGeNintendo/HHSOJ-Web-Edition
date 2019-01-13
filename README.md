@@ -24,6 +24,8 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 
 3. **Note!!! Some functions don't work the same on different OS!**
 
+4. Configure the Sandbox: Find the `/runtime/Linux_config.ini` to change some linux sandbox settings. You can add allowed system call in the file `/runtime/Linux_okcall.cfg` in the following format: `<call Id> := <call Limit>`
+
 # Building on Windows
 0. System requirement: Windows x64 system with Tomcat9.0 server and JRE. You may need to install VC libraries for sandbox to run. 
 
@@ -163,6 +165,8 @@ Thanks for Mike Mirzayanov for the great Codeforces System and API.
 Codeforces (c) Copyright 2010-2018 Mike Mirzayanov
 The only programming contests Web 2.0 platform
 ```
+
+The Linux Sandbox is [here](https://github.com/KIDx/Judger)
 
 You can donate us by Wechat or Paypal :) But that's useless, isn't it? So the donate address will not be public.
 
@@ -426,3 +430,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w12c: Disabled Stack Option of G++
 
 - 19w13c: Minimizing G++ Compiler Option
+
+- 19w14c: Add source for Linux Judging. Moved Java Tester source
