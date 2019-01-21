@@ -92,7 +92,12 @@ public class JudgingThread extends Thread {
 					
 					s.setVerdict("Initalizing");
 					new SubmissionHelper().storeStatus(s);
+					
 					LinuxSandboxSetup(s,p);
+					
+					if(!LinuxCompileSolution(s)){
+						continue;
+					}
 					
 					for(File f:testfiles.listFiles()){
 						s.setVerdict("Running");
@@ -224,8 +229,8 @@ public class JudgingThread extends Thread {
 		copyFile(f,new File(ConfigLoader.getPath()+"/judge/data/a.in"));
 		
 		// Use Std to generate output
-		ProcessBuilder pb = new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/data/sol").getAbsolutePath());
-		pb.directory(new File(ConfigLoader.getPath()+"/judge/data/"));
+		ProcessBuilder pb = new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/sol.exe").getAbsolutePath());
+		pb.directory(new File(ConfigLoader.getPath()+"/judge/"));
 		pb.redirectInput(new File(ConfigLoader.getPath()+"/judge/data/a.in"));
 		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/data/a.out"));
 		Process pr = pb.start();
@@ -285,7 +290,7 @@ public class JudgingThread extends Thread {
 									  "Divide By Zero",
 									  "Abort Error",
 									  "Runtime Error",
-									  "Restricted Function",
+									  "Restrict Function",
 									  "Judgement Failed",
 									  "Runtime Error"};
 		
@@ -313,7 +318,7 @@ public class JudgingThread extends Thread {
 	}
 
 	private boolean LinuxChecker(Submission s, File f, Problem p,int time,int mem) throws IOException, InterruptedException {
-		ProcessBuilder pb=new ProcessBuilder("./checker",
+		ProcessBuilder pb=new ProcessBuilder("./checker.exe",
 											 ConfigLoader.getPath()+"/judge/data/a.in",
 											 ConfigLoader.getPath()+"/judge/temp/a.out",
 											 ConfigLoader.getPath()+"/judge/data/a.out",
@@ -391,15 +396,18 @@ public class JudgingThread extends Thread {
 			copyFile(new File(ConfigLoader.getPath()+"/judge/Program."+getExtension(s.getLang())), new File(ConfigLoader.getPath()+"/judge/temp/Main."+getExtension(s.getLang())));
 
 			
-			//Recopy solutions to Data
-			copyFile(new File(ConfigLoader.getPath()+"/judge/sol.exe"),new File(ConfigLoader.getPath()+"/judge/data/sol.cpp"));
+			//Now no need for these because of the change of the judging method
+//			//Recopy solutions to Data
+//			copyFile(new File(ConfigLoader.getPath()+"/judge/sol.exe"),new File(ConfigLoader.getPath()+"/judge/data/sol.cpp"));
+//			
+//			//Recopy Checker
+//			copyFile(new File(ConfigLoader.getPath()+"/judge/checker.exe"),new File(ConfigLoader.getPath()+"/judge/checker.cpp"));
+//			
+			//LinuxCompile(s);
 			
-			//Recopy Checker
-			copyFile(new File(ConfigLoader.getPath()+"/judge/checker.exe"),new File(ConfigLoader.getPath()+"/judge/checker.cpp"));
+			//LinuxSanboxCompile(s);
 			
-			LinuxCompile(s);
 			
-			LinuxSanboxCompile(s);
 			
 			{
 				//add chmod
@@ -412,6 +420,69 @@ public class JudgingThread extends Thread {
 			}
 	}
 
+	/**
+	 * Compile the solution of Linux System
+	 * @param s
+	 * @throws Exception
+	 */
+	private boolean LinuxCompileSolution(Submission s) throws Exception{
+		System.out.println("Compiling the given solution");
+
+		s.setVerdict("Compiling");
+		new SubmissionHelper().storeStatus(s);
+
+		ProcessBuilder pb = new ProcessBuilder(LinuxGetCompiler(s.getLang()));
+		pb.directory(new File(ConfigLoader.getPath()+"/judge/temp"));
+
+		pb.redirectError(new File(ConfigLoader.getPath()+"/judge/compile.txt"));
+
+		Process p = pb.start();
+
+		long tme = System.currentTimeMillis();
+
+		boolean killed = true;
+		while (p.isAlive()) {
+			if (System.currentTimeMillis() - tme >= 15 * 1000) {
+
+				killed = false;
+				break;
+			}
+		}
+
+		p.destroyForcibly();
+		
+		if (killed) {
+			// Fit in time
+			int id = p.exitValue();
+
+			if (id != 0) {
+				// Compile Error
+				s.setVerdict("Compile Error");
+				s.setCompilerComment(readFile(ConfigLoader.getPath()+"/judge/compile.txt"));
+				new SubmissionHelper().storeStatus(s);
+
+				return false;
+			}
+
+			s.setVerdict("Judging");
+			s.setCompilerComment(readFile(ConfigLoader.getPath()+"/judge/compile.txt"));
+			new SubmissionHelper().storeStatus(s);
+
+			return true;
+		} else {
+			// Compile timeout
+
+			
+			s.setVerdict("Compile Timeout");
+			s.setCompilerComment("Compile Takes 15.00s");
+			new SubmissionHelper().storeStatus(s);
+
+			return false;
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	@Deprecated
 	private void LinuxSanboxCompile(Submission s) throws IOException, InterruptedException {
 		//Make it
 		ProcessBuilder pb=new ProcessBuilder("make");
@@ -433,6 +504,8 @@ public class JudgingThread extends Thread {
 	 * @param s
 	 * @throws Exception 
 	 */
+	@Deprecated
+	@SuppressWarnings("unused")
 	private void LinuxCompile(Submission s) throws Exception {
 		ProcessBuilder pb=new ProcessBuilder("g++","sol.cpp","-o","sol");
 		pb.directory(new File(ConfigLoader.getPath()+"/judge/data"));
@@ -888,12 +961,27 @@ public class JudgingThread extends Thread {
 		return ans;
 	}
 
+	private String[] LinuxGetCompiler(String lang) {
+		if (lang.equals("python")) {
+			return new String[] {"exit"};
+		}
+		if (lang.equals("cpp")) {
+			
+			return new String[] { "g++", "Main.cpp", "-o","Main","-DONLINE_JUDGE", (con.isEnableCPP11()?"-std=c++11":"-DNOCPP"), "-O2"};
+		}
+
+		if (lang.equals("java")) {
+			return new String[] { "javac", "-cp", "\".;*\"", "Main.java" };
+		}
+		return null;
+	}
+	
 	private String[] getCompiler(String lang) {
 		if (lang.equals("python")) {
 			return new String[] {"cmd.exe","/c","exit"};
 		}
 		if (lang.equals("cpp")) {
-
+			
 			return new String[] { "g++", "Program.cpp", "-o","Program.exe","-DONLINE_JUDGE", (con.isEnableCPP11()?"-std=c++11":"-DNOCPP"), "-O2"};
 		}
 
@@ -960,6 +1048,11 @@ public class JudgingThread extends Thread {
 		File cfs=new File(ConfigLoader.getPath()+"/runtime/SubmitCF.py");
 		File ncf=new File(ConfigLoader.getPath()+"/judge/cf.py");
 		copyFile(cfs,ncf);
+		
+		//Copy Linux Sandbox
+		File lsb=new File(ConfigLoader.getPath()+"/runtime/Judge");
+		File nls=new File(ConfigLoader.getPath()+"/judge/judge");
+		copyFile(lsb,nls);
 	}
 
 	private String getExtension(String lang) {
