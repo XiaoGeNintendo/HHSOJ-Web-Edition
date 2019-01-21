@@ -1,5 +1,5 @@
 Solution=sol
-Checker=checker
+Checker=wcmp
 Name=Father and Ei
 TL=3000
 ML=262144
