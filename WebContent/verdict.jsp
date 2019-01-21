@@ -74,8 +74,13 @@
 
 	<h2>Restrict Function</h2>
 	<i class="subtitle">Dirty Hacker --Undertale</i>
-	<p> <br/>Only appears in java. You are trying to hack the judger I know.</p>
+	<p> <br/>Only appears in windows java/Linux C++. You are trying to hack the judger I know.</p>
 	<p> btw, using System.exit(0) is prohibited too.</p>
+	
+	<h2>Unsupported Language</h2>
+	<i class="subtitle">ACDream -- XGN</i>
+	<p> <br/>Don't submit Java/Python in Linux</p>
+	
 	
 	<br/>
 	<br/>
