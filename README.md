@@ -18,7 +18,7 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 # Building on Linux
 0. **Note!!! Linux version is experimental now!!No code can be judged successfully!**
  
-1. System requirement: Any Linux that runs Java8. Install seccomp.h 
+1. System requirement: Any Linux that runs Java8.
 
 2. Then do the same as Windows. The system will detect your OS.
 
