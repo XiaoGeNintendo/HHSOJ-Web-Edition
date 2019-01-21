@@ -24,7 +24,7 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 
 3. **Note!!! Some functions don't work the same on different OS!**
 
-4. Configure the Sandbox: Find the `/runtime/Linux_config.ini` to change some linux sandbox settings. You can add allowed system call in the file `/runtime/Linux_okcall.cfg` in the following format: `<call Id> := <call Limit>`
+4. Configure the Sandbox: Find the `/runtime/Linux_config.ini` to change some linux sandbox settings. You can add allowed system call in the file `/runtime/Linux_okcall.cfg` in the following format: `<call Id> := <call Limit>` Spaces are required
 
 5. You'd better use root account to launch the program.
 
@@ -51,7 +51,7 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 
 2. Create some subfolders with different names(at least 1) and a text file "arg.txt". **For users below 18w51c, a subfolder called "tests" must be created**
 
-3. **Windows** In the "arg.txt" input the following things:
+3. In the "arg.txt" input the following things:
 ```
     Solution=sol.exe //The solution executable file . Put it in the same folder
     Checker=checker.exe //The checker executable file. Please use testlib
@@ -61,20 +61,7 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
     Tag=math,implementation //Tags. Write it as you like
     Statement=statement.jsp //Statement file position
 ```
-
-**Linux** In the "arg.txt" input the following things:
-```
-	Solution=sol.cpp //The solution code file.MUST BE C++ FILE. Put it in the same folder
-    Checker=checker.cpp //The checker code file.MUST BE C++ FILE. Please use testlib
-    Name=A+b Problem //The problem name for displaying
-    TL=1000 //Time Limit in ms
-    ML=1000 //Memory Limit in kb
-    Tag=math,implementation //Tags. Write it as you like
-    Statement=statement.jsp //Statement file position
-```
-A "testlib.h" is included in the hhsoj/runtime. If you want to update the file, just change it. **But please don't change its name**
-
-**Both** Please don't place trailing/leading spaces/tabs.
+Please don't place trailing/leading spaces/tabs.
 
 4. Check your HHSOJ version and write problem statement in HTML format:
 
@@ -457,3 +444,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w18c: Faster! Faster! Faster! Linux C++ Testing Done!
 
 ## Version 1.7: Linux C++ Testing
+
+- 19w19c: 16 testcases per second! Linux Godly Speed Testing Done!
