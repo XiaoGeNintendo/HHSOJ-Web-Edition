@@ -1,0 +1,16 @@
+{
+    "name":"HHSOJ Alpha Round #1 Linux Version",
+    "startTime":1543125900000,
+    "length":636001000000,
+    "scores":{
+        "A":{
+            "small":100,
+            "large":300
+        },
+        "B":{
+            "small":300,
+            "large":500
+        }
+    },
+    "authors":["a","XGN"]
+}

@@ -1,6 +1,6 @@
 Solution=sol
 Checker=checker
-Name=A+b Problem(Linux Version)
+Name=A+b Problem
 TL=1000
 ML=262144
 Tag=math,implementation

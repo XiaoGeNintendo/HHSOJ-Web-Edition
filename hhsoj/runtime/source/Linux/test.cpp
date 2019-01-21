@@ -533,12 +533,12 @@ int main(int argc, char *argv[])
     }
 
     //编译
-    int compile_ok = Compiler();
-    if (compile_ok != 0) //测试结果OJ_CE
-    {
-        output_result(judge_conf::OJ_CE);
-        exit(judge_conf::EXIT_OK);
-    }
+//    int compile_ok = Compiler();
+//    if (compile_ok != 0) //测试结果OJ_CE
+//    {
+//        output_result(judge_conf::OJ_CE);
+//        exit(judge_conf::EXIT_OK);
+//    }
 
     //运行 judge
     DIR * dp;
