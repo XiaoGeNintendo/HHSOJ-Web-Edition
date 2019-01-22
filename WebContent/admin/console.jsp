@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.ConfigLoader"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,7 +32,7 @@
 		<table border="1">
 			<tr>
 				<td>
-					<b id="position">hhsoj/</b>
+					<b id="position"><%=ConfigLoader.getPath()+"/" %></b>
 					</td>
 			</tr>
 		</table>
@@ -63,6 +64,7 @@
 	4. copy [file] - Copy everything in the [file] under this folder to the stream console
 	5. write [file] - Write everything in the stream console to the [file].If it is not created, a new one will be created.
 	6. mkdir [foldername] - Create a new directory named [foldername]
+	7. del [filename] - Delete the given file/folder.
 	</pre>
 	
 	<script>

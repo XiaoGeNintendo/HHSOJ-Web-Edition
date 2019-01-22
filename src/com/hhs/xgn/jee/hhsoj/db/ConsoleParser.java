@@ -55,8 +55,9 @@ public class ConsoleParser {
 				}
 				String large="";
 				for(int i=1;i<str.length;i++){
-					large+=str[i];
+					large+=str[i]+" ";
 				}
+				large=large.trim();
 				
 				File f;
 				if(large.equals("..")){
@@ -98,8 +99,10 @@ public class ConsoleParser {
 				}
 				String large="";
 				for(int i=1;i<str.length;i++){
-					large+=str[i];
+					large+=str[i]+" ";
 				}
+				large=large.trim();
+				
 				
 				File f=new File(position+large);
 				if(!f.exists() || f.isDirectory()){
@@ -118,8 +121,10 @@ public class ConsoleParser {
 					}
 					String large="";
 					for(int i=1;i<str.length;i++){
-						large+=str[i];
+						large+=str[i]+" ";
 					}
+					large=large.trim();
+					
 					File f=new File(position+large);
 					PrintWriter pw=new PrintWriter(f, "utf-8");
 					pw.println(stream);
@@ -137,8 +142,10 @@ public class ConsoleParser {
 				}
 				String large="";
 				for(int i=1;i<str.length;i++){
-					large+=str[i];
+					large+=str[i]+" ";
 				}
+				large=large.trim();
+				
 				File f=new File(position+large);
 				if(f.exists()){
 					return toJson(position,"Error 511:Folder already exists",stream);
@@ -149,6 +156,26 @@ public class ConsoleParser {
 				}
 				return toJson(position,"OK. New folder is created",stream);
 			}
+			
+			if(cmd.equals("del")){
+				if(str.length==1){
+					return toJson(position,"Error 512:Grammar Error",stream);
+				}
+				String large="";
+				for(int i=1;i<str.length;i++){
+					large+=str[i]+" ";
+				}
+				large=large.trim();
+				
+				File f=new File(position+large);
+				if(!f.exists()){
+					return toJson(position,"File/Folder doesn't exist",stream);
+				}
+				
+				delete(f);
+				return toJson(position,"OK. It is deleted",stream);
+			}
+			
 			return toJson(position,"Error 001:Unknown command "+cmd,stream);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -157,6 +184,17 @@ public class ConsoleParser {
 	
 	}
 
+	private static void delete(File f){
+		if(f.isDirectory()){
+			for(File f2:f.listFiles()){
+				delete(f2);
+			}
+			f.delete();
+		}else{
+			f.delete();
+		}
+	}
+	
 	private static String readFrom(File f) {
 		try{
 			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(f), "utf-8"));
