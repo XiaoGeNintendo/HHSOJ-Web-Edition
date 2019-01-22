@@ -325,7 +325,7 @@ public class JudgingThread extends Thread {
 											 ConfigLoader.getPath()+"/judge/checker.txt");
 		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 		Process pro=pb.start();
-		boolean ac=pro.waitFor(15,TimeUnit.SECONDS);
+		boolean ac=pro.waitFor(con.getWaitTimeout(),TimeUnit.SECONDS);
 		pro.destroyForcibly();
 		if(!ac){
 			s.setVerdict("Checker Error");
@@ -791,7 +791,7 @@ public class JudgingThread extends Thread {
 		pb.directory(new File(ConfigLoader.getPath()+"/judge"));
 		pb.inheritIO();
 		Process pro=pb.start();
-		boolean notle=pro.waitFor(10, TimeUnit.SECONDS);
+		boolean notle=pro.waitFor(con.getWaitTimeout(), TimeUnit.SECONDS);
 		
 		
 		if(notle){
@@ -844,7 +844,7 @@ public class JudgingThread extends Thread {
 			
 			Process pro = pb.start();
 
-			boolean notle = pro.waitFor(10000, TimeUnit.MILLISECONDS);
+			boolean notle = pro.waitFor(con.getWaitTimeout(), TimeUnit.SECONDS);
 			
 			pro.destroyForcibly();
 

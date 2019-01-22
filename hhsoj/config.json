@@ -8,5 +8,6 @@
     "codeforcesUsername":"",
     "codeforcesPassword":"",
     "queryTime":7200000,
-    "clearFolder":false
+    "clearFolder":false,
+    "waitTimeout":10
 }

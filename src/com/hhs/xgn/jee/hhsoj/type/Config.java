@@ -11,6 +11,7 @@ public class Config {
 	private boolean enableRemoteJudge;
 	private long queryTime;
 	private boolean clearFolder;
+	private int waitTimeout;
 	
 	public boolean isEnableCPP11() {
 		return enableCPP11;
@@ -71,6 +72,12 @@ public class Config {
 	}
 	public void setClearFolder(boolean clearFolder) {
 		this.clearFolder = clearFolder;
+	}
+	public int getWaitTimeout() {
+		return waitTimeout;
+	}
+	public void setWaitTimeout(int waitTimeout) {
+		this.waitTimeout = waitTimeout;
 	}
 	
 }
