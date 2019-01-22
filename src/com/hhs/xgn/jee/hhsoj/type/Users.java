@@ -28,6 +28,11 @@ public class Users {
 	private String userPic;
 	
 	/**
+	 * If the user is banned
+	 */
+	private boolean banned;
+	
+	/**
 	 * Return the languages in Javascript Text
 	 * @return
 	 */
@@ -189,6 +194,14 @@ public class Users {
 
 	public void setBlogStatus(Map<Integer, Integer> blogStatus) {
 		this.blogStatus = blogStatus;
+	}
+
+	public boolean isBanned() {
+		return banned;
+	}
+
+	public void setBanned(boolean banned) {
+		this.banned = banned;
 	}
 
 	

@@ -452,3 +452,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w21a: Delete feature for admin console
 
 - 19w22b: Display Submission Filter
+
+- 19w23a: Ban users in admin platform

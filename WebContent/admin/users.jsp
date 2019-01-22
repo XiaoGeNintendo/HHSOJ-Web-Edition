@@ -24,7 +24,7 @@
 		ArrayList<Users> user=new UserHelper().getAllUsers();
 		
 		for(Users u:user){
-			out.println("<b>User #"+u.getId()+"</b> - "+u.getUsername()+" - "+u.toJson()+"<br/>");
+			out.println("<b>User #"+u.getId()+"</b> - "+(u.isBanned()?"<s>":"")+u.getUsername()+(u.isBanned()?"</s>":"")+" - "+u.toJson()+"<a href=\"ban.jsp?id="+u.getUsername()+"\">BAN/UNBAN HIM!</a><br/>");
 		}
 	%>
 	

@@ -34,7 +34,13 @@
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	<!-- Default End -->
 
-
+	<%
+		if(u.isBanned()){		
+			out.println("This guy has been banned for some reason. :(");
+			return;
+		}
+	%>
+	
 	<table width="80%">
 		<tr>
 			<th width="50%"></th>

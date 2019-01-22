@@ -20,6 +20,12 @@
 	
 	for(Users s:users){
 		if(s.getUsername().equals(username) && s.getPassword().equals(password)){
+			
+			if(s.isBanned()){
+				out.println("Man, you are banned!!! No more logging in!");
+				return;
+			}
+			
 			request.getRequestDispatcher("finish_login.jsp").forward(request, response);
 			return;
 		}
