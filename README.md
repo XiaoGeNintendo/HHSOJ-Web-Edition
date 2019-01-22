@@ -446,3 +446,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 ## Version 1.7: Linux C++ Testing
 
 - 19w19c: 16 testcases per second! Linux Godly Speed Testing Done!
+
+- 19w20d: UTF-8 Support on Comments

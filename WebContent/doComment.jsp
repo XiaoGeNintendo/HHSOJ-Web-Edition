@@ -5,6 +5,8 @@
 
 <%
 
+	request.setCharacterEncoding("utf-8");
+	
 	String id=request.getParameter("id");
 	String comment=request.getParameter("comment");
 	String user=(String)session.getAttribute("username");

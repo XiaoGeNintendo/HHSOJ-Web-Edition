@@ -35,7 +35,7 @@ public class BlogHelper {
 	
 	public synchronized void refreshBlog(Blog b){
 		try{
-			PrintWriter pw=new PrintWriter(ConfigLoader.getPath()+"/blog/"+b.getId());
+			PrintWriter pw=new PrintWriter(ConfigLoader.getPath()+"/blog/"+b.getId(),"utf-8");
 			pw.println(new Gson().toJson(b));
 			pw.close();
 		}catch(Exception e){
