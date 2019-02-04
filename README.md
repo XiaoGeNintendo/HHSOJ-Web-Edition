@@ -487,3 +487,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w27d: Fixed that all accepted solution in one contest will be judged
 
 - 19w28b: Auto return login/logout in some places
+
+- 19w29d: Fixed some security bugs

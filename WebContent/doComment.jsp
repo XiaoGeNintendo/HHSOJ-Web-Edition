@@ -14,8 +14,15 @@
 		out.println("Error");
 		return;
 	}
+	
+	if(comment.length()>=65536){
+		out.println("Comment is too long");
+		return;
+	}
+	
 	Blog b=new BlogHelper().getBlogDataByID(id);
 	b.addComment(user, comment);
+	
 	
 	new BlogHelper().refreshBlog(b);
 	response.sendRedirect("viewBlog.jsp?id="+id+"#Comment"+(b.getComments().size()-1));

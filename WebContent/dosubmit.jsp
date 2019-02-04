@@ -16,6 +16,11 @@
 		return;
 	}
 	
+	if(code.length()>65536 || testset.length()>1024 || prob.length()>1024 || lang.length()>1024){
+		response.sendRedirect("submit.jsp");
+		return;
+	}
+	
 	try{
 		Problem p=new ProblemHelper().getProblemData(prob);
 		if(p.getType()==Problem.CONTEST){

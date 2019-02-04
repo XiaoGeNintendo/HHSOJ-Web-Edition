@@ -19,6 +19,11 @@
 		return;
 	}
 	
+	if(clarification.length()>=65536){
+		out.println("Clarification is too long.");
+		return;
+	}
+	
 	Question q=new Question();
 	q.setAsker(user);
 	q.setQuestion(clarification);

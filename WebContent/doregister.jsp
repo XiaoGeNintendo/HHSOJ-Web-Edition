@@ -13,6 +13,7 @@
 	String email=request.getParameter("email");
 	String line=request.getParameter("line");
 	
+	
 	//System.out.println(username+" "+password+" "+email+" "+line);
 	
 	UserHelper db=new UserHelper();
@@ -35,9 +36,18 @@
 	}
 	
 	if(!username.matches("[a-z0-9A-Z]{1,50}")){
-		out.println("Hey! You are trying to hack this OJ by changing the js file! Don't u?");
+		out.println("Username should match regex [a-z0-9A-z]{1,50}");
 		return;
 	}
+	if(password.length()>50){
+		out.println("Maximum length of password is 50 characters");
+		return;
+	}
+	if(line.length()>300){
+		out.println("Maximum length of line is 300 characters");
+		return;
+	}
+	
 	if(!ok){
 		Users u=new Users();
 		u.setUsername(username);

@@ -39,6 +39,11 @@
 			}
 		}
 		
+		if(!username.matches("[a-zA-Z0-9]{1,50}")){
+			out.println("Username illegal");
+			return;
+		}
+		
 		//Refresh all user data
 		
 		ArrayList<Submission> sub=new SubmissionHelper().getAllSubmissions();
@@ -78,13 +83,13 @@
 		nowU.setUsername(username);
 		session.setAttribute("username", username);
 	}
-	if(newPassword.equals("")==false){
+	if(newPassword.equals("")==false && newPassword.length()<=50){
 		nowU.setPassword(newPassword);
 	}
-	if(line.equals("")==false){
+	if(line.equals("")==false && line.length()<=300){
 		nowU.setLine(line);
 	}
-	if(userPic.equals("")==false){
+	if(userPic.equals("")==false && userPic.length()<=1024){
 		nowU.setUserPic(userPic);
 	}
 	new UserHelper().refreshUser(nowU);
