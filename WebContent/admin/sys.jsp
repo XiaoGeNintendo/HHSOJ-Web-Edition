@@ -1,3 +1,6 @@
+<%@page import="java.util.Map.Entry"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.type.ContestStandingColumn"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.type.ContestStandingRow"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.judger.TaskQueue"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.SubmissionHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Submission"%>
@@ -23,22 +26,24 @@ String str=request.getParameter("id");
 
 Contest c=new ContestHelper().getContestDataById(str);
 
-ArrayList<Submission> arr=new SubmissionHelper().getAllSubmissions();
-
 int cnt=0;
 
-for(Submission s:arr){
-	if(s.isRated() && s.getVerdict().equals("Accepted") && c.inRange(s.getSubmitTime())){
-		Submission as=new Submission();
-		as.setProb(s.getProb());
-		as.setCode(s.getCode());
-		as.setLang(s.getLang());
-		as.setUser(s.getUser());
-		as.setSubmitTime(s.getSubmitTime());
-		as.setRated(true);
-		as.setTestset("large");
-		TaskQueue.addTask(as);
-		cnt++;
+for(ContestStandingRow csr:c.getStanding().getRows()){
+	for(Entry<String,ContestStandingColumn> e:csr.getScores().entrySet()){
+		Submission s=e.getValue().getLastSubmission();
+		
+		if(s!=null){
+			Submission as=new Submission();
+			as.setProb(s.getProb());
+			as.setCode(s.getCode());
+			as.setLang(s.getLang());
+			as.setUser(s.getUser());
+			as.setSubmitTime(s.getSubmitTime());
+			as.setRated(true);
+			as.setTestset("large");
+			TaskQueue.addTask(as);
+			cnt++;
+		}
 	}
 }
 

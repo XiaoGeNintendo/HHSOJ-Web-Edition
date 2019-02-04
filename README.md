@@ -483,3 +483,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w25b: Icon and CSS update
 
 - 19w26a: Add external resource request. (Weird number??!!)
+
+- 19w27d: Fixed that all accepted solution in one contest will be judged

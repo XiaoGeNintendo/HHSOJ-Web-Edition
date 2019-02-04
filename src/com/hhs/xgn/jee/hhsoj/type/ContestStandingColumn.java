@@ -15,6 +15,11 @@ public class ContestStandingColumn {
 	 */
 	private long lastSubmissionTime;
 	
+	/**
+	 * The last accepted submission
+	 */
+	private Submission lastSubmission;
+	
 	public void addUnsuccessfulSubmitCount(){
 		unsuccessfulSubmitCount++;
 	}
@@ -73,6 +78,14 @@ public class ContestStandingColumn {
 	public int getRawScore() {
 		// TODO Auto-generated method stub
 		return scoreSmall+scoreLarge;
+	}
+
+	public Submission getLastSubmission() {
+		return lastSubmission;
+	}
+
+	public void setLastSubmission(Submission lastSubmission) {
+		this.lastSubmission = lastSubmission;
 	}
 	
 }

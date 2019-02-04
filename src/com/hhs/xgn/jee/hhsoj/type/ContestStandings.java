@@ -56,6 +56,8 @@ public class ContestStandings {
 		}
 		csc.setScoreSmall(score);
 		csc.setLastSubmissionTime(s.getSubmitTime());
+		csc.setLastSubmission(s);
+		
 		csr.getScores().put(index, csc);
 		
 		sortStanding();
