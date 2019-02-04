@@ -214,8 +214,30 @@ Let W to be the rank of the user. Then the new rating of the user is ![R](https:
 
 # Compiling Guide
 JavaTester.jar : `javac JavaTester.java`
+
 JugderV2 : `Use Microsoft VS2017`
-Sandbox4Linux: `sudo g++ main.c container.h container.c executor.c executor.h scmp_rules.c scmp_rules.h killer.c killer.h -o main -lseccomp -lpthread` **Need Seccomp.h**
+
+Sandbox4Linux: `make`
+
+# External Resource Link
+Because of the special design, you cannot link to external resources/items when writing a contest announcement or a problem statement. But after 19w26a you can request a external resource by using the `fetch.jsp`. The usage do as follows:
+
+`<host>/fetch.jsp?path=<file path>&encrypt=<md5 encrypt>`
+
+Where `<host>` is your server host.
+`<file path>` is the file path relative to the hhsoj root path.
+`<md5 encrypt>` is the md5 encrypt of the file you are requesting.
+You can use this method to request a file smaller than 1024*1024 bytes.
+
+For example, to request "announcement.txt" you can write as follows:
+
+`fetch.jsp?path-announcement.txt&encrypt=7dab3eb66f77f478301d1bf90c0fcfde`
+
+The md5 is only a sample. Replace it with real md5 you found.
+
+Note that each time you use this method, a debug information will be displayed on the console. It looks like:
+
+`[External Resource Request]File:<file path>(<absolute file path>) Length:<file length> Given md5:<the md5 in the request header> Expected md5:<the real md5 of the file> Operator:<ip address of the requester>`
 
 # Changelog
 
@@ -457,3 +479,7 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w23a: Ban users in admin platform
 
 - 19w24a: Now can change the compiler wait time through files
+
+- 19w25b: Icon and CSS update
+
+- 19w26a: Add external resource request. (Weird number??!!)
