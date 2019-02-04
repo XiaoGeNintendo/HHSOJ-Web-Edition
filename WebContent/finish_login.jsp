@@ -10,8 +10,8 @@
 		<%
 			session.setAttribute("username",request.getParameter("username"));
 			String type=request.getParameter("type");
-			if(type!=null && type.equals("submit")){
-				response.sendRedirect("submit.jsp");
+			if(type!=null){
+				response.sendRedirect(type+".jsp");
 				return;
 			}
 			

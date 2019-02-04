@@ -28,11 +28,11 @@
 
 <%
 	if(user==null){
-		out.println("<a href=\"login.jsp\" class=\"nav-link-right "+(nowAt.equals("login")?"selected":"")+"\">Login</a>");
+		out.println("<a href=\"login.jsp?back="+nowAt+"\" class=\"nav-link-right "+(nowAt.equals("login")?"selected":"")+"\">Login</a>");
 		out.println("<a href=\"register.jsp\" class=\"nav-link-right "+(nowAt.equals("register")?"selected":"")+"\">Register</a>");
 	}else{
 		out.println("<a href=\"users.jsp?username=" + user + "\" class=\"nav-link-right\">" + user + "</a>");
-		out.println("<a href=\"logout.jsp\" class=\"nav-link-right\">Logout</a>");
+		out.println("<a href=\"logout.jsp?back="+nowAt+"\" class=\"nav-link-right\">Logout</a>");
 	}
 
 %>

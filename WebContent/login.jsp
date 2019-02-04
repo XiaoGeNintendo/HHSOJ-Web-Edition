@@ -10,7 +10,7 @@
 <body>
 	
 	<%
-		String type=request.getParameter("type");
+		String type=request.getParameter("back");
 		if(type!=null && type.equals("submit")){
 			
 	%>

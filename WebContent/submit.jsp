@@ -12,7 +12,7 @@
 	<%
 		String s = (String) session.getAttribute("username");
 		if (s == null || s.equals("")) {
-			response.sendRedirect("login.jsp?type=submit");
+			response.sendRedirect("login.jsp?back=submit");
 		} else {
 	%>
 
