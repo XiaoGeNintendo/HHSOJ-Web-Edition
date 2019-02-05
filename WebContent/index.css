@@ -35,10 +35,7 @@ input {
 	margin-right: 20px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	height: 40px;
-	width: 800px;
 	float: left;
-	height: 40px;
 	font-family: Georgia, serif;
 }
 
@@ -47,8 +44,6 @@ input {
 	margin-right: 20px;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	height: 30px;
-	width: 800px;
 	float: left;
 	clear: both;
 	margin-bottom: 10px;

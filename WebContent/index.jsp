@@ -9,7 +9,8 @@
 </head>
 <body>
 	<!-- Enter Everything here -->
-	<h1 id="title">Welcome to Hell Hole Studios Online Judge!</h1>
+	
+	<h1 id="title"><img src="asset/favicon/favicon128x.png" style="margin-right:20px;">Welcome to HellOJ!</h1>
 	<i id="subtitle">This OJ is made by XiaoGeNintendo in Hell Hole
 		Studios</i>
 	<hr />
