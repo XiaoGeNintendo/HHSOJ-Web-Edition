@@ -489,3 +489,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w28b: Auto return login/logout in some places
 
 - 19w29d: Fixed some security bugs
+
+- 19w30d: Fixed that in remote judge memory consumed will *1024

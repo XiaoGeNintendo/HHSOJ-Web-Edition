@@ -560,7 +560,7 @@ public class JudgingThread extends Thread {
 				
 				s.setVerdict(cs.getExchangeVerdict());
 				s.setNowTest(cs.getPassedTestCount()+1);
-				s.getResults().set(0,new TestResult(cs.getVerdict(),cs.getTimeConsumedMillis(),cs.getMemoryConsumedBytes(),"??","??"));
+				s.getResults().set(0,new TestResult(cs.getVerdict(),cs.getTimeConsumedMillis(),cs.getMemoryConsumedBytes()/1024,"??","??"));
 				
 				new SubmissionHelper().storeStatus(s);
 				if(!cs.getVerdict().equals("TESTING")){
