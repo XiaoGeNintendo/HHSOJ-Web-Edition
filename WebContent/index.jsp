@@ -38,7 +38,7 @@
 	<br />
 	<a href="HMSChanger.jsp" id="hms">Online HMS to ms Changer</a>
 	<br />
-	
+	<a href="userSearch.jsp" id="us">User Search</a>
 	
 	<%
 		if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
