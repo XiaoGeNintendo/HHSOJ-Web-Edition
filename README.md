@@ -492,4 +492,4 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 
 - 19w30d: Fixed that in remote judge memory consumed will *1024
 
-- 19w31a: User Search Feature [HHSOJ Monthly Update March 2019]
+- 19w31a: User Search Feature (HHSOJ Monthly Update March 2019)
