@@ -24,7 +24,7 @@
 	<%
 		}
 	%>
-</div>
+
 
 <%
 	if(user==null){
@@ -36,6 +36,7 @@
 	}
 
 %>
+</div>
 <div class="seperator"></div>
 <br />
 </body>

@@ -1,7 +1,7 @@
 /* HHSOJ CSS file */
 /* by Zzzyt */
 body {
-	background: #f8f8f8;
+	background: #fafaf8;
 	margin-left: 50px;
 	margin-right: 50px;
 	margin-top: 50px;
@@ -121,6 +121,7 @@ input {
 #marquee {
 	margin-top: 30px;
 	margin-bottom: 30px;
+	font-size: 20px;
 }
 
 #verdict {
@@ -217,8 +218,6 @@ input {
 
 .oj-icon {
 	vertical-align: middle;
-	background-color: #ffffff;
-	border-radius: 10px;
 }
 
 #blog-content {

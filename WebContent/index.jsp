@@ -31,6 +31,7 @@
 	<p>This system is still under developing. Please don't upload any
 		harmful code. Thanks :(</p>
 	<br />
+	<br />
 	<a href="verdict.jsp" id="verdict">Verdicts List</a>
 	<br />
 	<a href="credits.jsp" id="credit">Credits</a>
@@ -42,7 +43,8 @@
 	<a href="HMSChanger.jsp" id="hms">Online HMS to ms Changer</a>
 	<br />
 	<a href="userSearch.jsp" id="us">User Search</a>
-	
+	<br />
+	<br />
 	<%
 		if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
 	%>
