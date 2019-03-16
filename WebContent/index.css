@@ -1,7 +1,7 @@
 /* HHSOJ CSS file */
 /* by Zzzyt */
 body {
-	background: #f0f0f0;
+	background: #f8f8f8;
 	margin-left: 50px;
 	margin-right: 50px;
 	margin-top: 50px;
@@ -213,6 +213,12 @@ input {
 	text-decoration: none;
 	color: #66ccff;
 	font-weight: bold;
+}
+
+.oj-icon {
+	vertical-align: middle;
+	background-color: #ffffff;
+	border-radius: 10px;
 }
 
 #blog-content {

@@ -10,7 +10,10 @@
 <body>
 	<!-- Enter Everything here -->
 	
-	<h1 id="title"><img src="asset/favicon/favicon128x.png" style="margin-right:20px;">Welcome to HellOJ!</h1>
+	<h1 id="title">
+	<img src="asset/favicon/favicon128x.png" style="height:50px;width:50px;margin-right:10px;" class="oj-icon">
+	Welcome to HellOJ!
+	</h1>
 	<i id="subtitle">This OJ is made by XiaoGeNintendo in Hell Hole
 		Studios</i>
 	<hr />
