@@ -170,7 +170,9 @@ The only programming contests Web 2.0 platform
 
 The Linux Sandbox is [here](https://github.com/KIDx/Judger)
 
-You can donate us by Wechat or Paypal :) But that's useless, isn't it? So the donate address will not be public.
+MathJax is [here](https://www.mathjax.org/)
+ 
+You can donate us by Wechat or Paypal :) Send an issue to ask for the donation link.
 
 
 # Customizing Announcement
@@ -508,6 +510,8 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 
 - 19w31a: User Search Feature (HHSOJ Monthly Update March 2019)
 
+## Version 1.8: Marh Update of 2019
+
 - 19w32a: Display Codeforces Statement on HHSOJ with buffer!
 
 - 19w33a: The MathJax support for everywhere in HHSOJ
@@ -517,3 +521,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w35b: Added color for solved problems and attempted problems
 
 - 19w36a: Attempted & Solved problems shown on Users' page
+
+## Version 1.9: Remote Judge Update
