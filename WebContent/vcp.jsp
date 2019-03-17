@@ -48,9 +48,7 @@
 	<jsp:include page="nav.jsp?at=contests"></jsp:include>
 
 	<center>
-		<h1><%=p.getName()%>
-			on HHSOJ
-		</h1>
+		<h1><%=p.getName()%></h1>
 
 		<p>
 			<b>Time Limit Per Test: <%=p.getArg("TL")%> ms

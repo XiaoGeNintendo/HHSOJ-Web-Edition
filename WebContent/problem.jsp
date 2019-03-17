@@ -8,6 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    
 <jsp:include page="head.jsp"></jsp:include>
 
 <title>HHSOJ-<%=request.getParameter("id")%></title>
@@ -28,8 +29,7 @@
 			}
 			if(sid.startsWith("R")){
 				//Codeforces Problem
-				CodeforcesProblem cp=new ProblemHelper().getProblemDataR(sid);
-				response.sendRedirect("https://codeforces.com/contest/"+cp.getContestId()+"/problem/"+cp.getIndex());
+				response.sendRedirect("cfp.jsp?id="+sid);
 				return;
 			}
 			id = Integer.parseInt(request.getParameter("id"));

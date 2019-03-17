@@ -1,6 +1,10 @@
 package com.hhs.xgn.jee.hhsoj.remote;
 
 import java.util.List;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -47,6 +51,23 @@ public class CodeforcesHelper {
 		return null;
 	}
 	
+	/**
+	 * Returns a problem statement by a problem
+	 * @param cp
+	 * @return
+	 */
+	public static String getProblemStatement(CodeforcesProblem cp){
+		try{
+			String raw=get("https://codeforces.com/problemset/problem/"+cp.getContestId()+"/"+cp.getIndex());
+			
+			Document doc=Jsoup.parseBodyFragment(raw);
+			
+			return doc.getElementsByClass("problemindexholder").get(0).html();
+		}catch(Exception e){
+			e.printStackTrace();
+			return "Fail to fetch problem statement.\n";
+		}
+	}
 	/**
 	 * Get the Codeforces Problems according to the API
 	 * @return
@@ -148,7 +169,7 @@ public class CodeforcesHelper {
 		urlConnection = (HttpURLConnection) url.openConnection();
 		responsecode = urlConnection.getResponseCode();
 		if (responsecode == 200) {
-			reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "GBK"));
+			reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "utf-8"));
 			String ss = "";
 			while ((line = reader.readLine()) != null) {
 				ss += line + "\n";

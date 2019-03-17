@@ -13,3 +13,13 @@
 
 <!--<link rel="icon" type="image/png" href="/asset/favicon/favicon-32x32.png" sizes="32x32">-->
 <!--<link rel="icon" type="image/png" href="/asset/favicon/favicon-16x16.png" sizes="16x16">-->
+
+<!-- MathJax -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$$$','$$$']], displayMath: [['$$$$$$','$$$$$$']]}
+    });
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" >
+    </script>
+    <!-- /MathJax -->

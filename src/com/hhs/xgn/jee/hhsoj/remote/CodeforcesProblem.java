@@ -1,6 +1,9 @@
 package com.hhs.xgn.jee.hhsoj.remote;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.hhs.xgn.jee.hhsoj.type.Problem;
 
 /**
  * A class for Codeforces Problem
@@ -15,6 +18,22 @@ public class CodeforcesProblem {
 	private String type;
 	private float points;
 	private ArrayList<String> tags;
+	
+	public Problem toProblem(){
+		Problem p=new Problem();
+		p.setType(Problem.CODEFORCES);
+		p.setConId(contestId);
+		p.setConIndex(index);
+		p.setTag(tags+"");
+		p.setName(name);
+		HashMap<String,String> mp=new HashMap<>();
+		mp.put("TL", "-");
+		mp.put("ML", "-");
+		
+		p.setArg(mp);
+		
+		return p;
+	}
 	
 	public CodeforcesProblem(){
 		problemsetName="";
