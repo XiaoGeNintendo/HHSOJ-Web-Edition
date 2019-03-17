@@ -228,7 +228,9 @@ JugderV2 : `Use Microsoft VS2017`
 Sandbox4Linux: `make`
 
 # MathJax Support
-We support MathJax in blogs,comments,statements,announcements,etc... Almost everywhere! Write $$$ before and after your formula to create MathJax inline. 6 $s to create a large formula. **After19w33a only**
+We support MathJax in blogs,comments,statements,announcements,etc... Almost everywhere! Write $$$ before and after your formula to create MathJax inline. 6 '$'s to create a large formula. **After19w33a only**
+
+**MathJax support is still in Alpha version. Be careful when using it in blogs!**
 
 # External Resource Link
 Because of the special design, you cannot link to external resources/items when writing a contest announcement or a problem statement. But after 19w26a you can request a external resource by using the `fetch.jsp`. The usage do as follows:
