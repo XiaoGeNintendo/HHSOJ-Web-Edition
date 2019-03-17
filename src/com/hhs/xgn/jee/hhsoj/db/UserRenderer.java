@@ -19,6 +19,23 @@ public class UserRenderer {
 	 */
 	int[] scores=new int[]{0,1199,1399,1599,1899,2099,2299,2399,2599,2999,1000000000};
 	
+	public String getColorUP(Users u,String p){
+		if(u==null || p==null || u.getProblemStatus()==null){
+			return "white";
+		}
+		int s=u.getProblemStatus().getOrDefault(p, 0);
+		if(s==0){
+			return "white";
+		}
+		if(s==1){
+			return "yellow";
+		}
+		if(s==2){
+			return "green";
+		}
+		return "grey";
+	}
+	
 	/**
 	 * Get user rank with a rating
 	 * @param rating

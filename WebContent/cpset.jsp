@@ -14,6 +14,16 @@
 	<h1 id="title">Contest Problems in HHSOJ</h1>
 	<i id="subtitle">Bad contest time --XGN</i>
 	<hr />
+	<%
+		Users u=null;
+		try{
+			String sid=(String)session.getAttribute("username");
+			u=new UserHelper().getUserInfo(sid);
+		}catch(Exception e){
+			
+		}
+	%>
+	
 	<jsp:include page="nav.jsp?at=problemset"></jsp:include>
 	
 	<a href="problemset.jsp" class="problemset">Practice Problemset</a>
@@ -39,7 +49,7 @@
 				for(Problem p:c.getProblems()){
 		%>
 					<tr>
-						<td><%="C"+p.getConId()+p.getConIndex() %></td>
+						<td bgcolor="<%=new UserRenderer().getColorUP(u,"C"+p.getConId()+p.getConIndex())%>"><%="C"+p.getConId()+p.getConIndex() %></td>
 						<td><a href="problem.jsp?id=<%="C"+p.getConId()+p.getConIndex()%>"><%=p.getName() %></a></td>
 						<td><a href="contestWelcome.jsp?id=<%=c.getId()%>"><%=c.getInfo().getName() %></a></td>
 						<td><%=(c.isContestEnded()?p.getTag():"<i>Unknown</i>") %></td>

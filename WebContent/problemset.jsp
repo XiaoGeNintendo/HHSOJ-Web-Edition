@@ -15,6 +15,15 @@
 	<i id="subtitle">Solve them? Impossible! --Zzzyt</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=problemset"></jsp:include>
+	<%
+		Users u=null;
+		try{
+			String sid=(String)session.getAttribute("username");
+			u=new UserHelper().getUserInfo(sid);
+		}catch(Exception e){
+			
+		}
+	%>
 	
 	<a href="problemset.jsp" class="problemset selected">Practice Problemset</a>
 	<a href="cpset.jsp" class="problemset">Contest Problemset</a>
@@ -40,7 +49,7 @@
 		%>
 		<tr>
 
-			<td><%=pro.getId()%></td>
+			<td bgcolor="<%=new UserRenderer().getColorUP(u,""+pro.getId())%>"><%=pro.getId()%></td>
 
 			<td><a href="problem.jsp?id=<%=pro.getId()%>"><%=pro.getName()%></a></td>
 			<td><%=pro.getTag()%></td>

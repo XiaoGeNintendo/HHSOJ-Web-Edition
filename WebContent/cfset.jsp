@@ -18,6 +18,15 @@
 	<hr />
 	<jsp:include page="nav.jsp?at=problemset"></jsp:include>
 	
+	<%
+		Users u=null;
+		try{
+			String sid=(String)session.getAttribute("username");
+			u=new UserHelper().getUserInfo(sid);
+		}catch(Exception e){
+			
+		}
+	%>
 	<a href="problemset.jsp" class="problemset">Practice Problemset</a>
 	<a href="cpset.jsp" class="problemset">Contest Problemset</a>
 	<a href="cfset.jsp" class="problemset selected">Codeforces Problemset</a>
@@ -41,7 +50,7 @@
 			for(CodeforcesProblem cp:arr){
 		%>
 				<tr>
-					<td><%="R"+cp.getContestId()+cp.getIndex() %></td>
+					<td bgcolor="<%=new UserRenderer().getColorUP(u,"R"+cp.getContestId()+cp.getIndex())%>"><%="R"+cp.getContestId()+cp.getIndex() %></td>
 					<td><a href="cfp.jsp?id=<%="R"+cp.getContestId()+cp.getIndex()%>"><%=cp.getName() %></a></td>
 					<td><%=cp.getTags()%></td>
 					<td><a href="submit.jsp?id=<%="R"+cp.getContestId()+cp.getIndex() %>"><img src="asset/submit.png"/></a></td>

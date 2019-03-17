@@ -500,3 +500,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w33a: The MathJax support for everywhere in HHSOJ
 
 - 19w34e: Fixed some typo in readme
+
+- 19w35b: Added color for solved problems and attempted problems

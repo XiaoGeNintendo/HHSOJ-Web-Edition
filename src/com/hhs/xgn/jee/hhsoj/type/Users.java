@@ -16,6 +16,11 @@ import com.hhs.xgn.jee.hhsoj.db.SubmissionHelper;
  *
  */
 public class Users {
+	public static final int SOLVED = 2;
+	public static final int ATTEMPTED=1;
+	public static final int UNTRIED=0;
+	
+	
 	private String username;
 	private String password;
 	private int id;
@@ -25,6 +30,7 @@ public class Users {
 	private String line;
 	private List<ContestRecord> ratings;
 	private Map<Integer, Integer> blogStatus;
+	private HashMap<String,Integer> problemStatus;
 	private String userPic;
 	
 	/**
@@ -204,7 +210,20 @@ public class Users {
 		this.banned = banned;
 	}
 
-	
-	
+	public HashMap<String,Integer> getProblemStatus() {
+		return problemStatus;
+	}
+
+	public void setProblemStatus(HashMap<String,Integer> problemStatus) {
+		this.problemStatus = problemStatus;
+	}
+
+	public void setProblemStatus(String pid,int status){
+		if(problemStatus==null){
+			problemStatus=new HashMap<>();
+		}
+		
+		problemStatus.put(pid, Math.max(problemStatus.getOrDefault(pid,UNTRIED), status));
+	}
 	
 }

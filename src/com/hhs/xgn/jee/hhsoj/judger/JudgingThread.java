@@ -8,6 +8,7 @@ import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
 import com.hhs.xgn.jee.hhsoj.db.ContestHelper;
 import com.hhs.xgn.jee.hhsoj.db.ProblemHelper;
 import com.hhs.xgn.jee.hhsoj.db.SubmissionHelper;
+import com.hhs.xgn.jee.hhsoj.db.UserHelper;
 import com.hhs.xgn.jee.hhsoj.remote.CodeforcesHelper;
 import com.hhs.xgn.jee.hhsoj.remote.CodeforcesSubmission;
 import com.hhs.xgn.jee.hhsoj.type.Config;
@@ -15,6 +16,7 @@ import com.hhs.xgn.jee.hhsoj.type.Contest;
 import com.hhs.xgn.jee.hhsoj.type.Problem;
 import com.hhs.xgn.jee.hhsoj.type.Submission;
 import com.hhs.xgn.jee.hhsoj.type.TestResult;
+import com.hhs.xgn.jee.hhsoj.type.Users;
 
 public class JudgingThread extends Thread {
 	
@@ -37,8 +39,7 @@ public class JudgingThread extends Thread {
 			
 			Submission s = TaskQueue.getFirstSubmission();
 			Problem p = new ProblemHelper().getProblemData(s.getProb());
-			
-			
+			Users u=new UserHelper().getUserInfo(s.getUser());
 			
 			try {
 
@@ -66,7 +67,7 @@ public class JudgingThread extends Thread {
 						continue;
 					}
 					
-					submitCodeforces(s,con);
+					submitCodeforces(s,con,u);
 					continue;
 				}
 				
@@ -116,6 +117,8 @@ public class JudgingThread extends Thread {
 					if (ac) {
 						s.setVerdict("Accepted");
 						new SubmissionHelper().storeStatus(s);
+						u.setProblemStatus(s.getProb(),Users.SOLVED);
+						new UserHelper().refreshUser(u);
 						
 						if(s.isRated()){
 							if(s.getTestset().equals("small")){
@@ -132,6 +135,9 @@ public class JudgingThread extends Thread {
 							
 						}
 					}else{
+						u.setProblemStatus(s.getProb(),Users.ATTEMPTED);
+						new UserHelper().refreshUser(u);
+						
 						//Sorry poor guy..
 						if(s.isRated()){
 							if(s.getTestset().equals("small")){
@@ -177,6 +183,9 @@ public class JudgingThread extends Thread {
 						s.setVerdict("Accepted");
 						new SubmissionHelper().storeStatus(s);
 						
+						u.setProblemStatus(s.getProb(),Users.SOLVED);
+						new UserHelper().refreshUser(u);
+						
 						if(s.isRated()){
 							if(s.getTestset().equals("small")){
 								//Contest Score
@@ -192,6 +201,10 @@ public class JudgingThread extends Thread {
 							
 						}
 					}else{
+						
+						u.setProblemStatus(s.getProb(),Users.ATTEMPTED);
+						new UserHelper().refreshUser(u);
+						
 						//Sorry poor guy..
 						if(s.isRated()){
 							if(s.getTestset().equals("small")){
@@ -532,7 +545,7 @@ public class JudgingThread extends Thread {
 		}
 	}
 
-	private void submitCodeforces(Submission s,Config c) {
+	private void submitCodeforces(Submission s,Config c,Users u) {
 		
 		try{
 			System.out.println("===========Python Start=============");
@@ -567,6 +580,17 @@ public class JudgingThread extends Thread {
 					break;
 				}
 			}
+			
+			if(s.getVerdict().equals("Accepted")){
+				u.setProblemStatus(s.getProb(),Users.SOLVED);
+				
+			}else{
+				u.setProblemStatus(s.getProb(),Users.ATTEMPTED);
+				
+			}
+			
+			new UserHelper().refreshUser(u);
+			
 		}catch(Exception e){
 			s.setVerdict("Judgement Failed");
 			s.setCompilerComment(e+"");
