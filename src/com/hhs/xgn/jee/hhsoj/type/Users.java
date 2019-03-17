@@ -226,4 +226,24 @@ public class Users {
 		problemStatus.put(pid, Math.max(problemStatus.getOrDefault(pid,UNTRIED), status));
 	}
 	
+	public int count(int x){
+		int ans=0;
+		for(Entry<String,Integer> e:problemStatus.entrySet()){
+			if(e.getValue()==x){
+				ans++;
+			}
+		}
+		return ans;
+	}
+	
+	public String JScount(int x){
+		String ans="";
+		
+		for(Entry<String,Integer> e:problemStatus.entrySet()){
+			if(e.getValue()==x){
+				ans+="<a href=\"problem.jsp?id="+e.getKey()+"\">"+e.getKey()+"</a> ";
+			}
+		}
+		return ans;
+	}
 }

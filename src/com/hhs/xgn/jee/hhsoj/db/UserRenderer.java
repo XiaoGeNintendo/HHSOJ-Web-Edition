@@ -1,6 +1,6 @@
 package com.hhs.xgn.jee.hhsoj.db;
 
-import org.apache.catalina.User;
+
 
 import com.hhs.xgn.jee.hhsoj.type.Users;
 

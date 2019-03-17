@@ -201,6 +201,14 @@ Remote Judge is a new feature after 18w82c. It allows users to submit/search for
 
 **Please use this feature carefully because if Codeforces crashes down, HHSOJ may crash down too because of the single-thread judging feature. And it will cause many resource usage**
 
+After 19w32a, HHSOJ supports grabing problem statement from Codeforces. If Remote Judge feature is on, users can visit buffered Codeforces statement directly from HHSOJ. A refresh button under the problem statement page can recrawl the statement to keep it fresh. Each recrawl will send a log message to the console stdout:
+
+`[Refresh Codeforces Problem Statement] request <problemId> from <username> ip=<userIP>`
+
+we added logging to prevent being refreshed too many times at a time by a bad guy. This may cause high traffic.
+
+**But, this feature doesn't block IP. It still may cause large Internet connection if many people are using the feature**
+
 # Rating System of HHSOJ
 We used simple Elo rating system for HHSOJ. It is that:
 - Each user has an initial rating of 1500
@@ -218,6 +226,9 @@ JavaTester.jar : `javac JavaTester.java`
 JugderV2 : `Use Microsoft VS2017`
 
 Sandbox4Linux: `make`
+
+# MathJax Support
+We support MathJax in blogs,comments,statements,announcements,etc... Almost everywhere! Write $$$ before and after your formula to create MathJax inline. 6 $s to create a large formula. **After19w33a only**
 
 # External Resource Link
 Because of the special design, you cannot link to external resources/items when writing a contest announcement or a problem statement. But after 19w26a you can request a external resource by using the `fetch.jsp`. The usage do as follows:
@@ -502,3 +513,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w34e: Fixed some typo in readme
 
 - 19w35b: Added color for solved problems and attempted problems
+
+- 19w36a: Attempted & Solved problems shown on Users' page

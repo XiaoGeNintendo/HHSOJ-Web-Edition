@@ -104,13 +104,34 @@
 		%>
 	</table>
 	
+	<b>Problem Stats</b><br/>
+	<table align="center" width="80%" border="1">
+		<tr>
+			<th align="center" width="50%">
+				<i class="fa fa-star">Solved(<%=u.count(Users.SOLVED) %>)</i>
+			</th>
+			<th align="center" width="50%">
+				<i class="fa fa-star-half-empty">Attempted(<%=u.count(Users.ATTEMPTED) %>)</i>
+			</th>
+		</tr>
+		
+		<tr>
+			<td align="center">
+				<%=u.JScount(Users.SOLVED) %>
+			</td>
+			<td align="center">
+				<%=u.JScount(Users.ATTEMPTED) %>
+			</td>
+		</tr>
+	</table>
+	
 	<script>
 	
 		var allContestName=<%=u.JSgetContestName()%>
 		
 		var chart2 = Highcharts.chart('ratingChart', {
 			chart:{
-				backgroundColor:'#e8e8e8'
+				backgroundColor:'#fafaf8'
 			},
 		    title: {
 		        text: 'Rating'
@@ -137,7 +158,7 @@
 		
 		var verChart= Highcharts.chart("verdictChart",{
 			chart:{
-				backgroundColor:'#e8e8e8'
+				backgroundColor:'#fafaf8'
 			},
 
 		    title: {
@@ -174,7 +195,7 @@
 		
 		var verChart= Highcharts.chart("langChart",{
 			chart:{
-				backgroundColor:'#e8e8e8'
+				backgroundColor:'#fafaf8'
 			},
 
 		    title: {
