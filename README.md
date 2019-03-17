@@ -494,3 +494,9 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w30d: Fixed that in remote judge memory consumed will *1024
 
 - 19w31a: User Search Feature (HHSOJ Monthly Update March 2019)
+
+- 19w32a: Display Codeforces Statement on HHSOJ with buffer!
+
+- 19w33a: The MathJax support for everywhere in HHSOJ
+
+- 19w34e: Fixed some typo in readme
