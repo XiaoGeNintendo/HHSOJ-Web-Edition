@@ -42,7 +42,7 @@
 		%>
 				<tr>
 					<td><%="R"+cp.getContestId()+cp.getIndex() %></td>
-					<td><a href="https://codeforces.com/contest/<%=cp.getContestId()%>/problem/<%=cp.getIndex()%>"><%=cp.getName() %></a></td>
+					<td><a href="cfp.jsp?id=<%="R"+cp.getContestId()+cp.getIndex()%>"><%=cp.getName() %></a></td>
 					<td><%=cp.getTags()%></td>
 					<td><a href="submit.jsp?id=<%="R"+cp.getContestId()+cp.getIndex() %>"><img src="asset/submit.png"/></a></td>
 				</tr>
