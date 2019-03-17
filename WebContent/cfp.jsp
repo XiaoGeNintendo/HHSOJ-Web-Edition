@@ -85,5 +85,10 @@
 	</center>
 	
 	<div class="seperator"></div>
+	
+	<center>
+		<a href="dorefcf.jsp?id=<%=sid%>"><i class="fa fa-refresh fa-2x" title="Recrawl the statement"></i></a>
+		<a href="https://codeforces.com/problemset/problem/<%=cp.getContestId() %>/<%=cp.getIndex() %>"><i class="fa fa-external-link fa-2x" title="Open in Codeforces"></i></a>
+	</center>
 </body>
 </html>

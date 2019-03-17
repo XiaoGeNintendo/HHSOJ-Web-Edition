@@ -231,7 +231,7 @@ You can use this method to request a file smaller than 1024*1024 bytes.
 
 For example, to request "announcement.txt" you can write as follows:
 
-`fetch.jsp?path-announcement.txt&encrypt=7dab3eb66f77f478301d1bf90c0fcfde`
+`fetch.jsp?path=announcement.txt&encrypt=7dab3eb66f77f478301d1bf90c0fcfde`
 
 The md5 is only a sample. Replace it with real md5 you found.
 
@@ -444,6 +444,7 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w07d: Security Update: You can't hack the OJ by changing local files now(only for register).
 
 - 19w08b: Windows/Linux Check
+
 - 19w08d: Fixed if you don't know the hhsoj holder and you launched the program for the first time you will be confused.
 
 - 19w09d: Too much log! Deleted some logs!

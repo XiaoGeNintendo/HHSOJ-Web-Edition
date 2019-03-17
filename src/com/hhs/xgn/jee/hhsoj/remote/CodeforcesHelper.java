@@ -11,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -37,6 +38,11 @@ public class CodeforcesHelper {
 	public static List<CodeforcesProblem> problems=new ArrayList<>();
 	
 	/**
+	 * Buffer of statement
+	 */
+	public static HashMap<String,String> statement=new HashMap<>();
+	
+	/**
 	 * Given problem conId and index. Returns the problem
 	 * @param s
 	 * @return
@@ -58,11 +64,20 @@ public class CodeforcesHelper {
 	 */
 	public static String getProblemStatement(CodeforcesProblem cp){
 		try{
+			
+			String i=cp.getContestId()+cp.getIndex();
+			
+			if(statement.containsKey(i)){
+				return statement.get(i);
+			}
 			String raw=get("https://codeforces.com/problemset/problem/"+cp.getContestId()+"/"+cp.getIndex());
 			
 			Document doc=Jsoup.parseBodyFragment(raw);
 			
-			return doc.getElementsByClass("problemindexholder").get(0).html();
+			String stuff=doc.getElementsByClass("problemindexholder").get(0).html();
+			statement.put(i,stuff);
+			
+			return stuff;
 		}catch(Exception e){
 			e.printStackTrace();
 			return "Fail to fetch problem statement.\n";
