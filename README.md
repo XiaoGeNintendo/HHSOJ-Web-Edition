@@ -46,6 +46,12 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 
 7. **(After 18w46a)** You will also need to input the admin password and admin username. One only.
 
+# Extra packages
+You may need to install the following staffs too
+- Python
+- Gnu G++
+- python robo-browser library
+
 # Adding problems
 1. Create a folder in the "hhsoj/problems" and name it as the problem Id, it should contains only digits.
 
