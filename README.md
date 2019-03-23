@@ -195,6 +195,7 @@ From version 18w35a you can find the file "hhsoj/config.json" then change the se
     "codeforcesPassword":"", //The Codeforces password (after 18w80a)
     "queryTime":7200000, //What's the query internal. In Milliseconds. Smaller number means more accurate results but may takes longer time to load pages (after 18w80a)
     "waitTimeout":10, //The allowed time for compiling and judging Java and comparing answers. In seconds. (after 19w24a)
+    "clearFolder":false //Clear the folder after each judging?
 }
 ```
 
