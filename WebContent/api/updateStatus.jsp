@@ -1,3 +1,5 @@
+<%@page import="com.google.gson.Gson"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.TypeMaster"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -40,26 +42,32 @@
 					
 				}
 				
-				out.print("[");
+				
 				
 				int cnt=0;
+				
+				ArrayList<HashMap<String,String>> arr=new ArrayList<>();
 				
 				for(Submission s:sb){
 					try{
 						if(new PatternMatcher().match(s,userPattern,probPattern,verdictPattern)){
 							if(s.getId()<=start){
 								
+								HashMap<String,String> nw=new HashMap<>();
+								nw.put("verdict",new VerdictHelper().render(s.getHTMLVerdict()));
+								nw.put("time",s.getTimeCost()+"");
+								nw.put("mem",s.getMemoryCost()+"");
 								
-								out.print("{\"verdict\":\""+new VerdictHelper().render(s.getHTMLVerdict())+"\",");
-								out.print("\"time\":\""+s.getTimeCost()+"\",");
-								out.print("\"mem\":\""+s.getMemoryCost()+"\"},");
-							cnt++;
+								arr.add(nw);
+								
+								cnt++;
 							}
 						}
 					}catch(Exception e){			
 						
 					}
 				}
-				out.print("]");
+				
+				out.print(new Gson().toJson(arr));
 			%>
 	
