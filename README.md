@@ -530,3 +530,9 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w36a: Attempted & Solved problems shown on Users' page
 
 ## Version 1.9: Remote Judge Update
+
+- 19w37b: Bootstrap support
+
+- 19w38b: no-refresh-needed on status page
+
+- 19w39b: Folded the tools
