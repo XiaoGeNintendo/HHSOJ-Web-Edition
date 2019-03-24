@@ -139,7 +139,7 @@
 							}else if(mode=="3" || mode=="5"){
 								son.children[0].innerHTML="<font color=#201890>"+res[i].verdict+"</font>";
 							}else if(mode=="4"){
-								son.children[0].innerHTML="<div class=\"progress\"><div id=\"display"+i+"\" class=\"progress-bar bg-success progress-bar-striped progress-bar-animated\" style=\"width:"+res[i].percent+"%\"><font color=#ffffff id=\"verdict"+i+"\">"+res[i].verdict+"</font></div></div>";
+								son.children[0].innerHTML="<div class=\"progress\"><div id=\"display"+i+"\" class=\"progress-bar bg-success progress-bar-striped progress-bar-animated\" style=\"width:"+res[i].percent+"%\"><p style=\"color:#ff0000\" id=\"verdict"+i+"\">"+res[i].verdict+"</p></div></div>";
 							}
 						}
 						
