@@ -6,11 +6,19 @@
 <meta name="description" content="HellOJ - Free OJ by Hell Hole Studios">
 <meta name="keywords" content="OJ HellOJ HHSOJ Online Judge">
 
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="index.css" rel="stylesheet" type="text/css">
 <link rel="icon" type="image/png" href="asset/favicon/favicon16x.png" sizes="16x16">
 <link rel="icon" type="image/png" href="asset/favicon/favicon32x.png" sizes="32x32">
 
+  
 <!--<link rel="icon" type="image/png" href="/asset/favicon/favicon-32x32.png" sizes="32x32">-->
 <!--<link rel="icon" type="image/png" href="/asset/favicon/favicon-16x16.png" sizes="16x16">-->
 

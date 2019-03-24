@@ -66,7 +66,7 @@
 			<!-- Add your developers here -->
 		</table>
 		
-		
+		<a href="https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition">Github Source Link</a>
 	</center>
 </body>
 </html>

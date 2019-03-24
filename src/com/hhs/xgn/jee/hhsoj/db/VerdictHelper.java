@@ -20,7 +20,7 @@ public class VerdictHelper {
 			return "<font color=#ff0000>"+s+"</font>";
 		}
 		if(s.startsWith("Runtime Error")){
-			return "<font color=#abcdef>"+s+"</font>";
+			return "<font color=#088a85>"+s+"</font>";
 		}
 		
 		return "<font color=#201890>"+s+"</font>";

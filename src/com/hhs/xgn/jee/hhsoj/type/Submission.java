@@ -44,13 +44,13 @@ public class Submission {
 		}else{
 			if(nowTest<=0){
 				if((verdict.contains("ing") || verdict.equals("In queue")) && !verdict.contains("Lib")){
-					return verdict+"<progress></progress>";
+					return verdict;
 				}else{
 					return verdict;
 				}
 			}else{
 				if(verdict.contains("Running")){
-					return verdict+" on test "+nowTest+"<progress value=\""+nowTest+"\" max=\""+maxTest+"\"></progress>";
+					return verdict+" on test "+nowTest;
 				}else{
 					return verdict+" on test "+nowTest;
 				}
