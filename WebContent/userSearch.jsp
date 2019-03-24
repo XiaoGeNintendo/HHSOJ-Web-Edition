@@ -33,6 +33,20 @@
 		Chk chk=new Chk();
 		
 		String matcher=chk.chk("username");
+		
+		try{
+			"".matches(matcher);
+		}catch(Exception e){
+			matcher="";
+			
+			%>
+			<div class="alert alert-danger alert-dismissible fade show">
+			    <button type="button" class="close" data-dismiss="alert">&times;</button>
+			    <strong>Error!</strong> Please enter a valid regex!
+		  	</div>
+			<%
+		}
+		
 		String sort=chk.chk("sort");
 		
 	%>
