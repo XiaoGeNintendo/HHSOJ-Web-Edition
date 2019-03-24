@@ -64,7 +64,7 @@
 								<td><a href="submission.jsp?id=<%=s.getId()%>"> <%=s.getId() %> </a></td>
 								
 								<td><a href="problem.jsp?id=<%=s.getProb()%>"> <%=s.getProb() %><sup><abbr title="Testset:<%=s.getTestset() %>"><%=s.getTestset().substring(0,1).toUpperCase() %></abbr></sup> </a></td>
-								<td><%=new VerdictHelper().render(s.getHTMLVerdict())%></td>
+								<td><div lastmode="0"><%=new VerdictHelper().render(s.getHTMLVerdict())%></div></td>
 								<td><%=s.getTimeCost() %></td>
 								<td><%=s.getMemoryCost() %></td>
 								<td><%out.println(new UserRenderer().getUserText(s.getUser())+(s.isRated()?"<sup><abbr title=\"In-contest submission\">#</abbr></sup>":"")); %></td>

@@ -38,6 +38,37 @@ public class Submission {
 		results=new ArrayList<TestResult>();
 	}
 	
+	public String getJSVerdict(){
+		if(verdict.equals("Accepted")){
+			return verdict;
+		}else{
+			if(nowTest<=0){
+				return verdict;
+			}else{
+				return verdict+" on test "+nowTest;
+			}
+		}
+	}
+	
+	public String getJSRenderMode(){
+		if(verdict.equals("Accepted")){
+			return "1"; //Accepted
+		}else{
+			if(nowTest<=0){
+				if((verdict.contains("ing") || verdict.equals("In queue")) && !verdict.contains("Lib")){
+					return "2"; //Spinner
+				}else{
+					return "3"; //Normal
+				}
+			}else{
+				if(verdict.contains("Running")){
+					return "4"; //Running
+				}else{
+					return "5"; //Normal
+				}
+			}
+		}
+	}
 	public String getHTMLVerdict(){
 		if(verdict.equals("Accepted")){
 			return verdict;
@@ -52,7 +83,7 @@ public class Submission {
 				if(verdict.contains("Running")){
 					float percent=nowTest/(float)maxTest*100;
 					
-					return "<div class=\"progress\"><div class=\"progress-bar bg-success progress-bar-striped progress-bar-animated\" style=\"width:"+percent+"%\">"+verdict+"</div></div>";
+					return "<div class=\"progress\"><div class=\"progress-bar bg-success progress-bar-striped progress-bar-animated\" style=\"width:"+percent+"%\">"+verdict+" on test "+nowTest+"</div></div>";
 					
 				}else{
 					return verdict+" on test "+nowTest;

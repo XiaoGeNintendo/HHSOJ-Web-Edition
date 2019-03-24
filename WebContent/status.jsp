@@ -53,6 +53,7 @@
 	
 	<script>
 	
+	
 		get();
 		
 		function get(){
@@ -104,7 +105,44 @@
 					
 					for(var i=0;i<len;i++){
 						
-						fa.children[i+1].children[3].innerHTML=res[i].verdict;
+						var son=fa.children[i+1].children[3];
+						if(son.children[0].lastmode==res[i].renderMode){
+							//Continue last turn
+							//console.log("I should be updating"+son.children[0].lastmode+" "+res[i].renderMode+" "+i);
+							
+							var id="verdict"+i;
+							var mode=son.children[0].lastmode;
+							
+							if(mode=="2"){
+								document.getElementById(id).innerHTML=res[i].verdict;
+							}else if(mode=="4"){
+								
+								
+								if(document.getElementById(id)==null){
+									continue;
+								}
+								
+								document.getElementById(id).innerHTML=res[i].verdict;
+								document.getElementById("display"+i).style="width:"+res[i].percent+"%";
+							}
+						}else{
+							//Renew Render Mode
+							son.children[0].lastmode=res[i].renderMode;
+							
+							
+							var mode=res[i].renderMode;
+							
+							if(mode=="1"){
+								son.children[0].innerHTML="<b><font color=#00ff00>Accepted</font></b>";	
+							}else if(mode=="2"){
+								son.children[0].innerHTML="<i class=\"fa fa-spinner fa-spin\"></i><font color=#787878 id=\"verdict"+i+"\">"+res[i].verdict+"</font>";
+							}else if(mode=="3" || mode=="5"){
+								son.children[0].innerHTML="<font color=#201890>"+res[i].verdict+"</font>";
+							}else if(mode=="4"){
+								son.children[0].innerHTML="<div class=\"progress\"><div id=\"display"+i+"\" class=\"progress-bar bg-success progress-bar-striped progress-bar-animated\" style=\"width:"+res[i].percent+"%\"><font color=#ffffff id=\"verdict"+i+"\">"+res[i].verdict+"</font></div></div>";
+							}
+						}
+						
 						fa.children[i+1].children[4].innerHTML=res[i].time;
 						fa.children[i+1].children[5].innerHTML=res[i].mem;
 					}

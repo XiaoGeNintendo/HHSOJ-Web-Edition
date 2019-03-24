@@ -54,7 +54,10 @@
 							if(s.getId()<=start){
 								
 								HashMap<String,String> nw=new HashMap<>();
-								nw.put("verdict",new VerdictHelper().render(s.getHTMLVerdict()));
+								nw.put("verdict",s.getJSVerdict());
+								nw.put("renderMode",s.getJSRenderMode());
+								nw.put("percent",(s.getMaxTest()==0?0:s.getNowTest()/0.01f/s.getMaxTest())+"");
+								
 								nw.put("time",s.getTimeCost()+"");
 								nw.put("mem",s.getMemoryCost()+"");
 								

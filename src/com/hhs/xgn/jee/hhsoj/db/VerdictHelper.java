@@ -11,7 +11,7 @@ public class VerdictHelper {
 			return "<font color=#0000ff>"+s+"</font>";
 		}
 		if(s.equalsIgnoreCase("Accepted")){
-			return "<font color=#00ff00><b>"+s+"</b></font>";
+			return "<b style=\"color:#00ff00\">"+s+"</b>";
 		}
 		if(s.startsWith("Initalizing") || s.startsWith("Running") || s.startsWith("Judging") || s.startsWith("Compiling") || s.startsWith("In queue")){
 			return "<font color=#787878>"+s+"</font>";
