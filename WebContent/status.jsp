@@ -65,7 +65,7 @@
 			}
 			
 			
-			xml.open("GET","api/getStatus.jsp?"+b,true);
+			xml.open("GET","api/getStatus.jsp"+b,true);
 			
 			xml.onreadystatechange=function(){
 				if (xml.readyState==4 && xml.status==200)
@@ -74,6 +74,7 @@
 					
 					$('[data-toggle="tooltip"]').tooltip();   
 					
+					upd();
 					//setTimeout(get,1000);
 				}
 			}
@@ -81,7 +82,39 @@
 			xml.send();
 		}
 		
-		
+		function upd(){
+			//THis function updates with the database
+			xml=new XMLHttpRequest();
+			var fa=document.getElementById("status-table").children[0];
+			
+			var a=location.href.indexOf("?");
+			var b="";
+			if(a!=-1){
+				b=location.href.substr(a);	
+			}
+			
+			var len=fa.children[1].children[1].innerText;
+			
+			xml.open("GET","api/updateStatus.jsp?start="+len+"&"+b.substr(1),true);
+			
+			xml.onreadystatechange=function(){
+				if(xml.readyState==4 && xml.status==200){
+					var res=eval("("+xml.responseText+")");
+					
+					
+					for(var i=0;i<len;i++){
+						
+						fa.children[i+1].children[3].innerHTML=res[i].verdict;
+						fa.children[i+1].children[4].innerHTML=res[i].time;
+						fa.children[i+1].children[5].innerHTML=res[i].mem;
+					}
+					
+					setTimeout(upd,1000);
+				}
+			}
+			
+			xml.send();
+		}
 		
 	</script>
 </body>
