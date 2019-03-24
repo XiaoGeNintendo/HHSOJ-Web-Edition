@@ -32,18 +32,34 @@
 		harmful code. Thanks :(</p>
 	<br />
 	<br />
-	<a href="verdict.jsp" id="verdict">Verdicts List</a>
-	<br />
-	<a href="credits.jsp" id="credit">Credits</a>
-	<br />
-	<a href="richtextEditor.jsp" id="richtext">Online Rich Text Editor</a>
-	<br />
-	<a href="TimeChanger.jsp" id="timeChanger">Online Timestamp Changer</a>
-	<br />
-	<a href="HMSChanger.jsp" id="hms">Online HMS to ms Changer</a>
-	<br />
-	<a href="userSearch.jsp" id="us">User Search</a>
-	<br />
+	
+	
+	<div class="card">
+	  <div class="card-header">
+	    <a class="card-link" data-toggle="collapse" href="#collapseOne">
+	      HHSOJ Tools
+	    </a>
+	  </div>
+	  <div id="collapseOne" class="collapse" data-parent="#accordion">
+	    <div class="card-body">
+	      	<a href="verdict.jsp" id="verdict">Verdicts List</a>
+			<br />
+			<a href="credits.jsp" id="credit">Credits</a>
+			<br />
+			<a href="richtextEditor.jsp" id="richtext">Online Rich Text Editor</a>
+			<br />
+			<a href="TimeChanger.jsp" id="timeChanger">Online Timestamp Changer</a>
+			<br />
+			<a href="HMSChanger.jsp" id="hms">Online HMS to ms Changer</a>
+			<br />
+			<a href="userSearch.jsp" id="us">User Search</a>
+			<br />
+	    </div>
+	  </div>
+	</div>
+	
+	
+	
 	<br />
 	<%
 		if (System.getProperty("os.name").toLowerCase().indexOf("linux") >= 0) {
