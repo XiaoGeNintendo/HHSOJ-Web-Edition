@@ -83,6 +83,25 @@
 			xml.send();
 		}
 		
+		function renderJS(s){
+			if(s.startsWith("Time Limit Exceeded") || s.startsWith("Memory Limit Exceeded")){
+				return "<font color=#0000ff>"+s+"</font>";
+			}
+			if(s == ("Accepted")){
+				return "<b style=\"color:#00ff00\">"+s+"</b>";
+			}
+			if(s.startsWith("Initalizing") || s.startsWith("Running") || s.startsWith("Judging") || s.startsWith("Compiling") || s.startsWith("In queue")){
+				return "<font color=#787878>"+s+"</font>";
+			}
+			if(s.startsWith("Wrong Answer")){
+				return "<font color=#ff0000>"+s+"</font>";
+			}
+			if(s.startsWith("Runtime Error")){
+				return "<font color=#088a85>"+s+"</font>";
+			}	
+			return "<font color=#201890>"+s+"</font>";
+		}
+		
 		function upd(){
 			//THis function updates with the database
 			xml=new XMLHttpRequest();
@@ -137,7 +156,8 @@
 							}else if(mode=="2"){
 								son.children[0].innerHTML="<i class=\"fa fa-spinner fa-spin\"></i><font color=#787878 id=\"verdict"+i+"\">"+res[i].verdict+"</font>";
 							}else if(mode=="3" || mode=="5"){
-								son.children[0].innerHTML="<font color=#201890>"+res[i].verdict+"</font>";
+								
+								son.children[0].innerHTML=renderJS(res[i].verdict);
 							}else if(mode=="4"){
 								son.children[0].innerHTML="<div class=\"progress\"><div id=\"display"+i+"\" class=\"progress-bar bg-success progress-bar-striped progress-bar-animated\" style=\"width:"+res[i].percent+"%\"><p style=\"color:#ff0000\" id=\"verdict"+i+"\">"+res[i].verdict+"</p></div></div>";
 							}
