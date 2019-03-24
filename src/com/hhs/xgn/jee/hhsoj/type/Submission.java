@@ -44,13 +44,16 @@ public class Submission {
 		}else{
 			if(nowTest<=0){
 				if((verdict.contains("ing") || verdict.equals("In queue")) && !verdict.contains("Lib")){
-					return verdict;
+					return "<i class=\"fa fa-spinner fa-spin\"></i>"+verdict;
 				}else{
 					return verdict;
 				}
 			}else{
 				if(verdict.contains("Running")){
-					return verdict+" on test "+nowTest;
+					float percent=nowTest/(float)maxTest*100;
+					
+					return "<div class=\"progress\"><div class=\"progress-bar bg-success progress-bar-striped progress-bar-animated\" style=\"width:"+percent+"%\">"+verdict+"</div></div>";
+					
 				}else{
 					return verdict+" on test "+nowTest;
 				}
