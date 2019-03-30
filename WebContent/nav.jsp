@@ -15,12 +15,15 @@
 	String[] text = new String[] { "Home", "Problems", "Status", "Submit", "Community","Contests" };
 	String[] link = new String[] { "index.jsp", "problemset.jsp", "status.jsp", "submit.jsp", "blogs.jsp", "contests.jsp"};
 %>
-<div id="nav">
+<div id="nav" class="navbar navbar-expand-sm">
+<ul class="navbar-nav">
 	<%
 		for (int i = 0; i < text.length; i++) {
 	%>
+	<li class="nav-item">
 	<a href="<%=link[i]%>"
-		class="nav-link-left <%=(link[i].startsWith(nowAt) ? "selected" : "")%>"><%=text[i]%></a>
+		class="nav-link nav-link-left <%=(link[i].startsWith(nowAt) ? "selected" : "")%>"><%=text[i]%></a>
+		</li>
 	<%
 		}
 	%>
@@ -28,14 +31,15 @@
 
 <%
 	if(user==null){
-		out.println("<a href=\"login.jsp?back="+nowAt+"\" class=\"nav-link-right "+(nowAt.equals("login")?"selected":"")+"\">Login</a>");
-		out.println("<a href=\"register.jsp\" class=\"nav-link-right "+(nowAt.equals("register")?"selected":"")+"\">Register</a>");
+		out.println("<a href=\"login.jsp?back="+nowAt+"\" class=\"nav-item nav-link-right "+(nowAt.equals("login")?"selected":"")+"\">Login</a>");
+		out.println("<a href=\"register.jsp\" class=\"nav-item nav-link-right "+(nowAt.equals("register")?"selected":"")+"\">Register</a>");
 	}else{
-		out.println("<a href=\"users.jsp?username=" + user + "\" class=\"nav-link-right\">" + user + "</a>");
-		out.println("<a href=\"logout.jsp?back="+nowAt+"\" class=\"nav-link-right\">Logout</a>");
+		out.println("<a href=\"users.jsp?username=" + user + "\" class=\"nav-item nav-link-right\">" + user + "</a>");
+		out.println("<a href=\"logout.jsp?back="+nowAt+"\" class=\"nav-item nav-link-right\">Logout</a>");
 	}
 
 %>
+</ul>
 </div>
 <div class="seperator"></div>
 <br />

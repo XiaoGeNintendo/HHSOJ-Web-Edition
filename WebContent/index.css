@@ -2,9 +2,9 @@
 /* by Zzzyt */
 body { 
 	background: #fafaf8;
-	margin-left: 50px;
+	/*margin-left: 50px;
 	margin-right: 50px;
-	margin-top: 50px;
+	margin-top: 50px;*/
 	min-width: 800px;
 }
 
@@ -67,26 +67,24 @@ input {
 .nav-link-left {
 	font-weight: bold;
 	font-family: 'Trebuchet MS', Helvetica, sans-serif;
-	margin-left: 20px;
-	margin-right: 20px;
-	font: 20px;
+	/*margin-left: 20px;
+	margin-right: 20px;*/
+	font-size: 15px;
 	color: #000000;
 	text-decoration: none;
 	float: left;
-	display: block;
 	text-decoration: none;
 }
 
 .nav-link-right {
 	font-weight: bold;
 	font-family: 'Trebuchet MS', Helvetica, sans-serif;
-	margin-left: 20px;
-	margin-right: 20px;
-	font: 20px;
+	/*margin-left: 20px;
+	margin-right: 20px;*/
+	/*font-size: 15px;*/
 	color: #000000;
 	float: right;
 	text-decoration: none;
-	display: block;
 }
 
 .selected {
