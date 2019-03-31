@@ -36,9 +36,9 @@ try{
 		sw.setUser(user);
 		sw.setSubmitTime(System.currentTimeMillis());
 		
-		s.setTestset("hackAttempt");
+		sw.setTestset("hackAttempt");
 		
-		int tq=TaskQueue.addTask(s);
+		int tq=TaskQueue.addTask(sw);
 		
 		//response.sendRedirect("status.jsp?id="+tq);
 		

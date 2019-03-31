@@ -29,8 +29,15 @@ public abstract class AbstractJudger {
 	 */
 	public abstract boolean judgeNormal(Submission s,Problem p,Users u,File testfiles) throws Exception;
 	
-	
-	public abstract void judgeHack(Submission s,Problem p,Users u) throws Exception;
+	/**
+	 * Returns true if the hack is valid
+	 * @param s
+	 * @param p
+	 * @param u
+	 * @return
+	 * @throws Exception
+	 */
+	public abstract boolean judgeHack(Submission s,Problem p,Users u,Problem orip,Submission oris) throws Exception;
 	
 
 }

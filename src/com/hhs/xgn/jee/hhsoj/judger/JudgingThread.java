@@ -75,7 +75,39 @@ public class JudgingThread extends Thread {
 					submitCodeforces(s, con, u);
 					continue;
 				}
-				
+				if(p.getType()==Problem.HACK){
+					Submission ori=new SubmissionHelper().getSubmission(s.getProb().substring(1));
+					Problem op=new ProblemHelper().getProblemData(ori.getProb());
+					
+					
+					
+					boolean b=judger.judgeHack(s, p, u,op,ori);
+					if(b){
+						//OK to get a defender
+						
+						//Create temp folder
+						File folder=new File(op.getPath()+"/hackAttempt_"+s.getId());
+						File in=new File(op.getPath()+"/hackAttempt_"+s.getId()+"/hack.in");
+						folder.mkdirs();
+						
+						//Write hack data
+						PrintWriter pw=new PrintWriter(in);
+						pw.println(s.getCode());
+						pw.close();
+						
+						//Write defence submission
+						Submission def=new Submission();
+						def.setProb("D"+s.getId());
+						def.setCode(ori.getCode());
+						def.setLang(ori.getLang());
+						def.setUser(ori.getUser());
+						def.setSubmitTime(System.currentTimeMillis());
+						def.setTestset("hackAttempt_"+s.getId());
+						
+						TaskQueue.addTask(def);
+					}
+					continue;
+				}
 				
 				if(!testfiles.isDirectory()){
 					throw new Exception("Testcase is not ready");
@@ -251,7 +283,7 @@ public class JudgingThread extends Thread {
 		System.out.println("Copying files");
 
 		// Copy Solution
-		if(p.getType()!=Problem.CODEFORCES){
+		if(p.getType()!=Problem.CODEFORCES && p.getType()!=Problem.HACK){
 			File oldSol = new File(p.getPath() + "/" + p.getArg("Solution"));
 			File newSol = new File(ConfigLoader.getPath()+"/judge/sol.exe");
 			copyFile(oldSol, newSol);

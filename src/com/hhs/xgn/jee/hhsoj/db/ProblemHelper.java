@@ -69,6 +69,11 @@ public class ProblemHelper {
 			p.setType(Problem.CODEFORCES);
 			return p;
 		}
+		if(s.startsWith("H")){
+			Problem p=new Problem();
+			p.setType(Problem.HACK);
+			return p;
+		}
 		return readSingleProblem(s);
 	}
 

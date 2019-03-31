@@ -89,4 +89,9 @@ public class SubmissionHelper {
 			return null;
 		}
 	}
+
+	public Submission getSubmission(String s) {
+		// TODO Auto-generated method stub
+		return getSubmission(Integer.parseInt(s));
+	}
 }

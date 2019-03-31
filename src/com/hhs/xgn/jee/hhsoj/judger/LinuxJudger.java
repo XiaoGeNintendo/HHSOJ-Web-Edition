@@ -62,9 +62,8 @@ public class LinuxJudger extends AbstractJudger {
 	}
 
 	@Override
-	public void judgeHack(Submission s, Problem p, Users u) {
-		// TODO Auto-generated method stub
-
+	public boolean judgeHack(Submission s, Problem p, Users u,Problem orip,Submission oris) {
+		return false;
 	}
 	
 	/**

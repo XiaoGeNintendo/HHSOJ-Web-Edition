@@ -54,9 +54,9 @@ public class WindowsJudger extends AbstractJudger {
 	}
 
 	@Override
-	public void judgeHack(Submission s, Problem p, Users u) throws Exception {
-		// TODO Auto-generated method stub
-
+	public boolean judgeHack(Submission s, Problem p, Users u,Problem orip,Submission oris) throws Exception {
+		
+		return false;
 	}
 	
 	private String[] getCompiler(String lang) {
@@ -90,7 +90,7 @@ public class WindowsJudger extends AbstractJudger {
 
 		boolean killed = true;
 		while (p.isAlive()) {
-			if (System.currentTimeMillis() - tme >= 15 * 1000) {
+			if (System.currentTimeMillis() - tme >= self.con.getWaitTimeout() * 1000) {
 
 				killed = false;
 				break;
@@ -120,7 +120,7 @@ public class WindowsJudger extends AbstractJudger {
 
 			killCompiler(s);
 			s.setVerdict("Compile Timeout");
-			s.setCompilerComment("Compile Takes 15.00s");
+			s.setCompilerComment("Compile Takes too much time");
 			new SubmissionHelper().storeStatus(s);
 
 			return false;
