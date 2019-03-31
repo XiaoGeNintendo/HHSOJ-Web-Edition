@@ -51,11 +51,11 @@ public class Submission {
 	}
 	
 	public String getJSRenderMode(){
-		if(verdict.equals("Accepted")){
+		if(verdict.equals("Accepted") || verdict.equalsIgnoreCase("Successful Hacking Attempt")){
 			return "1"; //Accepted
 		}else{
 			if(nowTest<=0){
-				if((verdict.contains("ing") || verdict.equals("In queue")) && !verdict.contains("Lib")){
+				if((verdict.contains("ing") || verdict.equals("In queue")) && !verdict.contains("Lib") && !verdict.contains("Hack")){
 					return "2"; //Spinner
 				}else{
 					return "3"; //Normal
@@ -74,7 +74,7 @@ public class Submission {
 			return verdict;
 		}else{
 			if(nowTest<=0){
-				if((verdict.contains("ing") || verdict.equals("In queue")) && !verdict.contains("Lib")){
+				if((verdict.contains("ing") || verdict.equals("In queue")) && !verdict.contains("Lib") && !verdict.contains("Hack")){
 					return "<i class=\"fa fa-spinner fa-spin\"></i>"+verdict;
 				}else{
 					return verdict;

@@ -115,7 +115,12 @@
 			
 			var len=fa.children[1].children[1].innerText;
 			
-			xml.open("GET","api/updateStatus.jsp?start="+len+"&"+b.substr(1),true);
+			if(b.substr(1)!=""){
+				xml.open("GET","api/updateStatus.jsp?start="+len+"&"+b.substr(1),true);	
+			}else{
+				xml.open("GET","api/updateStatus.jsp?start="+len,true);
+			}
+			
 			
 			xml.onreadystatechange=function(){
 				if(xml.readyState==4 && xml.status==200){

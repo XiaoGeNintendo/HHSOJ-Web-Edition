@@ -97,7 +97,7 @@ public class JudgingThread extends Thread {
 						
 						//Write defence submission
 						Submission def=new Submission();
-						def.setProb("D"+s.getId());
+						def.setProb(ori.getProb());
 						def.setCode(ori.getCode());
 						def.setLang(ori.getLang());
 						def.setUser(ori.getUser());
@@ -138,6 +138,20 @@ public class JudgingThread extends Thread {
 						}
 					}
 					
+					if(s.getTestset().startsWith("hackAttempt_")){
+						//A hacking attempt but failed
+						
+						String lastId=s.getTestset().substring(12);
+						Submission lastHack=new SubmissionHelper().getSubmission(lastId);
+						lastHack.setVerdict("Unsuccessful Hacking Attempt");
+						new SubmissionHelper().storeStatus(lastHack);
+						
+						//Remove the testset
+						for(File x:testfiles.listFiles()){
+							x.delete();
+						}
+						testfiles.delete();
+					}
 				}else{
 					u.setProblemStatus(s.getProb(),Users.ATTEMPTED);
 					new UserHelper().refreshUser(u);
@@ -150,6 +164,21 @@ public class JudgingThread extends Thread {
 							c.getStanding().countWrong(s,p.getConIndex());
 							new ContestHelper().refreshContest(c);
 						}
+					}
+					
+					if(s.getTestset().startsWith("hackAttempt_")){
+						//A hacking attempt but succeeded
+						
+						String lastId=s.getTestset().substring(12);
+						Submission lastHack=new SubmissionHelper().getSubmission(lastId);
+						lastHack.setVerdict("Successful Hacking Attempt");
+						new SubmissionHelper().storeStatus(lastHack);
+						
+						//Remove the testset
+						for(File x:testfiles.listFiles()){
+							x.delete();
+						}
+						testfiles.delete();
 					}
 				}
 				

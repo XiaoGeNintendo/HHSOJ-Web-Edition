@@ -36,13 +36,16 @@
 				
 				int id=-1,start=999999999;
 				try{
-					id=Integer.parseInt(request.getParameter("id"));
 					start=Integer.parseInt(request.getParameter("start"));
 				}catch(Exception e){
 					
 				}
 				
-				
+				try{
+					id=Integer.parseInt(request.getParameter("id"));
+				}catch(Exception e){
+					
+				}
 				
 				int cnt=0;
 				
@@ -57,7 +60,7 @@
 								nw.put("verdict",s.getJSVerdict());
 								nw.put("renderMode",s.getJSRenderMode());
 								nw.put("percent",(s.getMaxTest()==0?0:s.getNowTest()/0.01f/s.getMaxTest())+"");
-								
+								nw.put("id",""+s.getId()+" "+start);
 								nw.put("time",s.getTimeCost()+"");
 								nw.put("mem",s.getMemoryCost()+"");
 								
