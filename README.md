@@ -538,3 +538,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w39b: Folded the tools
 
 ## Version 1.10: Auto refreshing status page
+
+- 19w40c: Make Judger Abstract for easy changing
