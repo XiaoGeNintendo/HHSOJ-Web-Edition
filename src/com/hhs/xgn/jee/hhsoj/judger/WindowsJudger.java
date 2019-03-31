@@ -56,7 +56,55 @@ public class WindowsJudger extends AbstractJudger {
 	@Override
 	public boolean judgeHack(Submission s, Problem p, Users u,Problem orip,Submission oris) throws Exception {
 		
-		return false;
+		try{
+			//First we need to copy the extra stuff
+			
+			File validatorPath=new File(orip.getPath()+"/"+oris.getTestset()+"/"+orip.getArg("Validator_"+oris.getTestset()));
+			
+			self.copyFile(validatorPath,new File(ConfigLoader.getPath()+"/judge/valid.exe"));
+			
+			self.writeToFile(new File(ConfigLoader.getPath()+"/judge/in"),s.getCode());
+			
+			ProcessBuilder pb=new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/valid.exe").getAbsolutePath());
+			pb.directory(new File(ConfigLoader.getPath()+"/judge/"));
+			pb.redirectInput(new File(ConfigLoader.getPath()+"/judge/in"));
+			pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/report"));
+			pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/report"));
+			Process pro=pb.start();
+			
+			boolean notle=pro.waitFor(self.con.getWaitTimeout(),TimeUnit.SECONDS);
+			
+			pro.destroyForcibly();
+			
+			if(notle){
+				//Great. Not tle
+				int ret=pro.exitValue();
+				
+				if(ret!=0){
+					//Oops
+					s.setCompilerComment(self.readFile(ConfigLoader.getPath()+"/judge/report"));
+					s.setVerdict("Invalid Input");
+					new SubmissionHelper().storeStatus(s);
+					return false;
+				}
+				
+				//OK
+				s.setVerdict("Defending");
+				s.setCompilerComment(self.readFile(ConfigLoader.getPath()+"/judge/report"));
+				new SubmissionHelper().storeStatus(s);
+				return true;
+			}else{
+				//TLE
+				throw new Exception("It takes too long to check the correctness");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			s.setCompilerComment(e+"");
+			s.setVerdict("Judgement Failed");
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+		
 	}
 	
 	private String[] getCompiler(String lang) {

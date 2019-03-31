@@ -331,4 +331,11 @@ public class JudgingThread extends Thread {
 	}
 
 
+	public void writeToFile(File file, String code) throws FileNotFoundException {
+		PrintWriter pw=new PrintWriter(file);
+		pw.print(code);
+		pw.close();
+	}
+
+
 }

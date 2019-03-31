@@ -22,6 +22,10 @@ public class ConfigLoader {
 		return System.getProperty("os.name").toLowerCase().contains("linux");
 	}
 	
+	/**
+	 * Without the last slash('/')
+	 * @return
+	 */
 	public static String getPath() {
 		if(RootPath==null) {
 			if(System.getProperty("os.name").toLowerCase().indexOf("win")>=0){

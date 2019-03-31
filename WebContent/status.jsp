@@ -90,7 +90,7 @@
 			if(s == ("Accepted")){
 				return "<b style=\"color:#00ff00\">"+s+"</b>";
 			}
-			if(s.startsWith("Initalizing") || s.startsWith("Running") || s.startsWith("Judging") || s.startsWith("Compiling") || s.startsWith("In queue")){
+			if(s.startsWith("Defending") || s.startsWith("Initalizing") || s.startsWith("Running") || s.startsWith("Judging") || s.startsWith("Compiling") || s.startsWith("In queue")){
 				return "<font color=#787878>"+s+"</font>";
 			}
 			if(s.startsWith("Wrong Answer")){
