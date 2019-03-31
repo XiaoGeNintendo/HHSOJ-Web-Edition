@@ -1,12 +1,6 @@
 package com.hhs.xgn.jee.hhsoj.judger;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import com.hhs.xgn.jee.hhsoj.type.Problem;
 import com.hhs.xgn.jee.hhsoj.type.Submission;
 import com.hhs.xgn.jee.hhsoj.type.Users;
