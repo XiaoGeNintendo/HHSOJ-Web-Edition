@@ -87,8 +87,11 @@
 			if(s.startsWith("Time Limit Exceeded") || s.startsWith("Memory Limit Exceeded")){
 				return "<font color=#0000ff>"+s+"</font>";
 			}
-			if(s == ("Accepted")){
+			if(s == ("Accepted") || s=="Successful Hacking Attempt"){
 				return "<b style=\"color:#00ff00\">"+s+"</b>";
+			}
+			if(s == ("Unsuccessful Hacking Attempt") ){
+				return "<b style=\"color:#ff0000\">"+s+"</b>";
 			}
 			if(s.startsWith("Defending") || s.startsWith("Initalizing") || s.startsWith("Running") || s.startsWith("Judging") || s.startsWith("Compiling") || s.startsWith("In queue")){
 				return "<font color=#787878>"+s+"</font>";
@@ -157,7 +160,7 @@
 							var mode=res[i].renderMode;
 							
 							if(mode=="1"){
-								son.children[0].innerHTML="<b><font color=#00ff00>Accepted</font></b>";	
+								son.children[0].innerHTML="<b><font color=#00ff00>"+res[i].verdict+"</font></b>";	
 							}else if(mode=="2"){
 								son.children[0].innerHTML="<i class=\"fa fa-spinner fa-spin\"></i><font color=#787878 id=\"verdict"+i+"\">"+res[i].verdict+"</font>";
 							}else if(mode=="3" || mode=="5"){
