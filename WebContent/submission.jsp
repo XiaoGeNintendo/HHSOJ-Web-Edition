@@ -116,7 +116,7 @@
 		%>
 			<div class="card bg-primary text-white">
 			    <div class="card-body">
-			    	Let me give a <button type="button" class="btn btn-danger">Hack</button> <br/>
+			    	Let me give a <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Hack</button> <br/>
 			    </div>
 			</div>
 			
@@ -166,5 +166,32 @@
 			cnt++;
 			}
 		%>
+		
+		<!-- 模态框 -->
+		  <div class="modal fade" id="myModal">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		   
+		        <!-- 模态框头部 -->
+		        <div class="modal-header">
+		          <h4 class="modal-title">Hack Submission <%=s.getId() %></h4>
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        </div>
+		   
+		        <!-- 模态框主体 -->
+		        <div class="modal-body">
+		          	<textarea rows="5" cols="60" title="Hack data" placeholder="Input hack data"></textarea>
+		        </div>
+		   
+		        <!-- 模态框底部 -->
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-danger" data-dismiss="modal">Hack</button>
+		          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		        </div>
+		   
+		      </div>
+		    </div>
+		  </div>
+		  
 </body>
 </html>
