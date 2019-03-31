@@ -52,6 +52,16 @@ You may need to install the following staffs too
 - Gnu G++
 - python robo-browser library
 
+# Trouble Shooting Q&A 
+Q1: When judging, a **Number Format Exception** popped out and said **./judge is not a number**
+
+A1: Try using Ubuntu or recompile the Linux Judge.
+
+Q2: When judging, a **Null Pointer Exception** popped out.
+
+A2: This can be caused by many reasons. Check if your hhsoj folder has missed something.
+
+
 # Adding problems
 1. Create a folder in the "hhsoj/problems" and name it as the problem Id, it should contains only digits.
 
@@ -234,7 +244,7 @@ JavaTester.jar : `javac JavaTester.java`
 
 JugderV2 : `Use Microsoft VS2017`
 
-Sandbox4Linux: `make`
+Sandbox4Linux: `make` then put the "Judge" in the runtime folder
 
 # MathJax Support
 We support MathJax in blogs,comments,statements,announcements,etc... Almost everywhere! Write $$$ before and after your formula to create MathJax inline. 6 '$'s to create a large formula. **After19w33a only**
