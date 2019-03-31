@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Problem"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.UserRenderer"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.ProblemHelper"%>
@@ -22,11 +23,14 @@
 	
 	<%
 		int id=-1;
-		Submission s=new Submission(); 
+		Submission s=new Submission();
+		Problem p=null;
 		try{
 			id=Integer.parseInt(request.getParameter("id"));
 			s=new SubmissionHelper().getSubmission(id);
 			s.getCompilerComment(); //test null
+			p=new ProblemHelper().getProblemData(s.getProb());
+			
 		}catch(Exception e){
 			out.println("Submission doesn't exist");
 			out.println("<a href=\"javascript:location.replace(document.referrer);\">←Back</a>");
@@ -95,6 +99,50 @@
 		<script>
 			code();
 		</script>
+		
+		<br/>
+		
+		<%
+			boolean[] query=new boolean[]{userLooking!=null,s.getVerdict().equals("Accepted"),p.isHackable(s.getTestset())};
+			String[] sentence=new String[]{"You didn't login","Solution isn't accepted","Testset doesn't support hacking"};
+			
+			boolean tot=true;
+			for(int i=0;i<query.length;i++){
+				tot&=query[i];
+			}
+			
+			
+			if(tot){
+		%>
+			<div class="card bg-primary text-white">
+			    <div class="card-body">
+			    	Let me give a <button type="button" class="btn btn-danger">Hack</button> <br/>
+			    </div>
+			</div>
+			
+		<%
+			}else{
+				
+		%>
+			<div class="card bg-secondary text-white">
+			    <div class="card-body">
+			    	Solution Is Unhackable For: <br/>
+			    	<ul>
+			    		<%
+			    			for(int i=0;i<query.length;i++){
+			    				if(query[i]==false){
+			    					out.println("<li>"+sentence[i]+"</li>");
+			    				}
+			    			}
+			    		%>
+			    	</ul>
+			    </div>
+			</div>
+		<%
+			}
+		%>
+		
+		<br/>
 		
 		<h2>Compiler Comment</h2>
 		<pre><%=s.getCompilerComment().replace("<","&lt;").replace(">","&gt;") %></pre>

@@ -24,6 +24,10 @@ public class Problem {
 	public final static int CONTEST=1;
 	public final static int CODEFORCES=2;
 	
+	public boolean isHackable(String testset){
+		return arg.containsKey("Validator_"+testset);
+	}
+	
 	public String getPath(){
 		if(type==PROBLEMSET){
 			return ConfigLoader.getPath()+"/problems/"+id;
