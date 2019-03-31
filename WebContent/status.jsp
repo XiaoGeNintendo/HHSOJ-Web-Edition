@@ -90,7 +90,7 @@
 			if(s == ("Accepted") || s=="Successful Hacking Attempt"){
 				return "<b style=\"color:#00ff00\">"+s+"</b>";
 			}
-			if(s == ("Unsuccessful Hacking Attempt") ){
+			if(s == "Unsuccessful Hacking Attempt" || s=="Hacked"){
 				return "<b style=\"color:#ff0000\">"+s+"</b>";
 			}
 			if(s.startsWith("Defending") || s.startsWith("Initalizing") || s.startsWith("Running") || s.startsWith("Judging") || s.startsWith("Compiling") || s.startsWith("In queue")){

@@ -39,7 +39,7 @@ public class Submission {
 	}
 	
 	public String getJSVerdict(){
-		if(verdict.equals("Accepted")){
+		if(verdict.equals("Accepted") || verdict.equals("Hacked")){
 			return verdict;
 		}else{
 			if(nowTest<=0){
@@ -70,7 +70,7 @@ public class Submission {
 		}
 	}
 	public String getHTMLVerdict(){
-		if(verdict.equals("Accepted")){
+		if(verdict.equals("Accepted") || verdict.equals("Hacked")){
 			return verdict;
 		}else{
 			if(nowTest<=0){
