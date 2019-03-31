@@ -11,8 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import sun.misc.BASE64Encoder;
-
 
 /**
  * Class to parse the console command
