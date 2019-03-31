@@ -49,6 +49,17 @@
 	%>
 	
 	<script>
+	
+		function hack(){
+			$.post("doHack.jsp",{id:<%=s.getId()%>,data:document.getElementById("hackData").value},function(text,status){
+				if(status!=200){
+					alert("hi,your hack has been received:\n"+text.trim());
+				}else{
+					alert("hi,your hack hasn't been received:\n"+"Error when sending information:"+status+" "+text.trim());
+				}
+			});
+		}
+		
 		function code(){
 			var highLightCode = wangHighLighter.highLight("<%=s.getLang().equals("cpp")?"C++":s.getLang()%>", "simple", "<%=s.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"").replace("</script>","</son>") %>");
 			this.document.write("<div id=\"code\">");
@@ -180,12 +191,12 @@
 		   
 		        <!-- 模态框主体 -->
 		        <div class="modal-body">
-		          	<textarea rows="5" cols="60" title="Hack data" placeholder="Input hack data"></textarea>
+		          	<textarea id="hackData" rows="5" cols="60" title="Hack data" placeholder="Input hack data"></textarea>
 		        </div>
 		   
 		        <!-- 模态框底部 -->
 		        <div class="modal-footer">
-		          <button type="button" class="btn btn-danger" data-dismiss="modal">Hack</button>
+		          <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="hack()">Hack</button>
 		          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 		        </div>
 		   

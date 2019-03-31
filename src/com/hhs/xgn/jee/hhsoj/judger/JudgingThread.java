@@ -76,7 +76,7 @@ public class JudgingThread extends Thread {
 					continue;
 				}
 				
-
+				
 				if(!testfiles.isDirectory()){
 					throw new Exception("Testcase is not ready");
 				}
