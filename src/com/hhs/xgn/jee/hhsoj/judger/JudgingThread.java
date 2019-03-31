@@ -179,6 +179,13 @@ public class JudgingThread extends Thread {
 							x.delete();
 						}
 						testfiles.delete();
+						
+						//Set the old solution to be hacked
+						String llid=lastHack.getProb().substring(1);
+						Submission ll=new SubmissionHelper().getSubmission(llid);
+						ll.setVerdict("Hacked");
+						ll.getResults().add(new TestResult("Hacked", s.getTimeCost(), s.getMemoryCost(), "Hack #"+lastId, s.getResults().get(0).getCheckerComment()));
+						new SubmissionHelper().storeStatus(ll);
 					}
 				}
 				

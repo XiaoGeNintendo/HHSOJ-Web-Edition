@@ -64,7 +64,7 @@ public class WindowsJudger extends AbstractJudger {
 		try{
 			//First we need to copy the extra stuff
 			
-			File validatorPath=new File(orip.getPath()+"/validators/"+orip.getArg("Validator_"+oris.getTestset()));
+			File validatorPath=new File(orip.getPath()+"/!validators/"+orip.getArg("Validator_"+oris.getTestset()));
 			
 			self.copyFile(validatorPath,new File(ConfigLoader.getPath()+"/judge/valid.exe"));
 			
