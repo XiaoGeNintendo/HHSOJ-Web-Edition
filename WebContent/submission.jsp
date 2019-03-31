@@ -126,8 +126,15 @@
 				tot&=query[i];
 			}
 			
-			
-			if(tot){
+			if(s.getTestset().startsWith("hackAttempt_")){
+		%>
+			<div class="card bg-success text-white">
+			    <div class="card-body">
+			    	This is a hack defence to <a href="submission.jsp?id=<%=s.getTestset().substring(12) %>">this hacking attempt</a>
+			    </div>
+			</div>
+		<%
+			}else if(tot){
 		%>
 			<div class="card bg-primary text-white">
 			    <div class="card-body">
@@ -136,8 +143,18 @@
 			</div>
 			
 		<%
+			}else if(s.getVerdict().equals("Hacked")){
+				String yp=s.getResults().get(s.getResults().size()-1).getFile();
+				String zjs=yp.substring(yp.indexOf("#")+1);
+		%>
+			<div class="card bg-warning text-white">
+			    <div class="card-body">
+			    	Oops.. Too late.. <br/>
+			    	This solution has already been hacked by <a href="submission.jsp?id=<%=zjs %>">this</a>
+			    </div>
+			</div>
+		<%
 			}else{
-				
 		%>
 			<div class="card bg-secondary text-white">
 			    <div class="card-body">
