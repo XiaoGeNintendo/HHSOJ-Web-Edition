@@ -20,7 +20,7 @@ public class LinuxJudger extends AbstractJudger {
 	public boolean init(Submission s, Problem p, Users u,JudgingThread self) {
 		this.self=self;
 		
-		if(!s.getLang().equals("cpp")){
+		if(!s.getLang().equals("cpp") && !s.getLang().equals("hack")){
 			s.setVerdict("Unsupported Language");
 			s.setCompilerComment("Python/Java is not ready for Linux now!");
 			new SubmissionHelper().storeStatus(s);
@@ -70,7 +70,62 @@ public class LinuxJudger extends AbstractJudger {
 
 	@Override
 	public boolean judgeHack(Submission s, Problem p, Users u,Problem orip,Submission oris) {
-		return false;
+		try{
+			//First we need to copy the extra stuff
+			
+			File validatorPath=new File(orip.getPath()+"/!validators/"+orip.getArg("Validator_"+oris.getTestset()));
+			
+			self.copyFile(validatorPath,new File(ConfigLoader.getPath()+"/judge/valid.exe"));
+			
+			//Chmod Operation for Linux
+			ProcessBuilder pbch=new ProcessBuilder("chmod","777","valid.exe");
+			pbch.directory(new File(ConfigLoader.getPath()+"/judge/"));
+			Process pppp=pbch.start();
+			pppp.waitFor();
+			pppp.destroyForcibly();
+			
+			self.writeToFile(new File(ConfigLoader.getPath()+"/judge/in"),s.getCode());
+			
+			ProcessBuilder pb=new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/valid.exe").getAbsolutePath());
+			pb.directory(new File(ConfigLoader.getPath()+"/judge/"));
+			pb.redirectInput(new File(ConfigLoader.getPath()+"/judge/in"));
+			pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/report"));
+			pb.redirectError(new File(ConfigLoader.getPath()+"/judge/report"));
+			Process pro=pb.start();
+			
+			boolean notle=pro.waitFor(self.con.getWaitTimeout(),TimeUnit.SECONDS);
+			
+			pro.destroyForcibly();
+			
+			if(notle){
+				//Great. Not tle
+				int ret=pro.exitValue();
+				
+				if(ret!=0){
+					//Oops
+					s.setCompilerComment(self.readFile(ConfigLoader.getPath()+"/judge/report"));
+					s.setVerdict("Invalid Input");
+					new SubmissionHelper().storeStatus(s);
+					return false;
+				}
+				
+				//OK
+				s.setVerdict("Defending");
+				s.setCompilerComment(self.readFile(ConfigLoader.getPath()+"/judge/report"));
+				new SubmissionHelper().storeStatus(s);
+				return true;
+			}else{
+				//TLE
+				throw new Exception("It takes too long to check the correctness");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			s.setCompilerComment(e+"");
+			s.setVerdict("Judgement Failed");
+			new SubmissionHelper().storeStatus(s);
+			return false;
+		}
+	
 	}
 	
 	/**
