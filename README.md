@@ -71,6 +71,7 @@ A2: This can be caused by many reasons. Check if your hhsoj folder has missed so
 ```
     Solution=sol.exe //The solution executable file . Put it in the same folder
     Checker=checker.exe //The checker executable file. Please use testlib
+    Validator_<testSetName>=validator.exe //The validator for testset <testSetName>. Optional. System will seek it at '/!validators/<value>' where <value> is what you inputed. For details, see "Hacking System Of HHSOJ" part.
     Name=A+b Problem //The problem name for displaying
     TL=1000 //Time Limit in ms
     ML=1000 //Memory Limit in kb
@@ -89,9 +90,29 @@ Please don't place trailing/leading spaces/tabs.
 
 6. To add test cases, just put **input files only** in the subfolders you created. **before 18w51c, please put the input files only in "tests"**
 
-7. You will be finding that each subfolder will be treated as one testset on the submit page. (**Don't happen before 18w51c**)
+7. You will be finding that each subfolder will be treated as one testset on the submit page. (**Doesn't work before 18w51c**)
+
+8. To make a testset hidden, please add "!" before its name. Note, these testsets can still be judged as a normal testset if a hacker tries to submit by simulating a POST request. But they won't be appeared in the testset selection area.
 
 For further details, please take a glance at the sample hhsoj folder
+
+# Hacking System Of HHSOJ
+HHSOJ is a modern Online Judge with a simple Hacking system.
+
+**What's hacking?**
+
+Hacking means using a data to make others' programs go wrong.
+
+**How to enable hacking**
+First, you need to write a validator for the testset you want to enable hacking. You should be using a Testlib.h to write it. 
+
+Then compile it and put it in `<problem>/!validators/<filename>`. 
+
+Then write in the problem args.txt:`Validator_<testSetName>=<filename>`. This will let the system try to find your validator in the path.
+
+Then when a user opens a submission detail page, he will be able to hack it.
+
+**This system is still in beta.Please be careful when using it. Only supported in Windows**
 
 # Contest Rules
 This rule will display at every welcome page:
@@ -550,3 +571,7 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 ## Version 1.10: Auto refreshing status page
 
 - 19w40c: Make Judger Abstract for easy changing
+
+- 19w41c: hacking system for Windows
+
+- 19w42d: Fixed bugs of updateStatus.jsp
