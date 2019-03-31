@@ -112,7 +112,7 @@ Then write in the problem args.txt:`Validator_<testSetName>=<filename>`. This wi
 
 Then when a user opens a submission detail page, he will be able to hack it.
 
-**This system is still in beta.Please be careful when using it. Only supported in Windows**
+**This system is still in beta.Please be careful when using it.**
 
 # Contest Rules
 This rule will display at every welcome page:
@@ -577,3 +577,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w42d: Fixed bugs of updateStatus.jsp
 
 - 19w43d: Some random bug fix
+
+## Version 1.11: Hacking System For All
