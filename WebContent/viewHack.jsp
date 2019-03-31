@@ -80,11 +80,11 @@
     
 	<div class="card">
       <div class="card-header">
-        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+        <a class="card-link" data-toggle="collapse" href="#c2">
           	Hack Data
         </a>
       </div>
-      <div id="collapseOne" class="collapse" >
+      <div id="c2" class="collapse" >
         <div class="card-body">
           <pre><%=s.getCode().replace("<","&lt;").replace(">","&gt;") %></pre>
         </div>
