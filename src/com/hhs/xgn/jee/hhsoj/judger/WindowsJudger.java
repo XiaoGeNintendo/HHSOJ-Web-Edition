@@ -69,7 +69,7 @@ public class WindowsJudger extends AbstractJudger {
 			pb.directory(new File(ConfigLoader.getPath()+"/judge/"));
 			pb.redirectInput(new File(ConfigLoader.getPath()+"/judge/in"));
 			pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/report"));
-			pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/report"));
+			pb.redirectError(new File(ConfigLoader.getPath()+"/judge/report"));
 			Process pro=pb.start();
 			
 			boolean notle=pro.waitFor(self.con.getWaitTimeout(),TimeUnit.SECONDS);

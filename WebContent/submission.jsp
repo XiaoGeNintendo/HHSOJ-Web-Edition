@@ -31,6 +31,10 @@
 			s.getCompilerComment(); //test null
 			p=new ProblemHelper().getProblemData(s.getProb());
 			
+			if(s.getProb().startsWith("H")){
+				response.sendRedirect("viewHack.jsp?id="+id);
+				return;
+			}
 		}catch(Exception e){
 			out.println("Submission doesn't exist");
 			out.println("<a href=\"javascript:location.replace(document.referrer);\">←Back</a>");
