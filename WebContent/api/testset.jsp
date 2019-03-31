@@ -19,7 +19,7 @@ try{
 	if(!f.exists()) throw new Exception("3");
 	
 	for(File ano:f.listFiles()){
-		if(ano.isDirectory()){
+		if(ano.isDirectory() && !ano.getName().startsWith("!")){
 			out.println("<option value=\""+ano.getName()+"\">"+ano.getName()+"</option>");
 		}
 	}
