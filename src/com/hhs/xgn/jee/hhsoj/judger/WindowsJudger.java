@@ -38,6 +38,11 @@ public class WindowsJudger extends AbstractJudger {
 		boolean ac = true;
 
 		for (File f : testfiles.listFiles()) {
+			
+			if(f.isDirectory()){
+				continue;
+			}
+			
 			s.setVerdict("Running");
 			s.setNowTest(cnt);
 			new SubmissionHelper().storeStatus(s);

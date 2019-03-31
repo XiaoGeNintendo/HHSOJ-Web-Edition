@@ -26,11 +26,16 @@ public class TypeMaster {
 	};
 	
 	public static String render(Submission s){
+		if(s.getTestset().startsWith("hackAttempt_")){
+			return String.format(modal,"fa fa-shield","Hack Defence");
+		}
+		
 		for(int i=0;i<typeHeader.length;i++){
 			if(s.getProb().startsWith(typeHeader[i])){
 				return String.format(modal, arg[i]);
 			}
 		}
+		
 		
 		return null; //This should never happen
 	}
