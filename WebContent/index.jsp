@@ -11,12 +11,12 @@
 	<!-- Enter Everything here -->
 
 	<div class="container">
-		<h1 id="title">
+		<h1 class="title">
 			<img src="asset/favicon/favicon128x.png"
 				style="height: 50px; width: 50px; margin-right: 10px;"
 				class="oj-icon"> Welcome to HellOJ!
 		</h1>
-		<i id="subtitle">This OJ is made by XiaoGeNintendo in Hell Hole
+		<i class="subtitle">This OJ is made by XiaoGeNintendo in Hell Hole
 			Studios</i>
 		<hr />
 		<jsp:include page="nav.jsp?at=index"></jsp:include>

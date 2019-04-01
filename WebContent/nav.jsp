@@ -5,41 +5,52 @@
 <%
 	String nowAt = request.getParameter("at");
 	String user = (String) session.getAttribute("username");
-	
-	
+
 	if (nowAt == null) {
 		out.println("ERROR:Permission denied");
 		return;
 	}
 
-	String[] text = new String[] { "Home", "Problems", "Status", "Submit", "Community","Contests" };
-	String[] link = new String[] { "index.jsp", "problemset.jsp", "status.jsp", "submit.jsp", "blogs.jsp", "contests.jsp"};
+	String[] text = new String[] { "Home", "Problems", "Status", "Submit", "Community", "Contests" };
+	String[] link = new String[] { "index.jsp", "problemset.jsp", "status.jsp", "submit.jsp", "blogs.jsp",
+			"contests.jsp" };
 %>
 <div id="nav" class="navbar navbar-expand-sm">
-<ul class="navbar-nav">
-	<%
-		for (int i = 0; i < text.length; i++) {
-	%>
-	<li class="nav-item">
-	<a href="<%=link[i]%>"
-		class="nav-link nav-link-left <%=(link[i].startsWith(nowAt) ? "selected" : "")%>"><%=text[i]%></a>
+	<ul class="navbar-nav ml-auto">
+		<%
+			for (int i = 0; i < text.length; i++) {
+		%>
+		<li class="nav-item"><a href="<%=link[i]%>"
+			class="nav-link <%=(link[i].startsWith(nowAt) ? "selected" : "")%>"><%=text[i]%></a>
 		</li>
-	<%
-		}
-	%>
+		<%
+			}
+		%>
+	</ul>
 
-
-<%
-	if(user==null){
-		out.println("<a href=\"login.jsp?back="+nowAt+"\" class=\"nav-item nav-link-right "+(nowAt.equals("login")?"selected":"")+"\">Login</a>");
-		out.println("<a href=\"register.jsp\" class=\"nav-item nav-link-right "+(nowAt.equals("register")?"selected":"")+"\">Register</a>");
-	}else{
-		out.println("<a href=\"users.jsp?username=" + user + "\" class=\"nav-item nav-link-right\">" + user + "</a>");
-		out.println("<a href=\"logout.jsp?back="+nowAt+"\" class=\"nav-item nav-link-right\">Logout</a>");
-	}
-
-%>
-</ul>
+	<ul class="navbar-nav mr-auto">
+		<%
+			if (user == null) {
+		%>
+		<li class="nav-item">
+		<a href="<%="login.jsp?back=" + nowAt%>" class="<%="nav-link" + (nowAt.equals("login") ? " selected" : "")%>">Login</a>
+		</li>
+		<li class="nav-item">
+		<a href="register.jsp" class="<%="nav-link" + (nowAt.equals("register") ? " selected" : "")%>">Register</a>
+		</li>
+		<%
+			} else {
+		%>
+		<li class="nav-item">
+		<a href="<%="user.jsp?username=" + user%>" class="nav-link"><%=user%></a>
+		</li>
+		<li class="nav-item">
+		<a href="<%="logout.jsp?back=" + nowAt%>" class="nav-link">Logout</a>
+		</li>
+		<%
+			}
+		%>
+	</ul>
 </div>
 <div class="seperator"></div>
 <br />

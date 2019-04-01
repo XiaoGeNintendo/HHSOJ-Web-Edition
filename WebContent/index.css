@@ -30,7 +30,11 @@ input {
 	font-family: "Consolas";
 }
 
-#title {
+.container{
+	margin-top:50px;
+}
+
+.title {
 	margin-left: 20px;
 	margin-right: 20px;
 	margin-top: 10px;
@@ -39,7 +43,7 @@ input {
 	font-family: Georgia, serif;
 }
 
-#subtitle {
+.subtitle {
 	margin-left: 20px;
 	margin-right: 20px;
 	margin-top: 10px;
@@ -47,16 +51,6 @@ input {
 	float: left;
 	clear: both;
 	margin-bottom: 10px;
-	font-family: Georgia, serif;
-}
-
-.title {
-	margin: 5px;
-	font-family: Georgia, serif;
-}
-
-.subtitle {
-	margin: 5px;
 	font-family: Georgia, serif;
 }
 
@@ -64,27 +58,27 @@ input {
 	clear: both;
 }
 
-.nav-link-left {
+.nav-link{
 	font-weight: bold;
 	font-family: 'Trebuchet MS', Helvetica, sans-serif;
-	/*margin-left: 20px;
-	margin-right: 20px;*/
 	font-size: 15px;
-	color: #000000;
-	text-decoration: none;
-	float: left;
-	text-decoration: none;
-}
-
-.nav-link-right {
-	font-weight: bold;
-	font-family: 'Trebuchet MS', Helvetica, sans-serif;
-	/*margin-left: 20px;
-	margin-right: 20px;*/
-	/*font-size: 15px;*/
 	color: #000000;
 	float: right;
 	text-decoration: none;
+	padding-top: 2px !important;
+	padding-bottom: 2px !important;
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+}
+
+.ml-auto{
+	margin-left:0px !important;
+}
+
+.mr-auto{
+	margin-right:0px!important;
+	float:right !important;
+	margin-left:auto !important;
 }
 
 .selected {
