@@ -118,8 +118,8 @@
 		<br/>
 		
 		<%
-			boolean[] query=new boolean[]{userLooking!=null,s.getVerdict().equals("Accepted"),p.isHackable(s.getTestset())};
-			String[] sentence=new String[]{"You didn't login","Solution isn't accepted","Testset doesn't support hacking"};
+			boolean[] query=new boolean[]{userLooking!=null,s.getVerdict().equals("Accepted"),p.isHackable(s.getTestset()),p.getType()!=Problem.CODEFORCES};
+			String[] sentence=new String[]{"You didn't login","Solution isn't accepted","Testset doesn't support hacking","Submission is remote judge"};
 			
 			boolean tot=true;
 			for(int i=0;i<query.length;i++){

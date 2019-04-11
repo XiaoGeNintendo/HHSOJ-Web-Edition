@@ -1,5 +1,6 @@
 package com.hhs.xgn.jee.hhsoj.type;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
@@ -15,7 +16,7 @@ public class Problem {
 	private int id;
 	private String name;
 	private String tag;
-	private Map<String, String> arg;
+	private Map<String, String> arg=new HashMap<String,String>();
 	private int type;
 	
 	private int conId;
