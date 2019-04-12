@@ -41,6 +41,14 @@
 		}
 	%>
 	
+	<b>Goto:</b>
+	<a href="#pre">Preferences</a>
+	<a href="#sub">Submissions</a> <br/>
+	<a href="#con">Contests</a> <br/>
+	<a href="#solved">Problems</a> <br/>
+	
+	<br/>
+	
 	<table width="80%">
 		<tr>
 			<th width="50%"></th>
@@ -75,10 +83,12 @@
 		</tr>
 	</table>
 	
+	<a id="sub"></a>
 	<b>Submission Data</b> <br/>
 	<div id="langChart"></div>
 	<div id="verdictChart"></div>
 	
+	<a id="con"></a>
 	<b>Contest History</b> <br/>
 	
 	<div id="ratingChart"></div>
@@ -104,6 +114,7 @@
 		%>
 	</table>
 	
+	<a id="solved"></a>
 	<b>Problem Stats</b><br/>
 	<table align="center" width="80%" border="1">
 		<tr>
