@@ -65,7 +65,7 @@
 							<%
 								for(String r:e.getValue().choice){
 							%>
-									<option value="<%=r %>" <%=(e.getValue().value.equals(r)?"selected":"")%>><%=r %></option>				
+									<option value="<%=r %>" <%=(e.getValue().value.equals(r)?"selected":"") %>><%=r %></option>				
 							<%
 								}
 							%>
