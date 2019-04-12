@@ -33,6 +33,8 @@ public class Users {
 	private HashMap<String,Integer> problemStatus;
 	private String userPic;
 	
+	private Preferences preference=new Preferences();
+	
 	/**
 	 * If the user is banned
 	 */
@@ -245,5 +247,13 @@ public class Users {
 			}
 		}
 		return ans;
+	}
+
+	public Preferences getPreference() {
+		return preference;
+	}
+
+	public void setPreference(Preferences preference) {
+		this.preference = preference;
 	}
 }
