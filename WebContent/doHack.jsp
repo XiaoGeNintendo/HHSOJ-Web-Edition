@@ -16,6 +16,10 @@ try{
 	String id=request.getParameter("id");
 	String data=request.getParameter("data");
 	String user=(String)session.getAttribute("username");
+	if(user==null || user.equals("")){
+		throw new Exception("Please login");
+	}
+	
 	Submission s=new SubmissionHelper().getSubmission(Integer.parseInt(id));
 	Problem p=new ProblemHelper().getProblemData(s.getProb());
 	

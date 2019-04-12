@@ -73,7 +73,8 @@
 						String userLooking = (String) session.getAttribute("username");
 								if (user.equals(userLooking)) {
 					%> 
-							<img alt="setting" src="asset/settings.png"><a href="settings.jsp">Change settings</a><br /> 
+							<img alt="setting" src="asset/settings.png"><a href="settings.jsp">Change Settings</a><br />
+							<img alt="setting" src="asset/settings.png"><a href="social.jsp">Change Preference Settings</a><br /> 
 					<%
 					 	}
 				    %> 

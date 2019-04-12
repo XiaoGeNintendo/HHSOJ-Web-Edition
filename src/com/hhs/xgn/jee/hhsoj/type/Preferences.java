@@ -26,7 +26,7 @@ public class Preferences {
 		new PreferUnit("Editor::Use Code Editor","Yes",true,new String[]{"Yes","No"},false),
 		new PreferUnit("Editor::Editor Theme","monokai",true,new String[]{
 			"eclipse",
-			"monikai",
+			"monokai",
 			"github",
 			"xcode",
 			"dracula",
@@ -38,7 +38,7 @@ public class Preferences {
 			"dawn",
 			"dreamweaver",
 		},false),
-		new PreferUnit("Social::Preferred Language","c++",true,new String[]{
+		new PreferUnit("Social::Preferred Language","C++",true,new String[]{
 				"C++",
 				"Python",
 				"Java"
