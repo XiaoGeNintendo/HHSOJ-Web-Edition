@@ -23,7 +23,7 @@ public class Preferences {
 	};
 	
 	public final PreferUnit[] allValue=new PreferUnit[]{
-		new PreferUnit("Editor::Use Code Editor","Yes",true,new String[]{"Yes","No"}),
+		new PreferUnit("Editor::Use Code Editor","Yes",true,new String[]{"Yes","No"},false),
 		new PreferUnit("Editor::Editor Theme","monokai",true,new String[]{
 			"eclipse",
 			"monikai",
@@ -37,17 +37,17 @@ public class Preferences {
 			"chrome",
 			"dawn",
 			"dreamweaver",
-		}),
+		},false),
 		new PreferUnit("Social::Preferred Language","c++",true,new String[]{
 				"C++",
 				"Python",
 				"Java"
-		}),
-		new PreferUnit("Editor::Font Size","12px",false,null),
-		new PreferUnit("Editor::Enable Autocomplete","Yes",true,new String[]{"Yes","No"}),
-		new PreferUnit("Social::Name","",false,null),
-		new PreferUnit("Social::Country","Earth",false,null),
-		new PreferUnit("Social::Company","",false,null)
+		},true),
+		new PreferUnit("Editor::Font Size","12px",false,null,false),
+		new PreferUnit("Editor::Enable Autocomplete","Yes",true,new String[]{"Yes","No"},false),
+		new PreferUnit("Social::Name","",false,null,true),
+		new PreferUnit("Social::Country","Earth",false,null,true),
+		new PreferUnit("Social::Company","",false,null,true)
 	};
 	
 	public Preferences(){
