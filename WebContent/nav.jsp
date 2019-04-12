@@ -42,7 +42,7 @@
 			} else {
 		%>
 		<li class="nav-item">
-		<a href="<%="user.jsp?username=" + user%>" class="nav-link"><%=user%></a>
+		<a href="<%="users.jsp?username=" + user%>" class="nav-link"><%=user%></a>
 		</li>
 		<li class="nav-item">
 		<a href="<%="logout.jsp?back=" + nowAt%>" class="nav-link">Logout</a>

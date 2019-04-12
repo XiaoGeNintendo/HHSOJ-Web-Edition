@@ -1,3 +1,4 @@
+<%@page import="java.util.Map.Entry"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -41,8 +42,8 @@
 		}
 	%>
 	
-	<b>Goto:</b>
-	<a href="#pre">Preferences</a>
+	<b>Goto:</b> <br/>
+	<a href="#pre">Preferences</a> <br/>
 	<a href="#sub">Submissions</a> <br/>
 	<a href="#con">Contests</a> <br/>
 	<a href="#solved">Problems</a> <br/>
@@ -82,6 +83,18 @@
 			<td align="right"><img src="<%=u.getUserPic()%>" /></td>
 		</tr>
 	</table>
+	
+	<a id="pre"></a>
+	<b>Public Information</b> <br/>
+	<%
+		for(Entry<String,PreferUnit> e:u.getPreference().units.entrySet()){
+			if(e.getValue().isPublic && !e.getValue().value.isEmpty()){
+	%>
+				<p id="pre_<%=e.getKey()%>"><%=e.getValue().shownName %>:<%=e.getValue().value %></p><br/>			
+	<%
+			}
+		}
+	%>
 	
 	<a id="sub"></a>
 	<b>Submission Data</b> <br/>
