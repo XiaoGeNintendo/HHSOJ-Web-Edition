@@ -192,7 +192,7 @@ Thanks [Zzzyt](https://github.com/zzzzzzyt) for fixing some bugs and stuff!
 
 You can read more about Testlib here: [Mike Mirzayanov](http://codeforces.com/testlib)
 
-My blog is here: [Rubbish Blog](https://xgns-blog.000webhostapp.com)
+HHS blog here: [HHS Blog](https://blog.hellholestudios.club)
 
 Oh, the highlighter and editor are provided by [Mr.Wang](http://www.wangeditor.com/)
 
@@ -211,6 +211,7 @@ MathJax is [here](https://www.mathjax.org/)
  
 You can donate us by Wechat or Paypal :) Send an issue to ask for the donation link.
 
+About the Code Editor, we used [Ace](https://ace.c9.io/)
 
 # Customizing Announcement
 Announcement is the marquee text in index.jsp
@@ -585,3 +586,7 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w45a: Preference System For Showing. **Undone**
 
 - 19w46a: Code Editor For Submit
+
+- 19w47d: A bug fix of fix of #4
+
+- 19w48a: Code Editor For Contest Submission
