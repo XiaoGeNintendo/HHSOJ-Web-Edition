@@ -594,3 +594,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w49d: Fixed some NPE
 
 - 19w50a: More preference that does nothing :P
+
+## Version 1.12: Ace Editor
