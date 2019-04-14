@@ -48,7 +48,7 @@
 	<hr />
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	
-	<form action="doprefer.jsp" method="post">
+	<form action="doprefere.jsp" method="post">
 		<table align="center" id="login_table">
 			<%
 				for(Entry<String,PreferUnit> e:u.getPreference().units.entrySet()){
