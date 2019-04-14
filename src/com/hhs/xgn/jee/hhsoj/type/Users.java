@@ -30,7 +30,7 @@ public class Users {
 	private String line;
 	private List<ContestRecord> ratings;
 	private Map<Integer, Integer> blogStatus;
-	private HashMap<String,Integer> problemStatus;
+	private HashMap<String,Integer> problemStatus=new HashMap<>();
 	private String userPic;
 	
 	private Preferences preference=new Preferences();

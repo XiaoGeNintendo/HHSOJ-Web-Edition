@@ -19,6 +19,13 @@ public class Preferences {
 		"realname", //Real name
 		"country", //Country From
 		"company", //Organization From
+		"codeforcesHandle",
+		"githubHandle",
+		"atcoderHandle",
+		"topcoderHandle",
+		"facebook",
+		"twitter",
+		"email"
 	};
 	
 	public final PreferUnit[] allValue=new PreferUnit[]{
@@ -45,7 +52,14 @@ public class Preferences {
 		new PreferUnit("Editor::Enable Autocomplete","Yes",true,new String[]{"Yes","No"},false),
 		new PreferUnit("Social::Name","",false,null,true),
 		new PreferUnit("Social::Country","Earth",false,null,true),
-		new PreferUnit("Social::Company","",false,null,true)
+		new PreferUnit("Social::Company","",false,null,true),
+		new PreferUnit("Handle::Codeforces","",false,null,false),
+		new PreferUnit("Handle::Github","",false,null,false),
+		new PreferUnit("Handle::Atcoder","",false,null,false),
+		new PreferUnit("Handle::Topcoder","",false,null,false),
+		new PreferUnit("Handle::Facebook","",false,null,false),
+		new PreferUnit("Handle::Twitter","",false,null,false),
+		new PreferUnit("Handle::Email","",false,null,false),
 	};
 	
 	public Preferences(){
