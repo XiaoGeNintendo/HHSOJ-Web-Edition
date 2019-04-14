@@ -590,3 +590,7 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w47d: A bug fix of fix of #4
 
 - 19w48a: Code Editor For Contest Submission
+
+- 19w49d: Fixed some NPE
+
+- 19w50a: More preference that does nothing :P
