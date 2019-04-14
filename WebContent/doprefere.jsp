@@ -15,15 +15,28 @@
 		}
 		Users u=new UserHelper().getUserInfo(user);
 		
+		if(u==null){
+			throw new Exception("Unknown user");
+		}
+		
 		for(String key:u.getPreference().allKey){
 			
+			System.out.println("voo");
+			
 			String v=request.getParameter("value_"+key);
-			boolean r=request.getParameter("public_"+key).equals("on");
+			String r=request.getParameter("public_"+key);
+			System.out.println("voo");
 			u.getPreference().units.get(key).value=v;
-			u.getPreference().units.get(key).isPublic=r;
+			u.getPreference().units.get(key).isPublic=r!=null;
 		}
+		
+		new UserHelper().refreshUser(u);
+		
+		response.sendRedirect("users.jsp?username="+user);
+		
 	}catch(Exception e){
 		out.println("Error!");
+		e.printStackTrace();
 		out.println("<!-- "+e+"-->");
 	}
 %>

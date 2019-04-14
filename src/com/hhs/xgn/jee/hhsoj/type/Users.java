@@ -250,6 +250,9 @@ public class Users {
 	}
 
 	public Preferences getPreference() {
+		if(preference==null){
+			preference=new Preferences();
+		}
 		return preference;
 	}
 
