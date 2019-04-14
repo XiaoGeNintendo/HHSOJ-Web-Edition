@@ -583,3 +583,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w44d: Quick Fix of the issue #4 and #5
 
 - 19w45a: Preference System For Showing. **Undone**
+
+- 19w46a: Code Editor For Submit

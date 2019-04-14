@@ -12,7 +12,6 @@ public class Preferences {
 	public TreeMap<String,PreferUnit> units=new TreeMap<>();
 	
 	public final String[] allKey=new String[]{
-		"useEditor", //Whether to open editor
 		"editorTheme", //Editor theme
 		"commonLang", //Editor Language (Most useable language)
 		"fontSize", //Editor font size
@@ -23,7 +22,6 @@ public class Preferences {
 	};
 	
 	public final PreferUnit[] allValue=new PreferUnit[]{
-		new PreferUnit("Editor::Use Code Editor","Yes",true,new String[]{"Yes","No"},false),
 		new PreferUnit("Editor::Editor Theme","monokai",true,new String[]{
 			"eclipse",
 			"monokai",
