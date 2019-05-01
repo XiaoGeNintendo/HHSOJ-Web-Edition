@@ -61,6 +61,12 @@ public class ProblemHelper {
 	 * @return
 	 */
 	public synchronized Problem getProblemData(String s) {
+		if(s.startsWith("T")){
+			Problem p=new Problem();
+			p.setType(Problem.CUSTOM);
+			return p;
+		}
+		
 		if (s.startsWith("C")) {
 			return readContestProblem(s);
 		}

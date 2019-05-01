@@ -1,6 +1,8 @@
 package com.hhs.xgn.jee.hhsoj.judger;
 
 import java.io.File;
+
+import com.hhs.xgn.jee.hhsoj.type.CustomTestSubmission;
 import com.hhs.xgn.jee.hhsoj.type.Problem;
 import com.hhs.xgn.jee.hhsoj.type.Submission;
 import com.hhs.xgn.jee.hhsoj.type.Users;
@@ -38,6 +40,11 @@ public abstract class AbstractJudger {
 	 * @throws Exception
 	 */
 	public abstract boolean judgeHack(Submission s,Problem p,Users u,Problem orip,Submission oris) throws Exception;
-	
+
+	/**
+	 * Test a custom test.
+	 * @param s
+	 */
+	public abstract void judgeCustomTest(CustomTestSubmission s);
 
 }

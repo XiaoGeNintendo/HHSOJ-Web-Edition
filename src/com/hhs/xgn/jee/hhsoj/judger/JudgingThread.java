@@ -10,6 +10,7 @@ import com.hhs.xgn.jee.hhsoj.remote.CodeforcesHelper;
 import com.hhs.xgn.jee.hhsoj.remote.CodeforcesSubmission;
 import com.hhs.xgn.jee.hhsoj.type.Config;
 import com.hhs.xgn.jee.hhsoj.type.Contest;
+import com.hhs.xgn.jee.hhsoj.type.CustomTestSubmission;
 import com.hhs.xgn.jee.hhsoj.type.Problem;
 import com.hhs.xgn.jee.hhsoj.type.Submission;
 import com.hhs.xgn.jee.hhsoj.type.TestResult;
@@ -51,7 +52,6 @@ public class JudgingThread extends Thread {
 				AbstractJudger judger=null;
 				
 				if(ConfigLoader.isLinux()){
-					//TODO Linux Judger
 					judger=new LinuxJudger();
 				}else{
 					judger=new WindowsJudger();
@@ -79,8 +79,6 @@ public class JudgingThread extends Thread {
 					Submission ori=new SubmissionHelper().getSubmission(s.getProb().substring(1));
 					Problem op=new ProblemHelper().getProblemData(ori.getProb());
 					
-					
-					
 					boolean b=judger.judgeHack(s, p, u,op,ori);
 					if(b){
 						//OK to get a defender
@@ -106,6 +104,12 @@ public class JudgingThread extends Thread {
 						
 						TaskQueue.addTask(def);
 					}
+					continue;
+				}
+				
+				if(p.getType()==Problem.CUSTOM){
+					CustomTestSubmission cts=(CustomTestSubmission)s;
+					judger.judgeCustomTest(cts);
 					continue;
 				}
 				

@@ -25,6 +25,7 @@ public class Problem {
 	public final static int CONTEST=1;
 	public final static int CODEFORCES=2;
 	public static final int HACK = 3;
+	public static final int CUSTOM = 4;
 	
 	public boolean isHackable(String testset){
 		return arg.containsKey("Validator_"+testset);
