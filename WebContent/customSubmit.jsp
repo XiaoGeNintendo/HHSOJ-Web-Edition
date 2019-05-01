@@ -55,11 +55,11 @@
 		<sub><i>Note:to change the editor config,go to your preference settings</i></sub> <br/>
 		
 		Input: <br/>
-		<textarea cols=50 name="input" id="input" placeholder="Your program's input please.No more than 65536b."></textarea>
+		<textarea cols=80 rows=10 name="input" id="input" placeholder="Your program's input please.No more than 65536b."></textarea>
 		<br/>
 		
 		Output: <br/>
-		<textarea cols=50 name="output" id="output" placeholder="Run to see output" readonly="readonly"></textarea>
+		<textarea cols=80 rows=10 name="output" id="output" placeholder="Run to see output" readonly="readonly"></textarea>
 		<br/>
 		
 		<button onclick="submit()">
