@@ -323,7 +323,7 @@ public class JudgingThread extends Thread {
 		System.out.println("Copying files");
 
 		// Copy Solution
-		if(p.getType()!=Problem.CODEFORCES && p.getType()!=Problem.HACK){
+		if(p.getType()!=Problem.CODEFORCES && p.getType()!=Problem.HACK && p.getType()!=Problem.CUSTOM){
 			File oldSol = new File(p.getPath() + "/" + p.getArg("Solution"));
 			File newSol = new File(ConfigLoader.getPath()+"/judge/sol.exe");
 			copyFile(oldSol, newSol);

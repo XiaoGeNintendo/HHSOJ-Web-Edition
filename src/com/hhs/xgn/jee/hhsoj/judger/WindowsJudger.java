@@ -5,11 +5,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
 import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
 import com.hhs.xgn.jee.hhsoj.db.SubmissionHelper;
+import com.hhs.xgn.jee.hhsoj.type.CustomTestSubmission;
 import com.hhs.xgn.jee.hhsoj.type.Problem;
 import com.hhs.xgn.jee.hhsoj.type.Submission;
 import com.hhs.xgn.jee.hhsoj.type.TestResult;
@@ -26,6 +28,109 @@ public class WindowsJudger extends AbstractJudger {
 		return true;
 	}
 
+	@Override
+	public void judgeCustomTest(CustomTestSubmission s) {
+		//TODO custom test judge
+		
+		try{
+			if(!compileFiles(s)){
+				return ;
+			}
+			
+			s.setVerdict("Running");
+			s.setNowTest(1);
+			
+			PrintWriter pw=new PrintWriter(ConfigLoader.getPath()+"/judge/input.txt");
+			pw.print(s.getInput());
+			pw.close();
+			
+			judgeCustomTestTest(s);
+			
+		}catch(Exception e){
+			s.setVerdict("Judgement Failed");
+			s.setCompilerComment(e+"");
+			new SubmissionHelper().storeStatus(s);
+			
+		}
+	}
+	
+	public void judgeCustomTestTest(CustomTestSubmission s) throws Exception{
+		//Just run cpp
+		if(s.getLang().equals("cpp")){
+			ProcessBuilder pb = new ProcessBuilder(new File(ConfigLoader.getPath()+"/judge/sandbox.exe").getAbsolutePath(), "Program.exe",
+					self.con.getWindowsUsername(), self.con.getWindowsPassword(), "input.txt", "out.txt", "10000",
+					"1048576");
+			
+			pb.directory(new File(ConfigLoader.getPath()+"/judge"));
+			//pb.redirectInput(new File("hhsoj/judge/in.txt"));
+			//pb.redirectOutput(new File("hhsoj/judge/out.txt"));
+
+			Process pro = pb.start();
+
+			pro.waitFor();
+
+			pro.destroyForcibly();
+
+			if (pro.exitValue() != 0) {
+				throw new Exception("Sandbox Error");
+			}
+
+			// Anyway kill the sandbox
+			Runtime.getRuntime().exec("taskkill /f /im sandbox.exe /t");
+
+			// Get everything
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(ConfigLoader.getPath()+"/judge/V2.txt")));
+			int time = Integer.parseInt(br.readLine());
+			int mem = Integer.parseInt(br.readLine());
+			int exit = Integer.parseInt(br.readLine());
+			int err = Integer.parseInt(br.readLine());
+			br.close();
+
+			if (err != 0) {
+				// Sandbox error
+				s.setVerdict("Judgement Failed");
+				s.getResults().add(new TestResult("Judgement Failed", time, mem, "User Test", "Sandbox error code=" + err));
+				new SubmissionHelper().storeStatus(s);
+				return;
+			}
+
+			if (time > 10000) {
+				// Tle
+				s.setVerdict("Time Limit Exceeded");
+				s.getResults().add(new TestResult("Time Limit Exceeded", 10000, mem, "User Test",
+						"Time limit exceeded. :("));
+				new SubmissionHelper().storeStatus(s);
+				return;
+			}
+
+			if (mem > 1048576) {
+				// Mle
+				s.setVerdict("Memory Limit Exceeded");
+				s.getResults()
+						.add(new TestResult("Memory Limit Exceeded", time, mem, "User Test", "Memory limit exceeded. :("));
+				new SubmissionHelper().storeStatus(s);
+				return;
+			}
+
+			if (exit != 0) {
+				// Re
+				s.setVerdict("Runtime Error");
+				s.getResults().add(
+						new TestResult("Runtime Error", time, mem, "User Test", "Runtime Error, exit code is " + exit));
+				new SubmissionHelper().storeStatus(s);
+				return;
+			}
+
+			// Done
+			s.setVerdict("Tested");
+			s.setCompilerComment(self.readFile(ConfigLoader.getPath()+"/judge/out.txt"));
+			s.getResults().add(new TestResult("Accepted",time,mem,"User Test","Successfully tested the program"));
+			new SubmissionHelper().storeStatus(s);
+		}else{
+			throw new Exception("Unsupported Language For Custom Test");
+		}
+	}
+	
 	@Override
 	public boolean judgeNormal(Submission s, Problem p, Users u, File testfiles) throws Exception {
 		//Windows Method of Testing
@@ -126,6 +231,7 @@ public class WindowsJudger extends AbstractJudger {
 		}
 		return null;
 	}
+	
 	private boolean compileFiles(Submission s) throws IOException, InterruptedException {
 		System.out.println("Compiling the given solution");
 
@@ -485,4 +591,6 @@ public class WindowsJudger extends AbstractJudger {
 		}
 
 	}
+
+	
 }

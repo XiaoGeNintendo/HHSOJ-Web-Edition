@@ -12,7 +12,7 @@ public class CustomTestSubmission extends Submission {
 	private String visible;
 	private String input;
 	
-	public CustomTestSubmission(String code,String input,String visible,String author){
+	public CustomTestSubmission(String code,String input,String visible,String author,String lang){
 		setCode(code);
 		setInput(input);
 		setVisible(visible);
@@ -20,6 +20,7 @@ public class CustomTestSubmission extends Submission {
 		setTestset("CustomTest");
 		setUser(author);
 		setSubmitTime(System.currentTimeMillis());
+		setLang(lang);
 	}
 	
 	public String getVisible() {

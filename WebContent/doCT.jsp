@@ -24,7 +24,7 @@
 		return;
 	}
 	
-	CustomTestSubmission cts=new CustomTestSubmission(code,input,visi,user);
+	CustomTestSubmission cts=new CustomTestSubmission(code,input,visi,user,lang);
 	
 	
 	int id=TaskQueue.addTask(cts);

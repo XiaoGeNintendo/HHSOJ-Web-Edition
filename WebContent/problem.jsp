@@ -38,6 +38,7 @@
 			}
 			if(sid.startsWith("H")){
 				out.println("'H' stands for hacking! Thus no problem presented.");
+				return;
 			}
 			id = Integer.parseInt(request.getParameter("id"));
 		} catch (Exception e) {
