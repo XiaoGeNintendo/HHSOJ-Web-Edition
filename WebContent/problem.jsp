@@ -32,6 +32,13 @@
 				response.sendRedirect("cfp.jsp?id="+sid);
 				return;
 			}
+			if(sid.startsWith("T")){
+				out.println("'T' stands for custom test! Thus no problem presented");
+				return;
+			}
+			if(sid.startsWith("H")){
+				out.println("'H' stands for hacking! Thus no problem presented.");
+			}
 			id = Integer.parseInt(request.getParameter("id"));
 		} catch (Exception e) {
 			out.println("<b>Unknown Problem ID</b><br/>");
