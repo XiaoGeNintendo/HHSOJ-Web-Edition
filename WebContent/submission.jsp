@@ -17,9 +17,6 @@
 <title>HHSOJ-Submission <%=request.getParameter("id") %></title>
 </head>
 <body>
-	<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
-	<script src="js/wangHighLighter-1.0.0-min.js" type="text/javascript"></script>
-	
 	
 	<%
 		int id=-1;
@@ -34,6 +31,9 @@
 			if(s.getProb().startsWith("H")){
 				response.sendRedirect("viewHack.jsp?id="+id);
 				return;
+			}
+			if(s.getProb().equals("T")){
+				response.sendRedirect("viewCustomTest.jsp?id="+id);
 			}
 		}catch(Exception e){
 			out.println("Submission doesn't exist");

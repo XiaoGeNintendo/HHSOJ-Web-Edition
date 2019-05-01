@@ -38,7 +38,6 @@ public class WindowsJudger extends AbstractJudger {
 			}
 			
 			s.setVerdict("Running");
-			s.setNowTest(1);
 			
 			PrintWriter pw=new PrintWriter(ConfigLoader.getPath()+"/judge/input.txt");
 			pw.print(s.getInput());
@@ -124,6 +123,7 @@ public class WindowsJudger extends AbstractJudger {
 
 			// Done
 			s.setVerdict("Tested");
+			s.setNowTest(0);
 			s.setCompilerComment(self.readFile(ConfigLoader.getPath()+"/judge/out.txt"));
 			s.getResults().add(new TestResult("Accepted",time,mem,"User Test","Successfully tested the program"));
 			new SubmissionHelper().storeStatus(s);
