@@ -29,7 +29,7 @@ public class CustomTestSubmission extends Submission {
 		setInput(input);
 		setVisible(visible);
 		setProb("T");
-		setTestset("CustomTest");
+		setTestset(visible);
 		setUser(author);
 		setSubmitTime(System.currentTimeMillis());
 		setLang(lang);

@@ -117,6 +117,7 @@ public class WindowsJudger extends AbstractJudger {
 				s.setVerdict("Runtime Error");
 				s.getResults().add(
 						new TestResult("Runtime Error", time, mem, "User Test", "Runtime Error, exit code is " + exit));
+				s.setCompilerComment("Exit Code is "+exit);
 				new SubmissionHelper().storeStatus(s);
 				return;
 			}

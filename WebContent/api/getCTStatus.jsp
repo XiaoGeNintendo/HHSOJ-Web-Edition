@@ -27,7 +27,7 @@
 			throw new Exception("user invalid");
 		}
 		
-		out.println("Request:"+id+"\nStatus:"+cts.getVerdict()+"\n"+cts.getCompilerComment()+"\n===========\nTime/Memory="+cts.getTimeCost()+";"+cts.getMemoryCost());
+		out.println("Request:"+id+"\nStatus:"+cts.getVerdict()+"\n===========\n"+cts.getCompilerComment()+"\n===========\nTime/Memory="+cts.getTimeCost()+";"+cts.getMemoryCost());
 	}catch(Exception e){
 		out.println("Request:"+id+"\nStatus:Failed\n"+e);
 		

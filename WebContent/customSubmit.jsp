@@ -41,12 +41,9 @@
 		<input type="radio" name="pub" value=public onclick="w('public')"><acronym title="Can be seen from the status page, anyone can see the detail">Public</acronym>
 		<br/>
 		<p>
-			Language: <input type="radio" name="lang" value="java" onclick="s('java')"> <acronym
-				title="Java1.8.0 : Name your class 'Program' and don't place it in a package!">Java</acronym>
+			Language: 
 			<input type="radio" name="lang" value="cpp" onclick="s('cpp')"> <acronym
-				title="C++11 : Don't upload harmful code thx :(">C++</acronym> <input
-				type="radio" name="lang" value="python" onclick="s('python')"> <acronym
-				title="Python 3.6 : A short and powerful language">Python</acronym>
+				title="C++11 : Don't upload harmful code thx :(">C++</acronym> 
 		<p>
 
 		<br />
@@ -73,7 +70,8 @@
 
 	<pre>
 This is a place to submit Custom Submissions.
-You can change the stuffs to see how things are working on the server
+You can change the stuffs to see how things are working on the server.
+Only C++ works fine :)
 	</pre>
 
 	<script>
@@ -139,7 +137,7 @@ You can change the stuffs to see how things are working on the server
 				"input":input
 			},function(data,status){
 				last=data.trim();
-				alert("Custom Submission has been posted successfully!\nStatus:"+status+"\nID:"+last);
+				//alert("Custom Submission has been posted successfully!\nStatus:"+status+"\nID:"+last);
 			});
 		}
 	</script>

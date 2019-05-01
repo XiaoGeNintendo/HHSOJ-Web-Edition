@@ -18,6 +18,9 @@ public class PatternMatcher {
 		if(verdictP!=null && !verdictP.equals("") &&!s.getVerdict().contains(verdictP)){
 			return false;
 		}
+		if(s.getProb().equals("T") && s.getTestset().equals("private")){
+			return false;
+		}
 		return true;
 	}
 }
