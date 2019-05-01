@@ -55,11 +55,11 @@
 		<sub><i>Note:to change the editor config,go to your preference settings</i></sub> <br/>
 		
 		Input: <br/>
-		<textarea cols=50 name="input" id="input" placeholder="Your program's input please"></textarea>
+		<textarea cols=50 name="input" id="input" placeholder="Your program's input please.No more than 65536b."></textarea>
 		<br/>
 		
 		Output: <br/>
-		<textarea cols=50 name="output" id="output" placeholder="Run to see output"></textarea>
+		<textarea cols=50 name="output" id="output" placeholder="Run to see output" readonly="readonly"></textarea>
 		<br/>
 		
 		<button onclick="submit()">
@@ -138,8 +138,8 @@ You can change the stuffs to see how things are working on the server
 				"public":visi,
 				"input":input
 			},function(data,status){
-				last=data;
-				alert("Custom Submission has been posted successfully!\nStatus:"+status+"\nID:"+data);
+				last=data.trim();
+				alert("Custom Submission has been posted successfully!\nStatus:"+status+"\nID:"+last);
 			});
 		}
 	</script>

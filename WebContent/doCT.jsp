@@ -8,17 +8,19 @@
 <%
 	String code=request.getParameter("code");
 	String lang=request.getParameter("lang");
-	String input=request.getParameter("testset");
+	String input=request.getParameter("input");
 	String visi=request.getParameter("public");
 	String user=(String)session.getAttribute("username");
 	
-	if(code==null || lang==null || user==null ||input==null){
-		response.sendRedirect("customSubmit.jsp");
+	if(code==null || lang==null || user==null ||input==null || visi==null){
+		
+		out.println("Null check failed");
 		return;
 	}
 	
 	if(code.length()>65536 || lang.length()>1024 || visi.length()>1024 || input.length()>65536){
-		response.sendRedirect("submit.jsp");
+		
+		out.println("Length check failed");
 		return;
 	}
 	
