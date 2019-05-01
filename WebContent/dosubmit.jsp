@@ -30,6 +30,10 @@
 				return;
 			}
 		}
+		if(p.getType()==Problem.CUSTOM){
+			out.println("WTF RU DOING??? DO YOU KNOW WHERE TO SUBMIT CUSTOM SUBMISSIONS?");
+			return;
+		}
 		if(p.getType()==Problem.CODEFORCES){
 			
 		}
