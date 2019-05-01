@@ -36,9 +36,9 @@
 
 	<center>
 		Visibility:
-		<input type="radio" name="pub" value="private"><acronym title="Cannot be seen from the status page, only you can see the detail">Private</acronym>
-		<input type="radio" name="pub" value="protected"><acronym title="Can be seen from status page, but only you can see the detail">Protected</acronym>
-		<input type="radio" name="pub" value=public><acronym title="Can be seen from the status page, anyone can see the detail">Public</acronym>
+		<input type="radio" name="pub" value="private" onclick="w('private')"><acronym title="Cannot be seen from the status page, only you can see the detail">Private</acronym>
+		<input type="radio" name="pub" value="protected" onclick="w('protected')"><acronym title="Can be seen from status page, but only you can see the detail">Protected</acronym>
+		<input type="radio" name="pub" value=public onclick="w('public')"><acronym title="Can be seen from the status page, anyone can see the detail">Public</acronym>
 		<br/>
 		<p>
 			Language: <input type="radio" name="lang" value="java" onclick="s('java')"> <acronym
@@ -95,6 +95,24 @@ You can change the stuffs to see how things are working on the server
 	    }
 	    
 	    var lang="";
+	    var visi="";
+	    var last=-1;
+	    
+	    function getOutput(){
+	    	if(last!=-1){
+	    		$.get("api/getCTStatus.jsp?id="+last,function(data,status){
+	    			document.getElementById("output")=data;
+	    		})
+	    	}
+	    	
+	    	setTimeout(getOutput,1000);
+	    }
+	    
+	    getOutput();
+	    
+	    function w(s){
+	    	visi=s;
+	    }
 	    
 	    function s(s){
 	    	lang=s;
@@ -104,41 +122,24 @@ You can change the stuffs to see how things are working on the server
 	    	editor.session.setMode("ace/mode/"+s);
 	    }
 	    
-	  //Post function
-		function httpPost(URL, PARAMS) {
-			var temp = document.createElement("form");
-			temp.action = URL;
-			temp.method = "post";
-			temp.style.display = "none";
-
-			for ( var x in PARAMS) {
-				var opt = document.createElement("textarea");
-				opt.name = x;
-				opt.value = PARAMS[x];
-				temp.appendChild(opt);
-			}
-
-			document.body.appendChild(temp);
-			temp.submit();
-
-			return temp;
-		}
-	  
 		function submit(){
-			var a=document.getElementById("pid").value;
 			var code=editor.getValue();
-			var te=document.getElementById("testset").value;
+			var pub=visi;
+			var input=document.getElementById("input").value;
 			
-			if(lang=="" || a=="" || code==""){
-				alert("Problem Id or Language or Code is Empty!");
+			if(lang=="" || code=="" || pub==""){
+				alert("Did you miss something?\nSomething is not filled correctly.");
 				return;
 			}
 			
-			httpPost("dosubmit.jsp",{
-				"probid":a,
+			$.post("doCT.jsp",{
 				"code":code,
 				"lang":lang,
-				"testset":te
+				"public":visi,
+				"input":input
+			},function(data,status){
+				last=data;
+				alert("Custom Submission has been posted successfully!\nStatus:"+status+"\nID:"+data);
 			});
 		}
 	</script>
