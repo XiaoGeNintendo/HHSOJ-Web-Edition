@@ -101,7 +101,7 @@ You can change the stuffs to see how things are working on the server
 	    function getOutput(){
 	    	if(last!=-1){
 	    		$.get("api/getCTStatus.jsp?id="+last,function(data,status){
-	    			document.getElementById("output")=data;
+	    			document.getElementById("output").value=data.trim();
 	    		})
 	    	}
 	    	

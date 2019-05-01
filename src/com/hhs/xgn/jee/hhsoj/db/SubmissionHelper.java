@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
+import com.hhs.xgn.jee.hhsoj.type.CustomTestSubmission;
 import com.hhs.xgn.jee.hhsoj.type.Submission;
 
 /**
@@ -90,6 +91,21 @@ public class SubmissionHelper {
 		}
 	}
 
+	public synchronized CustomTestSubmission getCustomTestSubmission(String id){
+		
+		try{
+			File f=new File(ConfigLoader.getPath()+"/submission/"+id);
+			Gson gs=new Gson();
+			BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+			String s=br.readLine();
+			br.close();
+			
+			return gs.fromJson(s, CustomTestSubmission.class);
+		}catch(Exception e){
+			return null;
+		}
+	}
+	
 	public Submission getSubmission(String s) {
 		// TODO Auto-generated method stub
 		return getSubmission(Integer.parseInt(s));

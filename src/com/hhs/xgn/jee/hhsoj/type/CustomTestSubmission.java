@@ -12,6 +12,18 @@ public class CustomTestSubmission extends Submission {
 	private String visible;
 	private String input;
 	
+	/**
+	 * Returns whether a user can get the detail of this custom test.
+	 * @param user
+	 * @return
+	 */
+	public boolean isValid(String user){
+		if(visible.equals("public")){
+			return true;
+		}
+		return getUser().equals(user);
+	}
+	
 	public CustomTestSubmission(String code,String input,String visible,String author,String lang){
 		setCode(code);
 		setInput(input);
