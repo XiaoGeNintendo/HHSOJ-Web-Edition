@@ -127,7 +127,9 @@ public class WindowsJudger extends AbstractJudger {
 			s.getResults().add(new TestResult("Accepted",time,mem,"User Test","Successfully tested the program"));
 			new SubmissionHelper().storeStatus(s);
 		}else{
-			throw new Exception("Unsupported Language For Custom Test");
+			s.setVerdict("Unsupported Language");
+			s.setCompilerComment("Python/Java is not ready for Custom Submission!");
+			new SubmissionHelper().storeStatus(s);
 		}
 	}
 	

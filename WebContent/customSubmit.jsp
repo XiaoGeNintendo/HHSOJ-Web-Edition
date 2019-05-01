@@ -30,7 +30,7 @@
 	<h1 id="title">Custom Submission</h1>
 	<i id="subtitle">Sometimes called Custom Test --XGN</i>
 	<hr />
-	<jsp:include page="nav.jsp?at=submit"></jsp:include>
+	<jsp:include page="nav.jsp?at=index"></jsp:include>
 
 	<!-- Default End-->
 

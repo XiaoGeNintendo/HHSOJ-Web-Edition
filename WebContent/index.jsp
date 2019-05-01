@@ -48,7 +48,8 @@
 						Editor</a> <br /> <a href="TimeChanger.jsp" id="timeChanger">Online
 						Timestamp Changer</a> <br /> <a href="HMSChanger.jsp" id="hms">Online
 						HMS to ms Changer</a> <br /> <a href="userSearch.jsp" id="us">User
-						Search</a> <br />
+						Search</a> <br /> <a href="customSubmit.jsp" id="cs">Custom 
+						Submit</a>
 				</div>
 			</div>
 		</div>
