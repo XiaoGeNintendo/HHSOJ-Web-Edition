@@ -598,3 +598,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 ## Version 1.12: Ace Editor
 
 - 19w51c: Custom Submit Feature For Windows-CPP
+
+- 19w52c: Custom Submit Feature For Linux-CPP
