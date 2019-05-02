@@ -168,7 +168,7 @@ For Java users:
 			var code=editor.getValue();
 			
 			if(lang=="" || a=="" || code==""){
-				alert("Problem Id or Language or Code is Empty!");
+				alert("Problem Id or Language or Code is Empty!\nIf you made sure everything is right, click on ALL the radio checkbox you selected once more.");
 				return;
 			}
 			

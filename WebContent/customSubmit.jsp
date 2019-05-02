@@ -126,7 +126,7 @@ Only C++ works fine :)
 			var input=document.getElementById("input").value;
 			
 			if(lang=="" || code=="" || pub==""){
-				alert("Did you miss something?\nSomething is not filled correctly.");
+				alert("Did you miss something?\nSomething is not filled correctly.\nIf you made sure everything is right, click on ALL the radio checkbox you selected once more.");
 				return;
 			}
 			
