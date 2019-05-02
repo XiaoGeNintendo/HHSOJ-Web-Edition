@@ -91,7 +91,7 @@
 				autoScrollEditorIntoView:true		
 			});
 		    editor.setTheme("ace/theme/<%=(u==null?"xcode":u.getPreference().get("editorTheme").value)%>");
-		    editor.session.setMode("ace/mode/<%=(s.getLang().equals("cpp")?"c_cpp":s.getLang())%>");
+		    editor.session.setMode("ace/mode/<%=(cts.getLang().equals("cpp")?"c_cpp":cts.getLang())%>");
 		    document.getElementById('editor').style.fontSize='<%=(u==null?"12px":u.getPreference().get("editorTheme").value)%>';
 			editor.setReadOnly(true);
 			
