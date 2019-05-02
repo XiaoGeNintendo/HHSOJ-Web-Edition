@@ -603,3 +603,6 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 
 ## Version 1.13: Custom Submit Feature
 
+- 19w53a: Use CDN instead of copying Wang Editor
+
+- 19w54a: Stop using Wang's Highlighter and replace by Ace.
