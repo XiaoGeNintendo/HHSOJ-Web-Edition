@@ -30,7 +30,6 @@ public class WindowsJudger extends AbstractJudger {
 
 	@Override
 	public void judgeCustomTest(CustomTestSubmission s) {
-		//TODO custom test judge
 		
 		try{
 			if(!compileFiles(s)){
