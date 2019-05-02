@@ -1,3 +1,5 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Users"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.UserHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.CustomTestSubmission"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Problem"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.UserRenderer"%>
@@ -28,6 +30,7 @@
 		CustomTestSubmission cts=null;
 		String userLooking=(String)session.getAttribute("username");
 		String id=null;
+		Users u=null;
 		try{
 			id=request.getParameter("id");
 			if(id==null){
@@ -40,6 +43,10 @@
 			}
 			if(!cts.isValid(userLooking)){
 				throw new Exception("bad user");
+			}
+			
+			if(userLooking!=null){
+				u=new UserHelper().getUserInfo(userLooking);	
 			}
 		}catch(Exception e){
 			out.println("Custom Submission Open Error.<br/>");
@@ -78,7 +85,19 @@
 		<div id="editor">Loading Code...</div>
 
 		<script>
-			code();
+			var editor=ace.edit("editor",{
+				wrap:true,
+				maxLines:1000,
+				autoScrollEditorIntoView:true		
+			});
+		    editor.setTheme("ace/theme/<%=(u==null?"xcode":u.getPreference().get("editorTheme").value)%>");
+		    editor.session.setMode("ace/mode/<%=(s.getLang().equals("cpp")?"c_cpp":s.getLang())%>");
+		    document.getElementById('editor').style.fontSize='<%=(u==null?"12px":u.getPreference().get("editorTheme").value)%>';
+			editor.setReadOnly(true);
+			
+			$.get("api/getCode.jsp?id=<%=id%>",function(data,status){
+				editor.setValue(data.trim());
+			});
 		</script>
 		
 		<br/>
