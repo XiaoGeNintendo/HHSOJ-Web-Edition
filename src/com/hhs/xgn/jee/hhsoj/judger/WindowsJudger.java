@@ -23,7 +23,6 @@ public class WindowsJudger extends AbstractJudger {
 	
 	@Override
 	public boolean init(Submission s, Problem p, Users u, JudgingThread self) throws Exception {
-		// TODO Auto-generated method stub
 		this.self=self;
 		return true;
 	}

@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
 import com.hhs.xgn.jee.hhsoj.db.SubmissionHelper;
+import com.hhs.xgn.jee.hhsoj.type.CustomTestSubmission;
 import com.hhs.xgn.jee.hhsoj.type.Problem;
 import com.hhs.xgn.jee.hhsoj.type.Submission;
 import com.hhs.xgn.jee.hhsoj.type.TestResult;
@@ -408,5 +409,105 @@ public class LinuxJudger extends AbstractJudger {
 		}
 	}
 
+	@Override
+	public void judgeCustomTest(CustomTestSubmission s) {
+		//The same as windows
+		
+		try{
+			
+			Problem abs=new Problem();
+			abs.getArg().put("TL",10000+"");
+			abs.getArg().put("ML", 1048576+"");
+			LinuxSandboxSetup(s, abs);
+			
+			if(!LinuxCompileSolution(s)){
+				return ;
+			}
+			
+			s.setVerdict("Running");
+			
+			PrintWriter pw=new PrintWriter(ConfigLoader.getPath()+"/judge/data/a.in");
+			pw.print(s.getInput());
+			pw.close();
+			
+			pw=new PrintWriter(ConfigLoader.getPath()+"/judge/data/a.out");
+			pw.println("Nothing here:3 >_<");
+			pw.close();
+			
+			judgeCustomTestTest(s);
+			
+		}catch(Exception e){
+			s.setVerdict("Judgement Failed");
+			s.setCompilerComment(e+"");
+			
+			new SubmissionHelper().storeStatus(s);
+			
+		}
+	}
 
+	public void judgeCustomTestTest(CustomTestSubmission s) throws Exception{
+		
+		ProcessBuilder pb=new ProcessBuilder("./test.sh");
+		pb.directory(new File(ConfigLoader.getPath()+"/judge/"));
+		pb.redirectOutput(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
+		pb.redirectError(new File(ConfigLoader.getPath()+"/judge/judge.txt"));
+		Process pro=pb.start();
+		boolean ac=pro.waitFor(15000,TimeUnit.MILLISECONDS);
+		pro.destroyForcibly();
+		
+		if(!ac){
+			s.setVerdict("Time Limit Exceeded");
+			s.getResults().add(new TestResult("Time Limit Exceeded", 10000, 0, "User Test", "Sandbox TLE"));
+			new SubmissionHelper().storeStatus(s);
+			return;
+		}
+		
+		String content=self.readFile(ConfigLoader.getPath()+"/judge/judge.txt").split("\n")[0];
+		String[] ans=content.split(" ");
+		int result=Integer.parseInt(ans[0].trim());
+		int mcost=Integer.parseInt(ans[1].trim());
+		int tcost=Integer.parseInt(ans[2].trim());
+		String[] int2str=new String[]{"Improper Verdict",
+									  "Improper Verdict",
+									  "Accepted", //OK 2
+									  "Persentation Error", //OK 3
+									  "Time Limit Exceeded",
+									  "Memory Limit Exceeded",
+									  "Wrong Answer", //OK 6
+									  "Output Limit Exceeded",
+									  "Compile Error", //CE 8
+									  "Segmentation Fault",
+									  "Divide By Zero",
+									  "Abort Error",
+									  "Runtime Error",
+									  "Restrict Function",
+									  "Judgement Failed",
+									  "Runtime Error"};
+		
+		
+		if(result==8){
+			String verdict=int2str[result];
+			s.setVerdict(verdict);
+			s.setCompilerComment(self.readFile(ConfigLoader.getPath()+"/judge/temp/ce.txt"));
+			new SubmissionHelper().storeStatus(s);
+			return;
+		}
+		
+		if(result!=2 && result!=3 && result!=6){
+			//Bad verdict
+			String verdict=int2str[result];
+			s.setVerdict(verdict);
+			s.getResults().add(new TestResult(verdict, tcost, mcost, "User Test", ""));
+			new SubmissionHelper().storeStatus(s);
+			return;
+		}
+		
+		// Done
+		s.setVerdict("Tested");
+		s.setNowTest(0);
+		s.setCompilerComment(self.readFile(ConfigLoader.getPath()+"/judge/temp/a.out"));
+		s.getResults().add(new TestResult("Accepted",tcost,mcost,"User Test","Successfully tested the program"));
+		new SubmissionHelper().storeStatus(s);
+		
+	}
 }
