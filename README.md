@@ -194,7 +194,7 @@ You can read more about Testlib here: [Mike Mirzayanov](http://codeforces.com/te
 
 HHS blog here: [HHS Blog](https://blog.hellholestudios.club)
 
-Oh, the highlighter and editor are provided by [Mr.Wang](http://www.wangeditor.com/)
+Oh, the highlighter and editor are provided by [Wang Fu Peng](http://www.wangeditor.com/)
 
 The Elo editorial is here [Elo](https://bbs.gameres.com/thread_228018_1_1.html) . (Sorry it's Chinese too).
 
