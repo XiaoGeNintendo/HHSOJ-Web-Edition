@@ -19,7 +19,6 @@
 
 <!-- Wang's Stuff -->
 <script src="https://unpkg.com/wangeditor@3.1.1/release/wangEditor.min.js"></script>
-<script src="js/wangHighLighter-1.0.0-min.js" type="text/javascript"></script>
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
