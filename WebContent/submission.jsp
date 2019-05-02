@@ -1,3 +1,5 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Users"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.UserHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Problem"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.UserRenderer"%>
 <%@page import="java.util.ArrayList"%>
@@ -50,6 +52,11 @@
 			
 			s.setResults(new ArrayList<>());
 		}
+		
+		Users u=null;
+		if(userLooking!=null){
+			u=new UserHelper().getUserInfo(userLooking);
+		}
 	%>
 	
 	<script>
@@ -63,18 +70,6 @@
 				}
 			});
 		}
-		
-		function code(){
-			var highLightCode = wangHighLighter.highLight("<%=s.getLang().equals("cpp")?"C++":s.getLang()%>", "simple", "<%=s.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"").replace("</script>","</son>") %>");
-			this.document.write("<div id=\"code\">");
-			this.document.write(highLightCode);
-			this.document.write("</div>");
-		}
-		
-		function open(){
-			this.document.getElementById("code").innerHTML="<pre>"+"<%=s.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"").replace("</script>","</son>").replace("<","&lt;").replace(">","&gt;") %>"+"</pre>";
-		}
-		
 	</script>
 	
 	<!-- Default Template -->
@@ -102,19 +97,19 @@
 		
 		<h2>Code</h2>
 		
-		<%
-			
-			if(userLooking !=null && userLooking.equals(s.getUser())){
-				
-		%>
-			<a href="javascript:open()">Copy code</a>
-		<%
-			}
-		%>
-		<script>
-			code();
-		</script>
+		<div id="editor">Loading Code...</div>
 		
+		<script>
+			var editor=ace.edit("editor");
+		    editor.setTheme("ace/theme/<%=(u==null?"xcode":u.getPreference().get("editorTheme").value)%>");
+		    editor.session.setMode("ace/mode/<%=(s.getLang().equals("cpp")?"c_cpp":s.getLang())%>");
+		    document.getElementById('code').style.fontSize='<%=(u==null?"12px":u.getPreference().get("editorTheme").value)%>';
+			editor.setReadOnly(true);
+			
+			$.get("api/getCode.jsp?id=<%=id%>",function(data,status){
+				editor.setValue(data);
+			});
+		</script>
 		<br/>
 		
 		<%
