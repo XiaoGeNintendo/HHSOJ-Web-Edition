@@ -600,3 +600,6 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w51c: Custom Submit Feature For Windows-CPP
 
 - 19w52c: Custom Submit Feature For Linux-CPP
+
+## Version 1.13: Custom Submit Feature
+
