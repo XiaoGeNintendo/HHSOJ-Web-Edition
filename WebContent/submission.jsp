@@ -50,12 +50,8 @@
 		}
 		
 		String userLooking=(String)session.getAttribute("username");
+		
 		if(s.isRated() && new ProblemHelper().getProblemData(s.getProb()).getContest().isContestRunning()){
-			
-			if(s.getUser().equals(userLooking)==false){
-				s.setCode("No cheating during contests!!!");	
-			}
-			
 			s.setResults(new ArrayList<>());
 		}
 		
@@ -117,7 +113,7 @@
 			editor.setReadOnly(true);
 			
 			$.get("api/getCode.jsp?id=<%=id%>",function(data,status){
-				editor.setValue(data);
+				editor.setValue(data.trim());
 			});
 		</script>
 		<br/>

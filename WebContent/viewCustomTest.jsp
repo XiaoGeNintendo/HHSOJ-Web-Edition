@@ -13,8 +13,13 @@
 <html>
 <head>
 <jsp:include page="head.jsp"></jsp:include>
-
-
+<style>
+	#editor{
+        margin: auto;
+        width: 50%; 
+        height: 250px;
+   	}
+</style>
 <title>HHSOJ-Custom Submission <%=request.getParameter("id") %></title>
 </head>
 <body>
@@ -45,24 +50,7 @@
 		
 		
 	%>
-	
-	<script>
-	
-		
-		
-		function code(){
-			var highLightCode = wangHighLighter.highLight("<%=cts.getLang().equals("cpp")?"C++":cts.getLang()%>", "simple", "<%=cts.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"").replace("</script>","</son>") %>");
-			this.document.write("<div id=\"code\">");
-			this.document.write(highLightCode);
-			this.document.write("</div>");
-		}
-		
-		function open(){
-			this.document.getElementById("code").innerHTML="<pre>"+"<%=cts.getCode().replace("\\","\\\\").replace("\n", "\\n").replace("\r","\\r").replace("\t","\\t").replace("\"","\\\"").replace("</script>","</son>").replace("<","&lt;").replace(">","&gt;") %>"+"</pre>";
-		}
-		
-	</script>
-	
+
 	<!-- Default Template -->
 	<h1 id="title">Custom Submission on HHSOJ</h1>
 	<i id="subtitle">It's none of your bussiness!  --XGN</i>
@@ -87,7 +75,7 @@
 		
 		<h2>Code</h2>
 
-			<a href="javascript:open()">Copy code</a>
+		<div id="editor">Loading Code...</div>
 
 		<script>
 			code();
