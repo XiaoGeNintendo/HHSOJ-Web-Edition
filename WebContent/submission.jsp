@@ -14,7 +14,13 @@
 <html>
 <head>
 <jsp:include page="head.jsp"></jsp:include>
-
+<style>
+	#editor{
+        margin: auto;
+        width: 50%; 
+        height: 250px;
+   	}
+</style>
 
 <title>HHSOJ-Submission <%=request.getParameter("id") %></title>
 </head>
@@ -100,10 +106,14 @@
 		<div id="editor">Loading Code...</div>
 		
 		<script>
-			var editor=ace.edit("editor");
+			var editor=ace.edit("editor",{
+				wrap:true,
+				maxLines:1000,
+				autoScrollEditorIntoView:true		
+			});
 		    editor.setTheme("ace/theme/<%=(u==null?"xcode":u.getPreference().get("editorTheme").value)%>");
 		    editor.session.setMode("ace/mode/<%=(s.getLang().equals("cpp")?"c_cpp":s.getLang())%>");
-		    document.getElementById('code').style.fontSize='<%=(u==null?"12px":u.getPreference().get("editorTheme").value)%>';
+		    document.getElementById('editor').style.fontSize='<%=(u==null?"12px":u.getPreference().get("editorTheme").value)%>';
 			editor.setReadOnly(true);
 			
 			$.get("api/getCode.jsp?id=<%=id%>",function(data,status){
