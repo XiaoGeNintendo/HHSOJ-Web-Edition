@@ -246,7 +246,7 @@ def checkAll():
         print('Java version='+JAVA_VER)
     if PIP_VER==-1:
         pred('[ER]Python pip is not installed!\n')
-        unin.append(('python-pip','Python pip'))
+        unin.append(('python3-pip','Python pip'))
     else:
         pgreen('[OK]')
         print('pip version='+PIP_VER)
