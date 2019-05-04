@@ -8,16 +8,33 @@ import subprocess as sub
 
 if platform.python_version().startswith('2'):
     exec('print "\033[31mDon\'t use Python 2\\nTrying to start Python 3\033[0m"')
-    os.system('python3 '+sys.argv[0])
-    exit()
+    res=os.system('python3 '+sys.argv[0])
+    if res==32512:
+        exec('print "\033[31mFailed to start python3.Install One?\\n\033[0m"')
+        r=raw_input('[Y/n]')
+        if r=='Y' or r=='y' or r=='':
+            if platform.dist()[0]=='Centos':
+                os.system('yum install python3')
+            else:
+                os.system('apt-get install python3')
+        res2=os.system('python3 '+sys.argv[0])
+        if res2==32512:
+            exec('print "\033[31mFailed.\n\033[0m"')
+            
+    exit(0)
+
+
+DEBUG=False
+if len(sys.argv)>1 and sys.argv[1]=='-debug':
+    DEBUG=True
 
 # Must be linux!!!
 if platform.system()!='Linux':
     print('This script is only designed for Linux!')
     if not DEBUG:
-        exit()
+        exit(0)
 
-DEBUG=True;
+
 
 if DEBUG:
     print('--------------------Environment--------------------')
@@ -61,16 +78,13 @@ def aptInstall(s,chk):
     if runcmd(chk)[0]!=0:
         pred('[ER]%s install failed\n'%s)
 
-def utilInstall(s,chk):
+def utilCheck(chk):
     res=runcmd(chk)
     if res[0]!=0:
-        pred('[ER]%s is not installed\n'%s)
-        aptInstall(s,chk)
+        return False
+    return True
 
-def utilInstallAll():
-    l=[('wget','wget -V'),('tar','tar --version'),('unzip','unzip -version')]
-    for i in l:
-        utilInstall(i[0],i[1])
+
 
 #pip install
 def pipCheck(s):
@@ -90,10 +104,7 @@ def pipInstall(s):
     pred('[ER]Module %s install failed\n'%s)
     return False
 
-def pipInstallAll():
-    l=['requests','robobrowser']
-    for i in l:
-        pipInstall(i)
+
 
 
 
@@ -139,6 +150,7 @@ def installWebapp():
     print('Installing HHSOJ web app version %s'%res[0])
     download(res[1],'/usr/tomcat/webapps/ROOT.war')
     runcmd('rm -rf /usr/tomcat/webapps/ROOT/')
+    pblue('Note: Need to run tomcat to unpack the file.\n')
 
 #install hhsoj folder
 def installFolder():
@@ -282,19 +294,125 @@ def checkAll():
             for i in unin:
                 install(i[0])
         else:
+            print('Install one by one?')
+            res2=input('[y/N]')
+            if res2=='' or res2=='n' or res2=='N':
+                return
             for i in unin:
                 print('Install %s?'%i[1])
-                res2=input('[Y/n]')
-                if res=='' or res=='y' or res=='Y':
-                    install(i[0])
+                res3=input('[Y/n]')
+                if res3=='' or res3=='y' or res3=='Y':
+                    pipInstall(i[0])
     else:
         print('All required parts installed!')
 
 
 
-# TEST AREA!!!
-pipInstallAll()
-import requests
+#install all nodules
+def pipInstallAll():
+    l=['requests','robobrowser']
+    unin=[]
+    for i in l:
+        if not pipCheck(i):
+            unin.append(i)
+            pred('[ER]Module %s not Installed!'%i)
+        else:
+            pgreen('[OK]')
+            print('Module %s installed'%i)
+    
+    if len(unin)>0:
+        print('Install all uninstalled modules?')
+        res=input('[Y/n]')
+        if res=='' or res=='y' or res=='Y':
+            for i in unin:
+                pipInstall(i)
+        else:
+            print('Install one by one?')
+            res2=input('[y/N]')
+            if res2=='' or res2=='n' or res2=='N':
+                return
+            for i in unin:
+                print('Install %s?'%i)
+                res3=input('[Y/n]')
+                if res3=='' or res3=='y' or res3=='Y':
+                    pipInstall(i)
+    else:
+        print('All required modules installed!')
 
-utilInstallAll()
-checkAll()
+
+
+#install all utils
+def utilInstallAll():
+    l=[('wget','wget -V'),('tar','tar --version'),('unzip','unzip -version')]
+    unin=[]
+    for i in l:
+        if not utilCheck(i[1]):
+            unin.append(i)
+            pred('[ER]Util %s not Installed!'%i[0])
+        else:
+            pgreen('[OK]')
+            print('Util %s installed'%i[0])
+    
+    if len(unin)>0:
+        print('Install all uninstalled utils?')
+        res=input('[Y/n]')
+        if res=='' or res=='y' or res=='Y':
+            for i in unin:
+                aptInstall(i[0],i[1])
+        else:
+            print('Install one by one?')
+            res2=input('[y/N]')
+            if res2=='' or res2=='n' or res2=='N':
+                return
+            for i in unin:
+                print('Install %s?'%i[0])
+                res3=input('[Y/n]')
+                if res3=='' or res3=='y' or res3=='Y':
+                    aptInstall(i[0],i[1])
+    else:
+        print('All required utils installed!')
+
+
+
+
+
+# RUN AREA!!
+pgreen('    ----====HHSOJ Control Script====----    \n')
+print ('                 by Zzzyt,                    ')
+print ('            HellHole Studios 2019             ')
+print()
+print('Operations:')
+
+ol=['Check','Upgrade','Config','Run Status']
+for i in range(len(ol)):
+    pgreen('[%d]'%(i+1))
+    print(ol[i])
+o=input('Operation Nubmer:')
+if o=='1':
+    utilInstallAll()
+    pipInstallAll()
+    checkAll()
+elif o=='2':
+    import requests
+    v1=getWarURL()
+    v2=getFolderURL()
+    print('Latest HHSOJ web app version: '+v1[0])
+    print('Latest HHSOJ data folder version: '+v2[0])
+    r1=input('Install web app?[Y/n]')
+    if r1=='' or r1=='Y' or r1=='y':
+        installWebapp()
+    
+    r2=input('Install data folder?[Y/n]')
+    if r1=='' or r1=='Y' or r1=='y':
+        installFolder()
+
+elif o=='3':
+    pred('UNDER CONSTRUCTION\n')
+elif o=='4':
+    pred('UNDER CONSTRUCTION\n')
+    os.system('lsof -i:8005')
+else:
+    print('Exit...')
+    exit(0)
+
+
