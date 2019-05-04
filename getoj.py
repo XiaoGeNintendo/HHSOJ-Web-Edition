@@ -8,7 +8,10 @@ import subprocess as sub
 
 if platform.python_version().startswith('2'):
     exec('print "\033[31mDon\'t use Python 2\\nTrying to start Python 3\033[0m"')
-    res=os.system('python3 '+sys.argv[0])
+    c='python3'
+    for i in sys.argv:
+        c+=' '+i
+    res=os.system(c)
     if res==32512:
         exec('print "\033[31mFailed to start python3.Install One?\\n\033[0m"')
         r=raw_input('[Y/n]')
@@ -25,7 +28,7 @@ if platform.python_version().startswith('2'):
 
 
 DEBUG=False
-if len(sys.argv)>1 and sys.argv[1]=='-debug':
+if len(sys.argv)>1 and sys.argv[1]=='--debug':
     DEBUG=True
 
 # Must be linux!!!
@@ -62,9 +65,25 @@ def pblue(s):
 #run linux bash
 def runcmd(s):
     h=sub.Popen(s,stdout=sub.PIPE,stderr=sub.PIPE,shell=True)
-    h.wait()
-    sout=str(h.stdout.read(),encoding='utf-8')
-    serr=str(h.stderr.read(),encoding='utf-8')
+    if DEBUG:
+        print('------------------------START------------------------')
+        print('Command: '+s)
+        sout=''
+        serr=''
+        while h.poll()==None:
+            lo=str(h.stdout.readline(),encoding='utf-8')
+            le=str(h.stderr.readline(),encoding='utf-8')
+            if lo!='':
+                print('\t'+lo)
+                sout+=lo+'\n'
+            if le!='':
+                print('\t'+le)
+                serr+=le+'\n'
+        print('-------------------------END-------------------------\n')
+    else:
+        h.wait()
+        sout=str(h.stdout.read(),encoding='utf-8')
+        serr=str(h.stderr.read(),encoding='utf-8')
     return h.returncode,sout,serr
 
 #apt/yum install
@@ -161,7 +180,6 @@ def installFolder():
     runcmd('unzip /usr/hhsoj.zip -d /usr/')
     runcmd('rm -f /usr/hhsoj.zip')
 
-
 #general install
 def install(s):
     if s=='folder':
@@ -172,6 +190,8 @@ def install(s):
         installTomcat()
     else:
         aptInstall(s)
+
+
 
 #check requirements
 #java
@@ -228,6 +248,8 @@ def checkFolder():
         return 'Unknown'
     else:
         return -1
+
+
 
 
 #check all parts!
@@ -315,7 +337,7 @@ def pipInstallAll():
     for i in l:
         if not pipCheck(i):
             unin.append(i)
-            pred('[ER]Module %s not Installed!'%i)
+            pred('[ER]Module %s not Installed!\n'%i)
         else:
             pgreen('[OK]')
             print('Module %s installed'%i)
@@ -348,7 +370,7 @@ def utilInstallAll():
     for i in l:
         if not utilCheck(i[1]):
             unin.append(i)
-            pred('[ER]Util %s not Installed!'%i[0])
+            pred('[ER]Util %s not Installed!\n'%i[0])
         else:
             pgreen('[OK]')
             print('Util %s installed'%i[0])
