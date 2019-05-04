@@ -251,6 +251,58 @@ def checkFolder():
 
 
 
+#tomcat config
+def getPorts():
+    if not checkTomcat():
+        return -1,-1,-1
+    f=open('/usr/tomcat/conf/server.xml')
+    s=f.read()
+    f.close()
+    i1=s.find('protocol="HTTP/1.1"')
+    j1=s.find('"',i1-10)
+    k1=s.find('"',j1+1)
+    p1=s[j1+1:k1]
+
+    i2=s.find('protocol="AJP/1.3"')
+    j2=s.find('"',i2-10)
+    k2=s.find('"',j2+1)
+    p2=s[j2+1:k2]
+
+    i3=s.find('shutdown="SHUTDOWN"')
+    j3=s.find('"',i3-10)
+    k3=s.find('"',j3+1)
+    p3=s[j3+1:k3]
+
+    return p1,p2,p3
+
+
+def changePorts(p1,p2,p3):
+    if not checkTomcat():
+        return False
+    f=open('/usr/tomcat/conf/server.xml')
+    s=f.read()
+    f.close()
+    
+    i1=s.find('protocol="HTTP/1.1"')
+    j1=s.find('"',i1-10)
+    k1=s.find('"',j1+1)
+    s=s.replace(s[j1:i1]+'protocol="HTTP/1.1"','"%d" protocol="HTTP/1.1"'%p1)
+
+    i2=s.find('protocol="AJP/1.3"')
+    j2=s.find('"',i2-10)
+    k2=s.find('"',j2+1)
+    s=s.replace(s[j2:i2]+'protocol="AJP/1.3"','"%d" protocol="AJP/1.3"'%p2)
+
+    i3=s.find('shutdown="SHUTDOWN"')
+    j3=s.find('"',i3-10)
+    k3=s.find('"',j3+1)
+    s=s.replace(s[j3:i3]+'shutdown="SHUTDOWN"','"%d" shutdown="SHUTDOWN"'%p3)
+
+    f=open('/usr/tomcat/conf/server.xml','w')
+    f.write(s)
+    f.close()
+
+
 
 #check all parts!
 def checkAll():
