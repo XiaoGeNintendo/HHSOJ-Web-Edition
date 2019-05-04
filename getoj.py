@@ -84,7 +84,7 @@ def pipInstall(s):
     if pipCheck(s):
         return True
     print('Installing %s with pip'%s)
-    runcmd('pip install '+s)
+    runcmd('python3 -m pip install '+s)
     if pipCheck(s):
         return True
     pred('[ER]Module %s install failed\n'%s)
@@ -178,7 +178,7 @@ def checkJavac():
         return res[2].split(' ')[1].replace('\n','')
 #pip
 def checkPip():
-    res=runcmd('pip -V')
+    res=runcmd('python3 -m pip -V')
     if res[0]!=0:
         return -1
     else:
