@@ -252,6 +252,11 @@ def checkFolder():
 
 
 #tomcat config
+def isNum(s):
+    if len(s)>1 and s[0]=='0':
+        return False
+    return s.isnumeric()
+    
 def getPorts():
     if not checkTomcat():
         return -1,-1,-1
@@ -273,7 +278,15 @@ def getPorts():
     k3=s.find('"',j3+1)
     p3=s[j3+1:k3]
 
-    return p1,p2,p3
+    n1=-1,n2=-1,n3=-1
+    if isNum(p1):
+       n1=int(p1)
+    if isNum(p2):
+       n2=int(p2)
+    if isNum(p1):
+       n3=int(p3) 
+    
+    return n1,n2,n3
 
 
 def changePorts(p1,p2,p3):
