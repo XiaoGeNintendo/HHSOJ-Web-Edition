@@ -62,6 +62,10 @@ def pblue(s):
 
 
 
+#progress bar
+def progress(x,ed=''):
+    exec("print('  %%%.2f [%s]  %s'%(100*x,'#'*int(x*60)+'-'*(60-int(x*60)),ed),end='\\r')")
+
 #run linux bash
 def runcmd(s):
     h=sub.Popen(s,stdout=sub.PIPE,stderr=sub.PIPE,shell=True)
@@ -128,7 +132,7 @@ def pipInstall(s):
 
 
 #download
-def download(url,d):
+def wgetDownload(url,d):
     print('downloading from: %s'%url)
     res=runcmd('wget %s'%url)
     name=res[2].split('\u2019')
@@ -138,6 +142,30 @@ def download(url,d):
     runcmd('mv %s %s'%(name,d))
     print('%s downloaded to %s'%(name,d))
     return name
+
+def download(url,d,buf=512):
+    print('downloading: %s'%url)
+    r=requests.get(url, stream=True)
+    f=open(d, "wb")
+    tot=int(r.headers['content-length'])
+    cnt=0
+    st=datetime.datetime.now()
+    pv=[st]
+    pvb=[0]
+    for chunk in r.iter_content(chunk_size=buf):
+        if chunk:
+            f.write(chunk)
+            cnt+=buf
+            progress(cnt/tot,str((datetime.datetime.now()-pv[0])/(cnt-pvb[0])*(tot-cnt))[:-5])
+            pv.append(datetime.datetime.now())
+            pvb.append(cnt)
+            if len(pv)>5: del(pv[0])
+            if len(pvb)>5: del(pvb[0])
+    
+    f.close()
+    progress(1,str(datetime.datetime.now()-st))
+    print()
+    print('Time used: ',str(datetime.datetime.now()-st))
 
 
 #install tomcat
@@ -154,7 +182,7 @@ def getWarURL():
     ver=ver[len(ver)-1]
     return ver,'https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/%s/HellOJ.war'%ver
 
-def getFolderURL():
+def getFolderURL():    
     t=requests.get('https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/').text
     i=t.find('hhsoj.zip')
     j=i-2
@@ -188,8 +216,10 @@ def install(s):
         installWebapp()
     elif s=='tomcat':
         installTomcat()
+    elif s=='python3-pip':
+        aptInstall('python3-pip','python3 -m pip -V')
     else:
-        aptInstall(s)
+        aptInstall(s,s)
 
 
 
@@ -278,7 +308,9 @@ def getPorts():
     k3=s.find('"',j3+1)
     p3=s[j3+1:k3]
 
-    n1=-1,n2=-1,n3=-1
+    n1=-1
+    n2=-1
+    n3=-1
     if isNum(p1):
        n1=int(p1)
     if isNum(p2):
@@ -389,7 +421,7 @@ def checkAll():
                 print('Install %s?'%i[1])
                 res3=input('[Y/n]')
                 if res3=='' or res3=='y' or res3=='Y':
-                    pipInstall(i[0])
+                    install(i[0])
     else:
         print('All required parts installed!')
 
@@ -480,7 +512,9 @@ if o=='1':
     pipInstallAll()
     checkAll()
 elif o=='2':
+    pipInstall('requests')
     import requests
+    import datetime
     v1=getWarURL()
     v2=getFolderURL()
     print('Latest HHSOJ web app version: '+v1[0])
