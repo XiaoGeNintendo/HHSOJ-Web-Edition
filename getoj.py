@@ -64,7 +64,7 @@ def pblue(s):
 
 #progress bar
 def progress(x,ed=''):
-    exec("print('  %%%.2f [%s]  %s'%(100*x,'#'*int(x*60)+'-'*(60-int(x*60)),ed),end='\\r')")
+    exec("print('  %.2f%% [%s]  %s'%(100*x,'#'*int(x*60)+'-'*(60-int(x*60)),ed),end='\\r')")
 
 #run linux bash
 def runcmd(s):
@@ -143,7 +143,7 @@ def wgetDownload(url,d):
     print('%s downloaded to %s'%(name,d))
     return name
 
-def download(url,d,buf=512):
+def download(url,d,buf=64):
     print('downloading: %s'%url)
     r=requests.get(url, stream=True)
     f=open(d, "wb")
@@ -159,13 +159,13 @@ def download(url,d,buf=512):
             progress(cnt/tot,str((datetime.datetime.now()-pv[0])/(cnt-pvb[0])*(tot-cnt))[:-5])
             pv.append(datetime.datetime.now())
             pvb.append(cnt)
-            if len(pv)>5: del(pv[0])
-            if len(pvb)>5: del(pvb[0])
+            if len(pv)>10: del(pv[0])
+            if len(pvb)>10: del(pvb[0])
     
     f.close()
-    progress(1,str(datetime.datetime.now()-st))
+    progress(1,str((datetime.datetime.now()-pv[0])/(cnt-pvb[0])*(tot-cnt))[:-5])
     print()
-    print('Time used: ',str(datetime.datetime.now()-st))
+    print('Time used: ',str(datetime.datetime.now()-st)[:-5])
 
 
 #install tomcat
@@ -355,7 +355,6 @@ def checkAll():
     
     JDK_VER=checkJavac()
     JAVA_VER=checkJava()
-    PIP_VER=checkPip()
     GPP_VER=checkGpp()
     TOMCAT_VER=checkTomcat()
     HHSOJ_VER=checkWebapp()
@@ -368,6 +367,7 @@ def checkAll():
     else:   
         pgreen('[OK]')
         print('JDK version='+JDK_VER)
+    
     if JAVA_VER==-1:
         pred('[ER]Java is not installed!\n')
         if unin.count(('openjdk-8-jdk','JDK 8'))==0:
@@ -375,30 +375,28 @@ def checkAll():
     else:
         pgreen('[OK]')
         print('Java version='+JAVA_VER)
-    if PIP_VER==-1:
-        pred('[ER]Python pip is not installed!\n')
-        unin.append(('python3-pip','Python pip'))
-    else:
-        pgreen('[OK]')
-        print('pip version='+PIP_VER)
+    
     if GPP_VER==-1:
         pred('[ER]G++ is not installed!\n')
         unin.append(('gcc-g++','G++'))
     else:
         pgreen('[OK]')
         print('G++ version='+GPP_VER)
+    
     if TOMCAT_VER==-1:
         pred('[ER]Apache Tomcat is not installed!\n')
         unin.append(('tomcat','Apache Tomcat'))
     else:
         pgreen('[OK]')
         print('Tomcat version='+TOMCAT_VER)
+    
     if HHSOJ_VER==-1:
         pred('[ER]HHSOJ web app is not installed!\n')
         unin.append(('hhsoj','HHSOJ web app'))
     else:
         pgreen('[OK]')
         print('HHSOJ web app version='+HHSOJ_VER)
+    
     if FOLDER_VER==-1:
         pred('[ER]HHSOJ data folder is not installed!\n')
         unin.append(('folder','HHSOJ data folder'))
@@ -462,7 +460,10 @@ def pipInstallAll():
 
 #install all utils
 def utilInstallAll():
-    l=[('wget','wget -V'),('tar','tar --version'),('unzip','unzip -version')]
+    l=[('wget','wget -V'),
+       ('tar','tar --version'),
+       ('unzip','unzip -version'),
+       ('python3-pip','python3 -m pip -V')]
     unin=[]
     for i in l:
         if not utilCheck(i[1]):
