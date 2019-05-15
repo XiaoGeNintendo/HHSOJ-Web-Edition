@@ -40,13 +40,13 @@ if platform.system()!='Linux':
 
 
 if DEBUG:
-    print('--------------------Environment--------------------')
+    print('Environment'.center(60,'-'))
     print('Linux Distrib: \t',platform.linux_distribution()[0],platform.linux_distribution()[1])
     print('Libc Verison:  \t',platform.libc_ver()[0],platform.libc_ver()[1])
     print('Python Version:\t',platform.python_version())
     print('Linux Release: \t',platform.release())
     print('Machine:       \t',platform.machine())
-    print('-------------------------End-----------------------')
+    print('End'.center(60,'-'))
 
 
 
@@ -70,7 +70,7 @@ def progress(x,ed=''):
 def runcmd(s):
     h=sub.Popen(s,stdout=sub.PIPE,stderr=sub.PIPE,shell=True)
     if DEBUG:
-        print('------------------------START------------------------')
+        print('START'.center(80,'-'))
         print('Command: '+s)
         sout=''
         serr=''
@@ -83,7 +83,8 @@ def runcmd(s):
             if le!='':
                 print('\t'+le)
                 serr+=le+'\n'
-        print('-------------------------END-------------------------\n')
+        print('END'.center(80,'-'))
+        print()
     else:
         h.wait()
         sout=str(h.stdout.read(),encoding='utf-8')
@@ -294,18 +295,24 @@ def getPorts():
     s=f.read()
     f.close()
     i1=s.find('protocol="HTTP/1.1"')
-    j1=s.find('"',i1-10)
-    k1=s.find('"',j1+1)
+    k1=i1-1
+    while(s[k1]!='"'):k1-=1
+    j1=k1-1
+    while(s[j1]!='"'):j1-=1
     p1=s[j1+1:k1]
 
     i2=s.find('protocol="AJP/1.3"')
-    j2=s.find('"',i2-10)
-    k2=s.find('"',j2+1)
+    k2=i2-1
+    while(s[k2]!='"'):k2-=1
+    j2=k2-1
+    while(s[j2]!='"'):j2-=1
     p2=s[j2+1:k2]
 
     i3=s.find('shutdown="SHUTDOWN"')
-    j3=s.find('"',i3-10)
-    k3=s.find('"',j3+1)
+    k3=i3-1
+    while(s[k3]!='"'):k3-=1
+    j3=k3-1
+    while(s[j3]!='"'):j3-=1
     p3=s[j3+1:k3]
 
     n1=-1
@@ -321,27 +328,37 @@ def getPorts():
     return n1,n2,n3
 
 
-def changePorts(p1,p2,p3):
+def setPorts(p1,p2,p3):
     if not checkTomcat():
         return False
+    chk=getPorts()
     f=open('/usr/tomcat/conf/server.xml')
     s=f.read()
     f.close()
-    
-    i1=s.find('protocol="HTTP/1.1"')
-    j1=s.find('"',i1-10)
-    k1=s.find('"',j1+1)
-    s=s.replace(s[j1:i1]+'protocol="HTTP/1.1"','"%d" protocol="HTTP/1.1"'%p1)
 
-    i2=s.find('protocol="AJP/1.3"')
-    j2=s.find('"',i2-10)
-    k2=s.find('"',j2+1)
-    s=s.replace(s[j2:i2]+'protocol="AJP/1.3"','"%d" protocol="AJP/1.3"'%p2)
+    if chk[0]!=-1:
+        i1=s.find('protocol="HTTP/1.1"')
+        k1=i1-1
+        while(s[k1]!='"'):k1-=1
+        j1=k1-1
+        while(s[j1]!='"'):j1-=1
+        s=s.replace(s[j1:i1]+'protocol="HTTP/1.1"','"%d" protocol="HTTP/1.1"'%p1)
 
-    i3=s.find('shutdown="SHUTDOWN"')
-    j3=s.find('"',i3-10)
-    k3=s.find('"',j3+1)
-    s=s.replace(s[j3:i3]+'shutdown="SHUTDOWN"','"%d" shutdown="SHUTDOWN"'%p3)
+    if chk[1]!=0:
+        i2=s.find('protocol="AJP/1.3"')
+        k2=i2-1
+        while(s[k2]!='"'):k2-=1
+        j2=k2-1
+        while(s[j2]!='"'):j2-=1
+        s=s.replace(s[j2:i2]+'protocol="AJP/1.3"','"%d" protocol="AJP/1.3"'%p2)
+
+    if chk[2]!=0:
+        i3=s.find('shutdown="SHUTDOWN"')
+        k3=i3-1
+        while(s[k3]!='"'):k3-=1
+        j3=k3-1
+        while(s[j3]!='"'):j3-=1
+        s=s.replace(s[j3:i3]+'shutdown="SHUTDOWN"','"%d" shutdown="SHUTDOWN"'%p3)
 
     f=open('/usr/tomcat/conf/server.xml','w')
     f.write(s)
@@ -497,22 +514,25 @@ def utilInstallAll():
 
 
 # RUN AREA!!
-pgreen('    ----====HHSOJ Control Script====----    \n')
-print ('                 by Zzzyt,                    ')
-print ('            HellHole Studios 2019             ')
+pgreen('----====HHSOJ Control Script====----'.center(80))
+print()
+print('by Zzzyt,'.center(80))
+print('HellHole Studios 2019'.center(80))
 print()
 print('Operations:')
 
-ol=['Check','Upgrade','Config','Run Status']
+ol=['Check','Upgrade OJ','Config','Run Status']
 for i in range(len(ol)):
     pgreen('[%d]'%(i+1))
     print(ol[i])
 o=input('Operation Nubmer:')
 if o=='1':
+    #Check Parts
     utilInstallAll()
     pipInstallAll()
     checkAll()
 elif o=='2':
+    #Upgrade OJ
     pipInstall('requests')
     import requests
     import datetime
@@ -529,10 +549,13 @@ elif o=='2':
         installFolder()
 
 elif o=='3':
+    #Configs
     pred('UNDER CONSTRUCTION\n')
+    if DEBUG:
+        print(getPorts())
 elif o=='4':
+    #Server Status
     pred('UNDER CONSTRUCTION\n')
-    os.system('lsof -i:8005')
 else:
     print('Exit...')
     exit(0)
