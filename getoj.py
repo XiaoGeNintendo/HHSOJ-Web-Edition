@@ -143,7 +143,7 @@ def wgetDownload(url,d):
     print('%s downloaded to %s'%(name,d))
     return name
 
-def download(url,d,buf=64):
+def download(url,d,buf=1024):
     print('downloading: %s'%url)
     r=requests.get(url, stream=True)
     f=open(d, "wb")
