@@ -289,7 +289,7 @@ def isNum(s):
     return s.isnumeric()
     
 def getPorts():
-    if not checkTomcat():
+    if checkTomcat()==-1:
         return -1,-1,-1
     f=open('/usr/tomcat/conf/server.xml')
     s=f.read()
@@ -329,7 +329,7 @@ def getPorts():
 
 
 def setPorts(p1,p2,p3):
-    if not checkTomcat():
+    if checkTomcat()==-1:
         return False
     chk=getPorts()
     f=open('/usr/tomcat/conf/server.xml')
@@ -551,8 +551,21 @@ elif o=='2':
 elif o=='3':
     #Configs
     pred('UNDER CONSTRUCTION\n')
-    if DEBUG:
-        print(getPorts())
+    tp=getPorts()
+    print('Tomcat Configs'.center(50,'-'))
+    if tp[0]!=-1:
+        print('HTTP Port:%d'%tp[0])
+    else:
+        pred('HTTP Port not found\n')
+    if tp[1]!=-1:
+        print('AJP Port:%d'%tp[1])
+    else:
+        pred('AJP Port not found\n')
+    if tp[1]!=-1:
+        print('Shutdown Port:%d'%tp[1])
+    else:
+        pred('Shutdown Port not found\n')
+    print('-'*50)
 elif o=='4':
     #Server Status
     pred('UNDER CONSTRUCTION\n')
