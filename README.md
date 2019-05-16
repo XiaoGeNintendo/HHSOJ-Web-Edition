@@ -16,7 +16,7 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 **(After 18w46a)** Go to the admin platform to see the HHSOJ path. **(After 19w08d)** If you didn't copy the hhsoj folder so the admin password may become null. In this situation, just input anything you like and the system will give you the folder path after doing so.
 
 # Building on Linux
-0. **Note!!! Linux version is experimental now!!No code can be judged successfully!**
+0. **Note!!! Linux version is experimental now!! Only CPP can be judged successfully**
  
 1. System requirement: Any Linux that runs Java8.
 
@@ -42,7 +42,7 @@ If "oj.exe" is not in "hhsoj/runtime" folder, a *Library Missing* verdict will b
 5. Copy the files in "runtime" on Github to "hhsoj" folder. If there's no "runtime" folder in "hhsoj" then create one
 
 6. **(Before 18w35a)** Create two files:"user.txt" and "psd.txt" in your hhsoj root directory and write your Windows username in "user.txt" , password in "psd.txt". They will be used to create C++ programs. If you want to run the programs securely , please fill in a low-priority user. **(After 18w35a)** You need to write the username and password in the config.json 
-**Notice that you must enter a user that exists! Or the sandbox may doesn't work properly!**
+**Notice that you must enter a user that exists! Or the sandbox may not work properly!**
 
 7. **(After 18w46a)** You will also need to input the admin password and admin username. One only.
 
