@@ -37,18 +37,22 @@ if platform.system()!='Linux':
     if not DEBUG:
         exit(0)
 
+SHELLW=os.get_terminal_size()[0]
+SHELLH=os.get_terminal_size()[1]
+CSIZE=min(80,SHELLW)
+SEP=os.linesep
+
+ISCENTOS=False
+if os.path.exists('/etc/redhat_release'):
+    with open('/etc/redhat_release') as f:
+        s=f.read()
+        if s.lower().count('centos')!=0:
+            ISCENTOS=True
 
 
-if DEBUG:
-    print('Environment'.center(60,'-'))
-    print('Linux Distrib: \t',platform.linux_distribution()[0],platform.linux_distribution()[1])
-    print('Libc Verison:  \t',platform.libc_ver()[0],platform.libc_ver()[1])
-    print('Python Version:\t',platform.python_version())
-    print('Linux Release: \t',platform.release())
-    print('Machine:       \t',platform.machine())
-    print('End'.center(60,'-'))
-
-
+if ISCENTOS:
+    pyellow('WARNING:This script is not designed for Centos.\n')
+    pyellow('Installing may not funciton.\n')
 
 # print in colors
 def pred(s):
@@ -57,9 +61,23 @@ def pred(s):
 def pgreen(s):
     exec("print('\033[32m%s\033[0m'%s,end='')")
 
-def pblue(s):
-    exec("print('\033[34m%s\033[0m'%s,end='')")
+def pyellow(s):
+    exec("print('\033[33m%s\033[0m'%s,end='')")
 
+def pgrey(s):
+    exec("print('\033[2m%s\033[0m'%s,end='')")
+
+
+
+#debug environment
+if DEBUG:
+    pgrey('Environment'.center(CSIZE-20,'-')+'\n')
+    pgrey('Linux Distrib: \t'+platform.linux_distribution()[0]+' '+platform.linux_distribution()[1]+'\n')
+    pgrey('Libc Verison:  \t'+platform.libc_ver()[0]+' '+platform.libc_ver()[1]+'\n')
+    pgrey('Python Version:\t'+platform.python_version()+'\n')
+    pgrey('Linux Release: \t'+platform.release()+'\n')
+    pgrey('Machine:       \t'+platform.machine()+'\n')
+    pgrey('End'.center(CSIZE-20,'-')+'\n')
 
 
 #progress bar
@@ -70,20 +88,19 @@ def progress(x,ed=''):
 def runcmd(s):
     h=sub.Popen(s,stdout=sub.PIPE,stderr=sub.PIPE,shell=True)
     if DEBUG:
-        print('START'.center(80,'-'))
-        print('Command: '+s)
+        pgrey('--- Command: %s '%s)
+        pgrey((CSIZE-len('--- Command: %s '%s))*'-'+'\n')
         sout=''
         serr=''
         while h.poll()==None:
             lo=str(h.stdout.readline(),encoding='utf-8')
             le=str(h.stderr.readline(),encoding='utf-8')
             if lo!='':
-                print('\t'+lo)
+                pgrey(lo+'\n')
                 sout+=lo+'\n'
             if le!='':
-                print('\t'+le)
+                pgrey(le+'\n')
                 serr+=le+'\n'
-        print('END'.center(80,'-'))
         print()
     else:
         h.wait()
@@ -93,7 +110,7 @@ def runcmd(s):
 
 #apt/yum install
 def aptInstall(s,chk):
-    if platform.dist()[0]=='Centos':
+    if ISCENTOS:
         print('Installing %s with yum'%s)
         runcmd('yum install '+s)
     else:
@@ -198,7 +215,7 @@ def installWebapp():
     print('Installing HHSOJ web app version %s'%res[0])
     download(res[1],'/usr/tomcat/webapps/ROOT.war')
     runcmd('rm -rf /usr/tomcat/webapps/ROOT/')
-    pblue('Note: Need to run tomcat to unpack the file.\n')
+    pyellow('Note: Need to run tomcat to unpack the file.\n')
 
 #install hhsoj folder
 def installFolder():
@@ -367,9 +384,7 @@ def setPorts(p1,p2,p3):
 
 
 #check all parts!
-def checkAll():
-    print('Checking required parts...')
-    
+def checkAll():  
     JDK_VER=checkJavac()
     JAVA_VER=checkJava()
     GPP_VER=checkGpp()
@@ -514,10 +529,10 @@ def utilInstallAll():
 
 
 # RUN AREA!!
-pgreen('----====HHSOJ Control Script====----'.center(80))
+pgreen('----====HHSOJ Control Script====----'.center(CSIZE))
 print()
-print('by Zzzyt,'.center(80))
-print('HellHole Studios 2019'.center(80))
+print('by Zzzyt,'.center(CSIZE))
+print('HellHole Studios 2019'.center(CSIZE))
 print()
 print('Operations:')
 
@@ -526,10 +541,13 @@ for i in range(len(ol)):
     pgreen('[%d]'%(i+1))
     print(ol[i])
 o=input('Operation Nubmer:')
+
 if o=='1':
     #Check Parts
     utilInstallAll()
+    print()
     pipInstallAll()
+    print()
     checkAll()
 elif o=='2':
     #Upgrade OJ
@@ -552,20 +570,20 @@ elif o=='3':
     #Configs
     pred('UNDER CONSTRUCTION\n')
     tp=getPorts()
-    print('Tomcat Configs'.center(50,'-'))
+    print('Tomcat Configs'.center(CSIZE-20,'-'))
     if tp[0]!=-1:
-        print('HTTP Port:%d'%tp[0])
+        print('HTTP Port:\t%d'%tp[0])
     else:
         pred('HTTP Port not found\n')
     if tp[1]!=-1:
-        print('AJP Port:%d'%tp[1])
+        print('AJP Port:\t%d'%tp[1])
     else:
         pred('AJP Port not found\n')
     if tp[1]!=-1:
-        print('Shutdown Port:%d'%tp[1])
+        print('Shutdown Port:\t%d'%tp[2])
     else:
         pred('Shutdown Port not found\n')
-    print('-'*50)
+    print('-'*(CSIZE-20))
 elif o=='4':
     #Server Status
     pred('UNDER CONSTRUCTION\n')
