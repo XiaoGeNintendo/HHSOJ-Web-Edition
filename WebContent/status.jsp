@@ -130,7 +130,13 @@
 					var res=eval("("+xml.responseText+")");
 					
 					
-					for(var i=0;i<len;i++){
+					for(var i=0;i<res.length;i++){
+						
+						var fa=document.getElementById("status-table").children[0];
+						if(fa.children[i+1]==undefined){
+							console.log("BAD REQUEST for "+fa+"<>"+fa.children[i+1]+" "+i);
+							continue;
+						}
 						
 						var son=fa.children[i+1].children[3];
 						if(son.children[0].lastmode==res[i].renderMode){

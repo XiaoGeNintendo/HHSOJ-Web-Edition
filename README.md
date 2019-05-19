@@ -610,3 +610,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w55e: getoj.py Added for installing the oj by one key (For linux)
 
 - 19w56e: getoj.sh Added for installing the oj by one key (For linux)
+
+- 19w57a: Bug fix of live status cannot run
