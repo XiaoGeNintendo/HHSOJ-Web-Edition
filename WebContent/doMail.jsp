@@ -1,3 +1,6 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Mail"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Users"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.UserHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.BlogHelper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,10 +21,14 @@
 		return;
 	}
 	
-	new BlogHelper().writeBlog(title,html,user);
+	Users send=new UserHelper().getUserInfo(user);
+	Users to=new UserHelper().getUserInfo(title);
 	
+	send.getTalks().add(new Mail(user,title,html));
+	to.getTalks().add(new Mail(user,title,html));
 	
-	out.println("Your blog has been successfully saved");
-	out.println("<a href=\"index.jsp\">back</a>");
-		
+	new UserHelper().refreshUser(send);
+	new UserHelper().refreshUser(to);
+	
+	response.sendRedirect("mailbox.jsp?with="+title);
 %>
