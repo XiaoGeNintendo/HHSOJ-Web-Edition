@@ -5,6 +5,7 @@ import sys
 import os
 import platform
 import subprocess as sub
+import re
 
 if platform.python_version().startswith('2'):
     exec('print "\033[31mDon\'t use Python 2\\nTrying to start Python 3\033[0m"')
@@ -195,18 +196,18 @@ def installTomcat():
 
 #version fetcher
 def getWarURL():
-    r=requests.get('https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/latest')
-    ver=r.url.split('/')
-    ver=ver[len(ver)-1]
-    return ver,'https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/%s/HellOJ.war'%ver
+    t=requests.get('https://api.github.com/repos/XiaoGeNintendo/HHSOJ-Web-Edition/releases').text
+    url=re.search('"https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/.{1,10}/.{1,20}.war"',t).group(0)[1:-1]
+    ver=url.split('/')
+    ver=ver[len(ver)-2]
+    return ver,url
 
 def getFolderURL():    
-    t=requests.get('https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/').text
-    i=t.find('hhsoj.zip')
-    j=i-2
-    while t[j]!='/': j-=1
-    ver=t[j+1:i-1]
-    return ver,'https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/%s/hhsoj.zip'%ver
+    t=requests.get('https://api.github.com/repos/XiaoGeNintendo/HHSOJ-Web-Edition/releases').text
+    url=re.search('"https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/.{1,10}/hhsoj.zip"',t).group(0)[1:-1]
+    ver=url.split('/')
+    ver=ver[len(ver)-2]
+    return ver,url
 
 
 #install HHSOJ webapp
@@ -525,7 +526,11 @@ def utilInstallAll():
         print('All required utils installed!')
 
 
-
+# DEBUG AREA
+if DEBUG:
+    import requests
+    print(getWarURL())
+    print(getFolderURL())
 
 
 # RUN AREA!!
