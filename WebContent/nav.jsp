@@ -55,6 +55,12 @@
 		        <a class="dropdown-item" href="blogs.jsp?userF=<%=user%>"><i class="fa fa-pencil-square-o"></i>Blogs</a>
 		    </div>
 		</li>
+		
+		
+		<li class="nav-item">
+		<a href="lock.jsp" class="nav-link">Lock</a>
+		</li>
+		
 		<li class="nav-item">
 		<a href="<%="logout.jsp?back=" + nowAt%>" class="nav-link">Logout</a>
 		</li>
