@@ -33,7 +33,7 @@
 	
 	<center>
 		<i>Showing mails with <%=(with==null?"Anyone":with) %> only</i> <br/>
-		<a href="newMail.jsp<%=(with==null?"":"?with="+with)%>"></a><b>I wanna write a new mail...</b> <br/>
+		<a href="newMail.jsp<%=(with==null?"":"?with="+with)%>"><b>I wanna write a new mail...</b></a><br/>
 		
 	<%
 		for(Mail m:u.getTalks()){
