@@ -58,7 +58,7 @@
 				<tr>
 					<td align="center">
 						Username:
-						<input name="username" placeholder="Regex Supported">
+						<input name="username" placeholder="Use Regex. eg: XG.*">
 					</td>
 				</tr>
 				
