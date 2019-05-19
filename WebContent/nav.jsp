@@ -58,7 +58,7 @@
 		
 		
 		<li class="nav-item">
-		<a href="lock.jsp" class="nav-link">Lock</a>
+		<a href="#" onclick="javascript:alert('(*^_^*)\nComing soon')" class="nav-link">????</a>
 		</li>
 		
 		<li class="nav-item">
