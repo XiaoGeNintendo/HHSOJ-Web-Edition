@@ -82,7 +82,7 @@
 								
 						if(userLooking!=null){				
 				%>
-							<img alt="knock" src="post.png"><a href="mailbox.jsp?with=<%=user%>">Knock knock..</a><br />
+							<img alt="knock" src="asset/post.png"><a href="mailbox.jsp?with=<%=user%>">Knock knock..</a><br />
 				<%
 						}
 				    %> 
