@@ -6,6 +6,7 @@ import os
 import platform
 import subprocess as sub
 import re
+import datetime
 
 if platform.python_version().startswith('2'):
     exec('print "\033[31mDon\'t use Python 2\\nTrying to start Python 3\033[0m"')
@@ -65,20 +66,20 @@ def pgreen(s):
 def pyellow(s):
     exec("print('\033[33m%s\033[0m'%s,end='')")
 
-def pgrey(s):
+def debug(s):
     exec("print('\033[2m%s\033[0m'%s,end='')")
 
 
 
 #debug environment
 if DEBUG:
-    pgrey('Environment'.center(CSIZE-20,'-')+'\n')
-    pgrey('Linux Distrib: \t'+platform.linux_distribution()[0]+' '+platform.linux_distribution()[1]+'\n')
-    pgrey('Libc Verison:  \t'+platform.libc_ver()[0]+' '+platform.libc_ver()[1]+'\n')
-    pgrey('Python Version:\t'+platform.python_version()+'\n')
-    pgrey('Linux Release: \t'+platform.release()+'\n')
-    pgrey('Machine:       \t'+platform.machine()+'\n')
-    pgrey('End'.center(CSIZE-20,'-')+'\n')
+    debug('Environment'.center(CSIZE-20,'-')+'\n')
+    debug('Linux Distrib: \t'+platform.linux_distribution()[0]+' '+platform.linux_distribution()[1]+'\n')
+    debug('Libc Verison:  \t'+platform.libc_ver()[0]+' '+platform.libc_ver()[1]+'\n')
+    debug('Python Version:\t'+platform.python_version()+'\n')
+    debug('Linux Release: \t'+platform.release()+'\n')
+    debug('Machine:       \t'+platform.machine()+'\n')
+    debug('End'.center(CSIZE-20,'-')+'\n')
 
 
 #progress bar
@@ -89,19 +90,23 @@ def progress(x,ed=''):
 def runcmd(s):
     h=sub.Popen(s,stdout=sub.PIPE,stderr=sub.PIPE,shell=True)
     if DEBUG:
-        pgrey('--- Command: %s '%s)
-        pgrey((CSIZE-len('--- Command: %s '%s))*'-'+'\n')
+        debug('--- Command: %s '%s)
+        debug((CSIZE-len('--- Command: %s '%s))*'-'+'\n')
         sout=''
         serr=''
-        while h.poll()==None:
+        while True:
             lo=str(h.stdout.readline(),encoding='utf-8')
             le=str(h.stderr.readline(),encoding='utf-8')
             if lo!='':
-                pgrey(lo+'\n')
-                sout+=lo+'\n'
+                debug(lo)
+                sout+=lo
             if le!='':
-                pgrey(le+'\n')
-                serr+=le+'\n'
+                debug(le)
+                serr+=le
+            h.stdout.flush()
+            h.stderr.flush()
+            if h.poll()!=None and lo=='' and le=='':
+                break
         print()
     else:
         h.wait()
@@ -196,13 +201,19 @@ def installTomcat():
 
 #version fetcher
 def getWarURL():
+    pipInstall('requests')
+    import requests
+    
     t=requests.get('https://api.github.com/repos/XiaoGeNintendo/HHSOJ-Web-Edition/releases').text
     url=re.search('"https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/.{1,10}/.{1,20}.war"',t).group(0)[1:-1]
     ver=url.split('/')
     ver=ver[len(ver)-2]
     return ver,url
 
-def getFolderURL():    
+def getFolderURL():
+    pipInstall('requests')
+    import requests
+    
     t=requests.get('https://api.github.com/repos/XiaoGeNintendo/HHSOJ-Web-Edition/releases').text
     url=re.search('"https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/.{1,10}/hhsoj.zip"',t).group(0)[1:-1]
     ver=url.split('/')
@@ -212,6 +223,9 @@ def getFolderURL():
 
 #install HHSOJ webapp
 def installWebapp():
+    pipInstall('requests')
+    import requests
+    
     res=getWarURL()
     print('Installing HHSOJ web app version %s'%res[0])
     download(res[1],'/usr/tomcat/webapps/ROOT.war')
@@ -220,6 +234,9 @@ def installWebapp():
 
 #install hhsoj folder
 def installFolder():
+    pipInstall('requests')
+    import requests
+    
     res=getFolderURL()
     print('Installing HHSOJ data folder version %s'%res[0])
     download(res[1],'/usr/hhsoj.zip')
@@ -526,74 +543,73 @@ def utilInstallAll():
         print('All required utils installed!')
 
 
-# DEBUG AREA
-if DEBUG:
-    import requests
-    print(getWarURL())
-    print(getFolderURL())
 
 
-# RUN AREA!!
-pgreen('----====HHSOJ Control Script====----'.center(CSIZE))
-print()
-print('by Zzzyt,'.center(CSIZE))
-print('HellHole Studios 2019'.center(CSIZE))
-print()
-print('Operations:')
 
-ol=['Check','Upgrade OJ','Config','Run Status']
-for i in range(len(ol)):
-    pgreen('[%d]'%(i+1))
-    print(ol[i])
-o=input('Operation Nubmer:')
-
-if o=='1':
-    #Check Parts
-    utilInstallAll()
+# Main Entrance
+def main():
+    pgreen('----====HHSOJ Control Script====----'.center(CSIZE))
     print()
-    pipInstallAll()
+    print('by Zzzyt,'.center(CSIZE))
+    print('HellHole Studios 2019'.center(CSIZE))
     print()
-    checkAll()
-elif o=='2':
-    #Upgrade OJ
-    pipInstall('requests')
-    import requests
-    import datetime
-    v1=getWarURL()
-    v2=getFolderURL()
-    print('Latest HHSOJ web app version: '+v1[0])
-    print('Latest HHSOJ data folder version: '+v2[0])
-    r1=input('Install web app?[Y/n]')
-    if r1=='' or r1=='Y' or r1=='y':
-        installWebapp()
-    
-    r2=input('Install data folder?[Y/n]')
-    if r1=='' or r1=='Y' or r1=='y':
-        installFolder()
+    print('Operations:')
 
-elif o=='3':
-    #Configs
-    pred('UNDER CONSTRUCTION\n')
-    tp=getPorts()
-    print('Tomcat Configs'.center(CSIZE-20,'-'))
-    if tp[0]!=-1:
-        print('HTTP Port:\t%d'%tp[0])
+    ol=['Check','Upgrade OJ','Config','Run Status']
+    for i in range(len(ol)):
+        pgreen('[%d]'%(i+1))
+        print(ol[i])
+    o=input('Operation Nubmer:')
+
+    if o=='1':
+        #Check Parts
+        utilInstallAll()
+        print()
+        pipInstallAll()
+        print()
+        checkAll()
+    elif o=='2':
+        #Upgrade OJ
+        v1=getWarURL()
+        v2=getFolderURL()
+        print('Latest HHSOJ web app version: '+v1[0])
+        print('Latest HHSOJ data folder version: '+v2[0])
+        r1=input('Install web app?[Y/n]')
+        if r1=='' or r1=='Y' or r1=='y':
+            installWebapp()
+        
+        r2=input('Install data folder?[Y/n]')
+        if r1=='' or r1=='Y' or r1=='y':
+            installFolder()
+
+    elif o=='3':
+        #Configs
+        pred('UNDER CONSTRUCTION\n')
+        tp=getPorts()
+        print('Tomcat Configs'.center(CSIZE-20,'-'))
+        if tp[0]!=-1:
+            print('HTTP Port:\t%d'%tp[0])
+        else:
+            pred('HTTP Port not found\n')
+        if tp[1]!=-1:
+            print('AJP Port:\t%d'%tp[1])
+        else:
+            pred('AJP Port not found\n')
+        if tp[1]!=-1:
+            print('Shutdown Port:\t%d'%tp[2])
+        else:
+            pred('Shutdown Port not found\n')
+        print('-'*(CSIZE-20))
+    elif o=='4':
+        #Server Status
+        pred('UNDER CONSTRUCTION\n')
     else:
-        pred('HTTP Port not found\n')
-    if tp[1]!=-1:
-        print('AJP Port:\t%d'%tp[1])
-    else:
-        pred('AJP Port not found\n')
-    if tp[1]!=-1:
-        print('Shutdown Port:\t%d'%tp[2])
-    else:
-        pred('Shutdown Port not found\n')
-    print('-'*(CSIZE-20))
-elif o=='4':
-    #Server Status
-    pred('UNDER CONSTRUCTION\n')
-else:
-    print('Exit...')
-    exit(0)
+        print('Exit...')
+        return
 
 
+
+
+# RUN HERE!!!!
+if __name__=='__main__':
+    main()
