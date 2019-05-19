@@ -79,6 +79,12 @@
 							 
 					<%
 					 	}
+								
+						if(userLooking!=null){				
+				%>
+							<img alt="knock" src="knock.png"><a href="mailbox.jsp?with=<%=user%>">Knock knock..</a><br />
+				<%
+						}
 				    %> 
 				    
 				

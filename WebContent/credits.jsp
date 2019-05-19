@@ -47,7 +47,7 @@
 				<th>Description</th>
 			</tr>
 			
-			<tr id="creditUser">
+			<tr class="creditUser">
 				<td>
 					<img alt="XiaoGeNintendo" src="asset/XGN.png" height="100" width="100">
 				</td>
@@ -55,12 +55,20 @@
 				<td>The main developer.<br/><a href="mailto:gwq0419@163.com">Get him!</a></td>	
 			</tr>
 			
-			<tr id="creditUser">
+			<tr class="creditUser">
 				<td>
 					<img alt="Zzzyt" src="asset/Zzzyt.jpg" height="100" width="100">
 				</td>
 				<td>Zzzyt</td>
-				<td>The CSS developer.<br/><a href="mailto:fcy2017068@126.com">Get him!</a></td>	
+				<td>The CSS developer and the author of getoj.py<br/><a href="mailto:fcy2017068@126.com">Get him!</a></td>	
+			</tr>
+			
+			<tr class="creditUser">
+				<td>
+					<img alt="XIZCM" src="asset/XIZCM.jpg" height="100" width="100">
+				</td>
+				<td>XIZCM</td>
+				<td>The author of getoj.sh<br/><a href="https://github.com/DamnXIZCM">Get him!</a></td>	
 			</tr>
 			
 			<!-- Add your developers here -->
