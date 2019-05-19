@@ -21,6 +21,11 @@
 		}
 		Users u=new UserHelper().getUserInfo(user);
 		
+		int lastView=u.getViewIndex();
+		if(u.getViewIndex()!=u.getTalks().size()-1){
+			u.setViewIndex(u.getTalks().size()-1);
+			new UserHelper().refreshUser(u);
+		}
 		String with=request.getParameter("with");
 	%>
 
@@ -42,6 +47,10 @@
 	%>
 				<div class="card <%=(m.getSender().equals(user)?"bg-primary":"") %>" style="width:80%">
 					<div class="card-header">
+				    	<%if(i>lastView){ %>
+				    		<i class="fa fa-bell-o" title="New message"></i>
+				    	<%} %>
+				    	
 				    	<%=new UserRenderer().getUserText(m.getSender()) %> --&gt; <%=new UserRenderer().getUserText(m.getTo()) %> on <%=new Date(m.getTime()) %>
 				    </div>
 				    <div class="card-body">

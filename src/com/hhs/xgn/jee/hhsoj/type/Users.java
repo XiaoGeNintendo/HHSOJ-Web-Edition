@@ -44,6 +44,7 @@ public class Users {
 	 * Inbox
 	 */
 	private List<Mail> talks;
+	private int viewIndex;
 	
 	/**
 	 * Return the languages in Javascript Text
@@ -124,6 +125,7 @@ public class Users {
 		blogStatus=new HashMap<>();
 		userPic="asset/defaultUserpic.jpg";
 		talks=new ArrayList<>();
+		viewIndex=-1;
 	}
 	
 	public String getUserPic(){
@@ -272,5 +274,13 @@ public class Users {
 
 	public void setTalks(List<Mail> talks) {
 		this.talks = talks;
+	}
+
+	public int getViewIndex() {
+		return viewIndex;
+	}
+
+	public void setViewIndex(int viewIndex) {
+		this.viewIndex = viewIndex;
 	}
 }
