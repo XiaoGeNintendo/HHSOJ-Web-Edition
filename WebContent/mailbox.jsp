@@ -9,7 +9,6 @@
 <html>
 <head>
 	<jsp:include page="head.jsp"></jsp:include>
-	
 	<title>HHSOJ-Mailbox</title>
 </head>
 <body>
@@ -39,14 +38,15 @@
 		for(Mail m:u.getTalks()){
 			if(with==null || m.getSender().equals(with) || m.getTo().equals(with)){
 	%>
-				<div class="card <%=(m.getSender().equals(user)?"bg-primary":"") %> text-white">
+				<div class="card <%=(m.getSender().equals(user)?"bg-primary":"") %>" style="width:80%">
 					<div class="card-header">
 				    	<%=new UserRenderer().getUserText(m.getSender()) %> --&gt; <%=new UserRenderer().getUserText(m.getTo()) %>
 				    </div>
 				    <div class="card-body">
 				    	<%=m.getText() %>
 				    </div>
-				</div>			
+				</div>
+				<br/> <br/>
 	<%
 			}
 		}
