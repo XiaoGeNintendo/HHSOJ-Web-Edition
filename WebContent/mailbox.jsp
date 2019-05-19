@@ -10,7 +10,7 @@
 <head>
 	<jsp:include page="head.jsp"></jsp:include>
 	
-	<title>HHSOJ-<%=request.getParameter("username")%></title>
+	<title>HHSOJ-Mailbox</title>
 </head>
 <body>
 	<%

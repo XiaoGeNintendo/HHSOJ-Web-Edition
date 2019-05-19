@@ -27,6 +27,13 @@
 <link rel="icon" type="image/png" href="asset/favicon/favicon16x.png" sizes="16x16">
 <link rel="icon" type="image/png" href="asset/favicon/favicon32x.png" sizes="32x32">
 
+<!-- Highcharts -->
+
+<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+<script src="https://img.hcharts.cn/highcharts/highcharts-more.js"></script>
+<script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+
 <!-- MathJax -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
