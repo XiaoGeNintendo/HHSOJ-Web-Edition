@@ -33,6 +33,8 @@
 	
 	<center>
 		<i>Showing mails with <%=(with==null?"Anyone":with) %> only</i> <br/>
+		<b>I wanna write a new mail...</b> <br/>
+		
 	<%
 		for(Mail m:u.getTalks()){
 			if(with==null || m.getSender().equals(with) || m.getTo().equals(with)){
