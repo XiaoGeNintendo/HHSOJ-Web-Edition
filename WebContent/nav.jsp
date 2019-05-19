@@ -1,3 +1,5 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Users"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.UserHelper"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -40,9 +42,10 @@
 		</li>
 		<%
 			} else {
+				Users u=new UserHelper().getUserInfo(user);
 		%>
 		<li class="nav-item">
-		<a href="<%="users.jsp?username=" + user%>" class="nav-link"><%=user%></a>
+		<a href="<%="users.jsp?username=" + user%>" class="nav-link"><%=user%><sup><%=u.getTalks().size()-1-u.getViewIndex()%></sup></a>
 		</li>
 		<li class="nav-item">
 		<a href="<%="logout.jsp?back=" + nowAt%>" class="nav-link">Logout</a>
