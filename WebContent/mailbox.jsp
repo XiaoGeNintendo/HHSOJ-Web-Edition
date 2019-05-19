@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="java.util.Map.Entry"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -41,7 +42,7 @@
 	%>
 				<div class="card <%=(m.getSender().equals(user)?"bg-primary":"") %>" style="width:80%">
 					<div class="card-header">
-				    	<%=new UserRenderer().getUserText(m.getSender()) %> --&gt; <%=new UserRenderer().getUserText(m.getTo()) %>
+				    	<%=new UserRenderer().getUserText(m.getSender()) %> --&gt; <%=new UserRenderer().getUserText(m.getTo()) %> on <%=new Date(m.getTime()) %>
 				    </div>
 				    <div class="card-body">
 				    	<%=m.getText() %>

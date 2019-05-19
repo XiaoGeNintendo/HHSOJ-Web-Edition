@@ -24,12 +24,25 @@
 	Users send=new UserHelper().getUserInfo(user);
 	Users to=new UserHelper().getUserInfo(title);
 	
-	long now=System.currentTimeMillis();
-	send.getTalks().add(new Mail(user,title,html,now));
-	to.getTalks().add(new Mail(user,title,html,now));
+	if(to==null){
+		to=send;
+		html="<font color=#ff0000><b>[User '"+title+"' not found.The mail is rejected]</b></font><br/>"+html;
+		title=user;
+
+		long now=System.currentTimeMillis();
+		send.getTalks().add(new Mail(user,title,html,now)); 
+		
+		new UserHelper().refreshUser(send);
+	}else{
+
+		long now=System.currentTimeMillis();
+		send.getTalks().add(new Mail(user,title,html,now)); 
+		to.getTalks().add(new Mail(user,title,html,now));
+		
+		new UserHelper().refreshUser(send);
+		new UserHelper().refreshUser(to);
+	}
 	
-	new UserHelper().refreshUser(send);
-	new UserHelper().refreshUser(to);
 	
 	response.sendRedirect("mailbox.jsp?with="+title);
 %>
