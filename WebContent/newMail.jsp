@@ -5,7 +5,7 @@
 <head>
 <jsp:include page="head.jsp"></jsp:include>
 
-<title>HHSOJ-Writing a new blog</title>
+<title>HHSOJ-Writing a new mail</title>
 <style type="text/css">
 .w-e-text-container {
 	background:#ffffff;
@@ -16,17 +16,20 @@
 <body>
 
 	<!-- Default Template -->
-	<h1 id="title">Writing a new blog on HHSOJ</h1>
-	<i id="subtitle">I have to poop for 15 minutes -- CF User</i>
+	<h1 id="title">Writing a new mail on HHSOJ</h1>
+	<i id="subtitle">Dear 300iq... -- XGN</i>
 	<hr />
 
-	<jsp:include page="nav.jsp?at=blogs"></jsp:include>
+	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	<%
 		String userLooking = (String) session.getAttribute("username");
 		if (userLooking == null) {
 			out.println("Please login to continue");
 			return;
 		}
+		
+		String with=request.getParameter("with");
+		
 	%>
 	<!-- Default End -->
 
@@ -37,8 +40,8 @@
 	<br />
 
 	<p>
-		Title: <input type="text" id="inpt"
-			style="max-width: 1000px; height: 30px; width: 100%;" />
+		To: <input type="text" id="inpt"
+			style="max-width: 1000px; height: 30px; width: 100%;" value="<%=(with==null?"":with)%>"/>
 	</p>
 	<br />
 	<br />
@@ -49,7 +52,7 @@
 
 	<center>
 		<button id="submit" style="height: 30px; width: 100px;">
-			<p>Finish</p>
+			<p>Post</p>
 		</button>
 	</center>
 
@@ -88,7 +91,7 @@
 				"title" : document.getElementById("inpt").value
 			}
 
-			httpPost("doWriteBlog.jsp", para);
+			httpPost("doMail.jsp", para);
 		})
 	</script>
 
