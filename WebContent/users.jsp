@@ -42,11 +42,15 @@
 		}
 	%>
 	
-	<b>Goto:</b> <br/>
-	<a href="#pre">Preferences</a> <br/>
-	<a href="#sub">Submissions</a> <br/>
-	<a href="#con">Contests</a> <br/>
-	<a href="#solved">Problems</a> <br/>
+	<table border="1">
+		<tr><td>
+			<b>Goto:</b> <br/>
+			<a href="#pre">Preferences</a> <br/>
+			<a href="#sub">Submissions</a> <br/>
+			<a href="#con">Contests</a> <br/>
+			<a href="#solved">Problems</a> <br/>
+		</td></tr>
+	</table>
 	
 	<br/>
 	
