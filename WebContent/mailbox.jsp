@@ -20,6 +20,8 @@
 			return;
 		}
 		Users u=new UserHelper().getUserInfo(user);
+		
+		String with=request.getParameter("with");
 	%>
 
 	<!-- Default Template -->
@@ -29,19 +31,25 @@
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	<!-- Default End -->
 	
+	<center>
+		<i>Showing mails with <%=(with==null?"Anyone":with) %> only</i> <br/>
 	<%
 		for(Mail m:u.getTalks()){
+			if(with==null || m.getSender().equals(with) || m.getTo().equals(with)){
 	%>
-		<div class="card <%=(m.getSender().equals(user)?"bg-success":"bg-primary") %> text-white">
-			<div class="card-body">
-		    	<%=m.getSender()%> --&gt; <%=m.getTo() %>
-		    </div>
-		    <div class="card-body">
-		    	<%=m.getText() %>
-		    </div>
-		</div>			
+				<div class="card <%=(m.getSender().equals(user)?"bg-success":"bg-primary") %> text-white">
+					<div class="card-body">
+				    	<%=m.getSender()%> --&gt; <%=m.getTo() %>
+				    </div>
+				    <div class="card-body">
+				    	<%=m.getText() %>
+				    </div>
+				</div>			
 	<%
+			}
 		}
 	%>
+	
+	</center>
 </body>
 </html>
