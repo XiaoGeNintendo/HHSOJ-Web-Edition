@@ -35,7 +35,8 @@
 		<a href="newMail.jsp<%=(with==null?"":"?with="+with)%>"><b>I wanna write a new mail...</b></a><br/>
 		
 	<%
-		for(Mail m:u.getTalks()){
+		for(int i=u.getTalks().size()-1;i>=0;i--){
+			Mail m=u.getTalks().get(i);
 			if(with==null || m.getSender().equals(with) || m.getTo().equals(with)){
 	%>
 				<div class="card <%=(m.getSender().equals(user)?"bg-primary":"") %>" style="width:80%">
