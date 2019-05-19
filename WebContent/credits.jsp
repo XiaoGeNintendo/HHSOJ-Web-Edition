@@ -65,7 +65,7 @@
 			
 			<tr class="creditUser">
 				<td>
-					<img alt="XIZCM" src="asset/XIZCM.jpg" height="100" width="100">
+					<img alt="XIZCM" src="asset/xizcm.jpg" height="100" width="100">
 				</td>
 				<td>XIZCM</td>
 				<td>The author of getoj.sh<br/><a href="https://github.com/DamnXIZCM">Get him!</a></td>	
