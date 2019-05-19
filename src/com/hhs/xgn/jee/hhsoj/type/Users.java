@@ -41,6 +41,11 @@ public class Users {
 	private boolean banned;
 	
 	/**
+	 * Inbox
+	 */
+	private List<Mail> talks;
+	
+	/**
 	 * Return the languages in Javascript Text
 	 * @return
 	 */
@@ -118,6 +123,7 @@ public class Users {
 		ratings=new ArrayList<ContestRecord>();
 		blogStatus=new HashMap<>();
 		userPic="asset/defaultUserpic.jpg";
+		talks=new ArrayList<>();
 	}
 	
 	public String getUserPic(){
@@ -258,5 +264,13 @@ public class Users {
 
 	public void setPreference(Preferences preference) {
 		this.preference = preference;
+	}
+
+	public List<Mail> getTalks() {
+		return talks;
+	}
+
+	public void setTalks(List<Mail> talks) {
+		this.talks = talks;
 	}
 }
