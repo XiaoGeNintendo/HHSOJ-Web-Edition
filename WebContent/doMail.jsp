@@ -24,8 +24,9 @@
 	Users send=new UserHelper().getUserInfo(user);
 	Users to=new UserHelper().getUserInfo(title);
 	
-	send.getTalks().add(new Mail(user,title,html));
-	to.getTalks().add(new Mail(user,title,html));
+	long now=System.currentTimeMillis();
+	send.getTalks().add(new Mail(user,title,html,now));
+	to.getTalks().add(new Mail(user,title,html,now));
 	
 	new UserHelper().refreshUser(send);
 	new UserHelper().refreshUser(to);
