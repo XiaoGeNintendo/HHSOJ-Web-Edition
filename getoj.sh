@@ -32,6 +32,7 @@ install_com(){
 }
 
 check_com(){
+  update_com
   for nowc in 'wget' 'tar' 'unzip' 'python3'
   do
     if command -v ${nowc} >/dev/null 2>&1; then
@@ -140,7 +141,6 @@ if [ "$#" -gt 0 -a "$1" = "--debug" ]; then
   fi
 else
   check_root
-  update_com
   check_com
   check_pip
   check_all
