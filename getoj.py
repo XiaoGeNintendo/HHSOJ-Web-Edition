@@ -168,6 +168,8 @@ def wgetDownload(url,d):
     return name
 
 def download(url,d,buf=1024):
+    pipInstall('requests')
+    import requests
     print('downloading: %s'%url)
     r=requests.get(url, stream=True)
     f=open(d, "wb")
@@ -579,7 +581,7 @@ def main():
             installWebapp()
         
         r2=input('Install data folder?[Y/n]')
-        if r1=='' or r1=='Y' or r1=='y':
+        if r2=='' or r2=='Y' or r2=='y':
             installFolder()
 
     elif o=='3':
