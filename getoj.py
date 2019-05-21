@@ -332,24 +332,18 @@ def getPorts():
     s=f.read()
     f.close()
     i1=s.find('protocol="HTTP/1.1"')
-    k1=i1-1
-    while(s[k1]!='"'):k1-=1
-    j1=k1-1
-    while(s[j1]!='"'):j1-=1
+    k1=s.rfind('"',0,i1-1)
+    j1=s.rfind('"',0,k1-1)
     p1=s[j1+1:k1]
 
     i2=s.find('protocol="AJP/1.3"')
-    k2=i2-1
-    while(s[k2]!='"'):k2-=1
-    j2=k2-1
-    while(s[j2]!='"'):j2-=1
+    k2=s.rfind('"',0,i2-1)
+    j2=s.rfind('"',0,k2-1)
     p2=s[j2+1:k2]
 
     i3=s.find('shutdown="SHUTDOWN"')
-    k3=i3-1
-    while(s[k3]!='"'):k3-=1
-    j3=k3-1
-    while(s[j3]!='"'):j3-=1
+    k3=s.rfind('"',0,i3-1)
+    j3=s.rfind('"',0,k3-1)
     p3=s[j3+1:k3]
 
     n1=-1
@@ -375,26 +369,20 @@ def setPorts(p1,p2,p3):
 
     if chk[0]!=-1:
         i1=s.find('protocol="HTTP/1.1"')
-        k1=i1-1
-        while(s[k1]!='"'):k1-=1
-        j1=k1-1
-        while(s[j1]!='"'):j1-=1
+        k1=s.rfind('"',0,i1-1)
+        j1=s.rfind('"',0,k1-1)
         s=s.replace(s[j1:i1]+'protocol="HTTP/1.1"','"%d" protocol="HTTP/1.1"'%p1)
 
     if chk[1]!=0:
         i2=s.find('protocol="AJP/1.3"')
-        k2=i2-1
-        while(s[k2]!='"'):k2-=1
-        j2=k2-1
-        while(s[j2]!='"'):j2-=1
+        k2=s.rfind('"',0,i2-1)
+        j2=s.rfind('"',0,k2-1)
         s=s.replace(s[j2:i2]+'protocol="AJP/1.3"','"%d" protocol="AJP/1.3"'%p2)
 
     if chk[2]!=0:
         i3=s.find('shutdown="SHUTDOWN"')
-        k3=i3-1
-        while(s[k3]!='"'):k3-=1
-        j3=k3-1
-        while(s[j3]!='"'):j3-=1
+        k3=s.rfind('"',0,i3-1)
+        j3=s.rfind('"',0,k3-1)
         s=s.replace(s[j3:i3]+'shutdown="SHUTDOWN"','"%d" shutdown="SHUTDOWN"'%p3)
 
     f=open('/usr/tomcat/conf/server.xml','w')
