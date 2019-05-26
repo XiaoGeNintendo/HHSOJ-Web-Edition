@@ -188,7 +188,7 @@ check_pip(){
 
 install_tomcat(){
   wget -P /usr/ 'http://apache.01link.hk/tomcat/tomcat-9/v9.0.19/bin/apache-tomcat-9.0.19.tar.gz'
-  tar zxvf /usr/tomcat.tar.gz -C /usr/
+  tar zxvf /usr/apache-tomcat-9.0.19.tar.gz -C /usr/
   rm -f /usr/tomcat.tar.gz
   mv /usr/apache-tomcat-9.0.19/ /usr/tomcat/
   print_info "Tomcat installed successfully"
@@ -199,13 +199,13 @@ install_webapp(){
   print_info "Latest WebApp Version:${hhsoj_ver}"
   read -e -p "Install/Update Now?[Y/n]:" ch
   if [[  -z $ch ]]; then
-     down_link="https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/${hhsoj_ver}/HellOJ.war"
+     down_link="https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/v${hhsoj_ver}/HellOJ.war"
      wget -P '/usr/tomcat/webapps/ROOT.war' ${down_link}
      rm -rf '/usr/tomcat/webapps/ROOT/'
      print_info "Please now run tomcat to unpack the file"
   else 
     if [ "${ch}" == 'y' -o "${ch}" == "Y" ]; then
-      down_link="https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/${hhsoj_ver}/HellOJ.war"
+      down_link="https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/v${hhsoj_ver}/HellOJ.war"
       wget -P '/usr/tomcat/webapps/ROOT.war' ${down_link}
       rm -rf '/usr/tomcat/webapps/ROOT/'
       print_info "Please now run tomcat to unpack the file" 
@@ -270,12 +270,23 @@ check_all(){
   fi
   
   if [ ! -f "/usr/hhsoj" ]; then
-    print_info "[INFO]HHSOJ Folder Found."
+    print_info "HHSOJ Folder Found."
   else
     install_folder
   fi
 }
 
+get_port(){
+  if [ ! -d "/usr/tomcat/" ]; then
+    print_err "Please install tomcat first!" && exit 1
+  fi
+  port1=$(cat /usr/tomcat/conf/server.xml|grep 'protocol="HTTP/1.1"'|head -n 1|sed  's/"//g'|sed 's/    <Connector port=//g'|sed 's/ protocol=HTTP\/1.1//g')
+  port2=$(cat /usr/tomcat/conf/server.xml|grep 'protocol="AJP/1.3"'|sed 's/.*<Connector port=//g'|sed 's/"//g'|sed 's/ protocol=AJP\/1.3.*//g')
+  port3=$(cat /usr/tomcat/conf/server.xml|grep 'shutdown="SHUTDOWN"'|sed 's/<Server port="//g'|sed 's/".*//g')
+  print_info "HTTP Port:${port1}"
+  print_info "AJP Port:${port2}"
+  print_info "Shutdown Port:${port3}"
+}
 if [ "$#" -gt 0 -a "$1" = "--debug" ]; then
   debug_mode=true
   get_sysinfo
@@ -288,6 +299,8 @@ else
   echo "Operations:"
   echo "[1]Check&Install HHSOJ"
   echo "[2]Update HHSOJ"
+  echo "[3]Tomcat config"
+  echo "[4]Get System Info"
   read -e -p "Input Your Choice:" ch
   case "$ch" in
     1)
@@ -298,10 +311,19 @@ else
     check_all
     ;;
     2)
-    print_err 'Under Development'
+    install_webapp
+    install_folder
     ;;
+    3)
+    print_center 'Tomcat Config' '='
+    get_port
+    print_center '' '='
+    ;;
+    4)
+    get_sysinfo
+	;;
     *)
-    print_err 'Please input the right number'
+    print_err "Please input the right number"
     ;;
   esac
 fi
