@@ -68,7 +68,8 @@ def pyellow(s):
     exec("print('\033[33m%s\033[0m'%s,end='')")
 
 def debug(s):
-    exec("print('\033[2m%s\033[0m'%s,end='')")
+    pyellow(s)
+    #exec("print('\033[2m%s\033[0m'%s,end='')")
 
 
 
@@ -391,6 +392,19 @@ def setPorts(p1,p2,p3):
     f.close()
 
 
+#XML
+def XMLgetPorts():
+    if checkTomcat()==-1:
+        return False
+    import xml.dom.minidom as minidom
+    from xml.dom.minidom import parse
+    server=minidom.parse('/usr/tomcat/conf/server.xml').documentElement
+    service=server.getElementsByTagName('Service')
+    for i in service:
+        print(i)
+            
+    
+
 
 #check all parts!
 def checkAll():  
@@ -603,4 +617,5 @@ def main():
 
 # RUN HERE!!!!
 if __name__=='__main__':
+    XMLgetPorts()
     main()
