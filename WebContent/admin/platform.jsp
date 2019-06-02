@@ -48,6 +48,14 @@
 	<hr/>
 	<a href="transfer.jsp">Download resource from internet</a>
 	<hr/>
+	<input id="1927" placeholder="problem ID" onchange="func1927()">
+	<a href="proposeP.jsp" id="1928">Enter Problem ID Above and Click here to edit it</a>
+	<script>
+		function func1927(){
+			document.getElementById("1928").href="proposeP.jsp?id="+document.getElementById("1927").value;
+		}
+	</script>
+	<hr/>
 	The running log can be found in catalina.out <br/>
 	<i> HHSOJ Admin Platform </i>
 </body>
