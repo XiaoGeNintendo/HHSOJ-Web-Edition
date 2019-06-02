@@ -32,6 +32,7 @@
 	
 	<button onclick="start()">Start!</button>
 	<hr/>
+	<center>
 	<table border="1" width="80%" id="bala">
 		<tr>
 			<th width="30%">From URL</th>
@@ -41,6 +42,7 @@
 			<th width="10%">Speed</th>
 		</tr>	
 	</table>
+	</center>
 	
 	<script>
 		function start(){
