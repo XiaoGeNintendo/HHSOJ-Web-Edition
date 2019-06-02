@@ -97,6 +97,17 @@ Please don't place trailing/leading spaces/tabs.
 
 For further details, please take a glance at the sample hhsoj folder
 
+# MultiLanguage
+HHSOJ Supports translate a statement to several languages to help users understand. To do so you need to firstly write all possible languages in the AllLanguage field in arg.txt in format of below:
+`AllLanguage=<lang1Code>|<lang1DisplayName>;<lang2Code>|<lang2DisplayName>;...`
+You should not add a ';' after everything ends.
+
+**Code** is for system to find out statement. For example, a language code `ch` will let the system to load thee statement from the value of argument `Statement_ch`.
+
+**DisplayName** is for system to display the language on the website. Choose any you want, but without ';' or '|'.
+
+**null language** a language code null is **must** included in your `AllLanguage` and `Statement_null`. This is the default language when a page is opened. If not presented, may cause `Statement is Not Available` error displayed on website.
+ 
 # Hacking System Of HHSOJ
 HHSOJ is a modern Online Judge with a simple Hacking system.
 
