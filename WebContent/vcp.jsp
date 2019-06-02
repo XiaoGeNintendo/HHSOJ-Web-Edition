@@ -13,6 +13,7 @@
 	String cid = "", pid = "";
 	Contest c = null;
 	Problem p = null;
+	String lang=request.getParameter("lang");
 	try {
 		cid = request.getParameter("cid");
 		pid = request.getParameter("pid");
@@ -69,13 +70,27 @@
 			href="status.jsp?probId=<%=fullInfo%>" class="link">Status</a> <a
 			href="status.jsp?probId=<%=fullInfo%>&userId=<%=session.getAttribute("username")%>"
 			class="link">My Submission</a>
+		
+		<br/>
+		<div class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Language:<%=(lang==null || lang.equals("null")?"default":lang) %></a>
+	      	<div class="dropdown-menu">
+		        <%for(String ls:p.getArg("AllLanguage").split(";")){
+		        	
+		        	String code=ls.split("\\|")[0];
+		        	String dis=ls.split("\\|")[1];
+		        %>
+		        	<a class="dropdown-item" href="?id=<%=p.getId() %>&lang=<%=code%>"><i class="fa <%=(code.equals(lang)?"fa-check":"fa-globe")%>"></i><%=dis %></a>
+		        	<%} %>
+		    </div>
+		</div>
 	</center>
 
 	<div class="seperator"></div>
 
 	<%
 		out.println("<!-- Statement -->");
-		out.println(new ProblemHelper().getProblemStatement(fullInfo));
+		out.println(new ProblemHelper().getProblemStatement(fullInfo,lang));
 	%>
 	
 	<div class="seperator"></div>
