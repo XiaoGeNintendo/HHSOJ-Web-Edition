@@ -34,7 +34,7 @@
 			<td><%=dt.getTo() %></td>
 			<td><%=new Date(dt.getTime()) %></td>
 			<td><%=dt.getStatus() %></td>
-			<td><%=dt.getSpeed() %></td>
+			<td><%=dt.s(dt.getSpeed())+"/s"%></td>
 		</tr>
 <%
 	}

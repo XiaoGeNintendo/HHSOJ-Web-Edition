@@ -27,8 +27,9 @@
 	<i>While downloading, please do not shutdown the server!</i>
 	<hr/>
 	<h2>Add a new download task</h2>
-	From URL:<input id="n1">
-	To Position:<input id="n2" value="<%=ConfigLoader.getPath() %>">
+	From URL:<input id="n1" style="max-width: 1000px; height: 30px; width: 100%;"> <br/>
+	To Position:<input id="n2" value="<%=ConfigLoader.getPath() %>" style="max-width: 1000px; height: 30px; width: 100%;"> <br/>
+	
 	<button onclick="start()">Start!</button>
 	<hr/>
 	<table border="1" width="80%" id="bala">

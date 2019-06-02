@@ -59,6 +59,8 @@ public class DownloadThread extends Thread {
 				bis.close();
 				bos.close();
 				
+				dt.setNow(sum);
+				dt.setSpeed((long) (sum/(System.currentTimeMillis()-start+0f)));
 				dt.setTimeDone(System.currentTimeMillis());
 				System.out.println("Done downloading!");
 			}catch(Exception e){
