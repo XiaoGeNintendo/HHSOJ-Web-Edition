@@ -43,7 +43,7 @@
 	
 	<script>
 		function start(){
-			$.post("dotransfer.jsp",{from:$("#n1").value,to:$("#n2").value},function(data,status){
+			$.post("dotransfer.jsp",{from:$("#n1")[0].value,to:$("#n2")[0].value},function(data,status){
 				alert("result:\n"+data+" "+status);
 			});
 		}
