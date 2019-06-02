@@ -53,6 +53,12 @@
 		}
 	%>
 	
-	
+	<script>
+		function update(s){
+			$.post("change.jsp",{dest:s,pid:<%=p.getId()%>,val:$("#edit_"+s)[0].value},function(data,status){
+				alert(data+" "+status+" is returned");
+			})
+		}
+	</script>
 </body>
 </html>
