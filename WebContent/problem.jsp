@@ -17,6 +17,8 @@
 	<%
 		request.setCharacterEncoding("utf-8");
 	
+		String lang=request.getParameter("lang");
+		
 		boolean ok = true;
 		int id = 0;
 		try {
@@ -93,7 +95,7 @@
 
 	<%
 		out.println("<!-- Statement -->");
-		out.println(new ProblemHelper().getProblemStatement("" + p.getId()));
+		out.println(new ProblemHelper().getProblemStatement("" + p.getId(),lang)); 
 	%>
 
 	<div class="seperator"></div>

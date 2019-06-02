@@ -89,14 +89,22 @@ public class ProblemHelper {
 	 * @param id
 	 * @return
 	 */
-	public synchronized String getProblemStatement(String id) {
+	public synchronized String getProblemStatement(String id,String lang) {
 
 		try {
 			if (id == null || id.equals("")) {
 				return null;
 			}
 			Problem p = getProblemData(id);
-			File statementPath = new File(p.getPath() + "/" + p.getArg("Statement"));
+			File statementPath = new File(p.getPath() + "/" + p.getArg("Statement_"+lang));
+			if(!statementPath.exists()){
+				if(lang==null){
+					return "Statement Is Not Available";
+				}else{
+					return getProblemStatement(id,null);
+				}
+			}
+			
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(statementPath), "utf-8"));
 			String s, ans = "";
 			while ((s = br.readLine()) != null) {
