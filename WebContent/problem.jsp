@@ -89,6 +89,22 @@
 		<a href="submit.jsp?id=<%=p.getId()%>" class="link">Submit</a>
 		<a href="status.jsp?probId=<%=p.getId()%>" class="link">Status</a>
 		<a href="status.jsp?probId=<%=p.getId()%>&userId=<%=session.getAttribute("username")%>" class="link">My Submission</a>
+		
+		<br/>
+		
+		<div class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Language:<%=(lang==null || lang.equals("null")?"default":lang) %></a>
+	      	<div class="dropdown-menu">
+		        <%for(String ls:p.getArg("AllLanguage").split(";")){
+		        	
+		        	String code=ls.split("\\|")[0];
+		        	String dis=ls.split("\\|")[1];
+		        	System.out.println(ls+"\n"+code+"\n"+dis);
+		        %>
+		        	<a class="dropdown-item" href="?id=<%=p.getId() %>&lang=<%=code%>"><i class="fa fa-pencil-square-o"></i><%=dis %></a>
+		        	<%} %>
+		    </div>
+		</div>
 	</center>
 
 	<div class="seperator"></div>
