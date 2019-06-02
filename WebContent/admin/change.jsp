@@ -7,12 +7,10 @@
 <%@page import="com.hhs.xgn.jee.hhsoj.db.ContestHelper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <%
 	String dest=request.getParameter("dest");
 	String pid=request.getParameter("pid");
-	String text=request.getParameter("text");
+	String text=request.getParameter("val");
 	if(dest==null || pid==null || text==null){
 		return;
 	}
