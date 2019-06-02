@@ -99,7 +99,6 @@
 		        	
 		        	String code=ls.split("\\|")[0];
 		        	String dis=ls.split("\\|")[1];
-		        	System.out.println(ls+"\n"+code+"\n"+dis);
 		        %>
 		        	<a class="dropdown-item" href="?id=<%=p.getId() %>&lang=<%=code%>"><i class="fa <%=(code.equals(lang)?"fa-check":"fa-globe")%>"></i><%=dis %></a>
 		        	<%} %>
