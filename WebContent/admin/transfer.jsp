@@ -37,8 +37,8 @@
 		<tr>
 			<th width="30%">From URL</th>
 			<th width="30%">To Position</th>
-			<th width="20%">Date</th>
-			<th width="10%">Status</th>
+			<th width="15%">Date</th>
+			<th width="15%">Status</th>
 			<th width="10%">Speed</th>
 		</tr>	
 	</table>
