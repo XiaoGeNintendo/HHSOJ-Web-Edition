@@ -76,7 +76,8 @@ A2: This can be caused by many reasons. Check if your hhsoj folder has missed so
     TL=1000 //Time Limit in ms
     ML=1000 //Memory Limit in kb
     Tag=math,implementation //Tags. Write it as you like
-    Statement=statement.jsp //Statement file position
+    Statement_<lang>=statement.jsp //Statement for Language file position. See MultiLanguage part.
+    AllLanguage=null|Default;en|English //All Languages Present. See MultiLanguage part.
 ```
 Please don't place trailing/leading spaces/tabs.
 
@@ -618,3 +619,7 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w59e: Fixed typo
 
 - 19w60a: User talk system
+
+## Version 1.14: User talk system
+
+- 19w61a: Problem Statement Language System
