@@ -4,6 +4,5 @@ Name=Father and Ei
 TL=6000
 ML=262144
 Tag=Implementation
-Statement_null=statement1001.html
+Statement=statement1001.html
 
-AllLanguage=null|English

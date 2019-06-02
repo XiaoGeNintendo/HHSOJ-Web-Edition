@@ -1,7 +1,13 @@
 Solution=sol
 Checker=checker
-Name=A+b Problem
+Name=A+b Problem(Linux Version)
 TL=1000
 ML=262144
 Tag=math,implementation
 Statement=statement.html
+Statement_null=statement.html
+Statement_cn=stC.html
+Statement_jp=stJ.html
+Statement_ff=stZ.html
+Validator_tests=valid
+AllLanguage=null|English;cn|Chinese;jp|Japanese;ff|Zzzyt's Language
