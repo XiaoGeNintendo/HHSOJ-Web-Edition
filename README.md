@@ -638,3 +638,11 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w62a: Admin Download System... (Remote Download)
 
 - 19w63a: Admin Easy Update Problem System!
+
+## Version 1.15: Language System
+
+- 19w64d: Fixed bugs
+
+- 19w65e: Update HHSOJ folder
+
+## Version 1.15.1: Bug Fix
