@@ -36,7 +36,7 @@
 		}
 		
 	%>
-	<h1>Problem Edit</h1>
+	<h1>Problem Edit #<%=p.getId() %></h1>
 	<hr/>
 	
 	<%
