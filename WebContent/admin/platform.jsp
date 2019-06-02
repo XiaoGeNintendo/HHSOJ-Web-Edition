@@ -46,7 +46,7 @@
 	<hr/>
 	<a href="console.jsp">Console</a>
 	<hr/>
-	<a href="tranfer.jsp">Download resource from internet</a>
+	<a href="transfer.jsp">Download resource from internet</a>
 	<hr/>
 	The running log can be found in catalina.out <br/>
 	<i> HHSOJ Admin Platform </i>
