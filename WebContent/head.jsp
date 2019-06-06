@@ -6,6 +6,8 @@
 <meta name="description" content="HellOJ - Free OJ by Hell Hole Studios">
 <meta name="keywords" content="OJ HellOJ HHSOJ Online Judge">
 
+<link rel="icon" type="image/png" href="asset/favicon/favicon16x.png" sizes="16x16">
+<link rel="icon" type="image/png" href="asset/favicon/favicon32x.png" sizes="32x32">
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
@@ -23,10 +25,6 @@
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<link href="index.css" rel="stylesheet" type="text/css">
-<link rel="icon" type="image/png" href="asset/favicon/favicon16x.png" sizes="16x16">
-<link rel="icon" type="image/png" href="asset/favicon/favicon32x.png" sizes="32x32">
-
 <!-- Highcharts -->
 <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
 <script src="https://img.hcharts.cn/highcharts/highcharts-more.js"></script>
@@ -42,3 +40,6 @@ MathJax.Hub.Config({
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" >
 </script>
 <!-- /MathJax -->
+
+<!-- index.css  Get over everything!!!-->
+<link href="index.css" rel="stylesheet" type="text/css">

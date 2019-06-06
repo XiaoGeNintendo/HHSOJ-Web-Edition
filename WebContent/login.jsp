@@ -45,6 +45,7 @@
 		}
 		
 	</script>
+	<div class="container">
 		<h1 id="title">Login</h1>
 		<i id="subtitle">We simply used files to store user's names and passwords --XGN</i>
 		<hr/>
@@ -70,5 +71,6 @@
 				</tr>
 			</table>
 		</form>
+	</div>
 </body>
 </html>
