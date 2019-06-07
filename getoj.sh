@@ -221,13 +221,13 @@ install_folder(){
   print_info "Latest HHSOJ Folder Version:${folder_ver}"
   read -e -p "Install/Update Now?[Y/n]:" ch
   if [[  -z $ch ]]; then
-    wget -P=/usr/hhsoj.zip  ${down_link} 
+    wget -P=/usr/  ${down_link} 
     rm -rf /usr/hhsoj/
     unzip /usr/hhsoj.zip -d /usr/
     rm -f /usr/hhsoj.zip
   else
    if [ "${ch}" == 'y' -o "${ch}" == "Y" ]; then
-      wget -P=/usr/hhsoj.zip  ${down_link} 
+      wget -P=/usr/  ${down_link} 
 	  rm -rf /usr/hhsoj/
       unzip /usr/hhsoj.zip -d /usr/
       rm -f /usr/hhsoj.zip
