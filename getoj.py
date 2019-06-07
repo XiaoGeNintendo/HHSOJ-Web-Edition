@@ -395,15 +395,50 @@ def setPorts(p1,p2,p3):
 #XML
 def XMLgetPorts():
     if checkTomcat()==-1:
-        return False
-    import xml.dom.minidom as minidom
-    from xml.dom.minidom import parse
-    server=minidom.parse('/usr/tomcat/conf/server.xml').documentElement
-    service=server.getElementsByTagName('Service')
-    for i in service:
-        print(i)
-            
+        return -1,-1,-1
     
+    import xml.dom as dom
+    import xml.dom.minidom as minidom
+
+    p1=''
+    p2=''
+    p3=''
+    
+    server=minidom.parse('/usr/tomcat/conf/server.xml').documentElement
+    if server.hasAttribute('port'):
+        p3=server.getAttribute('port')
+    
+    service=server.getElementsByTagName('Service')
+    catalina=None
+    for i in service:
+        if i.hasAttribute('name') and i.getAttribute('name')=='Catalina':
+            catalina=i
+            break
+    if catalina==None:
+        return -1,-1,-1
+    for i in catalina.childNodes:
+        if i.nodeType==dom.Node.ELEMENT_NODE and i.nodeName=='Connector':
+            if not i.hasAttribute('protocol'):
+                continue
+            if not i.hasAttribute('port'):
+                continue
+            tmp=i.getAttribute('protocol')
+            port=i.getAttribute('port')
+            if tmp=='HTTP/1.1':
+                p1=port
+            elif tmp=='AJP/1.3':
+                p2=port
+    n1=-1
+    n2=-1
+    n3=-1
+    if isNum(p1):
+       n1=int(p1)
+    if isNum(p2):
+       n2=int(p2)
+    if isNum(p1):
+       n3=int(p3) 
+    
+    return n1,n2,n3
 
 
 #check all parts!
@@ -590,7 +625,7 @@ def main():
     elif o=='3':
         #Configs
         pred('UNDER CONSTRUCTION\n')
-        tp=getPorts()
+        tp=XMLgetPorts()
         print('Tomcat Configs'.center(CSIZE-20,'-'))
         if tp[0]!=-1:
             print('HTTP Port:\t%d'%tp[0])
@@ -617,5 +652,4 @@ def main():
 
 # RUN HERE!!!!
 if __name__=='__main__':
-    XMLgetPorts()
     main()
