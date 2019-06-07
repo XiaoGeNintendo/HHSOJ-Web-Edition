@@ -199,13 +199,13 @@ install_webapp(){
   print_info "Latest WebApp Version:${hhsoj_ver}"
   read -e -p "Install/Update Now?[Y/n]:" ch
   if [[  -z $ch ]]; then
-     down_link="https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/v${hhsoj_ver}/HellOJ.war"
+     down_link="https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/${hhsoj_ver}/HellOJ.war"
      wget -P '/usr/tomcat/webapps/ROOT.war' ${down_link}
      rm -rf '/usr/tomcat/webapps/ROOT/'
      print_info "Please now run tomcat to unpack the file"
   else 
     if [ "${ch}" == 'y' -o "${ch}" == "Y" ]; then
-      down_link="https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/v${hhsoj_ver}/HellOJ.war"
+      down_link="https://github.com/XiaoGeNintendo/HHSOJ-Web-Edition/releases/download/${hhsoj_ver}/HellOJ.war"
       wget -P '/usr/tomcat/webapps/ROOT.war' ${down_link}
       rm -rf '/usr/tomcat/webapps/ROOT/'
       print_info "Please now run tomcat to unpack the file" 
@@ -221,14 +221,14 @@ install_folder(){
   print_info "Latest HHSOJ Folder Version:${folder_ver}"
   read -e -p "Install/Update Now?[Y/n]:" ch
   if [[  -z $ch ]]; then
-    wget -P  ${down_link} /usr/hhsoj.zip
+    wget -P=/usr/hhsoj.zip  ${down_link} 
     rm -rf /usr/hhsoj/
     unzip /usr/hhsoj.zip -d /usr/
     rm -f /usr/hhsoj.zip
   else
    if [ "${ch}" == 'y' -o "${ch}" == "Y" ]; then
-      wget -P  ${down_link} /usr/hhsoj.zip
-      rm -rf /usr/hhsoj/
+      wget -P=/usr/hhsoj.zip  ${down_link} 
+	  rm -rf /usr/hhsoj/
       unzip /usr/hhsoj.zip -d /usr/
       rm -f /usr/hhsoj.zip
    else
