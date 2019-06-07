@@ -326,71 +326,6 @@ def isNum(s):
     if len(s)>1 and s[0]=='0':
         return False
     return s.isnumeric()
-    
-def getPorts():
-    if checkTomcat()==-1:
-        return -1,-1,-1
-    f=open('/usr/tomcat/conf/server.xml')
-    s=f.read()
-    f.close()
-    i1=s.find('protocol="HTTP/1.1"')
-    k1=s.rfind('"',0,i1-1)
-    j1=s.rfind('"',0,k1-1)
-    p1=s[j1+1:k1]
-
-    i2=s.find('protocol="AJP/1.3"')
-    k2=s.rfind('"',0,i2-1)
-    j2=s.rfind('"',0,k2-1)
-    p2=s[j2+1:k2]
-
-    i3=s.find('shutdown="SHUTDOWN"')
-    k3=s.rfind('"',0,i3-1)
-    j3=s.rfind('"',0,k3-1)
-    p3=s[j3+1:k3]
-
-    n1=-1
-    n2=-1
-    n3=-1
-    if isNum(p1):
-       n1=int(p1)
-    if isNum(p2):
-       n2=int(p2)
-    if isNum(p1):
-       n3=int(p3) 
-    
-    return n1,n2,n3
-
-
-def setPorts(p1,p2,p3):
-    if checkTomcat()==-1:
-        return False
-    chk=getPorts()
-    f=open('/usr/tomcat/conf/server.xml')
-    s=f.read()
-    f.close()
-
-    if chk[0]!=-1:
-        i1=s.find('protocol="HTTP/1.1"')
-        k1=s.rfind('"',0,i1-1)
-        j1=s.rfind('"',0,k1-1)
-        s=s.replace(s[j1:i1]+'protocol="HTTP/1.1"','"%d" protocol="HTTP/1.1"'%p1)
-
-    if chk[1]!=0:
-        i2=s.find('protocol="AJP/1.3"')
-        k2=s.rfind('"',0,i2-1)
-        j2=s.rfind('"',0,k2-1)
-        s=s.replace(s[j2:i2]+'protocol="AJP/1.3"','"%d" protocol="AJP/1.3"'%p2)
-
-    if chk[2]!=0:
-        i3=s.find('shutdown="SHUTDOWN"')
-        k3=s.rfind('"',0,i3-1)
-        j3=s.rfind('"',0,k3-1)
-        s=s.replace(s[j3:i3]+'shutdown="SHUTDOWN"','"%d" shutdown="SHUTDOWN"'%p3)
-
-    f=open('/usr/tomcat/conf/server.xml','w')
-    f.write(s)
-    f.close()
-
 
 #XML
 def XMLgetPorts():
@@ -399,7 +334,7 @@ def XMLgetPorts():
     
     import xml.dom as dom
     import xml.dom.minidom as minidom
-
+    
     p1=''
     p2=''
     p3=''
@@ -437,8 +372,55 @@ def XMLgetPorts():
        n2=int(p2)
     if isNum(p1):
        n3=int(p3) 
-    
     return n1,n2,n3
+
+def XMLsetPorts(p1,p2,p3):
+    if checkTomcat()==-1:
+        return False
+    
+    import xml.dom as dom
+    import xml.dom.minidom as minidom
+
+    r1=False
+    r2=False
+    r3=False
+
+    rot=minidom.parse('/usr/tomcat/conf/server.xml')
+    server=rot.documentElement
+    if server.hasAttribute('port'):
+        if p3!=-1:
+            server.setAttribute('port',str(p3))
+            r3=True
+    
+    service=server.getElementsByTagName('Service')
+    catalina=None
+    for i in service:
+        if i.hasAttribute('name') and i.getAttribute('name')=='Catalina':
+            catalina=i
+            break
+        
+    if catalina==None:
+        return r1,False,False
+    
+    for i in catalina.childNodes:
+        if i.nodeType==dom.Node.ELEMENT_NODE and i.nodeName=='Connector':
+            if not i.hasAttribute('protocol'):
+                continue
+            if not i.hasAttribute('port'):
+                continue
+            tmp=i.getAttribute('protocol')
+            if tmp=='HTTP/1.1':
+                if p1!=-1:
+                    i.setAttribute('port',str(p1))
+                    r1=True
+            elif tmp=='AJP/1.3':
+                if p2!=-1:
+                    i.setAttribute('port',str(p2))
+                    r2=True
+    f=open('/usr/tomcat/conf/server.xml','w')
+    f.write(rot.toxml())
+    f.close()
+    return r1,r2,r3
 
 
 #check all parts!
@@ -595,7 +577,7 @@ def main():
     print()
     print('Operations:')
 
-    ol=['Check','Upgrade OJ','Config','Run Status']
+    ol=['Check','Upgrade OJ','Tomcat Config','Run Status']
     for i in range(len(ol)):
         pgreen('[%d]'%(i+1))
         print(ol[i])
@@ -624,7 +606,6 @@ def main():
 
     elif o=='3':
         #Configs
-        pred('UNDER CONSTRUCTION\n')
         tp=XMLgetPorts()
         print('Tomcat Configs'.center(CSIZE-20,'-'))
         if tp[0]!=-1:
@@ -640,6 +621,24 @@ def main():
         else:
             pred('Shutdown Port not found\n')
         print('-'*(CSIZE-20))
+        
+        r1=input('New HTTP Port(nothing for no change):')
+        if r1!='':
+            if (not isNum(r1)) or int(r1)<0 or int(r1)>65535:
+                pred('Invalid Port!\n')
+            XMLsetPorts(int(r1),-1,-1)
+        
+        r2=input('New AJP Port(nothing for no change):')
+        if r2!='':
+            if (not isNum(r2)) or int(r2)<0 or int(r2)>65535:
+                pred('Invalid Port!\n')
+            XMLsetPorts(-1,int(r2),-1)
+
+        r3=input('New Shutdown Port(nothing for no change):')
+        if r3!='':
+            if (not isNum(r3)) or int(r3)<0 or int(r3)>65535:
+                pred('Invalid Port!\n')
+            XMLsetPorts(-1,-1,int(r3))
     elif o=='4':
         #Server Status
         pred('UNDER CONSTRUCTION\n')
