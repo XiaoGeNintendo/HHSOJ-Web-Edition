@@ -89,7 +89,7 @@ def progress(x,ed=''):
     exec("print('  %.2f%% [%s]  %s'%(100*x,'#'*int(x*60)+'-'*(60-int(x*60)),ed),end='\\r')")
 
 #run linux bash
-def runcmd(s):
+def cmd(s):
     h=sub.Popen(s,stdout=sub.PIPE,stderr=sub.PIPE,shell=True)
     if DEBUG:
         debug('--- Command: %s '%s)
@@ -120,15 +120,15 @@ def runcmd(s):
 def aptInstall(s,chk):
     if ISCENTOS:
         print('Installing %s with yum'%s)
-        runcmd('yum install '+s)
+        cmd('yum install '+s)
     else:
         print('Installing %s with apt'%s)
-        runcmd('apt-get install '+s)
-    if runcmd(chk)[0]!=0:
+        cmd('apt-get install '+s)
+    if cmd(chk)[0]!=0:
         pred('[ER]%s install failed\n'%s)
 
 def utilCheck(chk):
-    res=runcmd(chk)
+    res=cmd(chk)
     if res[0]!=0:
         return False
     return True
@@ -147,7 +147,7 @@ def pipInstall(s):
     if pipCheck(s):
         return True
     print('Installing %s with pip'%s)
-    runcmd('python3 -m pip install '+s)
+    cmd('python3 -m pip install '+s)
     if pipCheck(s):
         return True
     pred('[ER]Module %s install failed\n'%s)
@@ -160,19 +160,19 @@ def pipInstall(s):
 #download
 def wgetDownload(url,d):
     print('downloading from: %s'%url)
-    res=runcmd('wget %s'%url)
+    res=cmd('wget %s'%url)
     name=res[2].split('\u2019')
     name=name[len(name)-2]
     name=name.split('\u2018')
     name=name[len(name)-1]
-    runcmd('mv %s %s'%(name,d))
+    cmd('mv %s %s'%(name,d))
     print('%s downloaded to %s'%(name,d))
     return name
 
 def download(url,d,buf=1024):
-	if os.path.exists(d):
-		runcmd('rm -f '+d)
-
+    if os.path.exists(d):
+        cmd('rm -f '+d)
+    
     pipInstall('requests')
     import requests
     print('downloading: %s'%url)
@@ -202,9 +202,9 @@ def download(url,d,buf=1024):
 #install tomcat
 def installTomcat():
     download('http://apache.01link.hk/tomcat/tomcat-9/v9.0.19/bin/apache-tomcat-9.0.19.tar.gz','/usr/tomcat.tar.gz')
-    runcmd('tar zxvf /usr/tomcat.tar.gz -C /usr/')
-    runcmd('rm -f /usr/tomcat.tar.gz')
-    runcmd('mv /usr/apache-tomcat-9.0.19/ /usr/tomcat/')
+    cmd('tar zxvf /usr/tomcat.tar.gz -C /usr/')
+    cmd('rm -f /usr/tomcat.tar.gz')
+    cmd('mv /usr/apache-tomcat-9.0.19/ /usr/tomcat/')
 
 #version fetcher
 def getWarURL():
@@ -236,7 +236,7 @@ def installWebapp():
     res=getWarURL()
     print('Installing HHSOJ web app version %s'%res[0])
     download(res[1],'/usr/tomcat/webapps/ROOT.war')
-    runcmd('rm -rf /usr/tomcat/webapps/ROOT/')
+    cmd('rm -rf /usr/tomcat/webapps/ROOT/')
     pyellow('Note: Need to run tomcat to unpack the file.\n')
 
 #install hhsoj folder
@@ -249,25 +249,45 @@ def installFolder():
     download(res[1],'/usr/hhsoj.zip')
 
 def coverFolder():
-	runcmd('rm -rf /usr/hhsoj/')
-	runcmd('unzip /usr/hhsoj.zip -d /usr/')
-	runcmd('rm -f /usr/hhsoj.zip')
-	
+    cmd('rm -rf /usr/hhsoj/')
+    cmd('unzip /usr/hhsoj.zip -d /usr/')
+    cmd('rm -f /usr/hhsoj.zip')
+    
 def mergeFolder():
-	if not os.path.exists('/usr/hhsoj/'):
-		coverFolder()
-		return
-	runcmd('rm -rf /usr/hhsoj_merge/')
-	runcmd('mv /usr/hhsoj /usr/hhsoj_merge')
-	runcmd('unzip /usr/hhsoj.zip -d /usr/')
-	runcmd('rm -f /usr/hhsoj.zip')
-	runcmd('rm -rf /usr/hhsoj/users/')
-	runcmd('rm -rf /usr/hhsoj/submission/')
-	runcmd('rm -f announcement.txt')
-	runcmd('cp /usr/hhsoj_merge/users /usr/hhsoj/users')
-	runcmd('cp /usr/hhsoj_merge/submission /usr/hhaoj/submission')
-	runcmd('cp /usr/hhsoj_merge/announcement.txt /usr/hhsoj/announcement.txt')
-	runcmd('rm -rf /usr/hhsoj_merge')
+    if not os.path.exists('/usr/hhsoj/'):
+        coverFolder()
+        return
+    cmd('rm -rf /usr/hhsoj_merge/')
+    cmd('mv /usr/hhsoj /usr/hhsoj_merge')
+    cmd('unzip /usr/hhsoj.zip -d /usr/')
+    cmd('rm -f /usr/hhsoj.zip')
+    
+    cmd('rm -rf /usr/hhsoj/users/')
+    cmd('rm -rf /usr/hhsoj/submission/')
+    cmd('rm -rf /usr/hhsoj/blog/')
+    cmd('rm -f /usr/hhsoj/announcement.txt')
+    
+    cmd('cp -rf /usr/hhsoj_merge/users/ /usr/hhsoj/users/')
+    cmd('cp -rf /usr/hhsoj_merge/submission/ /usr/hhsoj/submission/')
+    cmd('cp -rf /usr/hhsoj_merge/blog/ /usr/hhsoj/blog/')
+    cmd('cp -f /usr/hhsoj_merge/announcement.txt /usr/hhsoj/announcement.txt')
+    
+    cmd('rm -rf /usr/hhsoj_merge')
+
+#backup
+def backupFolder():
+    if not os.path.exists('/usr/hhsoj'):
+        return False
+    from datetime import datetime
+    s='/usr/hhsoj_backup_'+datetime.now().strftime('%F')
+    if os.path.exists(s+'.tar.gz'):
+        i=1
+        while os.path.exists(s+'_'+str(i)+'.tar.gz'):
+            i+=1
+        s=s+'_'+str(i)
+    cmd('tar czf %s.tar.gz hhsoj/'%s)
+    return s+'.tar.gz'
+
 
 #general install
 def install(s):
@@ -287,28 +307,28 @@ def install(s):
 #check requirements
 #java
 def checkJava():
-    res=runcmd('java -version')
+    res=cmd('java -version')
     if res[0]!=0:
         return -1
     else:
         return res[2].split('"')[1]
 #javac
 def checkJavac():
-    res=runcmd('javac -version')
+    res=cmd('javac -version')
     if res[0]!=0:
         return -1
     else:
         return res[2].split(' ')[1].replace('\n','')
 #pip
 def checkPip():
-    res=runcmd('python3 -m pip -V')
+    res=cmd('python3 -m pip -V')
     if res[0]!=0:
         return -1
     else:
         return res[1].split(' ')[1]
 #g++
 def checkGpp():
-    res=runcmd('g++ --version')
+    res=cmd('g++ --version')
     if res[0]!=0:
         return -1
     else:
@@ -598,7 +618,7 @@ def main():
     print()
     print('Operations:')
 
-    ol=['Check','Upgrade OJ','Tomcat Config','Run Status']
+    ol=['Check','Upgrade OJ','Tomcat Config','Run Status','Data Backup']
     for i in range(len(ol)):
         pgreen('[%d]'%(i+1))
         print(ol[i])
@@ -624,6 +644,16 @@ def main():
         r2=input('Install data folder?[Y/n]')
         if r2=='' or r2=='Y' or r2=='y':
             installFolder()
+            if not os.path.exists('/usr/hhsoj.zip'):
+                pred('[ER]Download Failed: hhsoj.zip not found.\n')
+            else:
+                r3=input('Merge with original folder?[Y/n]')
+                if r3=='' or r3=='Y' or r3=='y':
+                    mergeFolder()
+                else:
+                    r4=input('Cover original folder?[Y/n]')
+                    if r4=='' or r4=='Y' or r4=='y':
+                        coverFolder()
 
     elif o=='3':
         #Configs
@@ -663,6 +693,10 @@ def main():
     elif o=='4':
         #Server Status
         pred('UNDER CONSTRUCTION\n')
+    elif o=='5':
+        #Data Backup
+        nm=backupFolder()
+        pgreen('Folder backup complete. Saved to %s\n'%nm)
     else:
         print('Exit...')
         return
