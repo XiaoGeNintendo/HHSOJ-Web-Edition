@@ -170,6 +170,9 @@ def wgetDownload(url,d):
     return name
 
 def download(url,d,buf=1024):
+	if os.path.exists(d):
+		runcmd('rm -f '+d)
+
     pipInstall('requests')
     import requests
     print('downloading: %s'%url)
@@ -244,9 +247,27 @@ def installFolder():
     res=getFolderURL()
     print('Installing HHSOJ data folder version %s'%res[0])
     download(res[1],'/usr/hhsoj.zip')
-    runcmd('rm -rf /usr/hhsoj/')
-    runcmd('unzip /usr/hhsoj.zip -d /usr/')
-    runcmd('rm -f /usr/hhsoj.zip')
+
+def coverFolder():
+	runcmd('rm -rf /usr/hhsoj/')
+	runcmd('unzip /usr/hhsoj.zip -d /usr/')
+	runcmd('rm -f /usr/hhsoj.zip')
+	
+def mergeFolder():
+	if not os.path.exists('/usr/hhsoj/'):
+		coverFolder()
+		return
+	runcmd('rm -rf /usr/hhsoj_merge/')
+	runcmd('mv /usr/hhsoj /usr/hhsoj_merge')
+	runcmd('unzip /usr/hhsoj.zip -d /usr/')
+	runcmd('rm -f /usr/hhsoj.zip')
+	runcmd('rm -rf /usr/hhsoj/users/')
+	runcmd('rm -rf /usr/hhsoj/submission/')
+	runcmd('rm -f announcement.txt')
+	runcmd('cp /usr/hhsoj_merge/users /usr/hhsoj/users')
+	runcmd('cp /usr/hhsoj_merge/submission /usr/hhaoj/submission')
+	runcmd('cp /usr/hhsoj_merge/announcement.txt /usr/hhsoj/announcement.txt')
+	runcmd('rm -rf /usr/hhsoj_merge')
 
 #general install
 def install(s):
