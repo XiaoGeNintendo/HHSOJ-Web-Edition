@@ -646,3 +646,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w65e: Update HHSOJ folder
 
 ## Version 1.15.1: Bug Fix
+
+- 19w66c: Remote Judge Update
