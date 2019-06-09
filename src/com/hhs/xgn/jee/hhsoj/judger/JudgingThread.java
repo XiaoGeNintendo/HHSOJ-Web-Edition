@@ -1,6 +1,8 @@
 package com.hhs.xgn.jee.hhsoj.judger;
 
 import java.io.*;
+import java.util.concurrent.TimeUnit;
+
 import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
 import com.hhs.xgn.jee.hhsoj.db.ContestHelper;
 import com.hhs.xgn.jee.hhsoj.db.ProblemHelper;
@@ -217,7 +219,12 @@ public class JudgingThread extends Thread {
 			pb.inheritIO();
 			Process p=pb.start();
 //			System.out.println("start waiting for");
-			p.waitFor();
+			boolean ok=p.waitFor(10,TimeUnit.SECONDS);
+			if(!ok){
+				s.setVerdict("Submit Timeout");
+				new SubmissionHelper().storeStatus(s);
+				return;
+			}
 			p.destroyForcibly();
 			int exitcode=p.exitValue();
 			if(exitcode!=0){
