@@ -259,6 +259,7 @@ public class JudgingThread extends Thread {
 				}
 			}
 			
+			s.setMaxTest(s.getNowTest());
 			if(s.getVerdict().equals("Accepted")){
 				u.setProblemStatus(s.getProb(),Users.SOLVED);
 				

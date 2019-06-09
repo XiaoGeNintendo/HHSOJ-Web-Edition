@@ -156,7 +156,21 @@ public class CodeforcesHelper {
 			if(!c.isEnableRemoteJudge()){
 				return null;
 			}
-			String res=get("http://codeforces.com/api/user.status?handle="+c.getCodeforcesUsername()+"&from=1&count=1");
+			
+			String res=null;
+			for(int i=0;i<5;i++){
+				try{
+					res=get("http://codeforces.com/api/user.status?handle="+c.getCodeforcesUsername()+"&from=1&count=1");
+					break;
+				}catch(SocketTimeoutException ste){
+					System.out.println("Timeout retrying...");
+				}
+			}
+			
+			if(res==null){
+				return null;
+			}
+			
 			JsonParser jp=new JsonParser();
 			JsonObject root=(JsonObject)jp.parse(res);
 			String status=root.get("status").getAsString();
@@ -180,6 +194,7 @@ public class CodeforcesHelper {
 	 * @throws Exception
 	 */
 	public static String get(String addr) throws Exception {
+		System.out.println("Fetching from "+addr);
 		URL url;
 		int responsecode;
 		HttpURLConnection urlConnection;
@@ -206,17 +221,20 @@ public class CodeforcesHelper {
 		System.out.println("Transfer Starts");
 		
 		String html=null;
-		for(int i=0;i<5;i++){
+		for(int i=0;i<2;i++){
 			try{
-				html=get("https://codeforces.com/contest/"+cs.getContestId()+"/submission/"+cs.getId());
+				html=get("http://codeforces.com/contest/"+cs.getContestId()+"/submission/"+cs.getId());
 				break;
 			}catch(SocketTimeoutException ste){
 				System.out.println("Timeout. Retrying.");
 			}
 		}
 		if(html==null){
+			
 			Submission s=new Submission();
-			s.setVerdict("Connection Timeout");
+			s.setVerdict(cs.getExchangeVerdict());
+			s.setNowTest(cs.getPassedTestCount());
+			
 			return s;
 		}
 		
@@ -265,7 +283,7 @@ public class CodeforcesHelper {
 		
 		for(int i=2;i<arr.size();i++){
 			Element ele=arr.get(i);
-			nw.getResults().add(new TestResult("??", 0, 0, "Codeforces", ele.html()));
+			nw.getResults().add(new TestResult("??", 0, 0, "Codeforces", "<div class=\"roundbox \" style=\"margin-top:2em;font-size:0.8em;\">"+ele.html()+"</div>"));
 		}
 		return nw;
 	}
