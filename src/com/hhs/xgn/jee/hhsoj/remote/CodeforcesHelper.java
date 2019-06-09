@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -19,6 +21,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hhs.xgn.jee.hhsoj.db.ConfigLoader;
 import com.hhs.xgn.jee.hhsoj.type.Config;
+import com.hhs.xgn.jee.hhsoj.type.Submission;
+import com.hhs.xgn.jee.hhsoj.type.TestResult;
 
 /**
  * A util class for getting Codeforces API
@@ -193,6 +197,47 @@ public class CodeforcesHelper {
 		}else {
 			throw new Exception("Bad response Code:" + responsecode);
 		}
+	}
+
+	public static Submission getTransfer(CodeforcesSubmission cs) throws Exception {
+		System.out.println("Transfer Starts");
+		
+		String html=get("https://codeforces.com/contest/"+cs.getContestId()+"/submission/"+cs.getId());
+		int stTable=html.indexOf("<table class=\"\">");
+		int edTable=html.indexOf("</table>",stTable);
+		if(stTable==-1 || edTable==-1){
+			return null;
+		}
+		String tableH=html.substring(stTable, edTable)+"</table>";
+		tableH="<div id=\"son\">"+tableH+"</div>";
+		
+		System.out.println("Table found!"+tableH);
+		Document d=Jsoup.parseBodyFragment(tableH);
+		System.out.println("Document"+d);
+		Submission nw=new Submission();
+		
+		String rawV=d.getElementById("son").child(0).child(0).child(1).child(4).text();
+		
+		System.out.println("rawV="+rawV);
+		
+		//verdict
+		int pos=rawV.indexOf("on test");
+		if(pos!=-1){
+			nw.setVerdict(rawV.substring(0,pos).trim());
+			nw.setNowTest(new Integer(rawV.substring(pos+8).trim()));
+		}else{
+			nw.setVerdict(rawV);
+		}
+		
+		//tests
+		Document d2=Jsoup.parse(html);
+		Elements arr=d2.getElementsByClass("roundbox");
+		
+		for(int i=2;i<arr.size();i++){
+			Element ele=arr.get(i);
+			nw.getResults().add(new TestResult("??", 0, 0, "Codeforces", ele.text()));
+		}
+		return nw;
 	}
 	
 	

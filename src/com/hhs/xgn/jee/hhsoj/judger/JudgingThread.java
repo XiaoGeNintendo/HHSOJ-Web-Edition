@@ -228,18 +228,24 @@ public class JudgingThread extends Thread {
 			}
 			
 			//Start Listening On Codeforces every 1000ms
+			
+			CodeforcesSubmission cs=CodeforcesHelper.getLastSubmission();
+			
 			s.setVerdict("Judging");
 			s.getResults().add(new TestResult("??", 0, 0, "??", "??"));
 			while(true){
 				Thread.sleep(1000);
-				CodeforcesSubmission cs=CodeforcesHelper.getLastSubmission();
 				
-				s.setVerdict(cs.getExchangeVerdict());
-				s.setNowTest(cs.getPassedTestCount()+1);
-				s.getResults().set(0,new TestResult(cs.getVerdict(),cs.getTimeConsumedMillis(),cs.getMemoryConsumedBytes()/1024,"??","??"));
+				
+				Submission trans=CodeforcesHelper.getTransfer(cs);
+				
+				s.setVerdict(trans.getVerdict());
+				s.setNowTest(trans.getNowTest());
+				s.setMaxTest(s.getNowTest()+1);
+				s.setResults(trans.getResults());
 				
 				new SubmissionHelper().storeStatus(s);
-				if(!cs.getVerdict().equals("TESTING")){
+				if(!trans.getVerdict().contains("Running") && !trans.getVerdict().contains("In queue")){
 					break;
 				}
 			}
