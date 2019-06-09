@@ -235,9 +235,6 @@ public class JudgingThread extends Thread {
 			}
 			
 			//Start Listening On Codeforces every 1000ms
-			
-			CodeforcesSubmission cs=CodeforcesHelper.getLastSubmission();
-			
 			s.setVerdict("Judging");
 			s.getResults().add(new TestResult("??", 0, 0, "??", "??"));
 			new SubmissionHelper().storeStatus(s);
@@ -245,7 +242,7 @@ public class JudgingThread extends Thread {
 			while(true){
 				Thread.sleep(1000);
 				
-				
+				CodeforcesSubmission cs=CodeforcesHelper.getLastSubmission();
 				Submission trans=CodeforcesHelper.getTransfer(cs);
 				
 				s.setVerdict(trans.getVerdict());
