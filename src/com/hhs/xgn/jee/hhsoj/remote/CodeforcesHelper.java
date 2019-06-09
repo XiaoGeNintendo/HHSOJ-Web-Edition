@@ -221,14 +221,13 @@ public class CodeforcesHelper {
 		System.out.println("Transfer Starts");
 		
 		String html=null;
-		for(int i=0;i<2;i++){
-			try{
-				html=get("http://codeforces.com/contest/"+cs.getContestId()+"/submission/"+cs.getId());
-				break;
-			}catch(SocketTimeoutException ste){
-				System.out.println("Timeout. Retrying.");
-			}
+		
+		try{
+			html=get("http://codeforces.com/contest/"+cs.getContestId()+"/submission/"+cs.getId());
+		}catch(SocketTimeoutException ste){
+			System.out.println("Timeout.");
 		}
+		
 		if(html==null){
 			
 			Submission s=new Submission();
