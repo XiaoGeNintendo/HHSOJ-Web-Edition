@@ -184,7 +184,12 @@
 		<%
 			int cnt=1;
 			for(TestResult tr:s.getResults()){
-						
+				if(s.getProb().startsWith("R")){
+		%>
+				<%=tr.getCheckerComment() %>
+				<br/>
+		<%
+				}else{
 		%>
 				<b>Test#<%=cnt %>:</b>
 				<b><%=tr.getFile() %> </b>
@@ -196,7 +201,8 @@
 				<br/><br/>
 				
 		<%
-			cnt++;
+				}
+				cnt++;
 			}
 		%>
 		
