@@ -254,7 +254,7 @@ public class JudgingThread extends Thread {
 				s.setResults(trans.getResults());
 				
 				new SubmissionHelper().storeStatus(s);
-				if(!trans.getVerdict().contains("Running") && !trans.getVerdict().contains("In queue")){
+				if(!trans.getVerdict().contains("Running") && !trans.getVerdict().contains("In queue") && !trans.getVerdict().contains("Testing")){
 					break;
 				}
 			}

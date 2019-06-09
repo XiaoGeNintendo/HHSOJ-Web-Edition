@@ -59,6 +59,10 @@
 		if(userLooking!=null){
 			u=new UserHelper().getUserInfo(userLooking);
 		}
+		
+		if(s.getProb().startsWith("R")){
+			out.println("<link href=\"cf/cf_style.css\" rel=\"stylesheet\" type=\"text/css\">");
+		}
 	%>
 	
 	<script>
