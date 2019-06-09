@@ -222,11 +222,24 @@ public class CodeforcesHelper {
 		
 		//verdict
 		int pos=rawV.indexOf("on test");
+		
 		if(pos!=-1){
-			nw.setVerdict(rawV.substring(0,pos).trim());
+			char[] to=rawV.substring(0,pos).trim().toCharArray();
+			for(int i=0;i<to.length-1;i++){
+				if(to[i]==' ' && 'a'<=to[i+1] && to[i+1]<='z'){
+					to[i+1]=(char) (to[i+1]-'a'+'A');
+				}
+			}
+			nw.setVerdict(new String(to));
 			nw.setNowTest(new Integer(rawV.substring(pos+8).trim()));
 		}else{
-			nw.setVerdict(rawV);
+			char[] to=rawV.toCharArray();
+			for(int i=0;i<to.length-1;i++){
+				if(to[i]==' ' && 'a'<=to[i+1] && to[i+1]<='z'){
+					to[i+1]=(char) (to[i+1]-'a'+'A');
+				}
+			}
+			nw.setVerdict(new String(to));
 		}
 		
 		//tests
@@ -235,7 +248,7 @@ public class CodeforcesHelper {
 		
 		for(int i=2;i<arr.size();i++){
 			Element ele=arr.get(i);
-			nw.getResults().add(new TestResult("??", 0, 0, "Codeforces", ele.text()));
+			nw.getResults().add(new TestResult("??", 0, 0, "Codeforces", ele.html()));
 		}
 		return nw;
 	}
