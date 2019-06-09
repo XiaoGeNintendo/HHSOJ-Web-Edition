@@ -10,6 +10,7 @@ import org.jsoup.select.Elements;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -186,6 +187,8 @@ public class CodeforcesHelper {
 		String line;
 		url = new URL(addr);
 		urlConnection = (HttpURLConnection) url.openConnection();
+		urlConnection.setConnectTimeout(5000);
+		urlConnection.setReadTimeout(10000);
 		responsecode = urlConnection.getResponseCode();
 		if (responsecode == 200) {
 			reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "utf-8"));
@@ -202,7 +205,21 @@ public class CodeforcesHelper {
 	public static Submission getTransfer(CodeforcesSubmission cs) throws Exception {
 		System.out.println("Transfer Starts");
 		
-		String html=get("https://codeforces.com/contest/"+cs.getContestId()+"/submission/"+cs.getId());
+		String html=null;
+		for(int i=0;i<5;i++){
+			try{
+				html=get("https://codeforces.com/contest/"+cs.getContestId()+"/submission/"+cs.getId());
+				break;
+			}catch(SocketTimeoutException ste){
+				System.out.println("Timeout. Retrying.");
+			}
+		}
+		if(html==null){
+			Submission s=new Submission();
+			s.setVerdict("Connection Timeout");
+			return s;
+		}
+		
 		int stTable=html.indexOf("<table class=\"\">");
 		int edTable=html.indexOf("</table>",stTable);
 		if(stTable==-1 || edTable==-1){

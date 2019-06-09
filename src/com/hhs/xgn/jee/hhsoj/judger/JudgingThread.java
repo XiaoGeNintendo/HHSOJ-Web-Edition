@@ -233,6 +233,8 @@ public class JudgingThread extends Thread {
 			
 			s.setVerdict("Judging");
 			s.getResults().add(new TestResult("??", 0, 0, "??", "??"));
+			new SubmissionHelper().storeStatus(s);
+			
 			while(true){
 				Thread.sleep(1000);
 				
