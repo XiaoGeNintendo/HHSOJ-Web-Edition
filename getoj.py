@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-#import modules
 import sys
 import os
 import platform
@@ -71,6 +70,13 @@ def debug(s):
     pyellow(s)
     #exec("print('\033[2m%s\033[0m'%s,end='')")
 
+
+#selector
+def Yes(s):
+    return s=='' or s=='Y' or s=='y'
+
+def No(s):
+    return s=='' or s=='N' or s=='n'
 
 
 #debug environment
@@ -266,11 +272,13 @@ def mergeFolder():
     cmd('rm -rf /usr/hhsoj/submission/')
     cmd('rm -rf /usr/hhsoj/blog/')
     cmd('rm -f /usr/hhsoj/announcement.txt')
+    cmd('rm -f /usr/hhsoj/config.json')
     
     cmd('cp -rf /usr/hhsoj_merge/users/ /usr/hhsoj/users/')
     cmd('cp -rf /usr/hhsoj_merge/submission/ /usr/hhsoj/submission/')
     cmd('cp -rf /usr/hhsoj_merge/blog/ /usr/hhsoj/blog/')
     cmd('cp -f /usr/hhsoj_merge/announcement.txt /usr/hhsoj/announcement.txt')
+    cmd('cp -f /usr/hhsoj_merge/config.json /usr/hhsoj/config.json')
     
     cmd('rm -rf /usr/hhsoj_merge')
 
@@ -519,19 +527,19 @@ def checkAll():
     
     if len(unin)>0:
         print('Install all uninstalled parts?')
-        res=input('[Y/n]')
-        if res=='' or res=='y' or res=='Y':
+        r1=input('[Y/n]')
+        if Yes(r1):
             for i in unin:
                 install(i[0])
         else:
             print('Install one by one?')
-            res2=input('[y/N]')
-            if res2=='' or res2=='n' or res2=='N':
+            r2=input('[y/N]')
+            if No(r2):
                 return
             for i in unin:
                 print('Install %s?'%i[1])
-                res3=input('[Y/n]')
-                if res3=='' or res3=='y' or res3=='Y':
+                r3=input('[Y/n]')
+                if Yes(r3):
                     install(i[0])
     else:
         print('All required parts installed!')
@@ -552,19 +560,19 @@ def pipInstallAll():
     
     if len(unin)>0:
         print('Install all uninstalled modules?')
-        res=input('[Y/n]')
-        if res=='' or res=='y' or res=='Y':
+        r1=input('[Y/n]')
+        if Yes(r1):
             for i in unin:
                 pipInstall(i)
         else:
             print('Install one by one?')
-            res2=input('[y/N]')
-            if res2=='' or res2=='n' or res2=='N':
+            r2=input('[y/N]')
+            if No(r2):
                 return
             for i in unin:
                 print('Install %s?'%i)
-                res3=input('[Y/n]')
-                if res3=='' or res3=='y' or res3=='Y':
+                r3=input('[Y/n]')
+                if Yes(r3):
                     pipInstall(i)
     else:
         print('All required modules installed!')
@@ -588,19 +596,19 @@ def utilInstallAll():
     
     if len(unin)>0:
         print('Install all uninstalled utils?')
-        res=input('[Y/n]')
-        if res=='' or res=='y' or res=='Y':
+        r1=input('[Y/n]')
+        if Yes(r1):
             for i in unin:
                 aptInstall(i[0],i[1])
         else:
             print('Install one by one?')
-            res2=input('[y/N]')
-            if res2=='' or res2=='n' or res2=='N':
+            r2=input('[y/N]')
+            if No(r2):
                 return
             for i in unin:
                 print('Install %s?'%i[0])
-                res3=input('[Y/n]')
-                if res3=='' or res3=='y' or res3=='Y':
+                r3=input('[Y/n]')
+                if Yes(r3):
                     aptInstall(i[0],i[1])
     else:
         print('All required utils installed!')
@@ -638,21 +646,21 @@ def main():
         print('Latest HHSOJ web app version: '+v1[0])
         print('Latest HHSOJ data folder version: '+v2[0])
         r1=input('Install web app?[Y/n]')
-        if r1=='' or r1=='Y' or r1=='y':
+        if Yes(r1):
             installWebapp()
         
         r2=input('Install data folder?[Y/n]')
-        if r2=='' or r2=='Y' or r2=='y':
+        if Yes(r2):
             installFolder()
             if not os.path.exists('/usr/hhsoj.zip'):
                 pred('[ER]Download Failed: hhsoj.zip not found.\n')
             else:
                 r3=input('Merge with original folder?[Y/n]')
-                if r3=='' or r3=='Y' or r3=='y':
+                if Yes(r3):
                     mergeFolder()
                 else:
                     r4=input('Cover original folder?[Y/n]')
-                    if r4=='' or r4=='Y' or r4=='y':
+                    if Yes(r4):
                         coverFolder()
 
     elif o=='3':
