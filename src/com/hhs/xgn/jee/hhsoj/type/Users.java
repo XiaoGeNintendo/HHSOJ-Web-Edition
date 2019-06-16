@@ -27,9 +27,11 @@ public class Users {
 	
 	private String email;
 	private boolean sendNotify;
+	private boolean verified;
 	
 	private String specialRole;
 	private String specialColor;
+	
 	
 	/**
 	 * The quote of user
@@ -321,5 +323,13 @@ public class Users {
 
 	public void setSpecialColor(String specialColor) {
 		this.specialColor = specialColor;
+	}
+
+	public boolean isVerified() {
+		return verified;
+	}
+
+	public void setVerified(boolean verified) {
+		this.verified = verified;
 	}
 }

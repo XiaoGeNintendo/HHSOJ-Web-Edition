@@ -26,6 +26,9 @@
 				return;
 			}
 			
+			if(!s.isVerified()){
+				response.sendRedirect("verify.jsp");
+			}
 			request.getRequestDispatcher("finish_login.jsp").forward(request, response);
 			return;
 		}

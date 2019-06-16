@@ -12,6 +12,7 @@ public class Config {
 	private long queryTime;
 	private boolean clearFolder;
 	private int waitTimeout;
+	private boolean needEmailVerify;
 	
 	public boolean isEnableCPP11() {
 		return enableCPP11;
@@ -78,6 +79,12 @@ public class Config {
 	}
 	public void setWaitTimeout(int waitTimeout) {
 		this.waitTimeout = waitTimeout;
+	}
+	public boolean isNeedEmailVerify() {
+		return needEmailVerify;
+	}
+	public void setNeedEmailVerify(boolean needEmailVerify) {
+		this.needEmailVerify = needEmailVerify;
 	}
 	
 }
