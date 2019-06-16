@@ -4,15 +4,14 @@
 <html>
 <head>
 <jsp:include page="head.jsp"></jsp:include>
-<title>HHSOJ - Verify Email</title>
+<title>HHSOJ - Forget Password</title>
 </head>
 <body>
 	<center>
-		<h1>Verifying your email</h1>
-		Hello! In order to keep the website safe, you need to verify your email address. <br/>
-		Enter your username and password below and click "Send me an email". <br/>
-		Then go to your email mailbox to check the verify code. <br/>
-		Sorry for the inconvenience! <br/>
+		<h1>Resetting your password</h1>
+		Reset your password by typing your username.<br/>
+		Then click "send me an email" <br/>
+		Then type the code you received in the box to reset your password <br/>
 		
 		<hr/>
 		<div class="form-group">

@@ -69,6 +69,12 @@
 						<input type="submit" value="Login" style="width:90px;height:30px;margin-top:20px;" />
 					</td>
 				</tr>
+				
+				<tr>
+					<td colspan="2" style="text-align:center;">
+						<a href="forget.jsp">(Forget Your Password?)</a>
+					</td>
+				</tr>
 			</table>
 		</form>
 	</div>
