@@ -39,6 +39,8 @@
 		<h2>Config</h2>
 		<a href="sys.jsp?id=<%=c.getId() %>">Run system test</a> <br/>
 		<a href="pr.jsp?id=<%=c.getId() %>">Pend Rating Change</a> <br/>
+		<a href="sn.jsp?id=<%=c.getId() %>">Send Notifications to Subscribers</a> <br/>
+		
 		<input id="time" placeholder="input 'x' negative is ok too"/>
 		<button id="delay">Delay by x minutes</button>
 		<button id="inclen">Increase length by x minutes</button>

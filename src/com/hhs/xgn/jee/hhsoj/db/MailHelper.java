@@ -9,10 +9,12 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 import java.io.FileInputStream;
+import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
 import com.hhs.xgn.jee.hhsoj.type.Config;
+import com.hhs.xgn.jee.hhsoj.type.Contest;
 import com.hhs.xgn.jee.hhsoj.type.Users;
 
 public class MailHelper {
@@ -287,6 +289,15 @@ public class MailHelper {
     			.replace("{{{email}}}",b.getEmail());
     }
     
+    public String replace(String a,Users b,Contest c){
+    	return replace(a,b).replace("{{{contestName}}}", c.getInfo().getName())
+    					   .replace("{{{contestStartTime}}}", new Date(c.getInfo().getStartTime())+"")
+    					   .replace("{{{contestEndTime}}}", new Date(c.getInfo().getEndTime())+"")
+    					   .replace("{{{length}}}", c.getInfo().getReadableLength())
+    					   .replace("{{{author}}}", c.getInfo().getAuthorsHTML())
+    					   .replace("{{{contestId}}}", c.getId()+"");
+    }
+    
     public String genNewCode(){
     	Random r=new Random();
     	String pos="0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
@@ -297,11 +308,36 @@ public class MailHelper {
     	return code;
     }
     
+    public void sendNotificationMail(Users u,Contest c){
+    	
+    	try{
+    		System.out.println("Sending notification to "+u.getEmail()+" for "+c.getInfo().getName());
+	    	Config con=new ConfigLoader().load();
+	    	String content=FileHelper.readFileFull(ConfigLoader.getPath()+"/notify.html");
+			boolean ok=send(con.getEmailSmtp(),
+					        con.getEmailSender(),
+					        u.getEmail(),
+					        replace(con.getEmailSubject(),u,c),
+					        replace(content,u,c),
+					        con.getEmailUsername(),
+					        con.getEmailPassword()
+					       );
+			if(ok){
+				return;
+			}else{
+				System.out.println("Failed");
+			}
+    	}catch(Exception e){
+    		System.out.println("Failed");
+    		e.printStackTrace();
+    	}
+    }
+    
 	public String sendVerifyMail(Users u){
 		System.out.println("Start sending Verify Email to "+u.getEmail());
 		
 		try{
-			String content=FileHelper.readFileFull(ConfigLoader.getPath()+"/email.html");
+			String content=FileHelper.readFileFull(ConfigLoader.getPath()+"/verify.html");
 			
 			u.setLastVerify(System.currentTimeMillis());
 			u.setVerifyCode(genNewCode());
