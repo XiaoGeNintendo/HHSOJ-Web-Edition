@@ -42,7 +42,7 @@ public class RatingCalc {
 		try{
 			myRating=new UserHelper().getUserInfo(csr.getUser()).getNowRating();
 		}catch(Exception e){
-			System.out.println("Failed to pend for"+csr.getUser()+" for "+e);
+			System.out.println("Failed to pend for "+csr.getUser()+" for "+e);
 			e.printStackTrace();
 			return;
 		}
@@ -51,9 +51,11 @@ public class RatingCalc {
 			if(!acs.getUser().equals(csr.getUser())){
 				//Calc w and we
 				
-				
+				try{
 				we+=P(myRating-new UserHelper().getUserInfo(acs.getUser()).getNowRating());
-				
+				}catch(Exception e){
+					System.out.println("Failed to add P for "+acs.getUser()+" --> "+csr.getUser()+" For some reason "+e);
+				}
 				if(acs.getScore()<csr.getScore() || acs.getScore()==csr.getScore() && acs.getPenalty()>csr.getPenalty()){
 					//csr wins acs
 					w++;
