@@ -59,11 +59,14 @@ public class UserRenderer {
 		if(user.getSpecialRole()==null){
 			return "<a href=\"users.jsp?username="+user.getUsername()+"\" class=\"user"+getRank(user.getNowRating())+"\">"+user.getUsername()+"</a>";
 		}else{
-			return "<a href=\"users.jsp?username="+user.getUsername()+"\">"+user.getSpecialColor().replaceAll("{{{username}}}", user.getUsername())+"</a>";
+			return "<a href=\"users.jsp?username="+user.getUsername()+"\">"+r(user.getSpecialColor(),user.getUsername())+"</a>";
 		}
 		
 	}
 	
+	public static String r(String a,String b){
+		return a.replaceAll("\\{\\{\\{username\\}\\}\\}", b);
+	}
 	/**
 	 * Render the user text
 	 * @param user
@@ -73,7 +76,7 @@ public class UserRenderer {
 		if(user.getSpecialRole()==null){
 			return "<h1 class=\"user"+getRank(user.getNowRating())+"\">"+user.getUsername()+"</h1>";
 		}else{
-			return "<h1>"+user.getSpecialColor().replaceAll("{{{username}}}", user.getUsername())+"</h1>";
+			return "<h1>"+r(user.getSpecialColor(),user.getUsername())+"</h1>";
 		}
 		
 	}
