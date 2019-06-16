@@ -286,7 +286,8 @@ public class MailHelper {
     public String replace(String a,Users b){
     	return a.replace("{{{username}}}", b.getUsername())
     			.replace("{{{code}}}", b.getVerifyCode())
-    			.replace("{{{email}}}",b.getEmail());
+    			.replace("{{{email}}}",b.getEmail())
+    			.replace("{{{passwordCode}}}", b.getForgetCode());
     }
     
     public String replace(String a,Users b,Contest c){
@@ -332,6 +333,37 @@ public class MailHelper {
     		e.printStackTrace();
     	}
     }
+    
+    public String sendForgetEmail(Users u){
+		System.out.println("Start sending Forget Email to "+u.getEmail());
+		
+		try{
+			String content=FileHelper.readFileFull(ConfigLoader.getPath()+"/forget.html");
+			
+			u.setLastForget(System.currentTimeMillis());
+			u.setForgetCode(genNewCode());
+			new UserHelper().refreshUser(u);
+			
+			Config con=new ConfigLoader().load();
+			boolean ok=send(con.getEmailSmtp(),
+					        con.getEmailSender(),
+					        u.getEmail(),
+					        replace(con.getResetSubject(),u),
+					        replace(content,u),
+					        con.getEmailUsername(),
+					        con.getEmailPassword()
+					       );
+
+			if(ok){
+				return "Successfully sent to "+u.getEmail();
+			}else{
+				return "Sent failed.\nContact admin if you are really sure this is an error.";
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			return "Sent failed:"+e;
+		}
+	}
     
 	public String sendVerifyMail(Users u){
 		System.out.println("Start sending Verify Email to "+u.getEmail());
