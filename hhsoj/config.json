@@ -1,13 +1,22 @@
 {
     "enableCPP11":true,
-    "windowsUsername":"",
-    "windowsPassword":"",
+    "windowsUsername":"think",
+    "windowsPassword":"gwq86206755",
     "adminUsername":"admin",
     "adminPassword":"admin",
-    "enableRemoteJudge":false,
-    "codeforcesUsername":"",
-    "codeforcesPassword":"",
+    "enableRemoteJudge":true,
+    "codeforcesUsername":"XGN",
+    "codeforcesPassword":"qwertyuiop",
     "queryTime":7200000,
     "clearFolder":false,
-    "waitTimeout":10
+    "waitTimeout":10,
+    "needEmailVerify":true,
+    "emailSmtp":"smtp.163.com",
+    "emailSubject":"[HHSOJ]Welcome to HHSOJ",
+    "emailUsername":"gwq0419@163.com",
+    "emailPassword":"gwq86206755",
+    "emailSender":"gwq0419@163.com",
+    "notifySubject":"[HHSOJ]Contest is coming: {{{contestName}}}",
+    "enableForgetPassword":true,
+    "resetSubject":"[HHSOJ]Resetting the password"
 }
