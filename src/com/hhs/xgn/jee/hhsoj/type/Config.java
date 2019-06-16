@@ -20,6 +20,11 @@ public class Config {
 	private String emailPassword;
 	private String emailSender;
 	
+	private String notifySubject;
+	
+	private boolean enableForgetPassword;
+	private String resetSubject;
+	
 	public boolean isEnableCPP11() {
 		return enableCPP11;
 	}
@@ -121,6 +126,24 @@ public class Config {
 	}
 	public void setEmailSender(String emailSender) {
 		this.emailSender = emailSender;
+	}
+	public String getNotifySubject() {
+		return notifySubject;
+	}
+	public void setNotifySubject(String notifySubject) {
+		this.notifySubject = notifySubject;
+	}
+	public boolean isEnableForgetPassword() {
+		return enableForgetPassword;
+	}
+	public void setEnableForgetPassword(boolean enableForgetPassword) {
+		this.enableForgetPassword = enableForgetPassword;
+	}
+	public String getResetSubject() {
+		return resetSubject;
+	}
+	public void setResetSubject(String resetSubject) {
+		this.resetSubject = resetSubject;
 	}
 	
 }
