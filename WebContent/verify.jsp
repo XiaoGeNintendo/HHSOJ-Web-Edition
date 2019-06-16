@@ -47,6 +47,26 @@
 				}
 			})
 		}
+		
+		function sendC(){
+			alert("Request Sent. Please be patient and DON'T CLICK THE BUTTON MANY TIMES");
+			var para={
+				"user":document.getElementById("usr").value,
+				"pwd":document.getElementById("pwd").value,
+				"code":document.getElementById("code").value
+			}
+			
+			$.post("doCheck.jsp",para,function(data,status){
+				if(status!="success"){
+					alert("Failed: return status is "+status);
+				}else{
+					alert(data.trim());
+					if(data.indexOf("Success")!=-1){
+						document.write('<a href="index.jsp">Back to homepage</a>');
+					}
+				}
+			})
+		}
 	</script>
 </body>
 </html>
