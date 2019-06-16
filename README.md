@@ -648,3 +648,5 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 ## Version 1.15.1: Bug Fix
 
 - 19w66c: Remote Judge Update
+
+## Version 1.15.2: Remote Judge Update
