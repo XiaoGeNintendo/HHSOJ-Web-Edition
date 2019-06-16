@@ -30,7 +30,9 @@
 	      <input class="form-control" id="code" placeholder="Enter Code">
 	    </div>
 	    <button type="submit" onclick="sendC()" class="btn btn-primary">Verify My Account</button>
+		<a href="index.jsp">(Back to homepage)</a>   	
 	</center>
+	
 	
 	<script>
 		function sendE(){
@@ -61,9 +63,7 @@
 					alert("Failed: return status is "+status);
 				}else{
 					alert(data.trim());
-					if(data.indexOf("Success")!=-1){
-						document.write('<a href="index.jsp">Back to homepage</a>');
-					}
+					
 				}
 			})
 		}

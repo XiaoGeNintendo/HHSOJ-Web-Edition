@@ -30,7 +30,7 @@
 	}
 	
 	if(code.equals(u.getVerifyCode())){
-		out.println("Verify Success.");
+		out.println("Verify Success. You are logged in. Return to homepage to view changes.");
 		session.setAttribute("username", u.getUsername());
 		u.setVerified(true);
 		new UserHelper().refreshUser(u);
