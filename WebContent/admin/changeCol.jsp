@@ -23,6 +23,13 @@
 		return;
 	}
 	
+	if(a.equals("null")){
+		a=null;
+	}
+	if(b.equals("null")){
+		b=null;
+	}
+	
 	Users u=new UserHelper().getUserInfo(uid);
 	
 	u.setSpecialColor(b);
