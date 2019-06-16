@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.MailHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Users"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.UserHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Question"%>
@@ -33,5 +34,5 @@
 		return;
 	}
 	
-	MailHelper.sendVerifyMail(u);
+	out.println(new MailHelper().sendVerifyMail(u));
 %>

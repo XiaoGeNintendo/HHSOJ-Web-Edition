@@ -10,6 +10,7 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 import java.io.FileInputStream;
 import java.util.Properties;
+import java.util.Random;
 
 import com.hhs.xgn.jee.hhsoj.type.Config;
 import com.hhs.xgn.jee.hhsoj.type.Users;
@@ -286,10 +287,24 @@ public class MailHelper {
     			.replace("{{{email}}}",b.getEmail());
     }
     
-	public void sendVerifyMail(Users u){
+    public String genNewCode(){
+    	Random r=new Random();
+    	String pos="0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+    	String code="";
+    	for(int i=0;i<12;i++){
+    		code+=pos.charAt(r.nextInt(pos.length()));
+    	}
+    	return code;
+    }
+    
+	public String sendVerifyMail(Users u){
 		System.out.println("Start sending Verify Email to "+u.getEmail());
 		
 		String content=FileHelper.readFileFull(ConfigLoader.getPath()+"/email.html");
+		
+		u.setLastVerify(System.currentTimeMillis());
+		u.setVerifyCode(genNewCode());
+		new UserHelper().refreshUser(u);
 		
 		Config con=new ConfigLoader().load();
 		boolean ok=send(con.getEmailSmtp(),
@@ -301,5 +316,10 @@ public class MailHelper {
 				        con.getEmailPassword()
 				       );
 		
+		if(ok){
+			return "Successfully sent to "+u.getEmail();
+		}else{
+			return "Sent failed. Please contact admin.";
+		}
 	}
 }
