@@ -47,5 +47,37 @@
 	
 	<hr/>
 	<%=u.toJson() %>
+	
+	<script>
+		//Post function
+		function httpPost(URL, PARAMS) {
+			var temp = document.createElement("form");
+			temp.action = URL;
+			temp.method = "post";
+			temp.style.display = "none";
+	
+			for ( var x in PARAMS) {
+				var opt = document.createElement("textarea");
+				opt.name = x;
+				opt.value = PARAMS[x];
+				temp.appendChild(opt);
+			}
+	
+			document.body.appendChild(temp);
+			temp.submit();
+	
+			return temp;
+		}
+	
+		function send(){
+			var para={
+				"id":"<%=id%>",
+				"role":document.getElementById("role").value,
+				"color":document.getElementById("color").value
+			}
+			
+			httpPost("changeCol.jsp",para);
+		}
+	</script>
 </body>
 </html>
