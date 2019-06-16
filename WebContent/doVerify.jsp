@@ -23,4 +23,15 @@
 		return;
 	}
 	
+	if(u.getLastVerify()>=System.currentTimeMillis()-60*1000){
+		out.println("Too frequent request! Wait "+(System.currentTimeMillis()-u.getLastVerify()+999)/1000+" seconds OK?");
+		return;
+	}
+	
+	if(u.isVerified()){
+		out.println("No need to verify");
+		return;
+	}
+	
+	MailHelper.sendVerifyMail(u);
 %>
