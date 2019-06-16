@@ -84,10 +84,6 @@ public class UserRenderer {
 		if(s==null){
 			return "<a href=\"#\" class=\"userUnrated\">"+username+"</a>";
 		}
-		if(s.getSpecialRole()==null){
-			return getUserText(s);
-		}else{
-			return s.getSpecialColor().replaceAll("{{{username}}}",s.getSpecialRole());
-		}
+		return getUserText(s);
 	}
 }
