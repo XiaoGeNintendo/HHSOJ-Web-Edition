@@ -284,10 +284,10 @@ public class MailHelper {
     }
     
     public String replace(String a,Users b){
-    	return a.replace("{{{username}}}", b.getUsername())
-    			.replace("{{{code}}}", b.getVerifyCode())
-    			.replace("{{{email}}}",b.getEmail())
-    			.replace("{{{passwordCode}}}", b.getForgetCode());
+    	return a.replace("{{{username}}}", ""+b.getUsername())
+    			.replace("{{{code}}}", ""+b.getVerifyCode())
+    			.replace("{{{email}}}",""+b.getEmail())
+    			.replace("{{{passwordCode}}}", ""+b.getForgetCode());
     }
     
     public String replace(String a,Users b,Contest c){

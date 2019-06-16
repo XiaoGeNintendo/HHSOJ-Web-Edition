@@ -189,43 +189,6 @@ You can
 - Use the console to change files online
 - Toggle Judger Status
 
-# Languages
-
-- Python (Python 3.6)
-- Java (Now 1.8)
-- C++ (C++11)
-
-# Links & Thanks
-The previous buggy version [HHSOJ Desktop Version](https://github.com/XiaoGeNintendo/hhsoj)
-
-Thanks [Voj](https://github.com/hzxie/voj/) for the implementations
-
-Thanks [CSDN](https://www.cnblogs.com/Sugite/articles/4568066.html) for the judger and windows safety protection. (Sorry it's Chinese)
-
-Thanks [Zzzyt](https://github.com/zzzzzzyt) for fixing some bugs and stuff!
-
-You can read more about Testlib here: [Mike Mirzayanov](http://codeforces.com/testlib)
-
-HHS blog here: [HHS Blog](https://blog.hellholestudios.club)
-
-Oh, the highlighter and editor are provided by [Wang Fu Peng](http://www.wangeditor.com/)
-
-The Elo editorial is here [Elo](https://bbs.gameres.com/thread_228018_1_1.html) . (Sorry it's Chinese too).
-
-Thanks for Mike Mirzayanov for the great Codeforces System and API. 
-
-```
-Codeforces (c) Copyright 2010-2018 Mike Mirzayanov
-The only programming contests Web 2.0 platform
-```
-
-The Linux Sandbox is [here](https://github.com/KIDx/Judger)
-
-MathJax is [here](https://www.mathjax.org/)
- 
-You can donate us by Wechat or Paypal :) Send an issue to ask for the donation link.
-
-About the Code Editor, we used [Ace](https://ace.c9.io/)
 
 # Customizing Announcement
 Announcement is the marquee text in index.jsp
@@ -306,6 +269,56 @@ The md5 is only a sample. Replace it with real md5 you found.
 Note that each time you use this method, a debug information will be displayed on the console. It looks like:
 
 `[External Resource Request]File:<file path>(<absolute file path>) Length:<file length> Given md5:<the md5 in the request header> Expected md5:<the real md5 of the file> Operator:<ip address of the requester>`
+
+# User Role System
+**User Role System**(URS) is a system introduced in 1.16. It allows admins to perform different render methods on special users.
+
+**Giving User Role**
+1. Go to Admin Platform -> User List -> Choose a User
+
+2. Then you will see two text boxes. The first one is used to display the role. The second one is used to specify the render method.
+
+3. Write Anything You Like in the role box. Write HTML in the render box. Note that all `{{{username}}}` written in the render box will be replaced by real username.
+
+**Example of role**
+
+# Languages Supported
+
+- Python (Python 3.6) **Windows Only**
+- Java (Now 1.8) **Windows Only**
+- C++ (C++11)
+
+# Links & Thanks
+The previous buggy version [HHSOJ Desktop Version](https://github.com/XiaoGeNintendo/hhsoj)
+
+Thanks [Voj](https://github.com/hzxie/voj/) for the implementations
+
+Thanks [CSDN](https://www.cnblogs.com/Sugite/articles/4568066.html) for the judger and windows safety protection. (Sorry it's Chinese)
+
+Thanks [Zzzyt](https://github.com/zzzzzzyt) for fixing some bugs and stuff!
+
+You can read more about Testlib here: [Mike Mirzayanov](http://codeforces.com/testlib)
+
+HHS blog here: [HHS Blog](https://blog.hellholestudios.club)
+
+Oh, the highlighter and editor are provided by [Wang Fu Peng](http://www.wangeditor.com/)
+
+The Elo editorial is here [Elo](https://bbs.gameres.com/thread_228018_1_1.html) . (Sorry it's Chinese too).
+
+Thanks for Mike Mirzayanov for the great Codeforces System and API. 
+
+```
+Codeforces (c) Copyright 2010-2018 Mike Mirzayanov
+The only programming contests Web 2.0 platform
+```
+
+The Linux Sandbox is [here](https://github.com/KIDx/Judger)
+
+MathJax is [here](https://www.mathjax.org/)
+ 
+You can donate us by Wechat or Paypal :) Send an issue to ask for the donation link.
+
+About the Code Editor, we used [Ace](https://ace.c9.io/)
 
 # Changelog
 
