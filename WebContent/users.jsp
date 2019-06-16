@@ -59,6 +59,7 @@
 		<tr>
 			<td align="left">
 				<%out.println(new UserRenderer().getRank(u.getNowRating())); %><br/>
+				<%out.println((u.getSpecialRole()==null?"Normal user":u.getSpecialColor().replaceAll("{{{username}}}",u.getSpecialRole()))); %>
 				<%out.println(new UserRenderer().getUserTextLarge(u));%>
 				<br/>
 				<i><%=u.getLine()%> -- <%=user%></i> <br /> 
