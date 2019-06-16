@@ -287,8 +287,15 @@ Setting the role:
 ![Role Setting](https://github.com/XiaoGeNintendo/public-resource-hut/raw/master/screen2.PNG)
 
 # Mail System
-Mail System will improve the experience of users on HHSOJ. It is introduced in 1.16.
+Mail System will improve the experience of users on HHSOJ. It is introduced in 1.16. It is divided into three parts:
 
+- Email Verify System
+- Contest Notification System
+- Forget Password System
+
+You can open/close the feature by changing the `config.json`
+
+And, you need to write a template for each kind of email. They should be stored at `verify.html` `forget.html` `notify.html`. And, some patterns will be converted into real parameters. For example `{{{username}}}` will be changed into the real username. For all kinds of patterns, please take a look at the example HHSOJ folder.
 
 # Languages Supported
 
