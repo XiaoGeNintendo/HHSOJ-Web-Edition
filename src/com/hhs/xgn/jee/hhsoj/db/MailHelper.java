@@ -317,7 +317,7 @@ public class MailHelper {
 			boolean ok=send(con.getEmailSmtp(),
 					        con.getEmailSender(),
 					        u.getEmail(),
-					        replace(con.getEmailSubject(),u,c),
+					        replace(con.getNotifySubject(),u,c),
 					        replace(content,u,c),
 					        con.getEmailUsername(),
 					        con.getEmailPassword()
