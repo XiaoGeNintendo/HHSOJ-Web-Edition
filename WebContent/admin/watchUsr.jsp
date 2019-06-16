@@ -34,6 +34,8 @@
 	<b>Contest Record</b>:<%=u.getRatings() %> <br/>
 	<b>Rating</b>:<%=u.getNowRating() %>/<%=u.getMaxRating() %><br/>
 	<b>Mail</b>: <%=u.getEmail() %> <br/>
+	<b>Ban Status</b>: <%=u.isBanned() %> <br/>
+	<b>Send Notify?</b>: <%=u.isSendNotify() %> <br/>
 	
 	<hr/>
 	
