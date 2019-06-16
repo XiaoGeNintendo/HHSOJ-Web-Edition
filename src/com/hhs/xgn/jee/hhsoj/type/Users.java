@@ -28,6 +28,8 @@ public class Users {
 	private String email;
 	private boolean sendNotify;
 	private boolean verified;
+	private String verifyCode;
+	private long lastVerify;
 	
 	private String specialRole;
 	private String specialColor;
@@ -331,5 +333,21 @@ public class Users {
 
 	public void setVerified(boolean verified) {
 		this.verified = verified;
+	}
+
+	public String getVerifyCode() {
+		return verifyCode;
+	}
+
+	public void setVerifyCode(String verifyCode) {
+		this.verifyCode = verifyCode;
+	}
+
+	public long getLastVerify() {
+		return lastVerify;
+	}
+
+	public void setLastVerify(long lastVerify) {
+		this.lastVerify = lastVerify;
 	}
 }
