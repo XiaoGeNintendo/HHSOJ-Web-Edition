@@ -19,7 +19,7 @@
 	String newPassword=request.getParameter("newPassword");
 	String line=request.getParameter("line");
 	String userPic=request.getParameter("icon");
-	
+	String info=request.getParameter("info");
 	String nowUsername=(String)session.getAttribute("username");
 	
 	Users nowU=new UserHelper().getUserInfo(nowUsername);
@@ -91,6 +91,12 @@
 	}
 	if(userPic.equals("")==false && userPic.length()<=1024){
 		nowU.setUserPic(userPic);
+	}
+	if(info!=null && info.equals("on")){
+		System.out.println(info);
+		nowU.setSendNotify(true);
+	}else{
+		nowU.setSendNotify(false);
 	}
 	new UserHelper().refreshUser(nowU);
 	

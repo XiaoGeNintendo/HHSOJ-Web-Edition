@@ -92,6 +92,12 @@
 			</tr>
 			
 			<tr>
+				<td><input type="checkbox" name="info" ></td>
+				<td>Receive Contest Information?</td>
+				
+			</tr>
+			
+			<tr>
 			
 				<td colspan="2"  style="text-align:center;" >
 					<input type="submit" value="Change" style="width:90px;">
