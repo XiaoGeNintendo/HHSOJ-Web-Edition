@@ -48,6 +48,11 @@ public class ContestRecord {
 	public void setRatingChange(int ratingChange) {
 		this.ratingChange = ratingChange;
 	}
+
+	@Override
+	public String toString() {
+		return "ContestRecord [id=" + id + ", place=" + place + ", ratingChange=" + ratingChange + "]";
+	}
 	
 	
 }
