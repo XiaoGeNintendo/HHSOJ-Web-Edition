@@ -58,6 +58,9 @@
 		u.setPassword(password);
 		u.setLine(line);
 		u.setEmail(email);
+		if(!new ConfigLoader().load().isNeedEmailVerify()){
+			u.setVerified(true);
+		}
 		db.addUser(u);
 		
 		request.getRequestDispatcher("finish_reg.jsp").forward(request, response);

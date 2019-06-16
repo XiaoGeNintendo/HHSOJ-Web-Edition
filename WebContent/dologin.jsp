@@ -28,6 +28,7 @@
 			
 			if(!s.isVerified()){
 				response.sendRedirect("verify.jsp");
+				return;
 			}
 			request.getRequestDispatcher("finish_login.jsp").forward(request, response);
 			return;
