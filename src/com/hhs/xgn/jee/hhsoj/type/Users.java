@@ -24,6 +24,13 @@ public class Users {
 	private String username;
 	private String password;
 	private int id;
+	
+	private String email;
+	private boolean sendNotify;
+	
+	private String specialRole;
+	private String specialColor;
+	
 	/**
 	 * The quote of user
 	 */
@@ -282,5 +289,37 @@ public class Users {
 
 	public void setViewIndex(int viewIndex) {
 		this.viewIndex = viewIndex;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public boolean isSendNotify() {
+		return sendNotify;
+	}
+
+	public void setSendNotify(boolean sendNotify) {
+		this.sendNotify = sendNotify;
+	}
+
+	public String getSpecialRole() {
+		return specialRole;
+	}
+
+	public void setSpecialRole(String specialRole) {
+		this.specialRole = specialRole;
+	}
+
+	public String getSpecialColor() {
+		return specialColor;
+	}
+
+	public void setSpecialColor(String specialColor) {
+		this.specialColor = specialColor;
 	}
 }
