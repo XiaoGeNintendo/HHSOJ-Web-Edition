@@ -5,6 +5,8 @@ Sometimes we call it HellOJ
 # What's it
 It's an easy online judge. It's still beta!
 # About "hhsoj" folder
+hhsoj folder is the place to hold everything.
+
 We have one sample folder for you. Check it out. **It is recommended to copy the sample folder to your computer when using**
 
 You can use `new File("hhsoj").getAbsolutePath()` to check your hhsoj folder path on your computer.
@@ -85,7 +87,7 @@ Please don't place trailing/leading spaces/tabs.
 
 - **For HHSOJ version < 1.1** In the "WebContent/statement" folder add a filename called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
 
-- **For HHSOJ version >=1.1** In the problem folder create a file called `<statement>` where the `<statement>` is what you filled in "Statement=xx" and write all the problem statement there.
+- **For HHSOJ version >=1.1** In the problem folder create a file called `<statement_<lang>>` where the `<statement_<lang>>` is what you filled in `Statement_<lang>=xx` and write all the problem statement there.
 
 5. You should be seeing it in the problem list
 
