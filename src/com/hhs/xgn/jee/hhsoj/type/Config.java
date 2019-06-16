@@ -12,7 +12,12 @@ public class Config {
 	private long queryTime;
 	private boolean clearFolder;
 	private int waitTimeout;
+	
 	private boolean needEmailVerify;
+	private String emailSmtp;
+	private String emailSubject;
+	private String emailUsername;
+	private String emailPassword;
 	
 	public boolean isEnableCPP11() {
 		return enableCPP11;
@@ -85,6 +90,30 @@ public class Config {
 	}
 	public void setNeedEmailVerify(boolean needEmailVerify) {
 		this.needEmailVerify = needEmailVerify;
+	}
+	public String getEmailSmtp() {
+		return emailSmtp;
+	}
+	public void setEmailSmtp(String emailSmtp) {
+		this.emailSmtp = emailSmtp;
+	}
+	public String getEmailSubject() {
+		return emailSubject;
+	}
+	public void setEmailSubject(String emailSubject) {
+		this.emailSubject = emailSubject;
+	}
+	public String getEmailUsername() {
+		return emailUsername;
+	}
+	public void setEmailUsername(String emailUsername) {
+		this.emailUsername = emailUsername;
+	}
+	public String getEmailPassword() {
+		return emailPassword;
+	}
+	public void setEmailPassword(String emailPassword) {
+		this.emailPassword = emailPassword;
 	}
 	
 }

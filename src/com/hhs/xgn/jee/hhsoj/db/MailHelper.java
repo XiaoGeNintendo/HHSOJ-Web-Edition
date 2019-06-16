@@ -296,7 +296,9 @@ public class MailHelper {
 				        "hhsoj@hhsoj.hhsoj",
 				        u.getEmail(),
 				        replace(con.getEmailSubject(),u),
-				        
+				        replace(content,u),
+				        con.getEmailUsername(),
+				        con.getEmailPassword()
 				       );
 		
 	}
