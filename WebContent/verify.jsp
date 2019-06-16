@@ -34,6 +34,7 @@
 	
 	<script>
 		function sendE(){
+			alert("Request Sent. Please be patient and DON'T CLICK THE BUTTON MANY TIMES");
 			var para={
 				"user":document.getElementById("usr").value,
 				"pwd":document.getElementById("pwd").value
