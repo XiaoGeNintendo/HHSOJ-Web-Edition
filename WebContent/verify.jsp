@@ -29,7 +29,7 @@
 	      <label>Code:</label>
 	      <input class="form-control" id="code" placeholder="Enter Code">
 	    </div>
-	    <button type="submit" onclick="sendC()" class="btn btn-primary">Verify My Account</button>
+	    <button type="submit" onclick="sendC()" class="btn btn-primary">Verify My Account</button> <br/>
 		<a href="index.jsp">(Back to homepage)</a>   	
 	</center>
 	
