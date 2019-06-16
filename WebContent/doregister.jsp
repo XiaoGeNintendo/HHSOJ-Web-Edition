@@ -27,6 +27,14 @@
 			out.println("<a href=\"register.jsp\">Let me try again</a>");
 					
 			ok=true;
+			break;
+		}
+		if(s.getEmail().equalsIgnoreCase(email)){
+			out.println("<font color=#ff0000><b>Sorry, this email(ignoring cases) has been taken. Please try another</b></font>");
+			out.println("<a href=\"register.jsp\">Let me try again</a>");
+					
+			ok=true;
+			break;
 		}
 	}
 	
