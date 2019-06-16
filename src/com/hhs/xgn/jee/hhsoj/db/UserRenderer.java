@@ -56,7 +56,12 @@ public class UserRenderer {
 	 * @return
 	 */
 	public String getUserText(Users user){
-		return "<a href=\"users.jsp?username="+user.getUsername()+"\" class=\"user"+getRank(user.getNowRating())+"\">"+user.getUsername()+"</a>";
+		if(user.getSpecialRole()==null){
+			return "<a href=\"users.jsp?username="+user.getUsername()+"\" class=\"user"+getRank(user.getNowRating())+"\">"+user.getUsername()+"</a>";
+		}else{
+			return "<a href=\"users.jsp?username="+user.getUsername()+"\">"+user.getSpecialColor().replaceAll("{{{username}}}", user.getUsername())+"</a>";
+		}
+		
 	}
 	
 	/**
@@ -65,7 +70,12 @@ public class UserRenderer {
 	 * @return
 	 */
 	public String getUserTextLarge(Users user){
-		return "<h1 class=\"user"+getRank(user.getNowRating())+"\">"+user.getUsername()+"</h1>";
+		if(user.getSpecialRole()==null){
+			return "<h1 class=\"user"+getRank(user.getNowRating())+"\">"+user.getUsername()+"</h1>";
+		}else{
+			return "<h1>"+user.getSpecialColor().replaceAll("{{{username}}}", user.getUsername())+"</h1>";
+		}
+		
 	}
 	
 	public String getUserText(String username){
@@ -74,6 +84,10 @@ public class UserRenderer {
 		if(s==null){
 			return "<a href=\"#\" class=\"userUnrated\">"+username+"</a>";
 		}
-		return getUserText(s);
+		if(s.getSpecialRole()==null){
+			return getUserText(s);
+		}else{
+			return s.getSpecialColor().replaceAll("{{{username}}}",s.getSpecialRole());
+		}
 	}
 }
