@@ -18,6 +18,7 @@ public class Config {
 	private String emailSubject;
 	private String emailUsername;
 	private String emailPassword;
+	private String emailSender;
 	
 	public boolean isEnableCPP11() {
 		return enableCPP11;
@@ -114,6 +115,12 @@ public class Config {
 	}
 	public void setEmailPassword(String emailPassword) {
 		this.emailPassword = emailPassword;
+	}
+	public String getEmailSender() {
+		return emailSender;
+	}
+	public void setEmailSender(String emailSender) {
+		this.emailSender = emailSender;
 	}
 	
 }

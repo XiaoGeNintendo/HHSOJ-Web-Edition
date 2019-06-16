@@ -309,7 +309,7 @@ public class MailHelper {
 			
 			Config con=new ConfigLoader().load();
 			boolean ok=send(con.getEmailSmtp(),
-					        "hhsoj@hhsoj.hhsoj",
+					        con.getEmailSender(),
 					        u.getEmail(),
 					        replace(con.getEmailSubject(),u),
 					        replace(content,u),
