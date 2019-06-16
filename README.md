@@ -698,6 +698,12 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 
 - 19w67a: User Role System
 
-- 19w67a: Mail System
+- 19w68a: Mail System
 
 ## Version 1.16: Mail System
+
+- 19w69e: Fix of readme
+
+- 19w70a: Email Set
+
+## Version 1.16.1: Mail System II
