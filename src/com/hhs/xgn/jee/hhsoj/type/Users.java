@@ -27,9 +27,14 @@ public class Users {
 	
 	private String email;
 	private boolean sendNotify;
+	
 	private boolean verified;
 	private String verifyCode;
 	private long lastVerify;
+	
+	
+	private String forgetCode;
+	private long lastForget;
 	
 	private String specialRole;
 	private String specialColor;
@@ -349,5 +354,21 @@ public class Users {
 
 	public void setLastVerify(long lastVerify) {
 		this.lastVerify = lastVerify;
+	}
+
+	public String getForgetCode() {
+		return forgetCode;
+	}
+
+	public void setForgetCode(String forgetCode) {
+		this.forgetCode = forgetCode;
+	}
+
+	public long getLastForget() {
+		return lastForget;
+	}
+
+	public void setLastForget(long lastForget) {
+		this.lastForget = lastForget;
 	}
 }
