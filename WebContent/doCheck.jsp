@@ -37,5 +37,10 @@
 		return;
 	}
 	
+	if(u.getLastVerify()<=System.currentTimeMillis()-60*60*1000){
+		out.println("The code is out-of-date. Please resend another code");
+		return;
+	}
+	
 	out.println("Verify Failed. Check your cases.\n(Secretly tell you another mysterious code:"+(u.getVerifyCode()==null?"[No Data]":u.getVerifyCode().hashCode())+")");
 %>

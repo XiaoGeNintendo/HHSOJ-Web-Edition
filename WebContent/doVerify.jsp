@@ -34,5 +34,5 @@
 		return;
 	}
 	
-	out.println(new MailHelper().sendVerifyMail(u));
+	out.println(new MailHelper().sendVerifyMail(u)+"\nTime limit is 60 minutes.");
 %>
