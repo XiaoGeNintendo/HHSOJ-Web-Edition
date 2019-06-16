@@ -241,11 +241,11 @@ We used simple Elo rating system for HHSOJ. It is that:
 - Each user has an initial rating of 1500
 - After each contest, the user's rating is recalculated as following:
 
-we calc ![P](https://di.gameres.com/attachment/forum/201310/28/22251233rnfy3titv31e13.png) where D is your rating minus the oppoent's rating.
+we calc ![P](https://github.com/XiaoGeNintendo/public-resource-hut/raw/master/P.png) where D is your rating minus the oppoent's rating.
 
-Then we get ![We](https://di.gameres.com/attachment/forum/201310/28/2223022qgswjkznbzjjuis.png) for any other user in the contest. 
+Then we get ![We](https://github.com/XiaoGeNintendo/public-resource-hut/raw/master/We.png) for any other user in the contest. 
 
-Let W to be the rank of the user. Then the new rating of the user is ![R](https://di.gameres.com/attachment/forum/201310/28/2223026yywcfwyubbzwb66.png) where Ro is the old rating of the user. Constant K=16
+Let W to be the rank of the user. Then the new rating of the user is ![R](https://github.com/XiaoGeNintendo/public-resource-hut/raw/master/R.png) where Ro is the old rating of the user. Constant K=16
 
 # Compiling Guide
 JavaTester.jar : `javac JavaTester.java`
