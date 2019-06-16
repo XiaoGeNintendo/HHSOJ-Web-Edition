@@ -355,7 +355,7 @@ public class MailHelper {
 					       );
 
 			if(ok){
-				return "Successfully sent to "+u.getEmail();
+				return "Successfully sent to "+u.getEmail().substring(0, 3)+"***@***.***";
 			}else{
 				return "Sent failed.\nContact admin if you are really sure this is an error.";
 			}
