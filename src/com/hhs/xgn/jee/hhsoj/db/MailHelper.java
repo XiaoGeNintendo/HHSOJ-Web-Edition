@@ -300,26 +300,30 @@ public class MailHelper {
 	public String sendVerifyMail(Users u){
 		System.out.println("Start sending Verify Email to "+u.getEmail());
 		
-		String content=FileHelper.readFileFull(ConfigLoader.getPath()+"/email.html");
-		
-		u.setLastVerify(System.currentTimeMillis());
-		u.setVerifyCode(genNewCode());
-		new UserHelper().refreshUser(u);
-		
-		Config con=new ConfigLoader().load();
-		boolean ok=send(con.getEmailSmtp(),
-				        "hhsoj@hhsoj.hhsoj",
-				        u.getEmail(),
-				        replace(con.getEmailSubject(),u),
-				        replace(content,u),
-				        con.getEmailUsername(),
-				        con.getEmailPassword()
-				       );
-		
-		if(ok){
-			return "Successfully sent to "+u.getEmail();
-		}else{
-			return "Sent failed. Please contact admin.";
+		try{
+			String content=FileHelper.readFileFull(ConfigLoader.getPath()+"/email.html");
+			
+			u.setLastVerify(System.currentTimeMillis());
+			u.setVerifyCode(genNewCode());
+			new UserHelper().refreshUser(u);
+			
+			Config con=new ConfigLoader().load();
+			boolean ok=send(con.getEmailSmtp(),
+					        "hhsoj@hhsoj.hhsoj",
+					        u.getEmail(),
+					        replace(con.getEmailSubject(),u),
+					        replace(content,u),
+					        con.getEmailUsername(),
+					        con.getEmailPassword()
+					       );
+
+			if(ok){
+				return "Successfully sent to "+u.getEmail();
+			}else{
+				return "Sent failed. Please contact admin.";
+			}
+		}catch(Exception e){
+			return "Sent failed:"+e;
 		}
 	}
 }

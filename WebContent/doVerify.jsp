@@ -25,7 +25,7 @@
 	}
 	
 	if(u.getLastVerify()>=System.currentTimeMillis()-60*1000){
-		out.println("Too frequent request! Wait "+(System.currentTimeMillis()-u.getLastVerify()+999)/1000+" seconds OK?");
+		out.println("Too frequent request! Wait "+(60-(System.currentTimeMillis()-u.getLastVerify()+999)/1000)+" seconds OK?");
 		return;
 	}
 	
