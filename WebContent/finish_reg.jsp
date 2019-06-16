@@ -10,6 +10,7 @@
 		<h1>Thanks for joining HHSOJ!</h1>
 		<h2>You are successfully registered :)</h2>
 		You need to login again, sorry. <br/>
+		By the way, you may need to verify your email to start using HHSOJ!<br/>
 		<a href="index.jsp">Back to the main page.</a>
 	</center>
 </body>

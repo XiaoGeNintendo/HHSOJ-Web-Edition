@@ -47,13 +47,17 @@
 		out.println("Maximum length of line is 300 characters");
 		return;
 	}
+	if(email.length()>100){
+		out.println("Maximum email length is 100 characters");
+		return;
+	}
 	
 	if(!ok){
 		Users u=new Users();
 		u.setUsername(username);
 		u.setPassword(password);
 		u.setLine(line);
-		
+		u.setEmail(email);
 		db.addUser(u);
 		
 		request.getRequestDispatcher("finish_reg.jsp").forward(request, response);
