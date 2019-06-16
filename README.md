@@ -311,6 +311,7 @@ You can open/close the feature by changing the `config.json`
 
 And, you need to write a template for each kind of email. They should be stored at `verify.html` `forget.html` `notify.html`. And, some patterns will be converted into real parameters. For example `{{{username}}}` will be changed into the real username. For all kinds of patterns, please take a look at the example HHSOJ folder.
 
+Note that notification emails have to be sent manually in the contest management panel in the admin platform.
 # Languages Supported
 
 - Python (Python 3.6) **Windows Only**
