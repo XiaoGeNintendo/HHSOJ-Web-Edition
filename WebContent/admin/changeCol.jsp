@@ -37,6 +37,6 @@
 	
 	new UserHelper().refreshUser(u);
 	
-	out.print("update success for "+uid+" to "+a+"<br/>"+b);
+	out.print("update success for "+uid+" to "+a+"<br/>"+b.replace("<","&lt;").replace(">","&gt;"));
 	
 %>
