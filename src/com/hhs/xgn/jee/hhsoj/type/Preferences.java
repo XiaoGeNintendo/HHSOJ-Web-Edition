@@ -59,7 +59,7 @@ public class Preferences {
 		new PreferUnit("Handle::Topcoder","",false,null,false),
 		new PreferUnit("Handle::Facebook","",false,null,false),
 		new PreferUnit("Handle::Twitter","",false,null,false),
-		new PreferUnit("Handle::Email","",false,null,false),
+		new PreferUnit("Handle::SecondEmail","",false,null,false),
 	};
 	
 	public Preferences(){

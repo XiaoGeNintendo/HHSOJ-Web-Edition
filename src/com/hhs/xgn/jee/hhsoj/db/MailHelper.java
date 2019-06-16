@@ -320,7 +320,7 @@ public class MailHelper {
 			if(ok){
 				return "Successfully sent to "+u.getEmail();
 			}else{
-				return "Sent failed. Please contact admin.";
+				return "Sent failed.\nYou are using fake email I suppose\nOr contact admin if you are really sure this is an error.";
 			}
 		}catch(Exception e){
 			e.printStackTrace();
