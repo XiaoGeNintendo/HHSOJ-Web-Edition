@@ -38,7 +38,15 @@ public class RatingCalc {
 	public void calcU(ContestStandingRow csr,ContestStandings c,int id,int place){
 		double w=0,we=0;
 		
-		int myRating=new UserHelper().getUserInfo(csr.getUser()).getNowRating();
+		int myRating=0;
+		try{
+			myRating=new UserHelper().getUserInfo(csr.getUser()).getNowRating();
+		}catch(Exception e){
+			System.out.println("Failed to pend for"+csr.getUser()+" for "+e);
+			e.printStackTrace();
+			return;
+		}
+		
 		for(ContestStandingRow acs:c.getRows()){
 			if(!acs.getUser().equals(csr.getUser())){
 				//Calc w and we

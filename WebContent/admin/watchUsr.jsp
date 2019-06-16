@@ -21,13 +21,29 @@
 		return;
 	}
 		
-		ArrayList<Users> user=new UserHelper().getAllUsers();
-		
-		for(Users u:user){
-			out.println("<b>User #"+u.getId()+"</b> - "+(u.isBanned()?"<s>":"")+u.getUsername()+(u.isBanned()?"</s>":"")+" - Rating:"+u.getNowRating()+"<a href=\"watchUsr.jsp?id="+u.getUsername()+"\">Detail</a><br/>");
-		}
+	String id=request.getParameter("id");
+	if(id==null || id.equals("")){
+		return;
+	}
+	
+	Users u=new UserHelper().getUserInfo(id);
 	%>
+	<h1><%=u.getId()+":"+u.getUsername() %></h1>
+	<hr/>
 	
+	<b>Contest Record</b>:<%=u.getRatings() %> <br/>
+	<b>Rating</b>:<%=u.getNowRating() %>/<%=u.getMaxRating() %><br/>
+	<b>Mail</b>: <%=u.getEmail() %> <br/>
 	
+	<hr/>
+	
+	<a href="ban.jsp?id=<%=u.getId() %>">Ban/Unban</a> <br/>
+	
+	<input id="role" value="<%=u.getSpecialRole()%>" placeholder="Special Role">
+	<input id="color" value="<%=u.getSpecialColor()%>" placeholder="Special Render Method.">
+	<button onclick="send()">Change Role</button>
+	
+	<hr/>
+	<%=u.toJson() %>
 </body>
 </html>
