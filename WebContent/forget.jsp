@@ -18,10 +18,6 @@
 	      <label>Username:</label>
 	      <input class="form-control" id="usr" placeholder="Enter username">
 	    </div>
-	    <div class="form-group">
-	      <label for="pwd">Password:</label>
-	      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-	    </div>
 	    <button type="submit" onclick="sendE()" class="btn btn-primary">Send me an email</button>
 	    
 	    <hr/>
@@ -39,9 +35,8 @@
 			alert("Request Sent. Please be patient and DON'T CLICK THE BUTTON MANY TIMES");
 			var para={
 				"user":document.getElementById("usr").value,
-				"pwd":document.getElementById("pwd").value
 			}
-			$.post("doVerify.jsp",para,function(data,status){
+			$.post("doForget.jsp",para,function(data,status){
 				if(status!="success"){
 					alert("Failed: return status is "+status);
 				}else{
@@ -54,11 +49,10 @@
 			alert("Request Sent. Please be patient and DON'T CLICK THE BUTTON MANY TIMES");
 			var para={
 				"user":document.getElementById("usr").value,
-				"pwd":document.getElementById("pwd").value,
 				"code":document.getElementById("code").value
 			}
 			
-			$.post("doCheck.jsp",para,function(data,status){
+			$.post("doRecover.jsp",para,function(data,status){
 				if(status!="success"){
 					alert("Failed: return status is "+status);
 				}else{
