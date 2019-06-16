@@ -1,3 +1,4 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.db.ConfigLoader"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.MailHelper"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Users"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.UserHelper"%>
@@ -22,7 +23,10 @@
 		out.println("User is banned or not verified");
 		return;
 	}
-	
+	if(!new ConfigLoader().load().isEnableForgetPassword()){
+		out.println("Resetting Password Feature is Closed By Admin.");
+		return;
+	}
 	if(u.getLastForget()>=System.currentTimeMillis()-60*1000){
 		out.println("Too frequent request! Wait "+(60-(System.currentTimeMillis()-u.getLastForget()+999)/1000)+" seconds OK?");
 		return;
