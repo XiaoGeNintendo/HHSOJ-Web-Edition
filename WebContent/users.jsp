@@ -60,6 +60,17 @@
 			<td align="left">
 				<%out.println(new UserRenderer().getRank(u.getNowRating())); %><br/>
 				<%out.println((u.getSpecialRole()==null?"Normal user":UserRenderer.r(u.getSpecialColor(),u.getSpecialRole()))); %>
+				<br/>
+				
+				<%
+					if(u.isSendNotify()){
+				%>
+						<img alt="member" src="asset/member.png"><b>Receiving Notifications Proudly</b>
+				<%
+					}
+				%>
+				
+				
 				<%out.println(new UserRenderer().getUserTextLarge(u));%>
 				<br/>
 				<i><%=u.getLine()%> -- <%=user%></i> <br /> 

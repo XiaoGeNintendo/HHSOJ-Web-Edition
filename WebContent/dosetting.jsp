@@ -93,7 +93,6 @@
 		nowU.setUserPic(userPic);
 	}
 	if(info!=null && info.equals("on")){
-		System.out.println(info);
 		nowU.setSendNotify(true);
 	}else{
 		nowU.setSendNotify(false);
