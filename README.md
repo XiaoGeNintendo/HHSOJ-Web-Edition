@@ -281,7 +281,13 @@ Note that each time you use this method, a debug information will be displayed o
 3. Write Anything You Like in the role box. Write HTML in the render box. Note that all `{{{username}}}` written in the render box will be replaced by real username.
 
 **Example of role**
+Displaying the role:
+![Role Display](https://github.com/XiaoGeNintendo/public-resource-hut/raw/master/screen1.PNG)
+Setting the role:
+![Role Setting](https://github.com/XiaoGeNintendo/public-resource-hut/raw/master/screen2.PNG)
 
+# Mail System
+Mail System will improve the experience of users on HHSOJ. It is introduced in 1.16.
 # Languages Supported
 
 - Python (Python 3.6) **Windows Only**
