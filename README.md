@@ -210,7 +210,16 @@ From version 18w35a you can find the file "hhsoj/config.json" then change the se
     "codeforcesPassword":"", //The Codeforces password (after 18w80a)
     "queryTime":7200000, //What's the query internal. In Milliseconds. Smaller number means more accurate results but may takes longer time to load pages (after 18w80a)
     "waitTimeout":10, //The allowed time for compiling and judging Java and comparing answers. In seconds. (after 19w24a)
-    "clearFolder":false //Clear the folder after each judging?
+    "clearFolder":false, //Clear the folder after each judging?
+    "needEmailVerify":true, //Does user need email verify after registering on HHSOJ?
+    "emailSmtp":"", //Email Sender's SMTP server location
+    "emailSubject":"[HHSOJ]Welcome to HHSOJ", //The subject(title) of verify email
+    "emailUsername":"", //the username of smtp server used in sending email
+    "emailPassword":"", //the password of smtp server used in sending email
+    "emailSender":"", //the sender address of sending email
+    "notifySubject":"[HHSOJ]Contest is coming: {{{contestName}}}", //the subject(title) of notification email
+    "enableForgetPassword":true, //enable forget password method?
+    "resetSubject":"[HHSOJ]Resetting the password" //the subject(title) of reset password email
 }
 ```
 
