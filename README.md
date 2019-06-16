@@ -680,3 +680,9 @@ We use a code to present each commit. The format is [year] + 'w' + [id] + [type]
 - 19w66c: Remote Judge Update
 
 ## Version 1.15.2: Remote Judge Update
+
+- 19w67a: User Role System
+
+- 19w67a: Mail System
+
+## Version 1.16: Mail System
