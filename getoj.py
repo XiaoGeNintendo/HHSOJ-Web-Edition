@@ -207,7 +207,7 @@ def download(url,d,buf=1024):
 
 #install tomcat
 def installTomcat():
-    download('http://apache.01link.hk/tomcat/tomcat-9/v9.0.19/bin/apache-tomcat-9.0.19.tar.gz','/usr/tomcat.tar.gz')
+    download('https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.19/bin/apache-tomcat-9.0.19.tar.gz','/usr/tomcat.tar.gz')
     cmd('tar zxvf /usr/tomcat.tar.gz -C /usr/')
     cmd('rm -f /usr/tomcat.tar.gz')
     cmd('mv /usr/apache-tomcat-9.0.19/ /usr/tomcat/')
