@@ -94,7 +94,7 @@
 			<br/>
 			
 			<div class="dropdown">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Language:<%=(lang==null || lang.equals("null")?"dafault":lang) %></a>
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Language:<%=(lang==null || lang.equals("null")?"dafault":lang) %></button>
 		      	<div class="dropdown-menu">
 			        <%for(String ls:p.getArg("AllLanguage").split(";")){
 			        	
