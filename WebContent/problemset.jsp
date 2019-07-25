@@ -11,54 +11,56 @@
 <title>HHSOJ-Problems</title> 
 </head>
 <body>
-	<h1 class="title">Problems in HHSOJ</h1>
-	<i class="subtitle">Solve them? Impossible! --Zzzyt</i>
-	<hr />
-	<jsp:include page="nav.jsp?at=problemset"></jsp:include>
-	<%
-		Users u=null;
-		try{
-			String sid=(String)session.getAttribute("username");
-			u=new UserHelper().getUserInfo(sid);
-		}catch(Exception e){
-			
-		}
-	%>
-	
-	<a href="problemset.jsp" class="problemset selected">Practice Problemset</a>
-	<a href="cpset.jsp" class="problemset">Contest Problemset</a>
-	<a href="cfset.jsp" class="problemset">Codeforces Problemset</a>
-	
-	<br/>
-	<br/>
-	
-	<table id="problem-table">
-		<tr>
-			<th width="10%">ID</th>
-			<th width="50%">Name</th>
-			<th width="40%">Tags</th>
-		</tr>
-
-		<!-- Start for -->
-
+	<div class="container">
+		<h1 class="title">Problems in HHSOJ</h1>
+		<i class="subtitle">Solve them? Impossible! --Zzzyt</i>
+		<hr />
+		<jsp:include page="nav.jsp?at=problemset"></jsp:include>
 		<%
-			ProblemHelper db = new ProblemHelper();
-			ArrayList<Problem> p = db.getAllProblems();
-
-			for (Problem pro : p) {
-		%>
-		<tr>
-
-			<td bgcolor="<%=new UserRenderer().getColorUP(u,""+pro.getId())%>"><%=pro.getId()%></td>
-
-			<td><a href="problem.jsp?id=<%=pro.getId()%>"><%=pro.getName()%></a></td>
-			<td><%=pro.getTag()%></td>
-		</tr>
-
-		<!-- End for -->
-		<%
+			Users u=null;
+			try{
+				String sid=(String)session.getAttribute("username");
+				u=new UserHelper().getUserInfo(sid);
+			}catch(Exception e){
+				
 			}
 		%>
-	</table>
+		
+		<a href="problemset.jsp" class="nav-link selected">Practice Problemset</a>
+		<a href="cpset.jsp" class="nav-link">Contest Problemset</a>
+		<a href="cfset.jsp" class="nav-link">Codeforces Problemset</a>
+		
+		<br/>
+		<br/>
+		
+		<table class="table table-bordered table-sm">
+			<tr>
+				<th width="10%">ID</th>
+				<th width="50%">Name</th>
+				<th width="40%">Tags</th>
+			</tr>
+	
+			<!-- Start for -->
+	
+			<%
+				ProblemHelper db = new ProblemHelper();
+				ArrayList<Problem> p = db.getAllProblems();
+	
+				for (Problem pro : p) {
+			%>
+			<tr>
+	
+				<td bgcolor="<%=new UserRenderer().getColorUP(u,""+pro.getId())%>"><%=pro.getId()%></td>
+	
+				<td><a href="problem.jsp?id=<%=pro.getId()%>"><%=pro.getName()%></a></td>
+				<td><%=pro.getTag()%></td>
+			</tr>
+	
+			<!-- End for -->
+			<%
+				}
+			%>
+		</table>
+	</div>
 </body>
 </html>

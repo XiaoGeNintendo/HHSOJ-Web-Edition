@@ -69,7 +69,4 @@
 		%>
 	</ul>
 </div>
-<div class="seperator"></div>
 <br />
-</body>
-</html>
