@@ -2,7 +2,7 @@
 /* by Zzzyt */
 body { 
 	background: #fafaf8;
-	min-width: 800px;
+	min-width: 820px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -28,9 +28,14 @@ input {
 	margin:5px;
 }
 
+a[class~="btn"]{
+	margin:5px;
+}
+
 .container{
 	margin-top:50px;
 	margin-bottom:50px;
+	min-width:720px;
 }
 
 .title {
@@ -244,9 +249,8 @@ input {
 	width:400px;
 }
 
-#blog-table {
+.blog-table {
 	border-collapse: collapse;
-	width: 60%;
 	margin: 0px auto;
 	min-width: 500px;
 	border: 1px solid #cccccc;
@@ -254,13 +258,13 @@ input {
 	text-align: left;
 }
 
-#blog-table>tbody>tr>th {
+.blog-table>tbody>tr>th {
 	padding: 3px;
 	padding-left: 5px;
 	border: 1px solid #cccccc;
 }
 
-#blog-table>tbody>tr>td {
+.blog-table>tbody>tr>td {
 	padding: 3px;
 	padding-left: 5px;
 	border: 1px solid #cccccc;
@@ -277,13 +281,6 @@ input {
 	padding: 3px;
 	padding-left: 5px;
 	border: 1px solid #aaaaaa;
-}
-
-#write-blog {
-	width: 60%;
-	margin: 0px auto;
-	padding: 20px;
-	text-align: left;
 }
 
 #status-table {
