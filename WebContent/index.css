@@ -2,9 +2,6 @@
 /* by Zzzyt */
 body { 
 	background: #fafaf8;
-	/*margin-left: 50px;
-	margin-right: 50px;
-	margin-top: 50px;*/
 	min-width: 800px;
 }
 
@@ -33,6 +30,7 @@ input {
 
 .container{
 	margin-top:50px;
+	margin-bottom:50px;
 }
 
 .title {
