@@ -6,7 +6,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: serif;
+	font-family: "Consolas";
 }
 
 hr {
@@ -23,13 +23,19 @@ p, span, a, th, td {
 	font-family: "Consolas";
 }
 
-input {
+input,button{
 	font-family: "Consolas";
-	margin:5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 a[class~="btn"]{
-	margin:5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .container{
@@ -44,7 +50,6 @@ a[class~="btn"]{
 	margin-top: 10px;
 	margin-bottom: 10px;
 	float: left;
-	font-family: Georgia, serif;
 }
 
 .subtitle {
@@ -55,7 +60,6 @@ a[class~="btn"]{
 	float: left;
 	clear: both;
 	margin-bottom: 10px;
-	font-family: Georgia, serif;
 }
 
 #nav {
