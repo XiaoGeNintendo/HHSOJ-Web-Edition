@@ -51,40 +51,35 @@
 	}
 	</script>
 	
-	<h1 id="title">Register</h1>
-	<i id="subtitle">F**K YOU LEATHERMAN!WHY DO THESE F**KING PROBLEMS? --IC</i>
-	<hr />
-	<jsp:include page="nav.jsp?at=register"></jsp:include>
-	
-	<form onsubmit="return call()" action="doregister.jsp" method="post" name="register">
-		<table align="center" id="login_table">
-			<tr>
-				<td>Username:</td>
-				<td><input type="text" maxlength="50" name="username"/></td>
-			</tr>
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" maxlength="50" name="password"/></td>
-			</tr>
-			
-			<tr>
-				<td>Email:</td>
-				<td><input type="text" maxlength="50" name="email"/></td>
-			</tr>
-			
-			<tr>
-				<td>Sentence:</td>
-				<td><input type="text" name="line"/></td>
-			</tr>
-			
-			<tr>
-			
-				<td colspan="2"  style="text-align:center;" >
-					<input type="submit" value="Register" style="width:90px;height:30px;margin-top:20px;">
-				</td>
-			</tr>
-		</table>
-	</form>
-	
+	<div class="container">
+		<h1 id="title">Register</h1>
+		<i id="subtitle">F**K YOU LEATHERMAN!WHY DO THESE F**KING PROBLEMS? --IC</i>
+		<hr />
+		<jsp:include page="nav.jsp?at=register"></jsp:include>
+		
+		<div class="login-form">
+			<form action="doregister.jsp" onsubmit="return call()" method="post" name="register">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Username" name="username" maxlength="50" />
+				</div>
+
+				<div class="input-group">
+					<input type="password" class="form-control" placeholder="Password" name="password" maxlength="50" />
+				</div>
+				
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Email" name="email" maxlength="50" />
+				</div>
+				
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Personal Line" name="line" />
+				</div>
+				
+				<div class="input-group">
+					<input type="submit" value="Register" class="btn btn-primary" style="margin:5px auto;"/>
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>

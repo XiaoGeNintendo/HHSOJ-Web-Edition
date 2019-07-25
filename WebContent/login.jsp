@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,75 +8,65 @@
 <title>HHSOJ-Login</title>
 </head>
 <body>
-	
+
 	<%
-		String type=request.getParameter("back");
-		if(type!=null && type.equals("submit")){
-			
+		String type = request.getParameter("back");
+		if (type != null && type.equals("submit")) {
 	%>
-		<script>
-			alert('Please login to submit.');
-		</script>
+	<script>
+		alert('Please login to submit.');
+	</script>
 	<%
 		}
-	
 	%>
-	
+
 	<script>
-		function call(){
-			var un=this.document.forms['login']['username'].value;
-			var psd=this.document.forms['login']['password'].value;
-			if(un==undefined || psd==undefined){
+		function call() {
+			var un = this.document.forms['login']['username'].value;
+			var psd = this.document.forms['login']['password'].value;
+			if (un == undefined || psd == undefined) {
 				alert('Why do you login with an out-dated explorer?');
 				return false;
 			}
-			
-			if(un==null || un==""){
+
+			if (un == null || un == "") {
 				alert('Username is required');
 				return false;
 			}
-			
-			if(psd==null || psd==""){
+
+			if (psd == null || psd == "") {
 				alert('Meow~ Don\'t you have a password?(●\'◡\'●)');
 				return false;
 			}
-			
+
 			return true;
 		}
-		
 	</script>
 	<div class="container">
 		<h1 id="title">Login</h1>
-		<i id="subtitle">We simply used files to store user's names and passwords --XGN</i>
-		<hr/>
+		<i id="subtitle">We simply used files to store user's names and
+			passwords --XGN</i>
+		<hr />
 		<jsp:include page="nav.jsp?at=login"></jsp:include>
-		
-		
-		<form action="dologin.jsp" onsubmit="return call()" method="post" name="login">
-			<table align="center" id="login_table">
-				<tr>
-					<td><p>Username:</p></td>
-					<td><input type="text" maxlength="50" name="username"/></td>
-				</tr>
-				<tr>
-					<td><p>Password:</p></td>
-					<td><input type="password" maxlength="50" name="password"/></td>
-				</tr>
 
-				<tr>
-					<td colspan="2" style="text-align:center;" >
-						<input type="hidden" name="type" value="<%=type %>">
-						<input type="submit" value="Login" style="width:90px;height:30px;margin-top:20px;" />
-					</td>
-				</tr>
+		<div class="login-form">
+			<form action="dologin.jsp" onsubmit="return call()" method="post" name="login">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Username" name="username" maxlength="50" />
+				</div>
+
+				<div class="input-group">
+					<input type="password" class="form-control" placeholder="Password" name="password" maxlength="50" />
+				</div>
 				
-				<tr>
-					<td colspan="2" style="text-align:center;">
-						<a href="forget.jsp">(Forget Your Password?)</a>
-					</td>
-				</tr>
-			</table>
-		</form>
+				<div class="input-group">
+					<input type="hidden" name="type" value="<%=type%>">
+					<input type="submit" value="Login" class="btn btn-primary" style="margin:5px auto;"/>
+				</div>
+				
+				<a href="forget.jsp">(Forget Your Password?)</a>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

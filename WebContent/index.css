@@ -28,6 +28,7 @@ p, span, a, th, td {
 
 input {
 	font-family: "Consolas";
+	margin:5px;
 }
 
 .container{
@@ -235,18 +236,14 @@ input {
 	border: 1px solid #cccccc;
 }
 
-#login_table {
-	border-collapse:separate;
+.login-form {
+	margin: 0px auto;
 	margin-top: 100px;
+	text-align:center;
 	padding: 30px;
 	border: 1px solid #cccccc;
 	background: #ffffff;
-}
-
-#login_table>tr>td {
-	margin: 2px;
-	padding: 2px;
-	border: 0px;
+	width:400px;
 }
 
 #blog-table {
