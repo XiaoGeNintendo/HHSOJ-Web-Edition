@@ -10,8 +10,8 @@
 </head>
 <body>
 	<!-- Default Template -->
-	<h1 id="title">HHSOJ Tool: Rich text editor</h1>
-	<i id="subtitle">It might help you to write problem statements -- XGN</i>
+	<h1 class="title">HHSOJ Tool: Rich text editor</h1>
+	<i class="subtitle">It might help you to write problem statements -- XGN</i>
 	<hr />
 	
 	<jsp:include page="nav.jsp?at=index"></jsp:include>

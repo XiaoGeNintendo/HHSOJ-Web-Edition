@@ -43,8 +43,8 @@
 <body>
 
 	<!-- Default Template -->
-	<h1 id="title">Contest Problems on HHSOJ</h1>
-	<i id="subtitle"><%=cid + pid%> - <%=p.getName()%></i>
+	<h1 class="title">Contest Problems on HHSOJ</h1>
+	<i class="subtitle"><%=cid + pid%> - <%=p.getName()%></i>
 	<hr />
 	<jsp:include page="nav.jsp?at=contests"></jsp:include>
 

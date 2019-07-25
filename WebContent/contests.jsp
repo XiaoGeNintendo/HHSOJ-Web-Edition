@@ -14,8 +14,8 @@
 </head>
 <body>
 	<!-- Enter Everything here -->
-	<h1 id="title">Contest List</h1>
-	<i id="subtitle">-19 Legend! --XGN</i>
+	<h1 class="title">Contest List</h1>
+	<i class="subtitle">-19 Legend! --XGN</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=contests"></jsp:include>
 	

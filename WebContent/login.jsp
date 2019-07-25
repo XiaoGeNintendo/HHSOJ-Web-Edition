@@ -43,8 +43,8 @@
 		}
 	</script>
 	<div class="container">
-		<h1 id="title">Login</h1>
-		<i id="subtitle">We simply used files to store user's names and
+		<h1 class="title">Login</h1>
+		<i class="subtitle">We simply used files to store user's names and
 			passwords --XGN</i>
 		<hr />
 		<jsp:include page="nav.jsp?at=login"></jsp:include>

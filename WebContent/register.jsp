@@ -52,8 +52,8 @@
 	</script>
 	
 	<div class="container">
-		<h1 id="title">Register</h1>
-		<i id="subtitle">F**K YOU LEATHERMAN!WHY DO THESE F**KING PROBLEMS? --IC</i>
+		<h1 class="title">Register</h1>
+		<i class="subtitle">F**K YOU LEATHERMAN!WHY DO THESE F**KING PROBLEMS? --IC</i>
 		<hr />
 		<jsp:include page="nav.jsp?at=register"></jsp:include>
 		

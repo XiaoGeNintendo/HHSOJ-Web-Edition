@@ -33,8 +33,8 @@
 <body>
 
 	<div class="container">
-		<h1 id="title">Credits</h1>
-		<i id="subtitle">I prefer cash :) --XGN</i>
+		<h1 class="title">Credits</h1>
+		<i class="subtitle">I prefer cash :) --XGN</i>
 		<hr />
 		<jsp:include page="nav.jsp?at=index"></jsp:include>
 		

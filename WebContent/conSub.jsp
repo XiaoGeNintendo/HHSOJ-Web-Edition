@@ -55,8 +55,8 @@
 
 
 		<!-- Default Template -->
-	<h1 id="title">Submit in Contest!</h1>
-	<i id="subtitle">Pretests Passed -- Codeforces</i>
+	<h1 class="title">Submit in Contest!</h1>
+	<i class="subtitle">Pretests Passed -- Codeforces</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=submit"></jsp:include>
 

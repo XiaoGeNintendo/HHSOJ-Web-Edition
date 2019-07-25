@@ -39,8 +39,8 @@
 	
 	<!-- Default Template -->
 	
-	<h1 id="title"><%=bl.getTitle()%></h1>
-	<i id="subtitle">By <%out.println(new UserRenderer().getUserText(bl.getUser()));%> at <%=bl.getReadableTime() %></i>
+	<h1 class="title"><%=bl.getTitle()%></h1>
+	<i class="subtitle">By <%out.println(new UserRenderer().getUserText(bl.getUser()));%> at <%=bl.getReadableTime() %></i>
 	<hr />
 	<jsp:include page="nav.jsp?at=blogs"></jsp:include>
 

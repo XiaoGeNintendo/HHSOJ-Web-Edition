@@ -16,8 +16,7 @@
 				style="height: 50px; width: 50px; margin-right: 10px;"
 				class="oj-icon"> Welcome to HellOJ!
 		</h1>
-		<i class="subtitle">This OJ is made by XiaoGeNintendo in Hell Hole
-			Studios</i>
+		<i class="subtitle">This OJ is made by Hell Hole Studios</i>
 		<hr />
 		<jsp:include page="nav.jsp?at=index"></jsp:include>
 

@@ -16,8 +16,8 @@
 </head>
 <body>
 	<!-- Default Template -->
-	<h1 id="title">User Search</h1>
-	<i id="subtitle">Who is the person you are looking for? --XGN</i>
+	<h1 class="title">User Search</h1>
+	<i class="subtitle">Who is the person you are looking for? --XGN</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=blogs"></jsp:include>
 		

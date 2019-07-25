@@ -30,8 +30,8 @@
 	%>
 
 	<!-- Default Template -->
-	<h1 id="title">My Mailbox</h1>
-	<i id="subtitle">Don't judge yourself that negatively! --ZKY&Zzzyt</i>
+	<h1 class="title">My Mailbox</h1>
+	<i class="subtitle">Don't judge yourself that negatively! --ZKY&Zzzyt</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	<!-- Default End -->

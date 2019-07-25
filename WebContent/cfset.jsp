@@ -13,8 +13,8 @@
 <title>HHSOJ-Problems</title> 
 </head>
 <body>
-	<h1 id="title">Codeforces Problems Viewing in HHSOJ</h1>
-	<i id="subtitle">All your bugs are belong to me!! --Codeforces</i>
+	<h1 class="title">Codeforces Problems Viewing in HHSOJ</h1>
+	<i class="subtitle">All your bugs are belong to me!! --Codeforces</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=problemset"></jsp:include>
 	

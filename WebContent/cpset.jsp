@@ -11,8 +11,8 @@
 <title>HHSOJ-Problems</title> 
 </head>
 <body>
-	<h1 id="title">Contest Problems in HHSOJ</h1>
-	<i id="subtitle">Bad contest time --XGN</i>
+	<h1 class="title">Contest Problems in HHSOJ</h1>
+	<i class="subtitle">Bad contest time --XGN</i>
 	<hr />
 	<%
 		Users u=null;

@@ -43,8 +43,8 @@
 	%>
 	
 	
-	<h1 id="title">Change Preferences</h1>
-	<i id="subtitle">Information! --XGN</i>
+	<h1 class="title">Change Preferences</h1>
+	<i class="subtitle">Information! --XGN</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	

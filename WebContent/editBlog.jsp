@@ -34,8 +34,8 @@
 	%>
 	
 	<!-- Default Template -->
-	<h1 id="title">Editing the blog on HHSOJ</h1>
-	<i id="subtitle">Contribution:-23 -- gwq2017</i>
+	<h1 class="title">Editing the blog on HHSOJ</h1>
+	<i class="subtitle">Contribution:-23 -- gwq2017</i>
 	<hr />
 	
 	<jsp:include page="nav.jsp?at=blogs"></jsp:include>

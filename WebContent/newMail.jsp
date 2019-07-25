@@ -16,8 +16,8 @@
 <body>
 
 	<!-- Default Template -->
-	<h1 id="title">Writing a new mail on HHSOJ</h1>
-	<i id="subtitle">Dear 300iq... -- XGN</i>
+	<h1 class="title">Writing a new mail on HHSOJ</h1>
+	<i class="subtitle">Dear 300iq... -- XGN</i>
 	<hr />
 
 	<jsp:include page="nav.jsp?at=index"></jsp:include>

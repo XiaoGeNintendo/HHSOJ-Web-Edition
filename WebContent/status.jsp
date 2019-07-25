@@ -17,8 +17,8 @@
 <body>
 	
 	<!-- Default Template -->
-	<h1 id="title">Status</h1>
-	<i id="subtitle">There'll be only one testing thread working at a time --XGN</i>
+	<h1 class="title">Status</h1>
+	<i class="subtitle">There'll be only one testing thread working at a time --XGN</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=status"></jsp:include>
 	<!-- Default End -->

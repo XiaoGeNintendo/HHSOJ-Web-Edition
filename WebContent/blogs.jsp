@@ -15,8 +15,8 @@
 <body>
 	<div class="container">
 		<!-- Default Template -->
-		<h1 id="title">Community</h1>
-		<i id="subtitle">Read,write and judge others' blogs! --XGN</i>
+		<h1 class="title">Community</h1>
+		<i class="subtitle">Read,write and judge others' blogs! --XGN</i>
 		<hr />
 		<jsp:include page="nav.jsp?at=blogs"></jsp:include>
 			

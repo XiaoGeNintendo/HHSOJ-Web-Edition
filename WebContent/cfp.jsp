@@ -58,8 +58,8 @@
 <body>
 
 	<!-- Default Template -->
-	<h1 id="title">Codeforces Problems on HHSOJ</h1>
-	<i id="subtitle"><%=cp.getContestId() + cp.getIndex()%> - <%=cp.getName()%></i>
+	<h1 class="title">Codeforces Problems on HHSOJ</h1>
+	<i class="subtitle"><%=cp.getContestId() + cp.getIndex()%> - <%=cp.getName()%></i>
 	<hr />
 	<jsp:include page="nav.jsp?at=problemset"></jsp:include>
 

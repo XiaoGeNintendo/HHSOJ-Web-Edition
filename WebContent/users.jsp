@@ -25,8 +25,8 @@
 	%>
 
 	<!-- Default Template -->
-	<h1 id="title">Users on HHSOJ</h1>
-	<i id="subtitle"><%=user%>'s space</i>
+	<h1 class="title">Users on HHSOJ</h1>
+	<i class="subtitle"><%=user%>'s space</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	<!-- Default End -->

@@ -71,8 +71,8 @@
 				if (ok2) {
 		%>
 		<!-- Default Template -->
-		<h1 id="title">HHSOJ Problemset</h1>
-		<i id="subtitle"><%=p.getId()%> - <%=p.getName()%></i>
+		<h1 class="title">HHSOJ Problemset</h1>
+		<i class="subtitle"><%=p.getId()%> - <%=p.getName()%></i>
 		<hr />
 		<jsp:include page="nav.jsp?at=problemset"></jsp:include>
 	

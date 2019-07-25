@@ -79,8 +79,8 @@
 	</script>
 	
 	<!-- Default Template -->
-	<h1 id="title">Submissions on HHSOJ</h1>
-	<i id="subtitle">Ctrl+A Ctrl+C help me get AC!  --IC</i>
+	<h1 class="title">Submissions on HHSOJ</h1>
+	<i class="subtitle">Ctrl+A Ctrl+C help me get AC!  --IC</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=status"></jsp:include>
 	<!-- Default End -->

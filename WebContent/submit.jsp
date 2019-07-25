@@ -52,8 +52,8 @@
 	</script>
 
 	<!-- Default Template -->
-	<h1 id="title">Submit!</h1>
-	<i id="subtitle">Objection! -- Phoenix Wright</i>
+	<h1 class="title">Submit!</h1>
+	<i class="subtitle">Objection! -- Phoenix Wright</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=submit"></jsp:include>
 

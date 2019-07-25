@@ -16,8 +16,8 @@
 <body>
 	<div class="container">
 		<!-- Default Template -->
-		<h1 id="title">Writing a new blog on HHSOJ</h1>
-		<i id="subtitle">I have to poop for 15 minutes -- CF User</i>
+		<h1 class="title">Writing a new blog on HHSOJ</h1>
+		<i class="subtitle">I have to poop for 15 minutes -- CF User</i>
 		<hr />
 
 		<jsp:include page="nav.jsp?at=blogs"></jsp:include>

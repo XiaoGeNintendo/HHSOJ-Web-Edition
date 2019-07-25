@@ -11,8 +11,8 @@
 <title>HHSOJ-Problems</title> 
 </head>
 <body>
-	<h1 id="title">Problems in HHSOJ</h1>
-	<i id="subtitle">Solve them? Impossible! --Zzzyt</i>
+	<h1 class="title">Problems in HHSOJ</h1>
+	<i class="subtitle">Solve them? Impossible! --Zzzyt</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=problemset"></jsp:include>
 	<%

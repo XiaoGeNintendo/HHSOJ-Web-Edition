@@ -32,8 +32,8 @@
 </head>
 <body>
 	<!-- Enter Everything here -->
-	<h1 id="title"><%=c.getInfo().getName() %></h1>
-	<i id="subtitle">Start at <%=new Date(c.getInfo().getStartTime()) %></i>
+	<h1 class="title"><%=c.getInfo().getName() %></h1>
+	<i class="subtitle">Start at <%=new Date(c.getInfo().getStartTime()) %></i>
 	<hr />
 	<jsp:include page="nav.jsp?at=contests"></jsp:include>
 	

@@ -59,8 +59,8 @@
 	%>
 
 	<!-- Default Template -->
-	<h1 id="title">Custom Submission on HHSOJ</h1>
-	<i id="subtitle">It's none of your bussiness!  --XGN</i>
+	<h1 class="title">Custom Submission on HHSOJ</h1>
+	<i class="subtitle">It's none of your bussiness!  --XGN</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=status"></jsp:include>
 	<!-- Default End -->

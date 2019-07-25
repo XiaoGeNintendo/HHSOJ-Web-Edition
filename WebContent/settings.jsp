@@ -59,8 +59,8 @@
 	%>
 	
 	
-	<h1 id="title">Change Settings</h1>
-	<i id="subtitle">Leave the blank empty if you don't want to change it</i>
+	<h1 class="title">Change Settings</h1>
+	<i class="subtitle">Leave the blank empty if you don't want to change it</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	

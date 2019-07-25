@@ -50,8 +50,8 @@
 	
 	
 	<!-- Default Template -->
-	<h1 id="title">Hacks on HHSOJ</h1>
-	<i id="subtitle">unfortunately your solution to problem C has been hacked --Codeforces </i>
+	<h1 class="title">Hacks on HHSOJ</h1>
+	<i class="subtitle">unfortunately your solution to problem C has been hacked --Codeforces </i>
 	<hr />
 	<jsp:include page="nav.jsp?at=status"></jsp:include>
 	<!-- Default End -->

@@ -10,8 +10,8 @@
 </head>
 <body>
 	<!-- Default Template -->
-	<h1 id="title">HHSOJ Tool: HMS Changer</h1>
-	<i id="subtitle">It might help you to write contest lengths -- XGN</i>
+	<h1 class="title">HHSOJ Tool: HMS Changer</h1>
+	<i class="subtitle">It might help you to write contest lengths -- XGN</i>
 	<hr />
 	
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
