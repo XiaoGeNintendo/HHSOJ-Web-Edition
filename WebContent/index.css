@@ -15,7 +15,7 @@ hr {
 	clear: both;
 }
 
-p, span, a, th, td {
+p, span, a, th, td, label{
 	margin-block-start: 0px;
 	margin-block-end: 0px;
 	margin-inline-start: 0px;
@@ -38,6 +38,10 @@ a[class~="btn"]{
 	margin-right: 5px;
 }
 
+div[class~="input-group"]{
+	margin:5px;
+}
+
 .container{
 	margin-top:50px;
 	margin-bottom:50px;
@@ -51,6 +55,7 @@ a[class~="btn"]{
 	margin-bottom: 10px;
 	font-weight: bold;
 	float: left;
+	font-family:"Consolas";
 }
 
 .subtitle {
@@ -61,6 +66,7 @@ a[class~="btn"]{
 	float: left;
 	clear: both;
 	margin-bottom: 10px;
+	font-family:"Consolas";
 }
 
 #nav {
