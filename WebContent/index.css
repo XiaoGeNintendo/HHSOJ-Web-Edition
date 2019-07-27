@@ -73,13 +73,16 @@ div[class~="input-group"]{
 	clear: both;
 }
 
+#nav a{
+	color:#000000;
+	text-decoration:none;
+}
+
 .nav-link{
 	font-weight: bold;
 	font-family: 'Trebuchet MS', Helvetica, sans-serif;
 	font-size: 15px;
-	color: #000000;
 	float: left;
-	text-decoration: none;
 	padding-top: 2px !important;
 	padding-bottom: 2px !important;
 	padding-left: 10px !important;
@@ -99,6 +102,12 @@ div[class~="input-group"]{
 .selected {
 	border-bottom: 3px solid #66ccff;
 }
+
+.nostyle, .nostyle:hover, .nostyle:visited, .notstyle:active{
+	text-decoration:none;
+}
+
+
 
 .blogup {
 	color: #00ff00;
@@ -137,66 +146,72 @@ div[class~="input-group"]{
 
 /* Now this is by XGN :P */
 /* No ugly fonts!!!Me again!!!--Zzzyt */
-.userUnrated {
+.userUnrated, .userUnrated:hover{
 	text-decoration: none;
 	color: black;
 }
 
-.userNewbie {
+.userNewbie, .userNewbie:hover{
 	text-decoration: none;
 	color: grey;
 	font-weight: bold;
 }
 
-.userPupil {
+.userPupil, .userPupil:hover{
 	text-decoration: none;
 	color: green;
 	font-weight: bold;
 }
 
-.userSpecialist {
+.userSpecialist, .userSpecialist:hover{
 	text-decoration: none;
 	color: cyan;
 	font-weight: bold;
 }
 
-.userExpert {
+.userExpert, .userExpert:hover{
 	text-decoration: none;
 	color: blue;
 	font-weight: bold;
 }
 
-.userCandidateMaster {
+.userCandidateMaster, .userCandidateMaster:hover{
 	text-decoration: none;
 	color: purple;
 	font-weight: bold;
 }
 
-.userMaster {
+.userMaster, .userMaster:hover{
 	text-decoration: none;
 	color: yellow;
 	font-weight: bold;
 }
 
-.userInternationalMaster {
+.userInternationalMaster, .userInternationalMaster:hover{
 	text-decoration: none;
 	color: yellow;
 	font-weight: bold;
 }
 
-.userGrandmaster {
+.userGrandmaster, .userGrandmaster:hover{
 	text-decoration: none;
 	color: red;
 	font-weight: bold;
 }
 
-.userInternationalGrandmaster {
+.userInternationalGrandmaster, .userInternationalGrandmaster{
 	text-decoration: none;
 	color: red;
 	font-weight: bold;
 }
 
-.userLegendaryGrandmaster {
+.userLegendaryGrandmaster, .userLegendaryGrandmaster:hover{
+	text-decoration: none;
+	color: red;
+	font-weight: bold;
+}
+
+.LGM-first, .LGM-first:hover{
 	text-decoration: none;
 	color: black;
 	font-weight: bold;

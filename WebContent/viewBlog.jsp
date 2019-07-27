@@ -16,6 +16,7 @@
 <title>HHSOJ-Blogs</title>
 </head>
 <body>
+<div class="container">
 	<%
 		request.setCharacterEncoding("utf-8");
 	
@@ -172,5 +173,6 @@
 		}
 	%>
 	</table>
+</div>
 </body>
 </html>

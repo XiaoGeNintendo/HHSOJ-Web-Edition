@@ -23,7 +23,7 @@
 			for (int i = 0; i < text.length; i++) {
 		%>
 		<li class="nav-item"><a href="<%=link[i]%>"
-			class="nav-link <%=(link[i].startsWith(nowAt) ? "selected" : "")%>"><%=text[i]%></a>
+			class="<%="nav-link"+(link[i].startsWith(nowAt) ? " selected" : "")%>"><%=text[i]%></a>
 		</li>
 		<%
 			}
@@ -47,18 +47,13 @@
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><%=user%></a>
 	      	<div class="dropdown-menu">
-		        <a class="dropdown-item" href="<%="users.jsp?username=" + user%>"><i class="fa fa-user"></i>Profile</a>
-		        <a class="dropdown-item" href="mailbox.jsp"><i class="fa fa-comment"></i>Mailbox<sup><%=u.getTalks().size()-1-u.getViewIndex()%></sup></a>
-		        <a class="dropdown-item" href="settings.jsp"><i class="fa fa-cog"></i>Settings</a>
-		        <a class="dropdown-item" href="social.jsp"><i class="fa fa-cogs"></i>Preference</a>
-		        <a class="dropdown-item" href="status.jsp?userId=<%=user%>"><i class="fa fa-legal"></i>Submissions</a>
-		        <a class="dropdown-item" href="blogs.jsp?userF=<%=user%>"><i class="fa fa-pencil-square-o"></i>Blogs</a>
+		        <a class="dropdown-item" href="<%="users.jsp?username=" + user%>"><i class="fa fa-user"></i> Profile</a>
+		        <a class="dropdown-item" href="mailbox.jsp"><i class="fa fa-comment"></i> Mailbox<sup><%=u.getTalks().size()-1-u.getViewIndex()%></sup></a>
+		        <a class="dropdown-item" href="settings.jsp"><i class="fa fa-cog"></i> Settings</a>
+		        <a class="dropdown-item" href="social.jsp"><i class="fa fa-cogs"></i> Preference</a>
+		        <a class="dropdown-item" href="status.jsp?userId=<%=user%>"><i class="fa fa-legal"></i> Submissions</a>
+		        <a class="dropdown-item" href="blogs.jsp?userF=<%=user%>"><i class="fa fa-pencil-square-o"></i> Blogs</a>
 		    </div>
-		</li>
-		
-		
-		<li class="nav-item">
-		<a href="#" onclick="javascript:alert('(*^_^*)\nComing soon')" class="nav-link">????</a>
 		</li>
 		
 		<li class="nav-item">

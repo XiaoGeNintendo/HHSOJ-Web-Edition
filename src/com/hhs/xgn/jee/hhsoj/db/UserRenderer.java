@@ -57,7 +57,12 @@ public class UserRenderer {
 	 */
 	public String getUserText(Users user){
 		if(user.getSpecialRole()==null){
-			return "<a href=\"users.jsp?username="+user.getUsername()+"\" class=\"user"+getRank(user.getNowRating())+"\">"+user.getUsername()+"</a>";
+			if(getRank(user.getNowRating()).equals("LegendaryGrandmaster")) {
+				return "<a href=\"users.jsp?username="+user.getUsername()+"\" class=\"nostyle user"+getRank(user.getNowRating())+"\"><span class=\"LGM-first\">"+user.getUsername().substring(0, 1)+"</span>"+user.getUsername().substring(1)+"</a>";
+			}
+			else {
+				return "<a href=\"users.jsp?username="+user.getUsername()+"\" class=\"nostyle user"+getRank(user.getNowRating())+"\">"+user.getUsername()+"</a>";
+			}
 		}else{
 			return "<a href=\"users.jsp?username="+user.getUsername()+"\">"+r(user.getSpecialColor(),user.getUsername())+"</a>";
 		}
