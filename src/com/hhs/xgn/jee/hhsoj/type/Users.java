@@ -63,6 +63,11 @@ public class Users {
 	private int viewIndex;
 	
 	/**
+	 * Is the user a problemsetter?
+	 */
+	private boolean isSetter=false;
+	
+	/**
 	 * Return the languages in Javascript Text
 	 * @return
 	 */
@@ -370,5 +375,13 @@ public class Users {
 
 	public void setLastForget(long lastForget) {
 		this.lastForget = lastForget;
+	}
+
+	public boolean isSetter() {
+		return isSetter;
+	}
+
+	public void setSetter(boolean isSetter) {
+		this.isSetter = isSetter;
 	}
 }

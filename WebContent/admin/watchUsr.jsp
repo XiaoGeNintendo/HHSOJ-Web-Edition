@@ -36,14 +36,17 @@
 	<b>Mail</b>: <%=u.getEmail() %> <br/>
 	<b>Ban Status</b>: <%=u.isBanned() %> <br/>
 	<b>Send Notify?</b>: <%=u.isSendNotify() %> <br/>
+	<b>Is Problemsetter?</b>: <%=u.isSetter() %> <br/>
 	
 	<hr/>
 	
-	<a href="ban.jsp?id=<%=u.getId() %>">Ban/Unban</a> <br/>
+	<a href="ban.jsp?id=<%=u.getUsername() %>">Ban/Unban</a> <br/>
+	<a href="setset.jsp?id=<%=u.getUsername() %>">Set/Unset problemsetter role</a> <br/>
 	
 	<input id="role" value="<%=u.getSpecialRole().replace("<", "&lt;").replace(">","&gt;").replace("\"","&quot;")%>" placeholder="Special Role">
 	<input id="color" value="<%=u.getSpecialColor().replace("<", "&lt;").replace(">","&gt;").replace("\"","&quot;")%>" placeholder="Special Render Method.">
 	<button onclick="send()">Change Role</button>
+	
 	
 	<hr/>
 	<%=u.toJson() %>

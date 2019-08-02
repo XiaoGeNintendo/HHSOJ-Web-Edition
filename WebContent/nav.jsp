@@ -57,6 +57,10 @@
 		</li>
 		
 		<li class="nav-item">
+			<a href="set_enter.jsp" class="nav-link">Author Menu</a>
+		</li>
+		
+		<li class="nav-item">
 		<a href="<%="logout.jsp?back=" + nowAt%>" class="nav-link">Logout</a>
 		</li>
 		<%
