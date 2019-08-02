@@ -41,8 +41,8 @@
 	
 	<a href="ban.jsp?id=<%=u.getId() %>">Ban/Unban</a> <br/>
 	
-	<input id="role" value="<%=u.getSpecialRole()%>" placeholder="Special Role">
-	<input id="color" value="<%=u.getSpecialColor()%>" placeholder="Special Render Method.">
+	<input id="role" value="<%=u.getSpecialRole().replace("<", "&lt;").replace(">","&gt;").replace("\"","&quot;")%>" placeholder="Special Role">
+	<input id="color" value="<%=u.getSpecialColor().replace("<", "&lt;").replace(">","&gt;").replace("\"","&quot;")%>" placeholder="Special Render Method.">
 	<button onclick="send()">Change Role</button>
 	
 	<hr/>
