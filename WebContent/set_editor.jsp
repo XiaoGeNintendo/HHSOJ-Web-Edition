@@ -54,6 +54,9 @@
 		<center>
 			<i>Editing File:<%=file %></i>
 			<div id="code">Loading File Content...</div>
+			
+			<button onclick="save()" class="btn btn-primary"><i class="fa fa-save"></i>Save</button>
+			<p id="info"></p>
 		</center>
 		
 		
@@ -81,6 +84,16 @@
 		   editor.setValue(data.trim());
 	   });
 	   
+	   function save(){
+		   document.getElementById("info").innerHTML="Save Failed.Retrying";
+		   $.post("set_save.jsp",{file:"<%=file%>",data:editor.getValue()},function(data,status){
+			   if(status=="success"){
+				   document.getElementById("info").innerHTML=data.trim();
+			   }
+		   })
+		   
+		   
+	   }
 	   
     </script>
 </body>
