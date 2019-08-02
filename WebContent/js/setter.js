@@ -20,7 +20,7 @@ function httpPost(URL, PARAMS) {
 	
 function openEdit(pId,fn,mode){
 	var para={
-		"file":"problem/"+pId+"/"+fn,
+		"file":"problems/"+pId+"/"+fn,
 		"mode":mode
 	}
 	

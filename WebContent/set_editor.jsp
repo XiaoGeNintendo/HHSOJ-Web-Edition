@@ -17,6 +17,11 @@
 	background: #ffffff;
 	height: 400px;
 }
+#code{
+    margin: auto;
+    width: 60%;
+    height: 500px;
+}
 </style>
 </head>
 <body>
@@ -46,9 +51,37 @@
 			}
 		%>
 		<!-- Default End -->
-		
+		<center>
+			<i>Editing File:<%=file %></i>
+			<div id="code">Loading File Content...</div>
+		</center>
 		
 		
 	</div>
+	
+	<script>
+	   // Init the code editor
+	   var editor = ace.edit("code");
+	   editor.setTheme("ace/theme/<%=u.getPreference().get("editorTheme").value%>");
+	   editor.session.setMode("ace/mode/<%=mode%>");
+	   document.getElementById('code').style.fontSize='<%=u.getPreference().get("fontSize").value%>';
+	
+	   if(<%=u.getPreference().get("autoComplete").value.equals("Yes")%>){
+	   	ace.require("ace/ext/language_tools");
+	   	
+	   	editor.setOptions({
+	   	    enableBasicAutocompletion: true,
+	           enableSnippets: true,
+	           enableLiveAutocompletion: true
+	   	});
+	   }
+	   
+	   //load the content
+	   $.post("set_api.jsp",{file:"<%=file%>"},function(data,status){
+		   editor.setValue(data.trim());
+	   });
+	   
+	   
+    </script>
 </body>
 </html>
