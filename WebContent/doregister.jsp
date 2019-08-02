@@ -22,6 +22,9 @@
 	boolean ok=false;
 	
 	for(Users s:users){
+		if(s==null ){
+			continue;
+		}
 		if(s.getUsername().equals(username)){
 			out.println("<font color=#ff0000><b>Sorry, this username has been taken. Please try another</b></font>");
 			out.println("<a href=\"register.jsp\">Let me try again</a>");
