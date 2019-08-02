@@ -22,7 +22,7 @@ public class FileHelper {
 	
 	public static String writeFile(String path,String value){
 		try{
-			PrintWriter pw=new PrintWriter(path);
+			PrintWriter pw=new PrintWriter(path,"utf-8");
 			pw.print(value);
 			pw.close();
 			return "Success";
