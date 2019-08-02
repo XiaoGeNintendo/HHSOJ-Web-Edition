@@ -1,3 +1,7 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Problem"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.ProblemHelper"%>
+<%@page import="org.eclipse.jdt.internal.compiler.lookup.ProblemMethodBinding"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Users"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.UserHelper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -39,8 +43,14 @@
 		<!-- Default End -->
 
 		<center>
-			<h1>Welcome to HHSOJ Problemsetter Menu!</h1>
-			<a href="set_probindex.jsp" class="btn btn-primary"><i class="fa fa-book"></i>Edit Problem</a>
+			<h1>Problem Index</h1>
+			
+			<%
+				ArrayList<Problem> pro=new ProblemHelper().getAllProblems();
+				for(Problem p:pro){
+			%>
+				<a href="set_editProbInfo.jsp?id=<%=p.getId() %>" class="btn btn-primary"><i class="fa fa-edit"></i><%=p.getId()+":"+p.getName() %></a> <br/>
+			<% }%>
 		</center>
 
 	</div>

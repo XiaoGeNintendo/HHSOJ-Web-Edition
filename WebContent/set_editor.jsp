@@ -1,3 +1,7 @@
+<%@page import="com.hhs.xgn.jee.hhsoj.type.Problem"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.hhs.xgn.jee.hhsoj.db.ProblemHelper"%>
+<%@page import="org.eclipse.jdt.internal.compiler.lookup.ProblemMethodBinding"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.type.Users"%>
 <%@page import="com.hhs.xgn.jee.hhsoj.db.UserHelper"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,7 +10,7 @@
 <html>
 <head>
 <jsp:include page="head.jsp"></jsp:include>
-
+<script src="js/setter.js"></script>
 <title>HHSOJ-Problemsetter Menu</title>
 <style type="text/css">
 .w-e-text-container {
@@ -34,15 +38,17 @@
 				out.println("Access denied");
 				return;
 			}
-			
+			String file=request.getParameter("file");
+			String mode=request.getParameter("mode");
+			if(file==null || mode==null){
+				out.println("Access denied");
+				return;
+			}
 		%>
 		<!-- Default End -->
-
-		<center>
-			<h1>Welcome to HHSOJ Problemsetter Menu!</h1>
-			<a href="set_probindex.jsp" class="btn btn-primary"><i class="fa fa-book"></i>Edit Problem</a>
-		</center>
-
+		
+		
+		
 	</div>
 </body>
 </html>
