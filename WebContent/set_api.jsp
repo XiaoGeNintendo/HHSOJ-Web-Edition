@@ -21,5 +21,9 @@
 		return;
 	}
 	
-	out.println(FileHelper.readFileFull(ConfigLoader.getPath()+"/"+file));
+	String c=FileHelper.readFileFull(ConfigLoader.getPath()+"/"+file);
+	if(c==null){
+		c="Nothing Found";
+	}
+	out.println(c);
 %>	

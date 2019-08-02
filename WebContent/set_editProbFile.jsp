@@ -55,6 +55,8 @@
 		
 		<br/>
 		<center>
+			<a href="javascript:openEdit('<%=pid %>','newFile','plain')" class="btn btn-success"><i class="fa fa-plus"></i>New File</a> <br/>
+			
 			<%
 				File f=new File(p.getPath());
 				for(File sub:f.listFiles()){
