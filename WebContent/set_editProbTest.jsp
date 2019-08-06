@@ -61,9 +61,11 @@
 		<div id="accordion">
 			<%
 				File f=new File(p.getPath());
+				int id=0;
 				for(File sub:f.listFiles()){
+					id++;
 					if(sub.isDirectory() && !sub.getName().startsWith("!")){
-						String frn=sub.getName().replace(" ","_");
+						String frn=id+"";
 			%>
 						<div class="card">
 						  <div class="card-header">
