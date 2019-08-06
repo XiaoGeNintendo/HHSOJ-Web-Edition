@@ -126,6 +126,16 @@
 	   function compile(){
 		   _("Compiling",true);
 		   
+		   var req=$.post("set_compile.jsp",{file:document.getElementById("name").value,data:editor.getValue()},function(data,status){
+			   if(status=="success"){
+				   
+				   _(data.trim(),false);
+			   }else{
+				   _("Compile Failed",false);
+				   
+			   }
+		   })
+		   
 		   _("Compile Failed",false);
 	   }
 	   
