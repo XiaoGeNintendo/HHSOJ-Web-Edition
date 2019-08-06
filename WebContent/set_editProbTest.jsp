@@ -71,6 +71,7 @@
 						  <div class="card-header">
 						    <a class="card-link" data-toggle="collapse" href="#collapse<%=frn%>">
 						      <%=sub.getName() %>
+						      <a href="javascript:del('<%=pid %>','<%=sub.getName()%>')"><i class="fa fa-times"></i></a>
 						    </a>
 						  </div>
 						  <div id="collapse<%=frn %>" class="collapse" data-parent="#accordion">

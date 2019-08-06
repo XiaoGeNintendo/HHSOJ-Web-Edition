@@ -64,6 +64,10 @@
 					if(!sub.isDirectory()){	
 						int expos=sub.getName().lastIndexOf('.');
 						String extension=(expos==-1?"":sub.getName().substring(expos+1));
+			%>
+						<a href="javascript:del('<%=pid %>','<%=sub.getName()%>')" class="btn btn-danger"><i class="fa fa-times"></i>Delete</a>
+			<%
+			
 						if(extension.equalsIgnoreCase("EXE") || extension.isEmpty()){
 			%>
 					<a href="#" class="btn btn-primary disabled"><i class="fa fa-times"></i><%=sub.getName() %></a> <br/>
