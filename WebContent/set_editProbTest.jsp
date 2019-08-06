@@ -55,6 +55,9 @@
 		
 		<br/>
 		
+		<input id="add" style="max-width: 1000px; width: 70%;" placeholder="Testset Name">
+		<button onclick="add()" class="btn btn-success"><i class="fa fa-plus"></i>New Testset</button>
+		
 		<div id="accordion">
 			<%
 				File f=new File(p.getPath());
@@ -75,8 +78,8 @@
 						  		for(File input:sub.listFiles()){
 						  			if(input.isFile()){
 						  				 %>
-						  				 <a href="javascript:openEdit('<%=pid %>','<%=sub.getName() %>/<%=input.getName() %>','plain')" class="btn btn-primary"><i class="fa fa-edit"></i><%=input.getName() %></a> <br/>
-						  				 
+						  				 <a href="javascript:openEdit('<%=pid %>','<%=sub.getName() %>/<%=input.getName() %>','plain')" class="btn btn-primary"><i class="fa fa-edit"></i><%=input.getName() %></a>
+						  				 <a href="javascript:delete('<%=pid %>','<%=sub.getName()+"/"+input.getName() %>)" class="btn btn-danger"><i class="fa fa-times"></i>Delete</a> <br/>
 						  				 <%
 						  			}
 						  		}
