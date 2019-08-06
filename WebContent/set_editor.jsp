@@ -57,7 +57,9 @@
 			<div id="code">Loading File Content...</div>
 			
 			<button onclick="save()" class="btn btn-primary"><i class="fa fa-save"></i>Save</button>
-			<a href="<%=back %>" class="btn btn-primary"><i class="fa fa-back"></i>Back</a>
+			<button onclick="compile()" class="btn btn-primary"><i class="fa fa-gears"></i>Save and Compile</button>
+			
+			<a href="<%=back %>" class="btn btn-primary"><i class="fa fa-mail-reply"></i>Back</a>
 			<p id="info"></p>
 		</center>
 		
@@ -86,16 +88,24 @@
 		   editor.setValue(data.trim());
 	   });
 	   
+	   var info=document.getElementById("info");
+	   
 	   function save(){
-		   document.getElementById("info").innerHTML="Save Failed.Retrying";
-		   $.post("set_save.jsp",{file:document.getElementById("name").value,data:editor.getValue()},function(data,status){
+		   document.getElementById("info").innerHTML="Saving";
+		   var req=$.post("set_save.jsp",{file:document.getElementById("name").value,data:editor.getValue()},function(data,status){
 			   if(status=="success"){
-				   document.getElementById("info").innerHTML=data.trim();
+				   info.innerHTML=data.trim();
+			   }else{
+				   info.innerHTML="Save Failed"
 			   }
 		   })
 		   
+		   req.error(function(){
+			   info.innerHTML="Save Failed";
+		   })
 		   
 	   }
+	   
 	   
     </script>
 </body>
