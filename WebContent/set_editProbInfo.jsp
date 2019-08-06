@@ -54,7 +54,7 @@
 		
 		<br/>
 		<center>
-			<a href="javascript:openEdit('<%=pid%>','arg.txt','plain')" class="btn btn-primary"><i class="fa fa-edit"></i>Edit This File</a>
+			<a href="javascript:openEdit('<%=pid%>','arg.txt','plain')" class="btn btn-primary"><i class="fa fa-edit"></i>Edit arg.txt</a>
 		</center>
 		
 	</div>
