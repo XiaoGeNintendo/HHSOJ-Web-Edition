@@ -35,7 +35,7 @@ public class FileHelper {
 			}
 			
 			Config con=new ConfigLoader().load();	
-			ProcessBuilder pb = new ProcessBuilder(new String[] { "g++",path,"-DONLINE_JUDGE", (con.isEnableCPP11()?"-std=c++11":"-DNOCPP"), "-O2"});
+			ProcessBuilder pb = new ProcessBuilder(new String[] { "g++",path,"-o",path+".exe","-DONLINE_JUDGE", (con.isEnableCPP11()?"-std=c++11":"-DNOCPP"), "-O2"});
 
 			File err=new File(path+".compileerrorfile.tmp");
 			pb.redirectError(err);
@@ -60,7 +60,7 @@ public class FileHelper {
 			
 			if(killed){
 				if(p.exitValue()==0){
-					return "Success:"+content;
+					return "Successfully compiled to "+path+".exe:"+content;
 				}else{
 					return "CE:\n"+content;
 				}

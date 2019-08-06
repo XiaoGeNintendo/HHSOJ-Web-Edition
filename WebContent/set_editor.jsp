@@ -106,7 +106,7 @@
 	   function save(){
 		   
 		   _("Saving.If it takes too long, an error may have occurred.",true);
-		   var req=$.post("set_saves.jsp",{file:document.getElementById("name").value,data:editor.getValue()},function(data,status){
+		   var req=$.post("set_save.jsp",{file:document.getElementById("name").value,data:editor.getValue()},function(data,status){
 			   if(status=="success"){
 				   
 				   _(data.trim(),false);
