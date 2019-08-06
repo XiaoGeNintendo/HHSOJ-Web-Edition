@@ -28,12 +28,13 @@
 			}
 		%>
 		
-		<a href="problemset.jsp" class="nav-link">Practice Problemset</a>
-		<a href="cpset.jsp" class="nav-link">Contest Problemset</a>
-		<a href="cfset.jsp" class="nav-linl selected">Codeforces Problemset</a>
-		
-		<br/>
-		<br/>
+		<div class="navbar navbar-expand-sm">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a href="problemset.jsp" class="nav-link">Practice Problemset</a></li>
+				<li class="nav-item"><a href="cpset.jsp" class="nav-link">Contest Problemset</a></li>
+				<li class="nav-item"><a href="cfset.jsp" class="nav-link selected">Codeforces Problemset</a></li>
+			</ul>
+		</div>
 		
 		<table class="table table-bordered table-sm">
 			<tr>

@@ -69,11 +69,11 @@ div[class~="input-group"]{
 	font-family:"Consolas";
 }
 
-#nav {
+.navbar {
 	clear: both;
 }
 
-#nav a{
+.navbar a{
 	color:#000000;
 	text-decoration:none;
 }
@@ -103,6 +103,10 @@ div[class~="input-group"]{
 	border-bottom: 3px solid #66ccff;
 }
 
+.nav-link, .nav-link:hover, .nav-link:visited, .nav-link:active{
+	text-decoration:none;
+}
+
 .nostyle, .nostyle:hover, .nostyle:visited, .notstyle:active{
 	text-decoration:none;
 }
@@ -110,13 +114,39 @@ div[class~="input-group"]{
 
 
 .blogup {
+	font-size:20px;
 	color: #00ff00;
 	font-weight: bold;
 }
 
 .blogdown {
+	font-size:20px;
 	color: #787878;
 	font-weight: bold;
+}
+
+.upvote{
+	margin:5px;
+	font-size:20px;
+	color: #787878;
+}
+
+.upvoted{
+	margin:5px;
+	font-size:20px;
+	color: #00ff00;
+}
+
+.downvote{
+	margin:5px;
+	font-size:20px;
+	color: #787878;
+}
+
+.downvoted{
+	margin:5px;
+	font-size:20px;
+	color: #ff0000;
 }
 
 #filter-top {
@@ -199,7 +229,7 @@ div[class~="input-group"]{
 	font-weight: bold;
 }
 
-.userInternationalGrandmaster, .userInternationalGrandmaster{
+.userInternationalGrandmaster, .userInternationalGrandmaster:hover{
 	text-decoration: none;
 	color: red;
 	font-weight: bold;

@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-<!-- Generated header -->
+<!-- Generated navbar -->
 <%
 	String nowAt = request.getParameter("at");
 	String user = (String) session.getAttribute("username");
@@ -68,4 +68,4 @@
 		%>
 	</ul>
 </div>
-<br />
+<!-- End of navbar -->

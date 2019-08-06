@@ -51,7 +51,7 @@
 	<!-- Default End-->
 
 	
-	<div id="blog-content">
+	<div class="card"><div class="card-body">
 		<!-- Blog post HTML -->
 
 		<%
@@ -59,7 +59,7 @@
 		%>
 
 		<!-- End blog -->
-	</div>
+	</div></div>
 
 	<hr/>
 	
@@ -73,7 +73,7 @@
 
 		if (stat == 0) {
 	%>
-			<a href="dovote.jsp?id=<%=bl.getId() %>&upv=1"><img src="asset/upt.png" alt="Upvote"/></a>
+			<a href="dovote.jsp?id=<%=bl.getId() %>&upv=1"><i class="fa fa-thumbs-up upvote"></i></a>
 	<%
 			if (bl.getVote() > 0) {
 	%>
@@ -85,13 +85,13 @@
 	<%
 			}
 	%>
-			<a href="dovote.jsp?id=<%=bl.getId() %>&upv=-1"><img src="asset/downt.png" alt="Upvote"/></a>
+			<a href="dovote.jsp?id=<%=bl.getId() %>&upv=-1"><i class="fa fa-thumbs-down downvote"></i></a>
 	<%
 		}
 		
 		if (stat == 1) {
 	%>
-			<img src="asset/upedt.png" alt="Upvoted"/>
+			<i class="fa fa-thumbs-up upvoted"></i>
 	<%
 			if (bl.getVote() > 0) {
 	%>
@@ -103,13 +103,13 @@
 	<%
 			}
 	%>
-			<img src="asset/downt.png" alt="Downvote"/>
+			<i class="fa fa-thumbs-down downvote"></i>
 	<%
 		}
 		
 		if (stat == 2) {
 	%>
-			<img src="asset/upt.png" alt="Upvote"/>
+			<i class="fa fa-thumbs-up upvote"></i>
 	<%
 			if (bl.getVote() > 0) {
 	%>
@@ -121,14 +121,14 @@
 	<%
 			}
 	%>
-			<img src="asset/downedt.png" alt="Downvoted"/>
+			<i class="fa fa-thumbs-down downvoted"></i>
 	<%
 		}
 		
 		if(bl.getUser().equals(userLooking)){
 	%>
-		<a href="editBlog.jsp?id=<%=bl.getId() %>">Edit</a> 
-		<a href="deleteBlog.jsp?id=<%=bl.getId() %>">Delete</a>
+		<a class="btn btn-secondary" href="editBlog.jsp?id=<%=bl.getId() %>">Edit</a> 
+		<a class="btn btn-danger" href="deleteBlog.jsp?id=<%=bl.getId() %>">Delete</a>
 		<br/>
 	<%			
 		}
@@ -140,13 +140,12 @@
 		}else{
 			
 	%>
-		<br/>
-		<a name="CommentArea"></a>
-		<form action="doComment.jsp?id=<%=bl.getId() %>" method="post" id="comment">
-			<textarea name="comment" rows="8" cols="100" placeholder="Leave your comment..."></textarea>
-			<input type="submit" name="submit" value="Comment">
-		</form>
-		
+		<div class="form-group">
+			<form action="doComment.jsp?id=<%=bl.getId() %>" method="post" id="comment">
+				<textarea class="form-control" name="comment" rows="8" cols="100" placeholder="Leave your comment..."></textarea>
+				<input class="btn btn-primary" type="submit" name="submit" value="Comment">
+			</form>
+		</div>
 		<br/>
 	<%
 		}
