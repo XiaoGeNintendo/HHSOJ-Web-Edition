@@ -17,10 +17,7 @@
 		return;
 	}
 	
-	if(file.contains("..")){
-		out.println("Please don't use '..' in filename");
-		return;
-	}
+	
 	
 	String file=request.getParameter("file");
 	String val=request.getParameter("data");
@@ -29,6 +26,10 @@
 		return;
 	}
 	
+	if(file.contains("..")){
+		out.println("Please don't use '..' in filename");
+		return;
+	}
 	
 	out.println(FileHelper.writeFile(ConfigLoader.getPath()+"/"+file,val));
 %>	

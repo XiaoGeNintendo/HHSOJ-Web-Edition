@@ -102,11 +102,11 @@
 		   __(b);
 	   }
 	   
+	   
 	   function save(){
 		   
-		   _("Saving",true);
-		   
-		   var req=$.post("set_save.jsp",{file:document.getElementById("name").value,data:editor.getValue()},function(data,status){
+		   _("Saving.If it takes too long, an error may have occurred.",true);
+		   var req=$.post("set_saves.jsp",{file:document.getElementById("name").value,data:editor.getValue()},function(data,status){
 			   if(status=="success"){
 				   
 				   _(data.trim(),false);
@@ -116,15 +116,11 @@
 			   }
 		   })
 		   
-		   req.fail=function(){
-			   _("Save Failed",false);
-			   
-		   }
 		   
 	   }
 	   
 	   function compile(){
-		   _("Compiling",true);
+		   _("Compiling.If it takes too long, an error may have occurred.",true);
 		   
 		   var req=$.post("set_compile.jsp",{file:document.getElementById("name").value,data:editor.getValue()},function(data,status){
 			   if(status=="success"){
@@ -136,9 +132,6 @@
 			   }
 		   })
 		   
-		   req.fail=function(){
-			   _("Compile Failed",false);   
-		   }
 		   
 	   }
 	   
