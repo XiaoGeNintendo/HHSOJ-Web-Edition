@@ -54,8 +54,9 @@
 		<a href="set_editProbTest.jsp?id=<%=pid %>" class="btn"><i class="fa fa-code"></i>Tests</a>
 		
 		<br/>
-		<center>
-			<a href="javascript:openEdit('<%=pid %>','newFile','plain')" class="btn btn-success"><i class="fa fa-plus"></i>New File</a> <br/>
+			<center>
+				<a href="javascript:openEdit('<%=pid %>','newFile','plain')" class="btn btn-success"><i class="fa fa-plus"></i>New File</a> <br/>
+			</center>
 			
 			<%
 				File f=new File(p.getPath());
@@ -64,7 +65,10 @@
 						int expos=sub.getName().lastIndexOf('.');
 						String extension=(expos==-1?"":sub.getName().substring(expos+1));
 						if(extension.equalsIgnoreCase("EXE") || extension.isEmpty()){
-							continue;
+			%>
+					<a href="#" class="btn btn-primary disabled"><i class="fa fa-times"></i><%=sub.getName() %></a> <br/>
+			<%continue;
+							
 						}
 						if(extension.equalsIgnoreCase("html") ||extension.equalsIgnoreCase("htm")){
 			%>
@@ -88,7 +92,7 @@
 				}
 			%>
 			
-		</center>
+		
 		
 	</div>
 </body>
