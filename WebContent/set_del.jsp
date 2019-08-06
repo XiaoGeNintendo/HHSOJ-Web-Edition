@@ -20,8 +20,9 @@
 	
 	
 	
-	String name=request.getParameter("name");
+	String name=request.getParameter("file");
 	String back=request.getParameter("back");
+	
 	if(name==null || back==null){
 		out.println("Access denied");
 		return;
@@ -35,6 +36,11 @@
 	File f=new File(ConfigLoader.getPath()+"/"+name);
 	if(!f.exists()){
 		out.println("File doesn't exist");
+		return;
+	}
+	
+	if(f.isDirectory() && f.list().length!=0){
+		out.println("Directory must be empty in order to delete");
 		return;
 	}
 	
