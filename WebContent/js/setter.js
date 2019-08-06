@@ -27,3 +27,14 @@ function openEdit(pId,fn,mode){
 	
 	httpPost("set_editor.jsp",para);
 }
+
+function del(pId,fn,mode){
+	var para={
+		"file":"problems/"+pId+"/"+fn,
+		"mode":mode,
+		"back":location.href
+	}
+	
+	httpPost("set_del.jsp",para);
+}
+

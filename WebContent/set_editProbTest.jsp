@@ -79,7 +79,7 @@
 						  			if(input.isFile()){
 						  				 %>
 						  				 <a href="javascript:openEdit('<%=pid %>','<%=sub.getName() %>/<%=input.getName() %>','plain')" class="btn btn-primary"><i class="fa fa-edit"></i><%=input.getName() %></a>
-						  				 <a href="javascript:delete('<%=pid %>','<%=sub.getName()+"/"+input.getName() %>)" class="btn btn-danger"><i class="fa fa-times"></i>Delete</a> <br/>
+						  				 <a href="javascript:del('<%=pid %>','<%=sub.getName()+"/"+input.getName() %>')" class="btn btn-danger"><i class="fa fa-times"></i>Delete</a> <br/>
 						  				 <%
 						  			}
 						  		}
@@ -92,7 +92,19 @@
 				}
 			%>
 		</div>
-		</div>
+		
+		<script>
+		function add(){
+			var para={
+				"pid":"<%=pid%>",
+				"name":document.getElementById("add").value
+			}
+			
+			httpPost("set_addset.jsp",para);
+		}
+		
+		</script>
 	</div>
+	
 </body>
 </html>
