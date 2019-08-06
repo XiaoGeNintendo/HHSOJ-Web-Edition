@@ -45,6 +45,7 @@
 			}
 			String file=request.getParameter("file");
 			String mode=request.getParameter("mode");
+			String back=request.getParameter("back");
 			if(file==null || mode==null){
 				out.println("Access denied");
 				return;
@@ -56,6 +57,7 @@
 			<div id="code">Loading File Content...</div>
 			
 			<button onclick="save()" class="btn btn-primary"><i class="fa fa-save"></i>Save</button>
+			<a href="<%=back %>" class="btn btn-primary"><i class="fa fa-back"></i>Back</a>
 			<p id="info"></p>
 		</center>
 		

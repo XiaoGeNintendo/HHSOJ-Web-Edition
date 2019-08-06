@@ -21,7 +21,8 @@ function httpPost(URL, PARAMS) {
 function openEdit(pId,fn,mode){
 	var para={
 		"file":"problems/"+pId+"/"+fn,
-		"mode":mode
+		"mode":mode,
+		"back":location.href
 	}
 	
 	httpPost("set_editor.jsp",para);
