@@ -16,12 +16,6 @@
 		out.println("Access denied");
 		return;
 	}
-	
-	if(file.contains("..")){
-		out.println("Please don't use '..' in filename");
-		return;
-	}
-	
 	String file=request.getParameter("file");
 	String val=request.getParameter("data");
 	if(file==null || val==null){
@@ -29,6 +23,13 @@
 		return;
 	}
 	
+	if(file.contains("..")){
+		out.println("Please don't use '..' in filename");
+		return;
+	}
 	
-	out.println(FileHelper.writeFile(ConfigLoader.getPath()+"/"+file,val));
+	System.out.println("Compile File Request Start");
+	
+	
+	out.println(FileHelper.compileFile(ConfigLoader.getPath()+"/"+file,val));
 %>	

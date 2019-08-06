@@ -60,7 +60,7 @@
 			<button id="bt2" onclick="compile()" class="btn btn-primary"><i class="fa fa-gears"></i>Save and Compile</button>
 			
 			<a href="<%=back %>" class="btn btn-primary"><i class="fa fa-mail-reply"></i>Back</a>
-			<p id="info"></p>
+			<pre id="info"></pre>
 		</center>
 		
 		
@@ -129,14 +129,17 @@
 		   var req=$.post("set_compile.jsp",{file:document.getElementById("name").value,data:editor.getValue()},function(data,status){
 			   if(status=="success"){
 				   
-				   _(data.trim(),false);
+				   _(data.trim().replace('<','&lt;').replace('>','&gt;'),false);
 			   }else{
 				   _("Compile Failed",false);
 				   
 			   }
 		   })
 		   
-		   _("Compile Failed",false);
+		   req.fail=function(){
+			   _("Compile Failed",false);   
+		   }
+		   
 	   }
 	   
     </script>
