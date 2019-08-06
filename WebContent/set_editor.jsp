@@ -56,8 +56,8 @@
 			<i>Editing File:</i><input id="name" value="<%=file %>" />
 			<div id="code">Loading File Content...</div>
 			
-			<button onclick="save()" class="btn btn-primary"><i class="fa fa-save"></i>Save</button>
-			<button onclick="compile()" class="btn btn-primary"><i class="fa fa-gears"></i>Save and Compile</button>
+			<button id="bt1" onclick="save()" class="btn btn-primary"><i class="fa fa-save"></i>Save</button>
+			<button id="bt2" onclick="compile()" class="btn btn-primary"><i class="fa fa-gears"></i>Save and Compile</button>
 			
 			<a href="<%=back %>" class="btn btn-primary"><i class="fa fa-mail-reply"></i>Back</a>
 			<p id="info"></p>
@@ -89,23 +89,45 @@
 	   });
 	   
 	   var info=document.getElementById("info");
+	   var bt1=document.getElementById("bt1");
+	   var bt2=document.getElementById("bt2");
+	   
+	   function __(x){
+		   bt1.disabled=x;
+		   bt2.disabled=x;
+	   }
+	   
+	   function _(a,b){
+		   info.innerHTML=a;
+		   __(b);
+	   }
 	   
 	   function save(){
-		   document.getElementById("info").innerHTML="Saving";
+		   
+		   _("Saving",true);
+		   
 		   var req=$.post("set_save.jsp",{file:document.getElementById("name").value,data:editor.getValue()},function(data,status){
 			   if(status=="success"){
-				   info.innerHTML=data.trim();
+				   
+				   _(data.trim(),false);
 			   }else{
-				   info.innerHTML="Save Failed"
+				   _("Save Failed",false);
+				   
 			   }
 		   })
 		   
-		   req.error(function(){
-			   info.innerHTML="Save Failed";
-		   })
+		   req.fail=function(){
+			   _("Save Failed",false);
+			   
+		   }
 		   
 	   }
 	   
+	   function compile(){
+		   _("Compiling",true);
+		   
+		   _("Compile Failed",false);
+	   }
 	   
     </script>
 </body>
