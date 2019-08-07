@@ -5,7 +5,7 @@
 <head>
 <jsp:include page="head.jsp"></jsp:include>
 <style>
-.sub{
+.sub,h2{
 	font-family:"Consolas";
 }
 </style>
@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container">
-	<h1>Verdict List!</h1>
+	<h1 class="title">Verdict List!</h1>
 	<i class="subtitle">Wrong answer on test 97 --WrongAnswerOnTest97</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
