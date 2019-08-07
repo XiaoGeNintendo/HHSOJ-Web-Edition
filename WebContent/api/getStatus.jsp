@@ -60,7 +60,7 @@
 					
 			%>
 							<tr bgcolor="<%=(id==s.getId()?"cyan":(cnt%2==0?"white":"#efefef"))%>">
-								<td><%=TypeMaster.render(s) %></td>
+								<td style="text-align:center;"><%=TypeMaster.render(s) %></td>
 								<td><a href="submission.jsp?id=<%=s.getId()%>"> <%=s.getId() %> </a></td>
 								
 								<td><a href="problem.jsp?id=<%=s.getProb()%>"> <%=s.getProb() %><sup><abbr title="Testset:<%=s.getTestset() %>"><%=s.getTestset().substring(0,1).toUpperCase() %></abbr></sup> </a></td>

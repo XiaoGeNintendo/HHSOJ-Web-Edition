@@ -48,7 +48,7 @@
 	<br />
 	
 	<p>
-		<input type="text" class="form-control" placeholder="Title" id="inpt" style="max-width: 1000px; width: 100%;" />
+		<input type="text" class="form-control" placeholder="Title" id="inpt"/>
 	</p>
 	<br/>
 	

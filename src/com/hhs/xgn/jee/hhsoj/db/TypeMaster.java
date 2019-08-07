@@ -15,13 +15,13 @@ public class TypeMaster {
 			"fa fa-sort-amount-desc","Contest Problemset Submission"
 		},
 		new String[]{
-			"fa fa-plane","Hack Attempt"
+			"fa fa fa-gavel","Hack Attempt"
 		},
 		new String[]{
 			"fa fa-edit","Custom Test Submission"
 		},
 		new String[]{
-			"fa fa-send","Normal Submission"
+			"fa fa-h-square","Normal Submission"
 		}
 	};
 	

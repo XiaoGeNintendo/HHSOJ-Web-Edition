@@ -11,11 +11,22 @@
 <html>
 <head>
 <jsp:include page="head.jsp"></jsp:include>
-
+<style>
+.filter-top {
+	border-collapse: collapse;
+	width: 100%;
+	align-self: center;
+	margin: 0px auto;
+	min-width: 500px;
+	border: 1px solid #cccccc;
+	background: #ffffff;
+	padding: 10px;
+}
+</style>
 <title>HHSOJ-Status</title>
 </head>
 <body>
-	
+<div class="container">
 	<!-- Default Template -->
 	<h1 class="title">Status</h1>
 	<i class="subtitle">There'll be only one testing thread working at a time --XGN</i>
@@ -32,21 +43,21 @@
 			String verdictPattern=request.getParameter("verdictId");
 
 		%>
-		<div id="filter-top">
+		<div class="card filter-top">
 			<p><strong>Submission Filter Setting</strong></p>
 			<form action="#" name="query" method="get">
 				<p>
-				User:<input name="userId" type="text" style="width:130px;" value="<%=(userPattern!=null?userPattern:"") %>"/>
-				Problem:<input name="probId" type="text" style="width:70px;" value="<%=(probPattern!=null?probPattern:"") %>"/>
-				Verdict:<input name="verdictId" type="text" style="width:150px;" value="<%=(verdictPattern!=null?verdictPattern:"") %>"/>
-				<input name="submit" type="submit" value="Filter"/>
+				<input class="form-control" name="userId" type="text" style="width:150px;display:inline-block;" placeholder="User" value="<%=(userPattern!=null?userPattern:"") %>"/>
+				<input class="form-control" name="probId" type="text" style="width:100px;display:inline-block;" placeholder="Problem" value="<%=(probPattern!=null?probPattern:"") %>"/>
+				<input class="form-control" name="verdictId" type="text" style="width:150px;display:inline-block;" placeholder="Verdict" value="<%=(verdictPattern!=null?verdictPattern:"") %>"/>
+				<input class="btn btn-primary" name="submit" type="submit" value="Filter"/>
 				</p>
 			</form>
 		</div>
 		
 		<br/>
 		
-		<table id="status-table">
+		<table class="table table-bordered table-sm" id="status-table">
 		</table>
 		
 	</center>
@@ -189,5 +200,6 @@
 		}
 		
 	</script>
+</div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 /* by Zzzyt */
 body { 
 	background: #fafaf8;
-	min-width: 820px;
+	min-width: 900px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -45,7 +45,7 @@ div[class~="input-group"]{
 .container{
 	margin-top:50px;
 	margin-bottom:50px;
-	min-width:720px;
+	min-width:800px;
 }
 
 .title {
@@ -147,17 +147,6 @@ div[class~="input-group"]{
 	margin:5px;
 	font-size:20px;
 	color: #ff0000;
-}
-
-#filter-top {
-	border-collapse: collapse;
-	width: 80%;
-	align-self: center;
-	margin: 0px auto;
-	min-width: 500px;
-	border: 1px solid #cccccc;
-	background: #ffffff;
-	padding: 10px;
 }
 
 .seperator {
@@ -281,25 +270,9 @@ div[class~="input-group"]{
 }
 
 #status-table {
-	border-collapse: collapse;
-	width: 80%;
 	align-self: center;
 	margin: 0px auto;
 	min-width: 500px;
-	border: 1px solid #cccccc;
-	background: #ffffff;
-}
-
-#status-table>tbody>tr>th {
-	text-align: center;
-	padding: 3px;
-	border: 1px solid #cccccc;
-}
-
-#status-table>tbody>tr>td {
-	text-align: center;
-	padding: 3px;
-	border: 1px solid #cccccc;
 }
 
 /*Codeforces Round Box*/
