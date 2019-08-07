@@ -5,7 +5,7 @@
 <head>
 <jsp:include page="head.jsp"></jsp:include>
 
-<title>HHSOJ-Writing a new blog</title>
+<title>HHSOJ - Writing a new blog</title>
 <style type="text/css">
 .w-e-text-container {
 	background: #ffffff;

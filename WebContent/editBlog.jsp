@@ -10,7 +10,7 @@
 <title>HHSOJ - Edit Post</title>
 </head>
 <body>
-
+<div class="container">
 	<%
 		String userLooking;
 		Blog b;
@@ -39,25 +39,26 @@
 	<hr />
 	
 	<jsp:include page="nav.jsp?at=blogs"></jsp:include>
-	
 	<!-- Default End -->
 
-	<script type="text/javascript" src="js/wangEditor.js"></script>
-
-	<b>Now logging in as <%=userLooking%></b>
+	<p>
+		<i>( Now logging in as <%=userLooking%> )
+		</i>
+	</p>
 	<br />
-	<center>
-		Title:<input type="text" width="50%" id="inpt" value="<%=b.getTitle() %>"/> <br /> <br />
-	</center>
-
-	<div id="div1">
+	
+	<p>
+		<input type="text" class="form-control" placeholder="Title" id="inpt" style="max-width: 1000px; width: 100%;" />
+	</p>
+	<br/>
+	
+	<div id="div-content">
 		<%out.println(b.getHtml());%>
 	</div>
-
 	<br />
 
 	<center>
-		<button id="submit">Finish</button>
+		<button type="button" id="submit" class="btn btn-primary" style="width:100px;">Post</button>
 	</center>
 	
 	<script>
@@ -83,7 +84,7 @@
 		
 		//Add editor
 		var E = window.wangEditor
-		var editor2 = new E('#div1')
+		var editor2 = new E('#div-content')
 		editor2.create()
 
 		//Add action
@@ -100,6 +101,6 @@
 		})
 	</script>
 
-	
+</div>
 </body>
 </html>
