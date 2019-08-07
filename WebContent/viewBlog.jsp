@@ -142,7 +142,7 @@
 	%>
 		<div class="form-group">
 			<form action="doComment.jsp?id=<%=bl.getId() %>" method="post" id="comment">
-				<textarea class="form-control" name="comment" rows="8" cols="100" placeholder="Leave your comment..."></textarea>
+				<textarea class="form-control" name="comment" rows="4" placeholder="Leave your comment..."></textarea>
 				<input class="btn btn-primary" type="submit" name="submit" value="Comment">
 			</form>
 		</div>
@@ -151,27 +151,32 @@
 		}
 	%>
 	
-	<h3>Comments</h3>
+	<h3 style="font-family:Consolas;">Comments</h3>
 	
-	<table id="comment-table">
 	<%
 		for(int i=bl.getComments().size()-1;i>=0;i--){
 			Comment c=bl.getComments().get(i);
 	%>
-		<tr>
+	<div class="card" style="margin:5px;"><div class="card-body">
+		<a name="Comment<%=i %>"></a>
+		<table><tr>
+			<td style="vertical-align:center;">
+				<p style="margin-right:10px;"><%out.println(new UserRenderer().getUserText(c.getUser()));%></p>
+			</td>
 			<td>
-				<a name="Comment<%=i %>"></a>
-				<%out.println(new UserRenderer().getUserText(c.getUser()));%>:
+				<p style="word-break:break-word;">
 				<%=c.getComment() %>
 				<%if(c.getUser().equals(userLooking)){%>
-					<sup><a href="deleteComment.jsp?blogId=<%=bl.getId()%>&commentId=<%=i%>"><abbr title="Delete Comment">x</abbr></a></sup>
+					<br/>
+					<a href="deleteComment.jsp?blogId=<%=bl.getId()%>&commentId=<%=i%>">Delete</a>
 				<%} %>
-			</td>
-		</tr>
+				</p>
+			</td>		
+		</tr></table>
+	</div></div>
 	<%
 		}
 	%>
-	</table>
 </div>
 </body>
 </html>

@@ -19,7 +19,7 @@
 		out.println("Comment is too long");
 		return;
 	}
-	
+	comment=comment.replace("\r","<br/>");
 	Blog b=new BlogHelper().getBlogDataByID(id);
 	b.addComment(user, comment);
 	
