@@ -41,9 +41,9 @@
 <title>HHSOJ-<%="C" + cid + pid%></title>
 </head>
 <body>
-
+<div class="container">
 	<!-- Default Template -->
-	<h1 class="title">Contest Problems on HHSOJ</h1>
+	<h1 class="title"><%=c.getInfo().getName() %></h1>
 	<i class="subtitle"><%=cid + pid%> - <%=p.getName()%></i>
 	<hr />
 	<jsp:include page="nav.jsp?at=contests"></jsp:include>
@@ -62,49 +62,40 @@
 		<p>
 			<b>Contest status: <%=c.getStatusWithTime()%></b>
 		</p>
-
-		<a href="contestWelcome.jsp?id=<%=cid%>" class="link">Contest</a> <a
-			href="submit.jsp?id=<%=fullInfo%>" class="link">Submit <abbr
-			title="Out of competition">OOC</abbr></a> <a
-			href="conSub.jsp?cid=<%=cid%>" class="link">Submit</a> <a
-			href="status.jsp?probId=<%=fullInfo%>" class="link">Status</a> <a
-			href="status.jsp?probId=<%=fullInfo%>&userId=<%=session.getAttribute("username")%>"
-			class="link">My Submission</a>
-		
-		<br/>
-		<div class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Language:<%=(lang==null || lang.equals("null")?"default":lang) %></a>
-	      	<div class="dropdown-menu">
-		        <%for(String ls:p.getArg("AllLanguage").split(";")){
-		        	
-		        	String code=ls.split("\\|")[0];
-		        	String dis=ls.split("\\|")[1];
-		        %>
-		        	<a class="dropdown-item" href="?id=<%=p.getId() %>&lang=<%=code%>"><i class="fa <%=(code.equals(lang)?"fa-check":"fa-globe")%>"></i><%=dis %></a>
-		        	<%} %>
-		    </div>
-		</div>
 	</center>
+	<a href="contestWelcome.jsp?id=<%=cid%>" style="float:left;" class="btn btn-info">Contest</a>
+	<a href="submit.jsp?id=<%=fullInfo%>" style="float:left;" class="btn btn-primary">Submit <abbr title="Out of competition">OOC</abbr></a>
+	<a href="conSub.jsp?cid=<%=cid%>" style="float:left;" class="btn btn-primary">Submit</a>
+	<a href="status.jsp?probId=<%=fullInfo%>" style="float:left;" class="btn btn-secondary">Status</a> 
+	<a href="status.jsp?probId=<%=fullInfo%>&userId=<%=session.getAttribute("username")%>" style="float:left;" class="btn btn-secondary">My Submission</a>
+	
+	<div class="dropdown" style="float:right;">
+		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Language:<%=(lang==null || lang.equals("null")?"default":lang) %></button>
+	     	<div class="dropdown-menu">
+	        <%for(String ls:p.getArg("AllLanguage").split(";")){
+	        	
+	        	String code=ls.split("\\|")[0];
+	        	String dis=ls.split("\\|")[1];
+	        %>
+	        	<a class="dropdown-item" href="?id=<%=p.getId() %>&lang=<%=code%>"><i class="fa <%=(code.equals(lang)?"fa-check":"fa-globe")%>"></i><%=dis %></a>
+	        	<%} %>
+	    </div>
+	</div>
 
-	<div class="seperator"></div>
-
+	<div class="card" style="clear:both;">
+	<div class="card-body">
 	<%
 		out.println("<!-- Statement -->");
 		out.println(new ProblemHelper().getProblemStatement(fullInfo,lang));
 	%>
+	</div>
+	</div>
 	
-	<div class="seperator"></div>
-	
-	<center>
-		<a href="contestWelcome.jsp?id=<%=cid%>" class="link">Contest</a> <a
-			href="submit.jsp?id=<%=fullInfo%>" class="link">Submit <abbr
-			title="Out of competition">OOC</abbr></a> <a
-			href="conSub.jsp?cid=<%=cid%>" class="link">Submit</a> <a
-			href="status.jsp?probId=<%=fullInfo%>" class="link">Status</a> <a
-			href="status.jsp?probId=<%=fullInfo%>&userId=<%=session.getAttribute("username")%>"
-			class="link">My Submission</a>
-	</center>
-	
-	<div class="seperator"></div>
+	<a href="contestWelcome.jsp?id=<%=cid%>" style="float:left;" class="btn btn-info">Contest</a>
+	<a href="submit.jsp?id=<%=fullInfo%>" style="float:left;" class="btn btn-primary">Submit <abbr title="Out of competition">OOC</abbr></a>
+	<a href="conSub.jsp?cid=<%=cid%>" style="float:left;" class="btn btn-primary">Submit</a>
+	<a href="status.jsp?probId=<%=fullInfo%>" style="float:left;" class="btn btn-secondary">Status</a> 
+	<a href="status.jsp?probId=<%=fullInfo%>&userId=<%=session.getAttribute("username")%>" style="float:left;" class="btn btn-secondary">My Submission</a>
+</div>
 </body>
 </html>

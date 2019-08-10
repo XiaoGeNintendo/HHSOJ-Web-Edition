@@ -86,28 +86,25 @@
 				<b>Memory Limit Per Test: <%=p.getArg("ML")%> KB
 				</b>
 			</p>
-	
-			<a href="submit.jsp?id=<%=p.getId()%>" class="btn btn-primary">Submit</a>
-			<a href="status.jsp?probId=<%=p.getId()%>" class="btn btn-secondary">Status</a>
-			<a href="status.jsp?probId=<%=p.getId()%>&userId=<%=session.getAttribute("username")%>" class="btn btn-secondary">My Submission</a>
-			
-			<br/>
-			
-			<div class="dropdown">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Language:<%=(lang==null || lang.equals("null")?"dafault":lang) %></button>
-		      	<div class="dropdown-menu">
-			        <%for(String ls:p.getArg("AllLanguage").split(";")){
-			        	
-			        	String code=ls.split("\\|")[0];
-			        	String dis=ls.split("\\|")[1];
-			        %>
-			        	<a class="dropdown-item" href="?id=<%=p.getId() %>&lang=<%=code%>"><i class="fa <%=(code.equals(lang)?"fa-check":"fa-globe")%>"></i> <%=dis %></a>
-			        	<%} %>
-			    </div>
-			</div>
 		</center>
-		<br/>
-		<div class="card">
+		<a href="submit.jsp?id=<%=p.getId()%>" style="float:left;" class="btn btn-primary">Submit</a>
+		<a href="status.jsp?probId=<%=p.getId()%>" style="float:left;" class="btn btn-secondary">Status</a>
+		<a href="status.jsp?probId=<%=p.getId()%>&userId=<%=session.getAttribute("username")%>" style="float:left;" class="btn btn-secondary">My Submission</a>
+		
+		<div class="dropdown" style="float:right;">
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Language:<%=(lang==null || lang.equals("null")?"dafault":lang) %></button>
+		     	<div class="dropdown-menu">
+		        <%for(String ls:p.getArg("AllLanguage").split(";")){
+		        	
+		        	String code=ls.split("\\|")[0];
+		        	String dis=ls.split("\\|")[1];
+		        %>
+		        	<a class="dropdown-item" href="?id=<%=p.getId() %>&lang=<%=code%>"><i class="fa <%=(code.equals(lang)?"fa-check":"fa-globe")%>"></i> <%=dis %></a>
+			        	<%} %>
+		    </div>
+		</div>
+
+		<div class="card" style="clear:both;">
 			<div class="card-body">
 			<%
 				out.println("<!-- Statement -->");
@@ -115,12 +112,9 @@
 			%>
 			</div>
 		</div>
-		<br/>
-		<center>
-			<a href="submit.jsp?id=<%=p.getId()%>" class="btn btn-primary">Submit</a>
-			<a href="status.jsp?probId=<%=p.getId()%>" class="btn btn-secondary">Status</a>
-			<a href="status.jsp?probId=<%=p.getId()%>&userId=<%=session.getAttribute("username")%>" class="btn btn-secondary">My Submission</a>
-		</center>
+		<a href="submit.jsp?id=<%=p.getId()%>" style="float:left;" class="btn btn-primary">Submit</a>
+		<a href="status.jsp?probId=<%=p.getId()%>" style="float:left;" class="btn btn-secondary">Status</a>
+		<a href="status.jsp?probId=<%=p.getId()%>&userId=<%=session.getAttribute("username")%>" style="float:left;" class="btn btn-secondary">My Submission</a>
 		<%
 			}
 			}
