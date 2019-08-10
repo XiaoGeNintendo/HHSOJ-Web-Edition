@@ -49,7 +49,7 @@
 		<hr />
 		<jsp:include page="nav.jsp?at=login"></jsp:include>
 
-		<div class="login-form">
+		<div class="card login-form"><div class="card-body">
 			<form action="dologin.jsp" onsubmit="return call()" method="post" name="login">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Username" name="username" maxlength="50" />
@@ -66,7 +66,7 @@
 				
 				<a href="forget.jsp">(Forget Your Password?)</a>
 			</form>
-		</div>
+		</div></div>
 	</div>
 </body>
 </html>

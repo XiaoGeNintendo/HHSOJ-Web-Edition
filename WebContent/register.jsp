@@ -57,7 +57,7 @@
 		<hr />
 		<jsp:include page="nav.jsp?at=register"></jsp:include>
 		
-		<div class="login-form">
+		<div class="card login-form"><div class="card-body">
 			<form action="doregister.jsp" onsubmit="return call()" method="post" name="register">
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Username" name="username" maxlength="50" />
@@ -79,7 +79,7 @@
 					<input type="submit" value="Register" class="btn btn-primary" style="margin:5px auto;"/>
 				</div>
 			</form>
-		</div>
+		</div></div>
 	</div>
 </body>
 </html>

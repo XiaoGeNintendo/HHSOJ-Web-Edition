@@ -58,53 +58,38 @@
 		}
 	%>
 	
-	
+<div class="container">
 	<h1 class="title">Change Settings</h1>
 	<i class="subtitle">Leave the blank empty if you don't want to change it</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	
-	<form onsubmit="return call()" action="dosetting.jsp" method="post" name="setting">
-		<table align="center" id="login_table">
-			<tr>
-				<td>Username:</td>
-				<td><input type="text" maxlength="50" name="username"/></td>
-			</tr>
-			
-			<tr>
-				<td>Password(required):</td>
-				<td><input type="password" maxlength="50" name="password"/></td>
-			</tr>
-			
-			<tr>
-				<td>New Password:</td>
-				<td><input type="password" maxlength="50" name="newPassword"/></td>
-			</tr>
-			
-			<tr>
-				<td>Sentence:</td>
-				<td><input type="text" name="line"/></td>
-			</tr>
-			
-			<tr>
-				<td><acronym title="Input an address on Internet to your picture">Icon:</acronym></td>
-				<td><input type="text" name="icon" value="http://..."/></td>
-			</tr>
-			
-			<tr>
-				<td><input type="checkbox" name="info" ></td>
-				<td>Receive Contest Information?</td>
-				
-			</tr>
-			
-			<tr>
-			
-				<td colspan="2"  style="text-align:center;" >
-					<input type="submit" value="Change" style="width:90px;">
-				</td>
-			</tr>
-		</table>
-	</form>
-	
+	<div class="card login-form"><div class="card-body">
+		<form onsubmit="return call()" action="dosetting.jsp" method="post" name="setting">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Username" name="username" maxlength="50" />
+			</div>
+			<div class="input-group">
+				<input type="password" class="form-control" placeholder="Password" name="password" maxlength="50" />
+			</div>
+			<div class="input-group">
+				<input type="password" class="form-control" placeholder="New password" name="newPassword" maxlength="50" />
+			</div>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Presonal line" name="line" maxlength="50" />
+			</div>
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="URL to your icon" name="icon"/>
+			</div>
+			<div class="input-group">
+				<input type="checkbox" name="info"/>
+				<p>Receive Contest notification via email?</p>
+			</div>
+			<div class="input-group">
+				<input type="submit" value="Change" class="btn btn-primary" style="margin:5px auto;"/>
+			</div>
+		</form>
+	</div></div>
+</div>
 </body>
 </html>
