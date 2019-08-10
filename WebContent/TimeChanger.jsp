@@ -9,6 +9,7 @@
 <title>HHSOJ - Time Changer</title>
 </head>
 <body>
+<div class="container">
 	<!-- Default Template -->
 	<h1 class="title">HHSOJ Tool: Time Changer</h1>
 	<i class="subtitle">It might help you to write contest timetables -- XGN</i>
@@ -19,15 +20,16 @@
 	<!-- Default End -->
 
 	<center>
+	<div class="card" style="width:600px;"><div class="card-body">
 		<i>Note that if you are using Firefox or IE, this page may have some problem</i> <br/>
 		
 		Date:<input id="a" type="datetime-local" />
 		<br/>
 		
-		<button id="submit" onclick="change()">Change me</button> <br/>
+		<button class="btn" id="submit" onclick="change()">Change me</button> <br/>
 		
 		Time stamp:<p id="out">...</p>
-		
+	</div></div>
 	</center>
 	
 	<script>
@@ -37,5 +39,6 @@
 			document.getElementById("out").innerHTML=d+"<br/>"+d.getTime();
 		}
 	</script>
+</div>
 </body>
 </html>
