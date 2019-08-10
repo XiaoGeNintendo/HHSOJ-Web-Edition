@@ -4,11 +4,16 @@
 <html>
 <head>
 <jsp:include page="head.jsp"></jsp:include>
-
-
 <title>HHSOJ - Richtext Editor</title>
+<style type="text/css">
+.w-e-text-container {
+	background: #ffffff;
+	height: 400px;
+}
+</style>
 </head>
 <body>
+<div class="container">
 	<!-- Default Template -->
 	<h1 class="title">HHSOJ Tool: Rich text editor</h1>
 	<i class="subtitle">It might help you to write problem statements -- XGN</i>
@@ -17,24 +22,21 @@
 	<jsp:include page="nav.jsp?at=index"></jsp:include>
 	
 	<!-- Default End -->
-
-	<script type="text/javascript" src="js/wangEditor.js"></script>
 	
-	<div id="in"></div>
+	<div id="div-content"></div>
 
-	<br />
+	<br/>
 
 	<center>
-		<button id="submit">Change to HTML</button> <br/>
-		<textarea id="out" rows="30" cols="120"></textarea>
+		<button class="btn btn-primary" id="submit">Change to HTML</button>
+		<br/><br/>
+		<textarea style="font-family:Consolas;" id="out" rows="10" cols="120"></textarea>
 	</center>
-	
-	
 	
 	<script>
 		//Add editor
 		var E = window.wangEditor
-		var editor2 = new E('#in')
+		var editor2 = new E('#div-content')
 		editor2.create()
 		
 		//Add button event
@@ -43,5 +45,6 @@
 			document.getElementById("out").innerHTML=editor2.txt.html();
 		})
 	</script>
+</div>
 </body>
 </html>
