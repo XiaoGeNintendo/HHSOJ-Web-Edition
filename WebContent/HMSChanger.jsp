@@ -9,6 +9,7 @@
 <title>HHSOJ - HMS Changer</title>
 </head>
 <body>
+<div class="container">
 	<!-- Default Template -->
 	<h1 class="title">HHSOJ Tool: HMS Changer</h1>
 	<i class="subtitle">It might help you to write contest lengths -- XGN</i>
@@ -19,15 +20,18 @@
 	<!-- Default End -->
 
 	<center>
+		<div class="card" style="width:500px;"><div class="card-body">
+		<div class="input-group">
+			<input class="form-control" id="h" placeholder="Hour">
+			<input class="form-control" id="m" placeholder="Minute">
+			<input class="form-control" id="s" placeholder="Second">
+		</div>
 		
-		<input id="h" value="0">h<input id="m" value="0">m<input id="s" value="0">s
+		<button class="btn btn-primary" id="submit" onclick="change()">Change me</button> <br/>
 		
-		<br/>
-		
-		<button id="submit" onclick="change()">Change me</button> <br/>
-		
-		Length:<p id="out">...</p>
-		
+		<p>Length:</p>
+		<p id="out">...</p>
+		</div></div>
 	</center>
 	
 	<script>
@@ -39,5 +43,6 @@
 			
 		}
 	</script>
+</div>
 </body>
 </html>
