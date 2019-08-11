@@ -17,12 +17,15 @@
 <style>
 #editor{
     margin: auto;
-    width: 50%; 
+    width: 90%; 
     height: 250px;
 }
-h2{
+h2,b{
 	font-family:Consolas;
-} 	
+}
+div[class=card]{
+	margin:10px;
+}
 </style>
 
 <title>HHSOJ-Submission <%=request.getParameter("id") %></title>
@@ -87,18 +90,20 @@ h2{
 	<hr />
 	<jsp:include page="nav.jsp?at=status"></jsp:include>
 	<!-- Default End -->	
+	<div class="card"><div class="card-body">
 		<h2>Basic Information</h2>
 	
-		<p>Submission ID:<%=id %></p>
-		<p>Problem ID:<a href="problem.jsp?id=<%=s.getProb() %>"><%=s.getProb() %></a> </p>
-		<p>Owner:<%out.println(new UserRenderer().getUserText(s.getUser()));%></p>
-		<p>Language:<%=s.getLang() %></p>
-		<p>Verdict:<%=new VerdictHelper().render(s.getHTMLVerdict())%></p>
-		<p>Time Cost:<%=s.getTimeCost() %></p>
-		<p>Memory Cost:<%=s.getMemoryCost() %></p>
-		<p>Submit Time:<%=s.getReadableTime() %></p>
-		<p>Testset:<%=s.getTestset() %> </p>
-		
+		<p>Submission ID: <%=id %></p>
+		<p>Problem ID: <a href="problem.jsp?id=<%=s.getProb() %>"><%=s.getProb() %></a> </p>
+		<p>Owner: <%out.println(new UserRenderer().getUserText(s.getUser()));%></p>
+		<p>Language: <%=s.getLang() %></p>
+		<p>Verdict: <%=new VerdictHelper().render(s.getHTMLVerdict())%></p>
+		<p>Time Cost: <%=s.getTimeCost() %></p>
+		<p>Memory Cost: <%=s.getMemoryCost() %></p>
+		<p>Submit Time: <%=s.getReadableTime() %></p>
+		<p>Testset: <%=s.getTestset() %> </p>
+	</div></div>
+	<div class="card"><div class="card-body">
 		<h2>Code</h2>
 		
 		<div id="editor">Loading Code...</div>
@@ -118,8 +123,7 @@ h2{
 				editor.setValue(data.trim());
 			});
 		</script>
-		<br/>
-		
+	</div></div>
 		<%
 			boolean[] query=new boolean[]{userLooking!=null,s.getVerdict().equals("Accepted"),p.isHackable(s.getTestset())};
 			String[] sentence=new String[]{"You didn't login","Solution isn't accepted","Testset doesn't support hacking"};
@@ -177,11 +181,12 @@ h2{
 			}
 		%>
 		
-		<br/>
-		
+	<div class="card"><div class="card-body">
 		<h2>Compiler Comment</h2>
 		<pre><%=s.getCompilerComment().replace("<","&lt;").replace(">","&gt;") %></pre>
-		
+	</div></div>
+	
+	<div class="card"><div class="card-body">
 		<h2>Testcases Information</h2>
 		<%
 			int cnt=1;
@@ -207,7 +212,7 @@ h2{
 				cnt++;
 			}
 		%>
-		
+	</div></div>
 		  <div class="modal fade" id="myModal">
 		    <div class="modal-dialog">
 		      <div class="modal-content">
