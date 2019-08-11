@@ -62,10 +62,11 @@
 				<div class="input-group">
 					<input type="hidden" name="type" value="<%=type%>">
 					<input type="submit" value="Login" class="btn btn-primary" style="margin:5px auto;"/>
-				</div>
-				
-				<a href="forget.jsp">(Forget Your Password?)</a>
+				</div>	
 			</form>
+			<center>
+				<a href="forget.jsp">(Forget Your Password?)</a>
+			</center>
 		</div></div>
 	</div>
 </body>
