@@ -119,7 +119,7 @@ For Java users:
 			</pre>
 	
 		<script>
-			call()
+			call();
 			
 			// Init the code editor
 		    var editor = ace.edit("code");
@@ -137,7 +137,7 @@ For Java users:
 		    	});
 		    }
 		    
-		    var lang="";
+		    var lang="cpp";
 		    
 		    function s(){
 		    	var obj=document.getElementById("lang");
