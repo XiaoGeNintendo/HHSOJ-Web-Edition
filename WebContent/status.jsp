@@ -96,24 +96,24 @@
 		
 		function renderJS(s){
 			if(s.startsWith("Time Limit Exceeded") || s.startsWith("Memory Limit Exceeded")){
-				return "<font color=#0000ff>"+s+"</font>";
+				return "<span style=\"color:#0000ff;\">"+s+"</span>";
 			}
 			if(s == ("Accepted") || s=="Successful Hacking Attempt"){
-				return "<b style=\"color:#00ff00\">"+s+"</b>";
+				return "<span style=\"color:#00ff00;font-weight:bold;\">"+s+"</span>";
 			}
 			if(s == "Unsuccessful Hacking Attempt" || s=="Hacked"){
-				return "<b style=\"color:#ff0000\">"+s+"</b>";
+				return "<span style=\"color:#ff0000;font-weight:bold;\">"+s+"</span>";
 			}
 			if(s.startsWith("Defending") || s.startsWith("Initalizing") || s.startsWith("Running") || s.startsWith("Judging") || s.startsWith("Compiling") || s.startsWith("In queue")){
-				return "<font color=#787878>"+s+"</font>";
+				return "<span style=\"color:#787878;\">"+s+"</span>";
 			}
 			if(s.startsWith("Wrong Answer")){
-				return "<font color=#ff0000>"+s+"</font>";
+				return "<span style=\"color:#ff0000;\">"+s+"</span>";
 			}
 			if(s.startsWith("Runtime Error")){
-				return "<font color=#088a85>"+s+"</font>";
+				return "<span style=\"color:#088a85;\">"+s+"</span>";
 			}	
-			return "<font color=#201890>"+s+"</font>";
+			return "<span style=\"color:#201890;\">"+s+"</span>";
 		}
 		
 		function upd(){

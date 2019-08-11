@@ -15,17 +15,20 @@
 <head>
 <jsp:include page="head.jsp"></jsp:include>
 <style>
-	#editor{
-        margin: auto;
-        width: 50%; 
-        height: 250px;
-   	}
+#editor{
+    margin: auto;
+    width: 50%; 
+    height: 250px;
+}
+h2{
+	font-family:Consolas;
+} 	
 </style>
 
 <title>HHSOJ-Submission <%=request.getParameter("id") %></title>
 </head>
 <body>
-	
+<div class="container">
 	<%
 		int id=-1;
 		Submission s=new Submission();
@@ -79,27 +82,22 @@
 	</script>
 	
 	<!-- Default Template -->
-	<h1 class="title">Submissions on HHSOJ</h1>
+	<h1 class="title">Submission <%=id %> on HHSOJ</h1>
 	<i class="subtitle">Ctrl+A Ctrl+C help me get AC!  --IC</i>
 	<hr />
 	<jsp:include page="nav.jsp?at=status"></jsp:include>
-	<!-- Default End -->
-	
-	<center>
-		<h1>Submission <%=id %> on HHSOJ</h1>
-	</center>
-	
+	<!-- Default End -->	
 		<h2>Basic Information</h2>
 	
-		Submission ID:<%=id %> <br/>
-		Problem ID:<a href="problem.jsp?id=<%=s.getProb() %>"><%=s.getProb() %></a><br/>
-		Submission Owner:<%out.println(new UserRenderer().getUserText(s.getUser()));%><br/>
-		Submission Language:<%=s.getLang() %><br/>
-		Submission Verdict:<%=new VerdictHelper().render(s.getHTMLVerdict())%><br/>
-		Submission Time Cost:<%=s.getTimeCost() %><br/>
-		Submission Memory Cost:<%=s.getMemoryCost() %><br/>
-		Submission Submit Time:<%=s.getReadableTime() %><br/>
-		Submission Testset:<%=s.getTestset() %> <br/>
+		<p>Submission ID:<%=id %></p>
+		<p>Problem ID:<a href="problem.jsp?id=<%=s.getProb() %>"><%=s.getProb() %></a> </p>
+		<p>Owner:<%out.println(new UserRenderer().getUserText(s.getUser()));%></p>
+		<p>Language:<%=s.getLang() %></p>
+		<p>Verdict:<%=new VerdictHelper().render(s.getHTMLVerdict())%></p>
+		<p>Time Cost:<%=s.getTimeCost() %></p>
+		<p>Memory Cost:<%=s.getMemoryCost() %></p>
+		<p>Submit Time:<%=s.getReadableTime() %></p>
+		<p>Testset:<%=s.getTestset() %> </p>
 		
 		<h2>Code</h2>
 		
@@ -149,13 +147,13 @@
 			
 		<%
 			}else if(s.getVerdict().equals("Hacked")){
-				String yp=s.getResults().get(s.getResults().size()-1).getFile();
-				String zjs=yp.substring(yp.indexOf("#")+1);
+				String tmp=s.getResults().get(s.getResults().size()-1).getFile();
+				String hacker=tmp.substring(tmp.indexOf("#")+1);
 		%>
 			<div class="card bg-warning text-white">
 			    <div class="card-body">
 			    	Oops.. Too late.. <br/>
-			    	This solution has already been hacked by <a href="submission.jsp?id=<%=zjs %>">this</a>
+			    	This solution has already been hacked by <a href="submission.jsp?id=<%=hacker %>">this</a>
 			    </div>
 			</div>
 		<%
@@ -210,23 +208,19 @@
 			}
 		%>
 		
-		<!-- 模态框 -->
 		  <div class="modal fade" id="myModal">
 		    <div class="modal-dialog">
 		      <div class="modal-content">
 		   
-		        <!-- 模态框头部 -->
 		        <div class="modal-header">
 		          <h4 class="modal-title">Hack Submission <%=s.getId() %></h4>
 		          <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        </div>
 		   
-		        <!-- 模态框主体 -->
 		        <div class="modal-body">
 		          	<textarea id="hackData" rows="5" cols="60" title="Hack data" placeholder="Input hack data"></textarea>
 		        </div>
 		   
-		        <!-- 模态框底部 -->
 		        <div class="modal-footer">
 		          <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="hack()">Hack</button>
 		          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -235,6 +229,6 @@
 		      </div>
 		    </div>
 		  </div>
-		  
+</div>
 </body>
 </html>
