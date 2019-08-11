@@ -12,9 +12,10 @@
 <head>
 <jsp:include page="head.jsp"></jsp:include>
 
-<title>HHSOJ-Blogs</title>
+<title>HHSOJ - User Search</title>
 </head>
 <body>
+<div class="container">
 	<!-- Default Template -->
 	<h1 class="title">User Search</h1>
 	<i class="subtitle">Who is the person you are looking for? --XGN</i>
@@ -40,10 +41,12 @@
 			matcher="";
 			
 			%>
-			<div class="alert alert-danger alert-dismissible fade show">
-			    <button type="button" class="close" data-dismiss="alert">&times;</button>
-			    <strong>Error!</strong> Please enter a valid regex!
-		  	</div>
+			<center>
+				<div class="alert alert-danger alert-dismissible fade show" style="width:500px;">
+				    <button type="button" class="close" data-dismiss="alert">&times;</button>
+				    <strong>Error!</strong> Please enter a valid regex!
+		  		</div>
+		  	</center>
 			<%
 		}
 		
@@ -53,41 +56,33 @@
 	<!-- Default End-->
 	
 	<center>
-		<form action="userSearch.jsp" method="get">
-			<table>
-				<tr>
-					<td align="center">
-						Username:
-						<input name="username" placeholder="Use Regex. eg: XG.*">
-					</td>
-				</tr>
-				
-				<tr>
-					<td align="center">
-						Sort as:
-						<select name="sort">
-							<option value="az">A-Z</option>
-							<option value="ratinga">Rating Asec.</option>
-							<option value="ratingd">Rating Desc.</option>
-							
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td align="center">
-						<input type="submit" value="Submit">
-					</td>
-				</tr>
-			</table>
+		<form action="userSearch.jsp" method="get" style="width:500px;">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Uername</span>
+				</div>
+				<input type="text" class="form-control" name="username" placeholder="Use Regex. eg: XG.*">
+			</div>
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text">Sorting</span>
+				</div>
+				<select class="form-control" name="sort">
+					<option value="az">A-Z</option>
+					<option value="ratinga">Rating Asec.</option>
+					<option value="ratingd">Rating Desc.</option>	
+				</select>
+			</div>
+			<input class="btn btn-primary" type="submit" value="Submit">
 		</form>
 	
 		<hr/>
 		
-		<table width="80%" border="1">
+		<table class="table table-bordered table-sm" style="width:80%;">
 		
 			<tr>
-				<th align="center" width="80%">Username</th>
-				<th align="center" width="20%">Rating</th>
+				<th width="80%">Username</th>
+				<th width="20%">Rating</th>
 			</tr>
 			
 			<%
@@ -109,8 +104,8 @@
 					if(u.getUsername().matches(matcher)){
 			%>
 			<tr>
-				<td align="center"><%=new UserRenderer().getUserText(u) %></td>
-				<td align="center"><%=u.getNowRating() %></td>
+				<td><%=new UserRenderer().getUserText(u) %></td>
+				<td><%=u.getNowRating() %></td>
 			</tr>
 			<%
 					}
@@ -120,6 +115,6 @@
 	
 	</center>
 	
-	
+</div>
 </body>
 </html>

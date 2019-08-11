@@ -23,7 +23,7 @@ p, span, a, th, td, label{
 	font-family: "Consolas";
 }
 
-input,button{
+input[type=button],input[type=submit],button{
 	font-family: "Consolas";
 	margin-top: 5px;
 	margin-bottom: 5px;
