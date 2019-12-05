@@ -10,7 +10,7 @@
 <html>
 <head>
 <jsp:include page="head.jsp"></jsp:include>
-
+<script src="js/setter.js"></script>
 <title>HHSOJ-Problemsetter Menu</title>
 <style type="text/css">
 .w-e-text-container {
@@ -45,14 +45,26 @@
 		<center>
 			<h1>Problem Index</h1>
 			
+			<input id="nid" placeholder="Problem Id" />
+			<a href="javascript:postMe()" class="btn btn-success"><i class="fa fa-plus"></i>Add new problem</a> <br/>
+			
 			<%
 				ArrayList<Problem> pro=new ProblemHelper().getAllProblems();
 				for(Problem p:pro){
 			%>
 				<a href="set_editProbInfo.jsp?id=<%=p.getId() %>" class="btn btn-primary"><i class="fa fa-edit"></i><%=p.getId()+":"+p.getName() %></a> <br/>
 			<% }%>
+		<br/>
+		
 		</center>
-
+		
+		<script>
+		function postMe(){
+			httpPost("set_addProb.jsp",{"nid":document.getElementById("nid").value});
+		}
+		
+		</script>
+		
 	</div>
 </body>
 </html>

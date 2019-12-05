@@ -44,8 +44,17 @@
 				out.println("No such problem");
 				return;
 			}
-			Problem p=new ProblemHelper().getProblemData(pid);
+			Problem p=null;
 			
+			try{
+				p=new ProblemHelper().getProblemData(pid);
+				if(p==null){
+					throw new Exception();
+				}
+			}catch(Exception e){
+				out.println("No such problem");
+				return;
+			}
 		%>
 		<!-- Default End -->
 		
