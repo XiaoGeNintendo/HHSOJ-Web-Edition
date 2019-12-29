@@ -64,7 +64,7 @@
 				int id=0;
 				for(File sub:f.listFiles()){
 					id++;
-					if(sub.isDirectory() && !sub.getName().startsWith("!")){
+					if(sub.isDirectory()){
 						String frn=id+"";
 			%>
 						<div class="card">
