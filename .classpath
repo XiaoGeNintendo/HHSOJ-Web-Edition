@@ -13,10 +13,5 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="lib/gson-2.8.5.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:platform:/resource/HHSOJ-Web%20Edition/lib/gson-2.8.5-javadoc.jar!/"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
