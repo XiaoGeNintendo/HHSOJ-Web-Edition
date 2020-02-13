@@ -2,6 +2,9 @@
 Another stupid cross-platform Online Judge with Java EE.
 
 Sometimes we call it HellOJ
+
+**This OJ is not maintained! See our new edition [HHSOJ Essential](https://github.com/XiaoGeNintendo/HHSOJ-Essential)**
+
 # What's it
 It's an easy online judge. It's still beta!
 # About "hhsoj" folder

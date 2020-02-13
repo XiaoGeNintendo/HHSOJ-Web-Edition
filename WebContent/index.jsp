@@ -31,6 +31,7 @@
 		</marquee>
 		<p>This system is still under developing. Please don't upload any
 			harmful code. Thanks :(</p>
+		<a href="https://github.com/XiaoGeNintendo/HHSOJ-Essential">Also try HHSOJ Essential!</a>
 		<br /> <br />
 
 
